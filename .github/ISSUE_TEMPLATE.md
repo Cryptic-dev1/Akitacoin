@@ -1,8 +1,8 @@
 <!--- Remove sections that do not apply -->
 
-This issue tracker is only for technical issues related to Ravencoin.
+This issue tracker is only for technical issues related to Akitacoin.
 
-General Ravencoin questions and/or support requests and are best directed to the [Ravencoin Discord](https://discord.gg/jn6uhur)).
+General Akitacoin questions and/or support requests and are best directed to the [Akitacoin Discord](https://discord.gg/nQszmj5xT5)).
 
 For reporting security issues, please direct message one of the core developers in discord.
 
@@ -23,7 +23,7 @@ Tell us what happens instead
 ### Screenshots.
 If the issue is related to the GUI, screenshots can be added to this issue via drag & drop.
 
-### What version of Ravencoin are you using?
+### What version of Akitacoin are you using?
 List the version number/commit ID, and if it is an official binary, self compiled or a distribution package such as PPA.
 
 ### Machine specs:

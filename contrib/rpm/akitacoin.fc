@@ -1,0 +1,8 @@
+/usr/bin/akitacoin-cli		--	gen_context(system_u:object_r:akitacoin_exec_t,s0)
+/usr/sbin/akitacoind		--	gen_context(system_u:object_r:akitacoin_exec_t,s0)
+/usr/lib(64)?/akitacoin/akitacoind		--	gen_context(system_u:object_r:akitacoin_exec_t,s0)
+
+/etc/akitacoin(/.*)?		gen_context(system_u:object_r:akitacoin_conf_t,s0)
+/var/lib/akitacoin(/.*)?		gen_context(system_u:object_r:akitacoin_var_lib_t,s0)
+
+(/var)?/run/akitacoind(/.*)?   gen_context(system_u:object_r:akitacoin_var_run_t,s0)

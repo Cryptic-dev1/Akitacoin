@@ -1,11 +1,11 @@
 Sample configuration files for:
 ```
-SystemD: ravend.service
-Upstart: ravend.conf
-OpenRC:  ravend.openrc
-         ravend.openrcconf
-CentOS:  ravend.init
-OS X:    org.raven.ravend.plist
+SystemD: akitacoind.service
+Upstart: akitacoind.conf
+OpenRC:  akitacoind.openrc
+         akitacoind.openrcconf
+CentOS:  akitacoind.init
+OS X:    org.akitacoin.akitacoind.plist
 ```
 have been made available to assist packagers in creating node packages here.
 

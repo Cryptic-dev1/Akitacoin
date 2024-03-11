@@ -31,12 +31,13 @@ jobs:
     - name: Copy the Xcode Dependency Files
       run: |
           cd ${{ GITHUB.WORKSPACE }}
-          curl -O https://raven-build-resources.s3.amazonaws.com/osx/MacOSX10.11.sdk.tar.gz
+          curl -O https://bitcoincore.org/depends-sources/sdks/MacOSX10.14.sdk.tar.gz
 
     - name: Extract Xcode Resources
       run: |
           mkdir -p ${{ GITHUB.WORKSPACE }}/depends/SDKs
-          cd ${{ GITHUB.WORKSPACE }}/depends/SDKs && tar -zxf ${{ GITHUB.WORKSPACE }}/MacOSX10.11.sdk.tar.gz
+          cp -r ${{ GITHUB.WORKSPACE }}/MacOSX10.14.sdk.tar.gz ${{ GITHUB.WORKSPACE }}/depends/SDKs/MacOSX10.14.sdk.tar.gz
+          cd ${{ GITHUB.WORKSPACE }}/depends/SDKs && tar -zxf ${{ GITHUB.WORKSPACE }}/MacOSX10.14.sdk.tar.gz
 
     - name: Build the Dependencies
       run: cd ${{ GITHUB.WORKSPACE }}/depends && make HOST=x86_64-apple-darwin14 -j2
@@ -44,9 +45,9 @@ jobs:
     - name: Tar Up the Dependencies
       run: |
           if [[ ! -e ${{ GITHUB.WORKSPACE }}/depends_temp ]]; then mkdir -p ${{ GITHUB.WORKSPACE }}/depends_temp; fi
-          cd ${{ GITHUB.WORKSPACE }}/depends && tar zcf ${{ GITHUB.WORKSPACE }}/depends_temp/raven-osx-dependencies.tar.gz .
+          cd ${{ GITHUB.WORKSPACE }}/depends && tar zcf ${{ GITHUB.WORKSPACE }}/depends_temp/akitacoin-osx-dependencies.tar.gz .
           cd ${{ GITHUB.WORKSPACE }}/depends_temp
-          if [[ -e raven-osx-dependencies.tar.gz ]]; then sha256sum raven-osx-dependencies.tar.gz > SHASUM; else echo "no dependency tar file found"; fi
+          if [[ -e akitacoin-osx-dependencies.tar.gz ]]; then sha256sum akitacoin-osx-dependencies.tar.gz > SHASUM; else echo "no dependency tar file found"; fi
 
     - name: Sync the Dependencies to S3
       uses: jakejarvis/s3-sync-action@master
@@ -56,6 +57,6 @@ jobs:
         SOURCE_DIR: "${{ GITHUB.WORKSPACE }}/depends_temp/"
         DEST_DIR: 'osx'
         AWS_REGION: 'us-east-1'
-        AWS_S3_BUCKET: "raven-build-resources"
+        AWS_S3_BUCKET: "akitacoin-build-resources"
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
