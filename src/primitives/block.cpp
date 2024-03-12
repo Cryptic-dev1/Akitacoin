@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2020 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -49,9 +49,10 @@ uint256 CBlockHeader::GetHash() const
         }
 
         return HashX16R(BEGIN(nVersion), END(nNonce), hashPrevBlock);
-    } else {
+        
+    } else{
         return KAWPOWHash_OnlyMix(*this);
-    }
+    }   
 }
 
 uint256 CBlockHeader::GetHashFull(uint256& mix_hash) const
@@ -70,10 +71,8 @@ uint256 CBlockHeader::GetHashFull(uint256& mix_hash) const
         return HashX16R(BEGIN(nVersion), END(nNonce), hashPrevBlock);
     } else {
         return KAWPOWHash(*this, mix_hash);
-    }
+    } 
 }
-
-
 
 
 uint256 CBlockHeader::GetX16RHash() const
