@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2021 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAVEN_CONSENSUS_PARAMS_H
-#define RAVEN_CONSENSUS_PARAMS_H
+#ifndef AKITACOIN_CONSENSUS_PARAMS_H
+#define AKITACOIN_CONSENSUS_PARAMS_H
 
 #include "uint256.h"
 #include <map>
@@ -16,7 +16,7 @@ namespace Consensus {
 enum DeploymentPos
 {
     DEPLOYMENT_TESTDUMMY,
-    DEPLOYMENT_ASSETS, // Deployment of RIP2
+    DEPLOYMENT_ASSETS, // Deployment of AIP2
     DEPLOYMENT_MSG_REST_ASSETS, // Delpoyment of RIP5 and Restricted assets
     DEPLOYMENT_TRANSFER_SCRIPT_SIZE,
     DEPLOYMENT_ENFORCE_VALUE,
@@ -53,6 +53,7 @@ struct Params {
     bool nBIP34Enabled;
     bool nBIP65Enabled;
     bool nBIP66Enabled;
+    int BIP34LockedIn; //I don't know what this is for, maybe a sanity check???
     // uint256 BIP34Hash;
     /** Block height at which BIP65 becomes active */
     // int BIP65Height;
@@ -81,4 +82,4 @@ struct Params {
 };
 } // namespace Consensus
 
-#endif // RAVEN_CONSENSUS_PARAMS_H
+#endif // AKITACOIN_CONSENSUS_PARAMS_H
