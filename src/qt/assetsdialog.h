@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAVEN_QT_ASSETSDIALOG_H
-#define RAVEN_QT_ASSETSDIALOG_H
+#ifndef AKITACOIN_QT_ASSETSDIALOG_H
+#define AKITACOIN_QT_ASSETSDIALOG_H
 
 #include "walletmodel.h"
 
@@ -26,7 +26,7 @@ QT_BEGIN_NAMESPACE
 class QUrl;
 QT_END_NAMESPACE
 
-/** Dialog for sending ravens */
+/** Dialog for sending akitas */
 class AssetsDialog : public QDialog
 {
     Q_OBJECT
@@ -108,14 +108,14 @@ private Q_SLOTS:
 
     void customFeeFeatureChanged(bool);
 
-    /** RVN START */
+    /** AKIC START */
     void assetControlUpdateSendCoinsDialog();
     void focusAsset(const QModelIndex& index);
-    /** RVN END */
+    /** AKIC END */
 
     Q_SIGNALS:
             // Fired when a message should be reported to the user
             void message(const QString &title, const QString &message, unsigned int style);
 };
 
-#endif // RAVEN_QT_ASSETSSDIALOG_H
+#endif // AKITACOIN_QT_ASSETSSDIALOG_H

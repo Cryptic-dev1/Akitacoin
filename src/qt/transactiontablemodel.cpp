@@ -1,5 +1,5 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2021 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -269,7 +269,7 @@ TransactionTableModel::~TransactionTableModel()
 /** Updates the column title to "Amount (DisplayUnit)" and emits headerDataChanged() signal for table headers to react. */
 //void TransactionTableModel::updateAmountColumnTitle()
 //{
-//    columns[Amount] = RavenUnits::getAmountColumnTitle(walletModel->getOptionsModel()->getDisplayUnit());
+//    columns[Amount] = AkitacoinUnits::getAmountColumnTitle(walletModel->getOptionsModel()->getDisplayUnit());
 //    Q_EMIT headerDataChanged(Qt::Horizontal,Amount,Amount);
 //}
 
@@ -479,7 +479,7 @@ QVariant TransactionTableModel::addressColor(const TransactionRecord *wtx) const
     return QVariant();
 }
 
-QString TransactionTableModel::formatTxAmount(const TransactionRecord *wtx, bool showUnconfirmed, RavenUnits::SeparatorStyle separators) const
+QString TransactionTableModel::formatTxAmount(const TransactionRecord *wtx, bool showUnconfirmed, AkitacoinUnits::SeparatorStyle separators) const
 {
     QString str;
     switch(wtx->type) {
@@ -492,7 +492,7 @@ QString TransactionTableModel::formatTxAmount(const TransactionRecord *wtx, bool
             } break;
         default:
             {
-            str = RavenUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), wtx->credit + wtx->debit,
+            str = AkitacoinUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), wtx->credit + wtx->debit,
                                              false, separators);
             } break;
     }
@@ -598,12 +598,12 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
         case ToAddress:
             return formatTxToAddress(rec, false);
         case Amount:
-            return formatTxAmount(rec, true, RavenUnits::separatorAlways);
+            return formatTxAmount(rec, true, AkitacoinUnits::separatorAlways);
         case AssetName:
-            if (rec->assetName != "RVN")
+            if (rec->assetName != "AKIC")
                return QString::fromStdString(rec->assetName);
             else
-               return QString(RavenUnits::name(walletModel->getOptionsModel()->getDisplayUnit()));
+               return QString(AkitacoinUnits::name(walletModel->getOptionsModel()->getDisplayUnit()));
         } // no default case, so the compiler can warn about missing cases
         assert(false);
     case Qt::EditRole:
@@ -650,7 +650,7 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
         }
         if(index.column() == AssetName)
         {
-            if (rec->assetName != "RVN")
+            if (rec->assetName != "AKIC")
                return platformStyle->AssetTxColor();
         }
         break;
@@ -701,21 +701,21 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
                 details.append(QString::fromStdString(rec->address));
                 details.append(" ");
             }
-            details.append(formatTxAmount(rec, false, RavenUnits::separatorNever));
+            details.append(formatTxAmount(rec, false, AkitacoinUnits::separatorNever));
             return details;
         }
     case ConfirmedRole:
         return rec->status.countsForBalance;
     case FormattedAmountRole:
         // Used for copy/export, so don't include separators
-        return formatTxAmount(rec, false, RavenUnits::separatorNever);
+        return formatTxAmount(rec, false, AkitacoinUnits::separatorNever);
     case AssetNameRole:
         {
             QString assetName;
-            if (rec->assetName != "RVN")
+            if (rec->assetName != "AKIC")
                assetName.append(QString::fromStdString(rec->assetName));
             else
-               assetName.append(QString(RavenUnits::name(walletModel->getOptionsModel()->getDisplayUnit())));
+               assetName.append(QString(AkitacoinUnits::name(walletModel->getOptionsModel()->getDisplayUnit())));
             return assetName;
         }
     case StatusRole:
@@ -752,7 +752,7 @@ QVariant TransactionTableModel::headerData(int section, Qt::Orientation orientat
             case Amount:
                 return tr("Amount removed from or added to balance.");
             case AssetName:
-                return tr("The asset (or RVN) removed or added to balance.");
+                return tr("The asset (or AKIC) removed or added to balance.");
             }
         }
     }

@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2015 The Bitcoin Core developers
-// Copyright (c) 2017-2021 The Raven Core developers
+// Copyright (c) 2017-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "ravenamountfield.h"
+#include "akitacoinamountfield.h"
 
-#include "ravenunits.h"
+#include "akitacoinunits.h"
 #include "guiconstants.h"
 #include "qvaluecombobox.h"
 #include "platformstyle.h"
@@ -31,7 +31,7 @@ class AmountSpinBox: public QAbstractSpinBox
 public:
     explicit AmountSpinBox(QWidget *parent):
         QAbstractSpinBox(parent),
-        currentUnit(RavenUnits::RVN),
+        currentUnit(AkitacoinUnits::AKIC),
         singleStep(100000), // satoshis
         assetUnit(-1)
     {
@@ -56,7 +56,7 @@ public:
         CAmount val = parse(input, &valid);
         if(valid)
         {
-            input = RavenUnits::format(currentUnit, val, false, RavenUnits::separatorAlways, assetUnit);
+            input = AkitacoinUnits::format(currentUnit, val, false, AkitacoinUnits::separatorAlways, assetUnit);
             lineEdit()->setText(input);
         }
     }
@@ -68,7 +68,7 @@ public:
 
     void setValue(const CAmount& value)
     {
-        lineEdit()->setText(RavenUnits::format(currentUnit, value, false, RavenUnits::separatorAlways, assetUnit));
+        lineEdit()->setText(AkitacoinUnits::format(currentUnit, value, false, AkitacoinUnits::separatorAlways, assetUnit));
         Q_EMIT valueChanged();
     }
 
@@ -77,7 +77,7 @@ public:
         bool valid = false;
         CAmount val = value(&valid);
         val = val + steps * singleStep;
-        val = qMin(qMax(val, CAmount(0)), RavenUnits::maxMoney());
+        val = qMin(qMax(val, CAmount(0)), AkitacoinUnits::maxMoney());
         setValue(val);
     }
 
@@ -124,9 +124,9 @@ public:
             const QFontMetrics fm(fontMetrics());
             int h = lineEdit()->minimumSizeHint().height();
 			#ifndef QTversionPreFiveEleven
-            	int w = fm.horizontalAdvance(RavenUnits::format(RavenUnits::RVN, RavenUnits::maxMoney(), false, RavenUnits::separatorAlways, assetUnit));
+            	int w = fm.horizontalAdvance(AkitacoinUnits::format(AkitacoinUnits::AKIC, AkitacoinUnits::maxMoney(), false, AkitacoinUnits::separatorAlways, assetUnit));
 			#else
-				int w = fm.width(RavenUnits::format(RavenUnits::RVN, RavenUnits::maxMoney(), false, RavenUnits::separatorAlways, assetUnit));
+				int w = fm.width(AkitacoinUnits::format(AkitacoinUnits::AKIC, AkitacoinUnits::maxMoney(), false, AkitacoinUnits::separatorAlways, assetUnit));
 			#endif
             w += 2; // cursor blinking space
 
@@ -170,14 +170,14 @@ private:
         // Update parsing function to work with asset parsing units
         bool valid = false;
         if (assetUnit >= 0) {
-            valid = RavenUnits::assetParse(assetUnit, text, &val);
+            valid = AkitacoinUnits::assetParse(assetUnit, text, &val);
         }
         else
-            valid = RavenUnits::parse(currentUnit, text, &val);
+            valid = AkitacoinUnits::parse(currentUnit, text, &val);
 
         if(valid)
         {
-            if(val < 0 || val > RavenUnits::maxMoney())
+            if(val < 0 || val > AkitacoinUnits::maxMoney())
                 valid = false;
         }
         if(valid_out)
@@ -215,7 +215,7 @@ protected:
         {
             if(val > 0)
                 rv |= StepDownEnabled;
-            if(val < RavenUnits::maxMoney())
+            if(val < AkitacoinUnits::maxMoney())
                 rv |= StepUpEnabled;
         }
         return rv;
@@ -225,9 +225,9 @@ Q_SIGNALS:
     void valueChanged();
 };
 
-#include "ravenamountfield.moc"
+#include "akitacoinamountfield.moc"
 
-RavenAmountField::RavenAmountField(QWidget *parent) :
+AkitacoinAmountField::AkitacoinAmountField(QWidget *parent) :
     QWidget(parent),
     amount(0)
 {
@@ -239,7 +239,7 @@ RavenAmountField::RavenAmountField(QWidget *parent) :
     QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(amount);
     unit = new QValueComboBox();
-    unit->setModel(new RavenUnits(this));
+    unit->setModel(new AkitacoinUnits(this));
     layout->addWidget(unit);
     layout->addStretch(1);
     layout->setContentsMargins(0,0,0,0);
@@ -258,19 +258,19 @@ RavenAmountField::RavenAmountField(QWidget *parent) :
 
 }
 
-void RavenAmountField::clear()
+void AkitacoinAmountField::clear()
 {
     amount->clear();
     unit->setCurrentIndex(0);
 }
 
-void RavenAmountField::setEnabled(bool fEnabled)
+void AkitacoinAmountField::setEnabled(bool fEnabled)
 {
     amount->setEnabled(fEnabled);
     unit->setEnabled(fEnabled);
 }
 
-bool RavenAmountField::validate()
+bool AkitacoinAmountField::validate()
 {
     bool valid = false;
     value(&valid);
@@ -278,7 +278,7 @@ bool RavenAmountField::validate()
     return valid;
 }
 
-void RavenAmountField::setValid(bool valid)
+void AkitacoinAmountField::setValid(bool valid)
 {
     if (valid) {
             amount->setStyleSheet("");
@@ -287,7 +287,7 @@ void RavenAmountField::setValid(bool valid)
     }
 }
 
-bool RavenAmountField::eventFilter(QObject *object, QEvent *event)
+bool AkitacoinAmountField::eventFilter(QObject *object, QEvent *event)
 {
     if (event->type() == QEvent::FocusIn)
     {
@@ -297,45 +297,45 @@ bool RavenAmountField::eventFilter(QObject *object, QEvent *event)
     return QWidget::eventFilter(object, event);
 }
 
-QWidget *RavenAmountField::setupTabChain(QWidget *prev)
+QWidget *AkitacoinAmountField::setupTabChain(QWidget *prev)
 {
     QWidget::setTabOrder(prev, amount);
     QWidget::setTabOrder(amount, unit);
     return unit;
 }
 
-CAmount RavenAmountField::value(bool *valid_out) const
+CAmount AkitacoinAmountField::value(bool *valid_out) const
 {
     return amount->value(valid_out);
 }
 
-void RavenAmountField::setValue(const CAmount& value)
+void AkitacoinAmountField::setValue(const CAmount& value)
 {
     amount->setValue(value);
 }
 
-void RavenAmountField::setReadOnly(bool fReadOnly)
+void AkitacoinAmountField::setReadOnly(bool fReadOnly)
 {
     amount->setReadOnly(fReadOnly);
 }
 
-void RavenAmountField::unitChanged(int idx)
+void AkitacoinAmountField::unitChanged(int idx)
 {
     // Use description tooltip for current unit for the combobox
     unit->setToolTip(unit->itemData(idx, Qt::ToolTipRole).toString());
 
     // Determine new unit ID
-    int newUnit = unit->itemData(idx, RavenUnits::UnitRole).toInt();
+    int newUnit = unit->itemData(idx, AkitacoinUnits::UnitRole).toInt();
 
     amount->setDisplayUnit(newUnit);
 }
 
-void RavenAmountField::setDisplayUnit(int newUnit)
+void AkitacoinAmountField::setDisplayUnit(int newUnit)
 {
     unit->setValue(newUnit);
 }
 
-void RavenAmountField::setSingleStep(const CAmount& step)
+void AkitacoinAmountField::setSingleStep(const CAmount& step)
 {
     amount->setSingleStep(step);
 }
@@ -406,7 +406,7 @@ bool AssetAmountField::eventFilter(QObject *object, QEvent *event)
 
 CAmount AssetAmountField::value(bool *valid_out) const
 {
-    return amount->value(valid_out) * RavenUnits::factorAsset(8 - assetUnit);
+    return amount->value(valid_out) * AkitacoinUnits::factorAsset(8 - assetUnit);
 }
 
 void AssetAmountField::setValue(const CAmount& value)

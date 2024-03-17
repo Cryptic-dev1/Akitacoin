@@ -1,9 +1,9 @@
 // Copyright (c) 2011-2014 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "ravenaddressvalidator.h"
+#include "akitacoinaddressvalidator.h"
 
 #include "base58.h"
 
@@ -16,12 +16,12 @@
   - All lower-case letters except for 'l'
 */
 
-RavenAddressEntryValidator::RavenAddressEntryValidator(QObject *parent) :
+AkitacoinAddressEntryValidator::AkitacoinAddressEntryValidator(QObject *parent) :
     QValidator(parent)
 {
 }
 
-QValidator::State RavenAddressEntryValidator::validate(QString &input, int &pos) const
+QValidator::State AkitacoinAddressEntryValidator::validate(QString &input, int &pos) const
 {
     Q_UNUSED(pos);
 
@@ -81,15 +81,15 @@ QValidator::State RavenAddressEntryValidator::validate(QString &input, int &pos)
     return state;
 }
 
-RavenAddressCheckValidator::RavenAddressCheckValidator(QObject *parent) :
+AkitacoinAddressCheckValidator::AkitacoinAddressCheckValidator(QObject *parent) :
     QValidator(parent)
 {
 }
 
-QValidator::State RavenAddressCheckValidator::validate(QString &input, int &pos) const
+QValidator::State AkitacoinAddressCheckValidator::validate(QString &input, int &pos) const
 {
     Q_UNUSED(pos);
-    // Validate the passed Raven address
+    // Validate the passed Akitacoin address
     if (IsValidDestinationString(input.toStdString())) {
         return QValidator::Acceptable;
     }

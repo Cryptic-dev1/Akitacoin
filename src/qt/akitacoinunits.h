@@ -1,10 +1,10 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2021 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAVEN_QT_RAVENUNITS_H
-#define RAVEN_QT_RAVENUNITS_H
+#ifndef AKITACOIN_QT_AKITACOINUNITS_H
+#define AKITACOIN_QT_AKITACOINUNITS_H
 
 #include "amount.h"
 
@@ -47,24 +47,24 @@
 #define THIN_SP_UTF8 REAL_THIN_SP_UTF8
 #define THIN_SP_HTML HTML_HACK_SP
 
-/** Raven unit definitions. Encapsulates parsing and formatting
+/** Akitacoin unit definitions. Encapsulates parsing and formatting
    and serves as list model for drop-down selection boxes.
 */
-class RavenUnits: public QAbstractListModel
+class AkitacoinUnits: public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    explicit RavenUnits(QObject *parent);
+    explicit AkitacoinUnits(QObject *parent);
 
-    /** Raven units.
+    /** Akitacoin units.
       @note Source: https://en.bitcoin.it/wiki/Units . Please add only sensible ones
      */
     enum Unit
     {
-        RVN,
-        mRVN,
-        uRVN
+        AKIC,
+        mAKIC,
+        uAKIC
     };
 
     enum SeparatorStyle
@@ -132,8 +132,8 @@ public:
     static CAmount maxMoney();
 
 private:
-    QList<RavenUnits::Unit> unitlist;
+    QList<AkitacoinUnits::Unit> unitlist;
 };
-typedef RavenUnits::Unit RavenUnit;
+typedef AkitacoinUnits::Unit AkitacoinUnit;
 
-#endif // RAVEN_QT_RAVENUNITS_H
+#endif // AKITACOIN_QT_AKITACOINUNITS_H

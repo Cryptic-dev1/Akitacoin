@@ -1,76 +1,76 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "ravenunits.h"
+#include "akitacoinunits.h"
 
 #include "primitives/transaction.h"
 
 #include <QStringList>
 
-RavenUnits::RavenUnits(QObject *parent):
+AkitacoinUnits::AkitacoinUnits(QObject *parent):
         QAbstractListModel(parent),
         unitlist(availableUnits())
 {
 }
 
-QList<RavenUnits::Unit> RavenUnits::availableUnits()
+QList<AkitacoinUnits::Unit> AkitacoinUnits::availableUnits()
 {
-    QList<RavenUnits::Unit> unitlist;
-    unitlist.append(RVN);
-    unitlist.append(mRVN);
-    unitlist.append(uRVN);
+    QList<AkitacoinUnits::Unit> unitlist;
+    unitlist.append(AKIC);
+    unitlist.append(mAKIC);
+    unitlist.append(uAKIC);
     return unitlist;
 }
 
-bool RavenUnits::valid(int unit)
+bool AkitacoinUnits::valid(int unit)
 {
     switch(unit)
     {
-    case RVN:
-    case mRVN:
-    case uRVN:
+    case AKIC:
+    case mAKIC:
+    case uAKIC:
         return true;
     default:
         return false;
     }
 }
 
-QString RavenUnits::name(int unit)
+QString AkitacoinUnits::name(int unit)
 {
     switch(unit)
     {
-    case RVN: return QString("RVN");
-    case mRVN: return QString("mRVN");
-    case uRVN: return QString::fromUtf8("μRVN");
+    case AKIC: return QString("AKIC");
+    case mAKIC: return QString("mAKIC");
+    case uAKIC: return QString::fromUtf8("μAKIC");
     default: return QString("???");
     }
 }
 
-QString RavenUnits::description(int unit)
+QString AkitacoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case RVN: return QString("Ravens");
-    case mRVN: return QString("Milli-Ravens (1 / 1" THIN_SP_UTF8 "000)");
-    case uRVN: return QString("Micro-Ravens (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case AKIC: return QString("Akitacoins");
+    case mAKIC: return QString("Milli-Akitacoins (1 / 1" THIN_SP_UTF8 "000)");
+    case uAKIC: return QString("Micro-Akitacoins (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
 
-qint64 RavenUnits::factor(int unit)
+qint64 AkitacoinUnits::factor(int unit)
 {
     switch(unit)
     {
-    case RVN:  return 100000000;
-    case mRVN: return 100000;
-    case uRVN: return 100;
+    case AKIC:  return 100000000;
+    case mAKIC: return 100000;
+    case uAKIC: return 100;
     default:   return 100000000;
     }
 }
 
-qint64 RavenUnits::factorAsset(int unit)
+qint64 AkitacoinUnits::factorAsset(int unit)
 {
     switch(unit)
     {
@@ -87,18 +87,18 @@ qint64 RavenUnits::factorAsset(int unit)
     }
 }
 
-int RavenUnits::decimals(int unit)
+int AkitacoinUnits::decimals(int unit)
 {
     switch(unit)
     {
-    case RVN: return 8;
-    case mRVN: return 5;
-    case uRVN: return 2;
+    case AKIC: return 8;
+    case mAKIC: return 5;
+    case uAKIC: return 2;
     default: return 0;
     }
 }
 
-QString RavenUnits::format(int unit, const CAmount& nIn, bool fPlus, SeparatorStyle separators, const int nAssetUnit)
+QString AkitacoinUnits::format(int unit, const CAmount& nIn, bool fPlus, SeparatorStyle separators, const int nAssetUnit)
 {
     // Note: not using straight sprintf here because we do NOT want
     // localized number formatting.
@@ -143,17 +143,17 @@ QString RavenUnits::format(int unit, const CAmount& nIn, bool fPlus, SeparatorSt
 // Please take care to use formatHtmlWithUnit instead, when
 // appropriate.
 
-QString RavenUnits::formatWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+QString AkitacoinUnits::formatWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
 {
     return format(unit, amount, plussign, separators) + QString(" ") + name(unit);
 }
 
-QString RavenUnits::formatWithCustomName(QString customName, const CAmount& amount, int unit, bool plussign, SeparatorStyle separators)
+QString AkitacoinUnits::formatWithCustomName(QString customName, const CAmount& amount, int unit, bool plussign, SeparatorStyle separators)
 {
-    return format(RVN, amount / factorAsset(MAX_ASSET_UNITS - unit), plussign, separators, unit) + QString(" ") + customName;
+    return format(AKIC, amount / factorAsset(MAX_ASSET_UNITS - unit), plussign, separators, unit) + QString(" ") + customName;
 }
 
-QString RavenUnits::formatHtmlWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
+QString AkitacoinUnits::formatHtmlWithUnit(int unit, const CAmount& amount, bool plussign, SeparatorStyle separators)
 {
     QString str(formatWithUnit(unit, amount, plussign, separators));
     str.replace(QChar(THIN_SP_CP), QString(THIN_SP_HTML));
@@ -161,7 +161,7 @@ QString RavenUnits::formatHtmlWithUnit(int unit, const CAmount& amount, bool plu
 }
 
 
-bool RavenUnits::parse(int unit, const QString &value, CAmount *val_out)
+bool AkitacoinUnits::parse(int unit, const QString &value, CAmount *val_out)
 {
     if(!valid(unit) || value.isEmpty())
         return false; // Refuse to parse invalid unit or empty string
@@ -200,7 +200,7 @@ bool RavenUnits::parse(int unit, const QString &value, CAmount *val_out)
     return ok;
 }
 
-bool RavenUnits::assetParse(int assetUnit, const QString &value, CAmount *val_out)
+bool AkitacoinUnits::assetParse(int assetUnit, const QString &value, CAmount *val_out)
 {
     if(!(assetUnit >= 0 && assetUnit <= 8) || value.isEmpty())
         return false; // Refuse to parse invalid unit or empty string
@@ -239,23 +239,23 @@ bool RavenUnits::assetParse(int assetUnit, const QString &value, CAmount *val_ou
     return ok;
 }
 
-QString RavenUnits::getAmountColumnTitle(int unit)
+QString AkitacoinUnits::getAmountColumnTitle(int unit)
 {
     QString amountTitle = QObject::tr("Amount");
-    if (RavenUnits::valid(unit))
+    if (AkitacoinUnits::valid(unit))
     {
-        amountTitle += " ("+RavenUnits::name(unit) + ")";
+        amountTitle += " ("+AkitacoinUnits::name(unit) + ")";
     }
     return amountTitle;
 }
 
-int RavenUnits::rowCount(const QModelIndex &parent) const
+int AkitacoinUnits::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
     return unitlist.size();
 }
 
-QVariant RavenUnits::data(const QModelIndex &index, int role) const
+QVariant AkitacoinUnits::data(const QModelIndex &index, int role) const
 {
     int row = index.row();
     if(row >= 0 && row < unitlist.size())
@@ -275,7 +275,7 @@ QVariant RavenUnits::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-CAmount RavenUnits::maxMoney()
+CAmount AkitacoinUnits::maxMoney()
 {
     return MAX_MONEY;
 }

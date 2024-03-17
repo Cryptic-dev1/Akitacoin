@@ -1,15 +1,15 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2021 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/raven-config.h"
+#include "config/akitacoin-config.h"
 #endif
 
-#include "ravengui.h"
+#include "akitacoingui.h"
 
-#include "ravenunits.h"
+#include "akitacoinunits.h"
 #include "clientmodel.h"
 #include "guiconstants.h"
 #include "guiutil.h"
@@ -91,7 +91,7 @@ using namespace boost::placeholders;
 #define QTversionPreFiveEleven
 #endif
 
-const std::string RavenGUI::DEFAULT_UIPLATFORM =
+const std::string AkitacoinGUI::DEFAULT_UIPLATFORM =
 #if defined(Q_OS_MAC)
         "macosx"
 #elif defined(Q_OS_WIN)
@@ -103,21 +103,18 @@ const std::string RavenGUI::DEFAULT_UIPLATFORM =
 
 /** Display name for default wallet name. Uses tilde to avoid name
  * collisions in the future with additional wallets */
-const QString RavenGUI::DEFAULT_WALLET = "~Default";
+const QString AkitacoinGUI::DEFAULT_WALLET = "~Default";
 
 /* Bit of a bodge, c++ really doesn't want you to predefine values
  * in only header files, so we do one-time value assignment here. */
 std::array<CurrencyUnitDetails, 5> CurrencyUnits::CurrencyOptions = { {
-    { "BTC",    "RVNBTC"  , 1,          8},
-    { "mBTC",   "RVNBTC"  , 1000,       5},
-    { "µBTC",   "RVNBTC"  , 1000000,    2},
-    { "Satoshi","RVNBTC"  , 100000000,  0},
-    { "USDT",   "RVNUSDT" , 1,          5}
+    { "USDT"   ,"USDT" , 1,          5},
+    { "LTC",    "LTC"  , 1,          8}
 } };
 
-static bool ThreadSafeMessageBox(RavenGUI *gui, const std::string& message, const std::string& caption, unsigned int style);
+static bool ThreadSafeMessageBox(AkitacoinGUI *gui, const std::string& message, const std::string& caption, unsigned int style);
 
-RavenGUI::RavenGUI(const PlatformStyle *_platformStyle, const NetworkStyle *networkStyle, QWidget *parent) :
+AkitacoinGUI::AkitacoinGUI(const PlatformStyle *_platformStyle, const NetworkStyle *networkStyle, QWidget *parent) :
     QMainWindow(parent),
     enableWallet(false),
     platformStyle(_platformStyle)
@@ -171,7 +168,7 @@ RavenGUI::RavenGUI(const PlatformStyle *_platformStyle, const NetworkStyle *netw
         setCentralWidget(rpcConsole);
     }
 
-    /** RVN START */
+    /** AKIC START */
     labelCurrentMarket = new QLabel();
     labelCurrentPrice = new QLabel();
     headerWidget = new QWidget();
@@ -181,7 +178,7 @@ RavenGUI::RavenGUI(const PlatformStyle *_platformStyle, const NetworkStyle *netw
     labelVersionUpdate = new QLabel();
     networkVersionManager = new QNetworkAccessManager();
     versionRequest = new QNetworkRequest();
-    /** RVN END */
+    /** AKIC END */
 
     // Accept D&D of URIs
     setAcceptDrops(true);
@@ -282,7 +279,7 @@ RavenGUI::RavenGUI(const PlatformStyle *_platformStyle, const NetworkStyle *netw
 #endif
 }
 
-RavenGUI::~RavenGUI()
+AkitacoinGUI::~AkitacoinGUI()
 {
     // Unsubscribe from notifications from core
     unsubscribeFromCoreSignals();
@@ -299,7 +296,7 @@ RavenGUI::~RavenGUI()
     delete rpcConsole;
 }
 
-void RavenGUI::loadFonts()
+void AkitacoinGUI::loadFonts()
 {
     QFontDatabase::addApplicationFont(":/fonts/opensans-bold");
     QFontDatabase::addApplicationFont(":/fonts/opensans-bolditalic");
@@ -314,7 +311,7 @@ void RavenGUI::loadFonts()
 }
 
 
-void RavenGUI::createActions()
+void AkitacoinGUI::createActions()
 {
     QFont font = QFont();
     font.setPixelSize(22);
@@ -322,7 +319,7 @@ void RavenGUI::createActions()
 #if !defined(Q_OS_MAC)
     font.setFamily("Open Sans");
 #endif
-    font.setWeight(QFont::Weight::ExtraLight);
+    font.setWeight(QFont::Bold);
 
     QActionGroup *tabGroup = new QActionGroup(this);
 
@@ -335,7 +332,7 @@ void RavenGUI::createActions()
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/send_selected", ":/icons/send"), tr("&Send"), this);
-    sendCoinsAction->setStatusTip(tr("Send coins to a Raven address"));
+    sendCoinsAction->setStatusTip(tr("Send coins to a Akitacoin address"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
@@ -347,7 +344,7 @@ void RavenGUI::createActions()
     sendCoinsMenuAction->setToolTip(sendCoinsMenuAction->statusTip());
 
     receiveCoinsAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/receiving_addresses_selected", ":/icons/receiving_addresses"), tr("&Receive"), this);
-    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and raven: URIs)"));
+    receiveCoinsAction->setStatusTip(tr("Request payments (generates QR codes and akitacoin: URIs)"));
     receiveCoinsAction->setToolTip(receiveCoinsAction->statusTip());
     receiveCoinsAction->setCheckable(true);
     receiveCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_3));
@@ -366,7 +363,7 @@ void RavenGUI::createActions()
     historyAction->setFont(font);
     tabGroup->addAction(historyAction);
 
-    /** RVN START */
+    /** AKIC START */
     createAssetAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/asset_create_selected", ":/icons/asset_create"), tr("&Create Assets"), this);
     createAssetAction->setStatusTip(tr("Create new assets"));
     createAssetAction->setToolTip(createAssetAction->statusTip());
@@ -376,7 +373,7 @@ void RavenGUI::createActions()
     tabGroup->addAction(createAssetAction);
 
     transferAssetAction = new QAction(platformStyle->SingleColorIconOnOff(":/icons/asset_transfer_selected", ":/icons/asset_transfer"), tr("&Transfer Assets"), this);
-    transferAssetAction->setStatusTip(tr("Transfer assets to RVN addresses"));
+    transferAssetAction->setStatusTip(tr("Transfer assets to AKIC addresses"));
     transferAssetAction->setToolTip(transferAssetAction->statusTip());
     transferAssetAction->setCheckable(true);
     transferAssetAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_6));
@@ -415,7 +412,7 @@ void RavenGUI::createActions()
     restrictedAssetAction->setFont(font);
     tabGroup->addAction(restrictedAssetAction);
 
-    /** RVN END */
+    /** AKIC END */
 
 #ifdef ENABLE_WALLET
     // These showNormalIfMinimized are needed because Send Coins and Receive Coins
@@ -474,9 +471,9 @@ void RavenGUI::createActions()
     getMyWordsAction->setStatusTip(tr("Show the recoverywords for this wallet"));
 
     signMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/edit"), tr("Sign &message..."), this);
-    signMessageAction->setStatusTip(tr("Sign messages with your Raven addresses to prove you own them"));
+    signMessageAction->setStatusTip(tr("Sign messages with your Akitacoin addresses to prove you own them"));
     verifyMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/verify"), tr("&Verify message..."), this);
-    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Raven addresses"));
+    verifyMessageAction->setStatusTip(tr("Verify messages to ensure they were signed with specified Akitacoin addresses"));
 
     openRPCConsoleAction = new QAction(platformStyle->TextColorIcon(":/icons/debugwindow"), tr("&Debug Window"), this);
     openRPCConsoleAction->setStatusTip(tr("Open debugging and diagnostic console"));
@@ -492,11 +489,11 @@ void RavenGUI::createActions()
     usedReceivingAddressesAction->setStatusTip(tr("Show the list of used receiving addresses and labels"));
 
     openAction = new QAction(platformStyle->TextColorIcon(":/icons/open"), tr("Open &URI..."), this);
-    openAction->setStatusTip(tr("Open a raven: URI or payment request"));
+    openAction->setStatusTip(tr("Open a akitacoin: URI or payment request"));
 
     showHelpMessageAction = new QAction(platformStyle->TextColorIcon(":/icons/info"), tr("&Command-line options"), this);
     showHelpMessageAction->setMenuRole(QAction::NoRole);
-    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Raven command-line options").arg(tr(PACKAGE_NAME)));
+    showHelpMessageAction->setStatusTip(tr("Show the %1 help message to get a list with possible Akitacoin command-line options").arg(tr(PACKAGE_NAME)));
 
     connect(quitAction, SIGNAL(triggered()), qApp, SLOT(quit()));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutClicked()));
@@ -530,7 +527,7 @@ void RavenGUI::createActions()
     new QShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_D), this, SLOT(showDebugWindow()));
 }
 
-void RavenGUI::createMenuBar()
+void AkitacoinGUI::createMenuBar()
 {
 #ifdef Q_OS_MAC
     // Create a decoupled menu bar on Mac which stays even if the window is closed
@@ -577,14 +574,14 @@ void RavenGUI::createMenuBar()
     help->addAction(aboutQtAction);
 }
 
-void RavenGUI::createToolBars()
+void AkitacoinGUI::createToolBars()
 {
     if(walletFrame)
     {
         QSettings settings;
         bool IconsOnly = settings.value("fToolbarIconsOnly", false).toBool();
 
-        /** RVN START */
+        /** AKIC START */
         // Create the background and the vertical tool bar
         QWidget* toolbarWidget = new QWidget();
 
@@ -593,18 +590,18 @@ void RavenGUI::createToolBars()
         toolbarWidget->setStyleSheet(widgetStyleSheet.arg(platformStyle->LightBlueColor().name(), platformStyle->DarkBlueColor().name()));
 
         labelToolbar = new QLabel();
-        labelToolbar->setContentsMargins(0,0,0,50);
-        labelToolbar->setAlignment(Qt::AlignLeft);
+        labelToolbar->setContentsMargins(0,0,0,10); //This sets the space between the logo and other labels
+        labelToolbar->setAlignment(Qt::AlignCenter);
 
         if(IconsOnly) {
-            labelToolbar->setPixmap(QPixmap::fromImage(QImage(":/icons/rvntext")));
+            labelToolbar->setPixmap(QPixmap::fromImage(QImage(":/icons/akictext")));
         }
         else {
-            labelToolbar->setPixmap(QPixmap::fromImage(QImage(":/icons/ravencointext")));
+            labelToolbar->setPixmap(QPixmap::fromImage(QImage(":/icons/akitacointext")));
         }
-        labelToolbar->setStyleSheet(".QLabel{background-color: transparent;}");
+        labelToolbar->setStyleSheet(".QLabel{background-color: transparent; margin-top: 20px; border: none; padding-left: 0px; padding-right: 0px;}");
 
-        /** RVN END */
+        /** AKIC END */
 
         m_toolbar = new QToolBar();
         m_toolbar->setStyle(style());
@@ -619,6 +616,12 @@ void RavenGUI::createToolBars()
             m_toolbar->setMinimumWidth(labelToolbar->width());
             m_toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
         }
+
+        // Use bold font for toolbar action text
+        QString boldFontString = "font: bold 22pt \"Open Sans\";";
+        m_toolbar->setStyleSheet(boldFontString);
+
+
         m_toolbar->addAction(overviewAction);
         m_toolbar->addAction(sendCoinsAction);
         m_toolbar->addAction(receiveCoinsAction);
@@ -640,12 +643,15 @@ void RavenGUI::createToolBars()
         stringToUse = normalString;
 #endif
 
-        /** RVN START */
-        QString tbStyleSheet = ".QToolBar {background-color : transparent; border-color: transparent; }  "
-                               ".QToolButton {background-color: transparent; border-color: transparent; width: 249px; color: %1; border: none;} "
-                               ".QToolButton:checked {background: none; background-color: none; selection-background-color: none; color: %2; border: none; font: %4} "
-                               ".QToolButton:hover {background: none; background-color: none; border: none; color: %3;} "
-                               ".QToolButton:disabled {color: gray;}";
+        /** AKIC START */
+QString tbStyleSheet = ".QToolBar {background-color: transparent; border-color: transparent; }  "
+                       ".QToolButton {background-color: transparent; border-color: transparent; width: 249px; color: white; border: none; padding-left: 0px; padding-right: 0px; border-radius: 10px; margin-bottom: 4px;} "
+                       ".QToolButton:checked, .QToolButton:hover {background: #ce9005; color: white; border: none; border-radius: 10px;} "
+                       ".QToolButton:disabled {color: gray;}";
+
+
+
+
 
         m_toolbar->setStyleSheet(tbStyleSheet.arg(platformStyle->ToolBarNotSelectedTextColor().name(),
                                                 platformStyle->ToolBarSelectedTextColor().name(),
@@ -656,15 +662,28 @@ void RavenGUI::createToolBars()
 
         QLayout* lay = m_toolbar->layout();
         for(int i = 0; i < lay->count(); ++i)
-            lay->itemAt(i)->setAlignment(Qt::AlignLeft);
+            lay->itemAt(i)->setAlignment(Qt::AlignCenter);
 
         overviewAction->setChecked(true);
 
-        QVBoxLayout* ravenLabelLayout = new QVBoxLayout(toolbarWidget);
-        ravenLabelLayout->addWidget(labelToolbar);
-        ravenLabelLayout->addWidget(m_toolbar);
-        ravenLabelLayout->setDirection(QBoxLayout::TopToBottom);
-        ravenLabelLayout->addStretch(1);
+        QLabel* akitacoinLabel = new QLabel("AKITACOIN");
+        akitacoinLabel->setAlignment(Qt::AlignCenter);
+        akitacoinLabel->setStyleSheet("color: white; font-weight: bold; font-size: 20px;"); // Adjust the font size as needed
+
+        // Create a QLabel for version information
+        QString currentVersion = QString("Version: %1.%2.%3").arg(CLIENT_VERSION_MAJOR).arg(CLIENT_VERSION_MINOR).arg(CLIENT_VERSION_REVISION);
+        QLabel* versionLabel = new QLabel(currentVersion);
+        versionLabel->setAlignment(Qt::AlignCenter);
+        versionLabel->setStyleSheet("color: white; font-size: 14px;"); // Adjust the font size as needed
+
+        QVBoxLayout* akitaLabelLayout = new QVBoxLayout(toolbarWidget);
+        akitaLabelLayout->addWidget(labelToolbar);
+        akitaLabelLayout->addWidget(m_toolbar);
+        akitaLabelLayout->addStretch(1);
+        akitaLabelLayout->addWidget(akitacoinLabel);
+        akitaLabelLayout->addWidget(versionLabel);  // Add the QLabel for version
+        akitaLabelLayout->setDirection(QBoxLayout::TopToBottom);
+
 
         QString mainWalletWidgetStyle = QString(".QWidget{background-color: %1}").arg(platformStyle->MainBackGroundColor().name());
         QWidget* mainWalletWidget = new QWidget();
@@ -690,7 +709,7 @@ void RavenGUI::createToolBars()
 
         QFont currentMarketFont;
         currentMarketFont.setFamily("Open Sans");
-        currentMarketFont.setWeight(QFont::Weight::Normal);
+        currentMarketFont.setWeight(QFont::Weight::Bold);
         currentMarketFont.setLetterSpacing(QFont::SpacingType::AbsoluteSpacing, -0.6);
         currentMarketFont.setPixelSize(18);
 
@@ -703,7 +722,7 @@ void RavenGUI::createToolBars()
         labelCurrentMarket->setAlignment(Qt::AlignVCenter);
         labelCurrentMarket->setStyleSheet(STRING_LABEL_COLOR);
         labelCurrentMarket->setFont(currentMarketFont);
-        labelCurrentMarket->setText(tr("Ravencoin Market Price"));
+        labelCurrentMarket->setText(tr("Akitacoin Market Price"));
 
         QString currentPriceStyleSheet = ".QLabel{color: %1;}";
         labelCurrentPrice->setContentsMargins(25,0,0,0);
@@ -711,18 +730,18 @@ void RavenGUI::createToolBars()
         labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg(COLOR_LABELS.name()));
         labelCurrentPrice->setFont(currentMarketFont);
 
-        comboRvnUnit = new QComboBox(headerWidget);
+        comboAkicUnit = new QComboBox(headerWidget);
         QStringList list;
         for(int unitNum = 0; unitNum < CurrencyUnits::count(); unitNum++) {
             list.append(QString(CurrencyUnits::CurrencyOptions[unitNum].Header));
         }
-        comboRvnUnit->addItems(list);
-        comboRvnUnit->setFixedHeight(26);
-        comboRvnUnit->setContentsMargins(5,0,0,0);
-        comboRvnUnit->setStyleSheet(STRING_LABEL_COLOR);
-        comboRvnUnit->setFont(currentMarketFont);
+        comboAkicUnit->addItems(list);
+        comboAkicUnit->setFixedHeight(26);
+        comboAkicUnit->setContentsMargins(5,0,0,0);
+        comboAkicUnit->setStyleSheet(STRING_LABEL_COLOR);
+        comboAkicUnit->setFont(currentMarketFont);
 
-        labelVersionUpdate->setText("<a href=\"https://github.com/RavenProject/Ravencoin/releases\">New Wallet Version Available</a>");
+        labelVersionUpdate->setText("<a href=\"https://github.com/JustAResearcher/Akitacoin/releases\">New Wallet Version Available</a>");
         labelVersionUpdate->setTextFormat(Qt::RichText);
         labelVersionUpdate->setTextInteractionFlags(Qt::TextBrowserInteraction);
         labelVersionUpdate->setOpenExternalLinks(true);
@@ -735,7 +754,7 @@ void RavenGUI::createToolBars()
         priceLayout->setGeometry(headerWidget->rect());
         priceLayout->addWidget(labelCurrentMarket, 0, Qt::AlignVCenter | Qt::AlignLeft);
         priceLayout->addWidget(labelCurrentPrice, 0,  Qt::AlignVCenter | Qt::AlignLeft);
-        priceLayout->addWidget(comboRvnUnit, 0 , Qt::AlignBottom| Qt::AlignLeft);
+        priceLayout->addWidget(comboAkicUnit, 0 , Qt::AlignBottom| Qt::AlignLeft);
         priceLayout->addStretch();
         priceLayout->addWidget(labelVersionUpdate, 0 , Qt::AlignVCenter | Qt::AlignRight);
 
@@ -769,8 +788,8 @@ void RavenGUI::createToolBars()
                     // Get the data from the network request
                     QString answer = reply->readAll();
 
-                    // Create regex expression to find the value with 8 decimals
-                    QRegExp rx("\\d*.\\d\\d\\d\\d\\d\\d\\d\\d");
+                    // Create regex expression to find the value with 4 decimals
+                    QRegExp rx("\\d*.\\d\\d\\d\\d\\d\\d\\d");
                     rx.indexIn(answer);
 
                     // List the found values
@@ -798,7 +817,7 @@ void RavenGUI::createToolBars()
                             }
                             this->unitChanged = false;
                             labelCurrentPrice->setText(QString("%1").arg(QString().setNum(next, 'f', this->currentPriceDisplay->Decimals)));
-                            labelCurrentPrice->setToolTip(tr("Brought to you by binance.com"));
+                            labelCurrentPrice->setToolTip(tr("Brought to you by xeggex.com"));
                         }
                     }
                 }
@@ -808,14 +827,14 @@ void RavenGUI::createToolBars()
 
 
         // Signal change of displayed price units, must get new conversion ratio
-        connect(comboRvnUnit, SIGNAL(activated(int)), this, SLOT(currencySelectionChanged(int)));
+        connect(comboAkicUnit, SIGNAL(activated(int)), this, SLOT(currencySelectionChanged(int)));
         // Create the timer
         connect(pricingTimer, SIGNAL(timeout()), this, SLOT(getPriceInfo()));
         pricingTimer->start(10000);
         getPriceInfo();
-        /** RVN END */
+        /** AKIC END */
 
-        // Get the latest Ravencoin release and let the user know if they are using the latest version
+        // Get the latest Akitacoin release and let the user know if they are using the latest version
         // Network request code for the header widget
         QObject::connect(networkVersionManager, &QNetworkAccessManager::finished,
                          this, [=](QNetworkReply *reply) {
@@ -896,7 +915,7 @@ void RavenGUI::createToolBars()
                                            "New Wallet Version Found",
                                            CClientUIInterface::MSG_VERSION | CClientUIInterface::BTN_NO);
                                    if (fRet) {
-                                       QString link = "https://github.com/RavenProject/Ravencoin/releases";
+                                       QString link = "https://github.com/JustAResearcher/Akitacoin/releases";
                                        QDesktopServices::openUrl(QUrl(link));
                                    }
                                }
@@ -912,21 +931,21 @@ void RavenGUI::createToolBars()
     }
 }
 
-void RavenGUI::updateIconsOnlyToolbar(bool IconsOnly)
+void AkitacoinGUI::updateIconsOnlyToolbar(bool IconsOnly)
 {
     if(IconsOnly) {
-        labelToolbar->setPixmap(QPixmap::fromImage(QImage(":/icons/rvntext")));
+        labelToolbar->setPixmap(QPixmap::fromImage(QImage(":/icons/akictext")));
         m_toolbar->setMaximumWidth(65);
         m_toolbar->setToolButtonStyle(Qt::ToolButtonIconOnly);
     }
     else {
-        labelToolbar->setPixmap(QPixmap::fromImage(QImage(":/icons/ravencointext")));
+        labelToolbar->setPixmap(QPixmap::fromImage(QImage(":/icons/akitacointext")));
         m_toolbar->setMinimumWidth(labelToolbar->width());
         m_toolbar->setMaximumWidth(255);
         m_toolbar->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);        
     }
 }
-void RavenGUI::setClientModel(ClientModel *_clientModel)
+void AkitacoinGUI::setClientModel(ClientModel *_clientModel)
 {
     this->clientModel = _clientModel;
     if(_clientModel)
@@ -999,7 +1018,7 @@ void RavenGUI::setClientModel(ClientModel *_clientModel)
 }
 
 #ifdef ENABLE_WALLET
-bool RavenGUI::addWallet(const QString& name, WalletModel *walletModel)
+bool AkitacoinGUI::addWallet(const QString& name, WalletModel *walletModel)
 {
     if(!walletFrame)
         return false;
@@ -1007,14 +1026,14 @@ bool RavenGUI::addWallet(const QString& name, WalletModel *walletModel)
     return walletFrame->addWallet(name, walletModel);
 }
 
-bool RavenGUI::setCurrentWallet(const QString& name)
+bool AkitacoinGUI::setCurrentWallet(const QString& name)
 {
     if(!walletFrame)
         return false;
     return walletFrame->setCurrentWallet(name);
 }
 
-void RavenGUI::removeAllWallets()
+void AkitacoinGUI::removeAllWallets()
 {
     if(!walletFrame)
         return;
@@ -1023,7 +1042,7 @@ void RavenGUI::removeAllWallets()
 }
 #endif // ENABLE_WALLET
 
-void RavenGUI::setWalletActionsEnabled(bool enabled)
+void AkitacoinGUI::setWalletActionsEnabled(bool enabled)
 {
     overviewAction->setEnabled(enabled);
     sendCoinsAction->setEnabled(enabled);
@@ -1041,17 +1060,17 @@ void RavenGUI::setWalletActionsEnabled(bool enabled)
     usedReceivingAddressesAction->setEnabled(enabled);
     openAction->setEnabled(enabled);
 
-    /** RVN START */
+    /** AKIC START */
     transferAssetAction->setEnabled(false);
     createAssetAction->setEnabled(false);
     manageAssetAction->setEnabled(false);
     messagingAction->setEnabled(false);
     votingAction->setEnabled(false);
     restrictedAssetAction->setEnabled(false);
-    /** RVN END */
+    /** AKIC END */
 }
 
-void RavenGUI::createTrayIcon(const NetworkStyle *networkStyle)
+void AkitacoinGUI::createTrayIcon(const NetworkStyle *networkStyle)
 {
 #ifndef Q_OS_MAC
     trayIcon = new QSystemTrayIcon(this);
@@ -1064,7 +1083,7 @@ void RavenGUI::createTrayIcon(const NetworkStyle *networkStyle)
     notificator = new Notificator(QApplication::applicationName(), trayIcon, this);
 }
 
-void RavenGUI::createTrayIconMenu()
+void AkitacoinGUI::createTrayIconMenu()
 {
 #ifndef Q_OS_MAC
     // return if trayIcon is unset (only on non-Mac OSes)
@@ -1101,7 +1120,7 @@ void RavenGUI::createTrayIconMenu()
 }
 
 #ifndef Q_OS_MAC
-void RavenGUI::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
+void AkitacoinGUI::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
     if(reason == QSystemTrayIcon::Trigger)
     {
@@ -1111,7 +1130,7 @@ void RavenGUI::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 }
 #endif
 
-void RavenGUI::optionsClicked()
+void AkitacoinGUI::optionsClicked()
 {
     if(!clientModel || !clientModel->getOptionsModel())
         return;
@@ -1121,7 +1140,7 @@ void RavenGUI::optionsClicked()
     dlg.exec();
 }
 
-void RavenGUI::aboutClicked()
+void AkitacoinGUI::aboutClicked()
 {
     if(!clientModel)
         return;
@@ -1130,7 +1149,7 @@ void RavenGUI::aboutClicked()
     dlg.exec();
 }
 
-void RavenGUI::showDebugWindow()
+void AkitacoinGUI::showDebugWindow()
 {
     rpcConsole->showNormal();
     rpcConsole->show();
@@ -1138,25 +1157,25 @@ void RavenGUI::showDebugWindow()
     rpcConsole->activateWindow();
 }
 
-void RavenGUI::showDebugWindowActivateConsole()
+void AkitacoinGUI::showDebugWindowActivateConsole()
 {
     rpcConsole->setTabFocus(RPCConsole::TAB_CONSOLE);
     showDebugWindow();
 }
 
-void RavenGUI::showWalletRepair()
+void AkitacoinGUI::showWalletRepair()
 {
     rpcConsole->setTabFocus(RPCConsole::TAB_REPAIR);
     showDebugWindow();
 }
 
-void RavenGUI::showHelpMessageClicked()
+void AkitacoinGUI::showHelpMessageClicked()
 {
     helpMessageDialog->show();
 }
 
 #ifdef ENABLE_WALLET
-void RavenGUI::openClicked()
+void AkitacoinGUI::openClicked()
 {
     OpenURIDialog dlg(this);
     if(dlg.exec())
@@ -1165,68 +1184,68 @@ void RavenGUI::openClicked()
     }
 }
 
-void RavenGUI::gotoOverviewPage()
+void AkitacoinGUI::gotoOverviewPage()
 {
     overviewAction->setChecked(true);
     if (walletFrame) walletFrame->gotoOverviewPage();
 }
 
-void RavenGUI::gotoHistoryPage()
+void AkitacoinGUI::gotoHistoryPage()
 {
     historyAction->setChecked(true);
     if (walletFrame) walletFrame->gotoHistoryPage();
 }
 
-void RavenGUI::gotoReceiveCoinsPage()
+void AkitacoinGUI::gotoReceiveCoinsPage()
 {
     receiveCoinsAction->setChecked(true);
     if (walletFrame) walletFrame->gotoReceiveCoinsPage();
 }
 
-void RavenGUI::gotoSendCoinsPage(QString addr)
+void AkitacoinGUI::gotoSendCoinsPage(QString addr)
 {
     sendCoinsAction->setChecked(true);
     if (walletFrame) walletFrame->gotoSendCoinsPage(addr);
 }
 
-void RavenGUI::gotoSignMessageTab(QString addr)
+void AkitacoinGUI::gotoSignMessageTab(QString addr)
 {
     if (walletFrame) walletFrame->gotoSignMessageTab(addr);
 }
 
-void RavenGUI::gotoVerifyMessageTab(QString addr)
+void AkitacoinGUI::gotoVerifyMessageTab(QString addr)
 {
     if (walletFrame) walletFrame->gotoVerifyMessageTab(addr);
 }
 
-/** RVN START */
-void RavenGUI::gotoAssetsPage()
+/** AKIC START */
+void AkitacoinGUI::gotoAssetsPage()
 {
     transferAssetAction->setChecked(true);
     if (walletFrame) walletFrame->gotoAssetsPage();
 };
 
-void RavenGUI::gotoCreateAssetsPage()
+void AkitacoinGUI::gotoCreateAssetsPage()
 {
     createAssetAction->setChecked(true);
     if (walletFrame) walletFrame->gotoCreateAssetsPage();
 };
 
-void RavenGUI::gotoManageAssetsPage()
+void AkitacoinGUI::gotoManageAssetsPage()
 {
     manageAssetAction->setChecked(true);
     if (walletFrame) walletFrame->gotoManageAssetsPage();
 };
 
-void RavenGUI::gotoRestrictedAssetsPage()
+void AkitacoinGUI::gotoRestrictedAssetsPage()
 {
     restrictedAssetAction->setChecked(true);
     if (walletFrame) walletFrame->gotoRestrictedAssetsPage();
 };
-/** RVN END */
+/** AKIC END */
 #endif // ENABLE_WALLET
 
-void RavenGUI::updateNetworkState()
+void AkitacoinGUI::updateNetworkState()
 {
     int count = clientModel->getNumConnections();
     QString icon;
@@ -1242,7 +1261,7 @@ void RavenGUI::updateNetworkState()
     QString tooltip;
 
     if (clientModel->getNetworkActive()) {
-        tooltip = tr("%n active connection(s) to Raven network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
+        tooltip = tr("%n active connection(s) to Akitacoin network", "", count) + QString(".<br>") + tr("Click to disable network activity.");
     } else {
         tooltip = tr("Network activity disabled.") + QString("<br>") + tr("Click to enable network activity again.");
         icon = ":/icons/network_disabled";
@@ -1255,17 +1274,17 @@ void RavenGUI::updateNetworkState()
     connectionsControl->setPixmap(platformStyle->SingleColorIcon(icon).pixmap(STATUSBAR_ICONSIZE,STATUSBAR_ICONSIZE));
 }
 
-void RavenGUI::setNumConnections(int count)
+void AkitacoinGUI::setNumConnections(int count)
 {
     updateNetworkState();
 }
 
-void RavenGUI::setNetworkActive(bool networkActive)
+void AkitacoinGUI::setNetworkActive(bool networkActive)
 {
     updateNetworkState();
 }
 
-void RavenGUI::updateHeadersSyncProgressLabel()
+void AkitacoinGUI::updateHeadersSyncProgressLabel()
 {
     int64_t headersTipTime = clientModel->getHeaderTipTime();
     int headersTipHeight = clientModel->getHeaderTipHeight();
@@ -1274,7 +1293,7 @@ void RavenGUI::updateHeadersSyncProgressLabel()
         progressBarLabel->setText(tr("Syncing Headers (%1%)...").arg(QString::number(100.0 / (headersTipHeight+estHeadersLeft)*headersTipHeight, 'f', 1)));
 }
 
-void RavenGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVerificationProgress, bool header)
+void AkitacoinGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVerificationProgress, bool header)
 {
     if (modalOverlay)
     {
@@ -1385,9 +1404,9 @@ void RavenGUI::setNumBlocks(int count, const QDateTime& blockDate, double nVerif
     progressBar->setToolTip(tooltip);
 }
 
-void RavenGUI::message(const QString &title, const QString &message, unsigned int style, bool *ret)
+void AkitacoinGUI::message(const QString &title, const QString &message, unsigned int style, bool *ret)
 {
-    QString strTitle = tr("Raven"); // default title
+    QString strTitle = tr("Akitacoin"); // default title
     // Default to information icon
     int nMBoxIcon = QMessageBox::Information;
     int nNotifyIcon = Notificator::Information;
@@ -1413,7 +1432,7 @@ void RavenGUI::message(const QString &title, const QString &message, unsigned in
             break;
         }
     }
-    // Append title to "Raven - "
+    // Append title to "Akitacoin - "
     if (!msgType.isEmpty())
         strTitle += " - " + msgType;
 
@@ -1444,7 +1463,7 @@ void RavenGUI::message(const QString &title, const QString &message, unsigned in
         notificator->notify((Notificator::Class)nNotifyIcon, strTitle, message);
 }
 
-void RavenGUI::changeEvent(QEvent *e)
+void AkitacoinGUI::changeEvent(QEvent *e)
 {
     QMainWindow::changeEvent(e);
 #ifndef Q_OS_MAC // Ignored on Mac
@@ -1463,7 +1482,7 @@ void RavenGUI::changeEvent(QEvent *e)
 #endif
 }
 
-void RavenGUI::closeEvent(QCloseEvent *event)
+void AkitacoinGUI::closeEvent(QCloseEvent *event)
 {
 #ifndef Q_OS_MAC // Ignored on Mac
     if(clientModel && clientModel->getOptionsModel())
@@ -1486,7 +1505,7 @@ void RavenGUI::closeEvent(QCloseEvent *event)
 #endif
 }
 
-void RavenGUI::showEvent(QShowEvent *event)
+void AkitacoinGUI::showEvent(QShowEvent *event)
 {
     // enable the debug window when the main window shows up
     openRPCConsoleAction->setEnabled(true);
@@ -1495,14 +1514,14 @@ void RavenGUI::showEvent(QShowEvent *event)
 }
 
 #ifdef ENABLE_WALLET
-void RavenGUI::incomingTransaction(const QString& date, int unit, const CAmount& amount, const QString& type, const QString& address, const QString& label, const QString& assetName)
+void AkitacoinGUI::incomingTransaction(const QString& date, int unit, const CAmount& amount, const QString& type, const QString& address, const QString& label, const QString& assetName)
 {
     // On new transaction, make an info balloon
     QString msg = tr("Date: %1\n").arg(date);
-    if (assetName == "RVN")
-        msg += tr("Amount: %1\n").arg(RavenUnits::formatWithUnit(unit, amount, true));
+    if (assetName == "AKIC")
+        msg += tr("Amount: %1\n").arg(AkitacoinUnits::formatWithUnit(unit, amount, true));
     else
-        msg += tr("Amount: %1\n").arg(RavenUnits::formatWithCustomName(assetName, amount, MAX_ASSET_UNITS, true));
+        msg += tr("Amount: %1\n").arg(AkitacoinUnits::formatWithCustomName(assetName, amount, MAX_ASSET_UNITS, true));
 
     msg += tr("Type: %1\n").arg(type);
 
@@ -1514,12 +1533,12 @@ void RavenGUI::incomingTransaction(const QString& date, int unit, const CAmount&
              msg, CClientUIInterface::MSG_INFORMATION);
 }
 
-void RavenGUI::checkAssets()
+void AkitacoinGUI::checkAssets()
 {
-    // Check that status of RIP2 and activate the assets icon if it is active
+    // Check that status of HIP2 and activate the assets icon if it is active
     if(AreAssetsDeployed()) {
         transferAssetAction->setDisabled(false);
-        transferAssetAction->setToolTip(tr("Transfer assets to RVN addresses"));
+        transferAssetAction->setToolTip(tr("Transfer assets to AKIC addresses"));
         createAssetAction->setDisabled(false);
         createAssetAction->setToolTip(tr("Create new assets"));
         manageAssetAction->setDisabled(false);
@@ -1543,14 +1562,14 @@ void RavenGUI::checkAssets()
 }
 #endif // ENABLE_WALLET
 
-void RavenGUI::dragEnterEvent(QDragEnterEvent *event)
+void AkitacoinGUI::dragEnterEvent(QDragEnterEvent *event)
 {
     // Accept only URIs
     if(event->mimeData()->hasUrls())
         event->acceptProposedAction();
 }
 
-void RavenGUI::dropEvent(QDropEvent *event)
+void AkitacoinGUI::dropEvent(QDropEvent *event)
 {
     if(event->mimeData()->hasUrls())
     {
@@ -1562,7 +1581,7 @@ void RavenGUI::dropEvent(QDropEvent *event)
     event->acceptProposedAction();
 }
 
-bool RavenGUI::eventFilter(QObject *object, QEvent *event)
+bool AkitacoinGUI::eventFilter(QObject *object, QEvent *event)
 {
     // Catch status tip events
     if (event->type() == QEvent::StatusTip)
@@ -1575,7 +1594,7 @@ bool RavenGUI::eventFilter(QObject *object, QEvent *event)
 }
 
 #ifdef ENABLE_WALLET
-bool RavenGUI::handlePaymentRequest(const SendCoinsRecipient& recipient)
+bool AkitacoinGUI::handlePaymentRequest(const SendCoinsRecipient& recipient)
 {
     // URI has to be valid
     if (walletFrame && walletFrame->handlePaymentRequest(recipient))
@@ -1587,7 +1606,7 @@ bool RavenGUI::handlePaymentRequest(const SendCoinsRecipient& recipient)
     return false;
 }
 
-void RavenGUI::setHDStatus(int hdEnabled)
+void AkitacoinGUI::setHDStatus(int hdEnabled)
 {
     QString icon = "";
     if (hdEnabled == HD_DISABLED) {
@@ -1605,7 +1624,7 @@ void RavenGUI::setHDStatus(int hdEnabled)
     labelWalletHDStatusIcon->setEnabled(hdEnabled);
 }
 
-void RavenGUI::setEncryptionStatus(int status)
+void AkitacoinGUI::setEncryptionStatus(int status)
 {
     switch(status)
     {
@@ -1635,7 +1654,7 @@ void RavenGUI::setEncryptionStatus(int status)
 }
 #endif // ENABLE_WALLET
 
-void RavenGUI::showNormalIfMinimized(bool fToggleHidden)
+void AkitacoinGUI::showNormalIfMinimized(bool fToggleHidden)
 {
     if(!clientModel)
         return;
@@ -1660,12 +1679,12 @@ void RavenGUI::showNormalIfMinimized(bool fToggleHidden)
         hide();
 }
 
-void RavenGUI::toggleHidden()
+void AkitacoinGUI::toggleHidden()
 {
     showNormalIfMinimized(true);
 }
 
-void RavenGUI::detectShutdown()
+void AkitacoinGUI::detectShutdown()
 {
     if (ShutdownRequested())
     {
@@ -1675,7 +1694,7 @@ void RavenGUI::detectShutdown()
     }
 }
 
-void RavenGUI::showProgress(const QString &title, int nProgress)
+void AkitacoinGUI::showProgress(const QString &title, int nProgress)
 {
     if (nProgress == 0)
     {
@@ -1698,7 +1717,7 @@ void RavenGUI::showProgress(const QString &title, int nProgress)
         progressDialog->setValue(nProgress);
 }
 
-void RavenGUI::setTrayIconVisible(bool fHideTrayIcon)
+void AkitacoinGUI::setTrayIconVisible(bool fHideTrayIcon)
 {
     if (trayIcon)
     {
@@ -1706,13 +1725,13 @@ void RavenGUI::setTrayIconVisible(bool fHideTrayIcon)
     }
 }
 
-void RavenGUI::showModalOverlay()
+void AkitacoinGUI::showModalOverlay()
 {
     if (modalOverlay && (progressBar->isVisible() || modalOverlay->isLayerVisible()))
         modalOverlay->toggleVisibility();
 }
 
-static bool ThreadSafeMessageBox(RavenGUI *gui, const std::string& message, const std::string& caption, unsigned int style)
+static bool ThreadSafeMessageBox(AkitacoinGUI *gui, const std::string& message, const std::string& caption, unsigned int style)
 {
     bool modal = (style & CClientUIInterface::MODAL);
     // The SECURE flag has no effect in the Qt GUI.
@@ -1729,7 +1748,7 @@ static bool ThreadSafeMessageBox(RavenGUI *gui, const std::string& message, cons
     return ret;
 }
 
-static bool ThreadSafeMnemonic(RavenGUI *gui, unsigned int style)
+static bool ThreadSafeMnemonic(AkitacoinGUI *gui, unsigned int style)
 {
     bool modal = (style & CClientUIInterface::MODAL);
     // The SECURE flag has no effect in the Qt GUI.
@@ -1742,7 +1761,7 @@ static bool ThreadSafeMnemonic(RavenGUI *gui, unsigned int style)
     return ret;
 }
 
-void RavenGUI::subscribeToCoreSignals()
+void AkitacoinGUI::subscribeToCoreSignals()
 {
     // Connect signals to client
     uiInterface.ThreadSafeMessageBox.connect(boost::bind(ThreadSafeMessageBox, this, _1, _2, _3));
@@ -1750,7 +1769,7 @@ void RavenGUI::subscribeToCoreSignals()
     uiInterface.ShowMnemonic.connect(boost::bind(ThreadSafeMnemonic, this, _1));
 }
 
-void RavenGUI::unsubscribeFromCoreSignals()
+void AkitacoinGUI::unsubscribeFromCoreSignals()
 {
     // Disconnect signals from client
     uiInterface.ThreadSafeMessageBox.disconnect(boost::bind(ThreadSafeMessageBox, this, _1, _2, _3));
@@ -1758,7 +1777,7 @@ void RavenGUI::unsubscribeFromCoreSignals()
     uiInterface.ShowMnemonic.disconnect(boost::bind(ThreadSafeMnemonic, this, _1));
 }
 
-void RavenGUI::toggleNetworkActive()
+void AkitacoinGUI::toggleNetworkActive()
 {
     if (clientModel) {
         clientModel->setNetworkActive(!clientModel->getNetworkActive());
@@ -1766,7 +1785,7 @@ void RavenGUI::toggleNetworkActive()
 }
 
 /** Get restart command-line parameters and request restart */
-void RavenGUI::handleRestart(QStringList args)
+void AkitacoinGUI::handleRestart(QStringList args)
 {
     if (!ShutdownRequested())
         Q_EMIT requestedRestart(args);
@@ -1778,15 +1797,15 @@ UnitDisplayStatusBarControl::UnitDisplayStatusBarControl(const PlatformStyle *pl
 {
     createContextMenu(platformStyle);
     setToolTip(tr("Unit to show amounts in. Click to select another unit."));
-    QList<RavenUnits::Unit> units = RavenUnits::availableUnits();
+    QList<AkitacoinUnits::Unit> units = AkitacoinUnits::availableUnits();
     int max_width = 0;
     const QFontMetrics fm(font());
-    for (const RavenUnits::Unit unit : units)
+    for (const AkitacoinUnits::Unit unit : units)
     {
     #ifndef QTversionPreFiveEleven
-        max_width = qMax(max_width, fm.horizontalAdvance(RavenUnits::name(unit)));
+        max_width = qMax(max_width, fm.horizontalAdvance(AkitacoinUnits::name(unit)));
     #else
-        max_width = qMax(max_width, fm.width(RavenUnits::name(unit)));
+        max_width = qMax(max_width, fm.width(AkitacoinUnits::name(unit)));
     #endif
     }
     setMinimumSize(max_width, 0);
@@ -1804,9 +1823,9 @@ void UnitDisplayStatusBarControl::mousePressEvent(QMouseEvent *event)
 void UnitDisplayStatusBarControl::createContextMenu(const PlatformStyle *platformStyle)
 {
     menu = new QMenu(this);
-    for (RavenUnits::Unit u : RavenUnits::availableUnits())
+    for (AkitacoinUnits::Unit u : AkitacoinUnits::availableUnits())
     {
-        QAction *menuAction = new QAction(QString(RavenUnits::name(u)), this);
+        QAction *menuAction = new QAction(QString(AkitacoinUnits::name(u)), this);
         menuAction->setData(QVariant(u));
         menu->addAction(menuAction);
     }
@@ -1832,7 +1851,7 @@ void UnitDisplayStatusBarControl::setOptionsModel(OptionsModel *_optionsModel)
 /** When Display Units are changed on OptionsModel it will refresh the display text of the control on the status bar */
 void UnitDisplayStatusBarControl::updateDisplayUnit(int newUnits)
 {
-    setText(RavenUnits::name(newUnits));
+    setText(AkitacoinUnits::name(newUnits));
 }
 
 /** Shows context menu with Display Unit options by the mouse coordinates */
@@ -1852,7 +1871,7 @@ void UnitDisplayStatusBarControl::onMenuSelection(QAction* action)
 }
 
 /** Triggered only when the user changes the combobox on the main GUI */
-void RavenGUI::currencySelectionChanged(int unitIndex)
+void AkitacoinGUI::currencySelectionChanged(int unitIndex)
 {
     if(clientModel && clientModel->getOptionsModel())
     {
@@ -1861,9 +1880,9 @@ void RavenGUI::currencySelectionChanged(int unitIndex)
 }
 
 /** Triggered when the options model's display currency is updated */
-void RavenGUI::onCurrencyChange(int newIndex)
+void AkitacoinGUI::onCurrencyChange(int newIndex)
 {
-    qDebug() << "RavenGUI::onPriceUnitChange: " + QString::number(newIndex);
+    qDebug() << "AkitacoinGUI::onPriceUnitChange: " + QString::number(newIndex);
 
     if(newIndex < 0 || newIndex >= CurrencyUnits::count()){
         return;
@@ -1873,26 +1892,26 @@ void RavenGUI::onCurrencyChange(int newIndex)
     this->currentPriceDisplay = &CurrencyUnits::CurrencyOptions[newIndex];
     //Update the main GUI box in case this was changed from the settings screen
     //This will fire the event again, but the options model prevents the infinite loop
-    this->comboRvnUnit->setCurrentIndex(newIndex);
+    this->comboAkicUnit->setCurrentIndex(newIndex);
     this->getPriceInfo();
 }
 
-void RavenGUI::getPriceInfo()
+void AkitacoinGUI::getPriceInfo()
 {
-    request->setUrl(QUrl(QString("https://api.binance.com/api/v1/ticker/price?symbol=%1").arg(this->currentPriceDisplay->Ticker)));
+    request->setUrl(QUrl(QString("https://api.xeggex.com/api/v2/ticker/AKIC_%1").arg(this->currentPriceDisplay->Ticker)));
     networkManager->get(*request);
 }
 
 #ifdef ENABLE_WALLET
-void RavenGUI::mnemonic()
+void AkitacoinGUI::mnemonic()
 {
         MnemonicDialog dlg(this);
         dlg.exec();
 }
 #endif
 
-void RavenGUI::getLatestVersion()
+void AkitacoinGUI::getLatestVersion()
 {
-    versionRequest->setUrl(QUrl("https://api.github.com/repos/RavenProject/Ravencoin/releases"));
+    versionRequest->setUrl(QUrl("https://api.github.com/repos/JustAResearcher/Akitacoin/releases"));
     networkVersionManager->get(*versionRequest);
 }
