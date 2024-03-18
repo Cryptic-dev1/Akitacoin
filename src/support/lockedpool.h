@@ -1,10 +1,10 @@
 // Copyright (c) 2016 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAVEN_SUPPORT_LOCKEDPOOL_H
-#define RAVEN_SUPPORT_LOCKEDPOOL_H
+#ifndef AKITACOIN_SUPPORT_LOCKEDPOOL_H
+#define AKITACOIN_SUPPORT_LOCKEDPOOL_H
 
 #include <stdint.h>
 #include <list>
@@ -229,4 +229,4 @@ private:
     static std::once_flag init_flag;
 };
 
-#endif // RAVEN_SUPPORT_LOCKEDPOOL_H
+#endif // AKITACOIN_SUPPORT_LOCKEDPOOL_H

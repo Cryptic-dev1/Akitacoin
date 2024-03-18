@@ -1,10 +1,10 @@
 // Copyright (c) 2017 The Bitcoin Core developers
-// Copyright (c) 2017-2020 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAVEN_RPC_BLOCKCHAIN_H
-#define RAVEN_RPC_BLOCKCHAIN_H
+#ifndef AKITACOIN_RPC_BLOCKCHAIN_H
+#define AKITACOIN_RPC_BLOCKCHAIN_H
 #include <map>
 #include <string>
 
@@ -14,7 +14,7 @@ class UniValue;
 
 
 // To be used by local rpc GPU mining only
-extern std::map<std::string, CBlock> mapRVNKAWBlockTemplates;
+extern std::map<std::string, CBlock> mapAKICKAWBlockTemplates;
 
 /**
  * Get the difficulty of the net wrt to the given block index, or the chain tip if

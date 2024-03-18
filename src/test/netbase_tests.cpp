@@ -1,10 +1,10 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "netbase.h"
-#include "test/test_raven.h"
+#include "test/test_akitacoin.h"
 #include "utilstrencodings.h"
 
 #include <string>
@@ -89,20 +89,20 @@ BOOST_FIXTURE_TEST_SUITE(netbase_tests, BasicTestingSetup)
     {
         BOOST_TEST_MESSAGE("Running NetBase SplitHost Test");
 
-        BOOST_CHECK(TestSplitHost("www.raven.org", "www.raven.org", -1));
-        BOOST_CHECK(TestSplitHost("[www.raven.org]", "www.raven.org", -1));
-        BOOST_CHECK(TestSplitHost("www.raven.org:80", "www.raven.org", 80));
-        BOOST_CHECK(TestSplitHost("[www.raven.org]:80", "www.raven.org", 80));
+        BOOST_CHECK(TestSplitHost("www.akitacoin.net", "www.akitacoin.net", -1));
+        BOOST_CHECK(TestSplitHost("[www.akitacoin.net]", "www.akitacoin.net", -1));
+        BOOST_CHECK(TestSplitHost("www.akitacoin.net:80", "www.akitacoin.net", 80));
+        BOOST_CHECK(TestSplitHost("[www.akitacoin.net]:80", "www.akitacoin.net", 80));
         BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
-        BOOST_CHECK(TestSplitHost("127.0.0.1:8767", "127.0.0.1", 8767));
+        BOOST_CHECK(TestSplitHost("127.0.0.1:7788", "127.0.0.1", 7788));
         BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));
-        BOOST_CHECK(TestSplitHost("[127.0.0.1]:8767", "127.0.0.1", 8767));
+        BOOST_CHECK(TestSplitHost("[127.0.0.1]:7788", "127.0.0.1", 7788));
         BOOST_CHECK(TestSplitHost("::ffff:127.0.0.1", "::ffff:127.0.0.1", -1));
-        BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:8767", "::ffff:127.0.0.1", 8767));
-        BOOST_CHECK(TestSplitHost("[::]:8767", "::", 8767));
-        BOOST_CHECK(TestSplitHost("::8767", "::8767", -1));
-        BOOST_CHECK(TestSplitHost(":8767", "", 8767));
-        BOOST_CHECK(TestSplitHost("[]:8767", "", 8767));
+        BOOST_CHECK(TestSplitHost("[::ffff:127.0.0.1]:7788", "::ffff:127.0.0.1", 7788));
+        BOOST_CHECK(TestSplitHost("[::]:7788", "::", 7788));
+        BOOST_CHECK(TestSplitHost("::7788", "::7788", -1));
+        BOOST_CHECK(TestSplitHost(":7788", "", 7788));
+        BOOST_CHECK(TestSplitHost("[]:7788", "", 7788));
         BOOST_CHECK(TestSplitHost("", "", -1));
     }
 
@@ -117,10 +117,10 @@ BOOST_FIXTURE_TEST_SUITE(netbase_tests, BasicTestingSetup)
         BOOST_TEST_MESSAGE("Running NetBase LookUpNumeric Test");
 
         BOOST_CHECK(TestParse("127.0.0.1", "127.0.0.1:65535"));
-        BOOST_CHECK(TestParse("127.0.0.1:8767", "127.0.0.1:8767"));
+        BOOST_CHECK(TestParse("127.0.0.1:7788", "127.0.0.1:7788"));
         BOOST_CHECK(TestParse("::ffff:127.0.0.1", "127.0.0.1:65535"));
         BOOST_CHECK(TestParse("::", "[::]:65535"));
-        BOOST_CHECK(TestParse("[::]:8767", "[::]:8767"));
+        BOOST_CHECK(TestParse("[::]:7788", "[::]:7788"));
         BOOST_CHECK(TestParse("[127.0.0.1]", "127.0.0.1:65535"));
         BOOST_CHECK(TestParse(":::", "[::]:0"));
 
