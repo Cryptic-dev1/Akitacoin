@@ -16,14 +16,14 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "Raven"
-            VALUE "FileDescription",    "ravend (Raven node with a JSON-RPC server)"
+            VALUE "CompanyName",        "Akitacoin"
+            VALUE "FileDescription",    "akitacoin-tx (CLI Akitacoin transaction editor utility)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
-            VALUE "InternalName",       "ravend"
+            VALUE "InternalName",       "akitacoin-tx"
             VALUE "LegalCopyright",     COPYRIGHT_STR
             VALUE "LegalTrademarks1",   "Distributed under the MIT software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
-            VALUE "OriginalFilename",   "ravend.exe"
-            VALUE "ProductName",        "ravend"
+            VALUE "OriginalFilename",   "akitacoin-tx.exe"
+            VALUE "ProductName",        "akitacoin-tx"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
         END
     END

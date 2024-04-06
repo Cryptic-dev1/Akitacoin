@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAVEN_NET_PROCESSING_H
-#define RAVEN_NET_PROCESSING_H
+#ifndef AKITACOIN_NET_PROCESSING_H
+#define AKITACOIN_NET_PROCESSING_H
 
 #include "net.h"
 #include "validationinterface.h"
@@ -82,4 +82,4 @@ bool GetNodeStateStats(NodeId nodeid, CNodeStateStats &stats);
 /** Increase a node's misbehavior score. */
 void Misbehaving(NodeId nodeid, int howmuch);
 
-#endif // RAVEN_NET_PROCESSING_H
+#endif // AKITACOIN_NET_PROCESSING_H

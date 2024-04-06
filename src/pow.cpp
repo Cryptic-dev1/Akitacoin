@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2020 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -48,6 +48,7 @@ unsigned int static DarkGravityWave(const CBlockIndex* pindexLast, const CBlockH
     arith_uint256 bnPastTargetAvg;
 
     int nKAWPOWBlocksFound = 0;
+   
     for (unsigned int nCountBlocks = 1; nCountBlocks <= nPastBlocks; nCountBlocks++) {
         arith_uint256 bnTarget = arith_uint256().SetCompact(pindex->nBits);
         if (nCountBlocks == 1) {
@@ -72,7 +73,7 @@ unsigned int static DarkGravityWave(const CBlockIndex* pindexLast, const CBlockH
     // 180 KAWPOW blocks already. If we haven't we are going to return our
     // temp limit. This will allow us to change algos to kawpow without having to
     // change the DGW math.
-    if (pblock->nTime >= nKAWPOWActivationTime) {
+ if (pblock->nTime >= nKAWPOWActivationTime) {
         if (nKAWPOWBlocksFound != nPastBlocks) {
             const arith_uint256 bnKawPowLimit = UintToArith256(params.kawpowLimit);
             return bnKawPowLimit.GetCompact();

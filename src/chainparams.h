@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2020 The Raven Core developers
+// Copyright (c) 2017-2020 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAVEN_CHAINPARAMS_H
-#define RAVEN_CHAINPARAMS_H
+#ifndef AKITACOIN_CHAINPARAMS_H
+#define AKITACOIN_CHAINPARAMS_H
 
 #include "chainparamsbase.h"
 #include "consensus/params.h"
@@ -40,7 +40,7 @@ struct ChainTxData {
 
 /**
  * CChainParams defines various tweakable parameters of a given instance of the
- * Raven system. There are three: the main network on which people trade goods
+ * Akitacoin system. There are three: the main network on which people trade goods
  * and services, the public test network which gets reset from time to time and
  * a regression test mode which is intended for private networks only. It has
  * minimal difficulty to ensure that blocks can be found instantly.
@@ -90,7 +90,7 @@ public:
     bool BIP66();
     bool CSVEnabled() const;
 
-    /** RVN Start **/
+    /** AKIC Start **/
     const CAmount& IssueAssetBurnAmount() const { return nIssueAssetBurnAmount; }
     const CAmount& ReissueAssetBurnAmount() const { return nReissueAssetBurnAmount; }
     const CAmount& IssueSubAssetBurnAmount() const { return nIssueSubAssetBurnAmount; }
@@ -100,6 +100,8 @@ public:
     const CAmount& IssueSubQualifierAssetBurnAmount() const { return nIssueSubQualifierAssetBurnAmount; }
     const CAmount& IssueRestrictedAssetBurnAmount() const { return nIssueRestrictedAssetBurnAmount; }
     const CAmount& AddNullQualifierTagBurnAmount() const { return nAddNullQualifierTagBurnAmount; }
+    const CAmount& CommunityAutonomousAmount() const { return nCommunityAutonomousAmount; }
+
 
     const std::string& IssueAssetBurnAddress() const { return strIssueAssetBurnAddress; }
     const std::string& ReissueAssetBurnAddress() const { return strReissueAssetBurnAddress; }
@@ -111,6 +113,8 @@ public:
     const std::string& IssueRestrictedAssetBurnAddress() const { return strIssueRestrictedAssetBurnAddress; }
     const std::string& AddNullQualifierTagBurnAddress() const { return strAddNullQualifierTagBurnAddress; }
     const std::string& GlobalBurnAddress() const { return strGlobalBurnAddress; }
+    const std::string& CommunityAutonomousAddress() const { return strCommunityAutonomousAddress; }
+
 
     //  Indicates whether or not the provided address is a burn address
     bool IsBurnAddress(const std::string & p_address) const
@@ -126,6 +130,8 @@ public:
             || p_address == strIssueRestrictedAssetBurnAddress
             || p_address == strAddNullQualifierTagBurnAddress
             || p_address == strGlobalBurnAddress
+            || p_address == strCommunityAutonomousAddress
+
         ) {
             return true;
         }
@@ -142,7 +148,7 @@ public:
     int MinReorganizationAge() const { return nMinReorganizationAge; }
 
     int GetAssetActivationHeight() const { return nAssetActivationHeight; }
-    /** RVN End **/
+    /** AKIC End **/
 
 protected:
     CChainParams() {}
@@ -164,7 +170,7 @@ protected:
     CCheckpointData checkpointData;
     ChainTxData chainTxData;
 
-    /** RVN Start **/
+    /** AKIC Start **/
     // Burn Amounts
     CAmount nIssueAssetBurnAmount;
     CAmount nReissueAssetBurnAmount;
@@ -175,6 +181,8 @@ protected:
     CAmount nIssueSubQualifierAssetBurnAmount;
     CAmount nIssueRestrictedAssetBurnAmount;
     CAmount nAddNullQualifierTagBurnAmount;
+    CAmount nCommunityAutonomousAmount;
+
 
     // Burn Addresses
     std::string strIssueAssetBurnAddress;
@@ -190,6 +198,10 @@ protected:
     // Global Burn Address
     std::string strGlobalBurnAddress;
 
+    //Community Autonomous Address
+    std::string strCommunityAutonomousAddress;
+
+
     unsigned int nDGWActivationBlock;
     unsigned int nMessagingActivationBlock;
     unsigned int nRestrictedActivationBlock;
@@ -201,7 +213,7 @@ protected:
     int nAssetActivationHeight;
 
     uint32_t nKAAAWWWPOWActivationTime;
-    /** RVN End **/
+    /** AKIC End **/
 };
 
 /**
@@ -238,4 +250,4 @@ void TurnOffBIP66();
 
 void TurnOffCSV();
 
-#endif // RAVEN_CHAINPARAMS_H
+#endif // AKITACOIN_CHAINPARAMS_H

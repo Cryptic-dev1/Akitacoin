@@ -1,10 +1,10 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAVEN_BLOOM_H
-#define RAVEN_BLOOM_H
+#ifndef AKITACOIN_BLOOM_H
+#define AKITACOIN_BLOOM_H
 
 #include "serialize.h"
 
@@ -141,4 +141,4 @@ private:
     int nHashFuncs;
 };
 
-#endif // RAVEN_BLOOM_H
+#endif // AKITACOIN_BLOOM_H

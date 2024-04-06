@@ -1,10 +1,10 @@
 // Copyright (c) 2017 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAVEN_FS_H
-#define RAVEN_FS_H
+#ifndef AKITACOIN_FS_H
+#define AKITACOIN_FS_H
 
 #include <stdio.h>
 #include <string>
@@ -25,4 +25,4 @@ namespace fsbridge {
     FILE *freopen(const fs::path& p, const char *mode, FILE *stream);
 };
 
-#endif // RAVEN_FS_H
+#endif // AKITACOIN_FS_H

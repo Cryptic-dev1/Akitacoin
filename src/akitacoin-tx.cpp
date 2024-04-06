@@ -1,10 +1,10 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2017-2019 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/raven-config.h"
+#include "config/akitacoin-config.h"
 #endif
 
 #include "base58.h"
@@ -55,10 +55,10 @@ static int AppInitRawTx(int argc, char* argv[])
     if (argc<2 || gArgs.IsArgSet("-?") || gArgs.IsArgSet("-h") || gArgs.IsArgSet("-help"))
     {
         // First part of help message is specific to this utility
-        std::string strUsage = strprintf(_("%s raven-tx utility version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n\n" +
+        std::string strUsage = strprintf(_("%s akitacoin-tx utility version"), _(PACKAGE_NAME)) + " " + FormatFullVersion() + "\n\n" +
             _("Usage:") + "\n" +
-              "  raven-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded raven transaction") + "\n" +
-              "  raven-tx [options] -create [commands]   " + _("Create hex-encoded raven transaction") + "\n" +
+              "  akitacoin-tx [options] <hex-tx> [commands]  " + _("Update hex-encoded akitacoin transaction") + "\n" +
+              "  akitacoin-tx [options] -create [commands]   " + _("Create hex-encoded akitacoin transaction") + "\n" +
               "\n";
 
         fprintf(stdout, "%s", strUsage.c_str());
@@ -240,12 +240,12 @@ static void MutateTxAddInput(CMutableTransaction& tx, const std::string& strInpu
     uint256 txid(uint256S(strTxid));
 
     static const unsigned int minTxOutSz = 9;
-    // Deprecated with RIP2 implementation
+    // Deprecated with HIP2 implementation
     //    static const unsigned int maxVout = MAX_BLOCK_WEIGHT / (WITNESS_SCALE_FACTOR * minTxOutSz);
 
     unsigned int maxVout = 0;
     if (fAssetsIsActive) {
-        maxVout = MAX_BLOCK_WEIGHT_RIP2 / (WITNESS_SCALE_FACTOR * minTxOutSz);
+        maxVout = MAX_BLOCK_WEIGHT_HIP2 / (WITNESS_SCALE_FACTOR * minTxOutSz);
     } else {
         maxVout = MAX_BLOCK_WEIGHT / (WITNESS_SCALE_FACTOR * minTxOutSz);
     }
@@ -559,7 +559,7 @@ static void MutateTxSign(CMutableTransaction& tx, const std::string& flagStr)
     for (unsigned int kidx = 0; kidx < keysObj.size(); kidx++) {
         if (!keysObj[kidx].isStr())
             throw std::runtime_error("privatekey not a std::string");
-        CRavenSecret vchSecret;
+        CAkitacoinSecret vchSecret;
         bool fGood = vchSecret.SetString(keysObj[kidx].getValStr());
         if (!fGood)
             throw std::runtime_error("privatekey not valid");
@@ -797,7 +797,7 @@ static int CommandLineRawTx(int argc, char* argv[])
             if (argc < 2)
                 throw std::runtime_error("too few parameters");
 
-            // param: hex-encoded raven transaction
+            // param: hex-encoded akitacoin transaction
             std::string strHexTx(argv[1]);
             if (strHexTx == "-")                 // "-" implies standard input
                 strHexTx = readStdin();
