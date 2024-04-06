@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2017 The Bitcoin Core developers
-// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef RAVEN_WALLET_INIT_H
-#define RAVEN_WALLET_INIT_H
+#ifndef AKITACOIN_WALLET_INIT_H
+#define AKITACOIN_WALLET_INIT_H
 
 #include <string>
 
@@ -41,4 +41,4 @@ void StopWallets();
 //! Close all wallets.
 void CloseWallets();
 
-#endif // RAVEN_WALLET_INIT_H
+#endif // AKITACOIN_WALLET_INIT_H
