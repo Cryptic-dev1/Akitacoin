@@ -1,6 +1,5 @@
 PACKAGE=qt
 $(package)_version=5.12.11
-#$(package)_download_path=https://download.qt.io/official_releases/qt/5.12/$($(package)_version)/submodules
 $(package)_download_path=https://download.qt.io/archive/qt/5.12/$($(package)_version)/submodules
 $(package)_suffix=everywhere-src-$($(package)_version).tar.xz
 $(package)_file_name=qtbase-$($(package)_suffix)
@@ -31,6 +30,7 @@ $(package)_config_opts_debug += -optimized-tools
 $(package)_config_opts += -bindir $(build_prefix)/bin
 $(package)_config_opts += -c++std c++1z
 $(package)_config_opts += -confirm-license
+$(package)_config_opts += -dbus
 $(package)_config_opts += -hostprefix $(build_prefix)
 $(package)_config_opts += -no-pch
 $(package)_config_opts += -no-compile-examples
@@ -146,7 +146,6 @@ $(package)_config_opts_riscv64_linux = -platform linux-g++ -xplatform bitcoin-li
 $(package)_config_opts_s390x_linux = -platform linux-g++ -xplatform bitcoin-linux-g++
 
 $(package)_config_opts_mingw32 = -no-opengl
-$(package)_config_opts_mingw32 += -no-dbus
 $(package)_config_opts_mingw32 += -xplatform win32-g++
 $(package)_config_opts_mingw32 += -device-option CROSS_COMPILE="$(host)-"
 $(package)_config_opts_mingw32 += OPENSSL_LIBS="-L/usr/x86_64-w64-mingw32/lib -lssl -lcrypto -lws2_32"

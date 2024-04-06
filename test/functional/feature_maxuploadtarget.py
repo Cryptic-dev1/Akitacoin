@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
-# Copyright (c) 2017-2020 The Raven Core developers
+# Copyright (c) 2017-2020 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,7 +17,7 @@ if uploadtarget has been reached.
 from collections import defaultdict
 import time
 from test_framework.mininode import NodeConn, NodeConnCB, NetworkThread, MsgGetdata, CInv
-from test_framework.test_framework import RavenTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import p2p_port, mine_large_block, assert_equal
 
 
@@ -34,7 +34,7 @@ class TestNode(NodeConnCB):
         self.block_receive_map[message.block.x16r] += 1
 
 
-class MaxUploadTest(RavenTestFramework):
+class MaxUploadTest(AkitacoinTestFramework):
 
     def set_test_params(self):
         self.setup_clean_chain = True
@@ -97,7 +97,7 @@ class MaxUploadTest(RavenTestFramework):
 
         block_rate_minutes = 1
         blocks_per_day = 24 * 60 / block_rate_minutes
-        max_block_serialized_size = 8000000  # This is MAX_BLOCK_SERIALIZED_SIZE_RIP2
+        max_block_serialized_size = 8000000  # This is MAX_BLOCK_SERIALIZED_SIZE_HIP2
         max_bytes_per_day = self.maxuploadtarget * 1024 * 1024
         daily_buffer = blocks_per_day * max_block_serialized_size
         max_bytes_available = max_bytes_per_day - daily_buffer

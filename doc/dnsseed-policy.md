@@ -1,12 +1,12 @@
 Expectations for DNS Seed operators
 ====================================
 
-Meowcoin Core attempts to minimize the level of trust in DNS seeds,
+Akitacoin Core attempts to minimize the level of trust in DNS seeds,
 but DNS seeds still pose a small amount of risk for the network.
 As such, DNS seeds must be run by entities which have some minimum
-level of trust within the Meowcoin community.
+level of trust within the Akitacoin community.
 
-Other implementations of Meowcoin software may also use the same
+Other implementations of Akitacoin software may also use the same
 seeds and may be more exposed. In light of this exposure, this
 document establishes some basic expectations for operating dnsseeds.
 
@@ -16,7 +16,7 @@ and not sell or transfer control of the DNS seed. Any hosting services
 contracted by the operator are equally expected to uphold these expectations.
 
 1. The DNS seed results must consist exclusively of fairly selected and
-functioning Meowcoin nodes from the public network to the best of the
+functioning Akitacoin nodes from the public network to the best of the
 operator's understanding and capability.
 
 2. For the avoidance of doubt, the results may be randomized but must not
@@ -26,7 +26,7 @@ urgent technical necessity and disclosed.
 3. The results may not be served with a DNS TTL of less than one minute.
 
 4. Any logging of DNS queries should be only that which is necessary
-for the operation of the service or urgent health of the Meowcoin
+for the operation of the service or urgent health of the Akitacoin
 network and must not be retained longer than necessary nor disclosed
 to any third party.
 
@@ -42,13 +42,13 @@ details of their operating practices.
 related to the DNS seed operation.
 
 If these expectations cannot be satisfied the operator should
-discontinue providing services and contact the active Meowcoin
+discontinue providing services and contact the active Akitacoin
 Core development team by sending an email to:
-[feedback@mewccrypto.com](mailto:feedback@mewccrypto.com).
+[feedback@akitacoin.net](mailto:admin@akitacoin.net).
 
 Behavior outside of these expectations may be reasonable in some
 situations but should be discussed in public in advance.
 
 See also
 ----------
-- [meowcoin-seeder](https://github.com/MeowcoinProject/meowcoin-seeder) is a reference implementation of a DNS seed.
+- [akitacoin-seeder](https://github.com/Cryptic-dev1/Akitacoin/akitacoin-seeder) is a reference implementation of a DNS seed.

@@ -1,41 +1,42 @@
-Raven Core integration/staging tree
+Akitacoin Core integration/staging tree
 =====================================
 
-https://ravencoin.org
+https://www.akitacoin.net/
 
-To see how to run Ravencoin, please read the respective files in [the doc folder](doc)
+To see how to run Akitacoin, please read the respective files in [the doc folder](doc)
 
 
-What is Ravencoin?
+What is Akitacoin?
 ----------------
-
-Ravencoin is an experimental digital currency that enables instant payments to
-anyone, anywhere in the world. The Ravencoin platform also lets anyone create assets (tokens) on the Ravencoin network. 
-Assets can be used for NFTs, STOs, Gift Cards, and fractional ownership of anything of value.
-Ravencoin uses peer-to-peer technology to operate
-with no central authority: managing transactions and issuing money are carried
-out collectively by the network. 
-
-
+Akitacoin is a a project that uses its own blockchain as technological platform to reach their objectives, which are focused in the animal sector (pet rescue and adoption, shelters support, etc). 
+Akitacoin also provide small scale and home miners with a profitable blockchain to devote their hash to, and benefit the wider sector through philanthropic means.
+Its blockchain provides digital currency that enables instant payments to anyone, anywhere in the world. The Akitacoin platform also lets anyone create assets (tokens) on the Akitacoin network. Assets can be used for NFTs, STOs, Gift Cards, and fractional ownership of anything of value.
+Akitacoin uses peer-to-peer technology to operate with no central authority: managing transactions and issuing money are carried out collectively by the network. 
 
 License
 -------
 
-Raven Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
+Akitacoin Core is released under the terms of the MIT license. See [COPYING](COPYING) for more
 information or see https://opensource.org/licenses/MIT.
 
 Development Process
 -------------------
 
 The `master` branch is regularly built and tested, but is not guaranteed to be
-completely stable. [Tags](https://github.com/RavenProject/Ravencoin/tags) are created
-regularly to indicate new official, stable release versions of Raven Core.
+completely stable. [Tags](https://github.com/Cryptic-dev1/Akitacoin/tags) are created
+regularly to indicate new official, stable release versions of Akitacoin Core.
 
-Active development is done in the `develop` branch. 
+Active development is done in branches, branches are created for specific versions. Development for Akitacoin uses the following workflow:
+
+* Create a new branch
+* Implement changes
+* Branch becomes reviewed, tested, and approved
+* Upon completion, the branch is merged into master via pull request with exec member approval.
+  
 
 The contribution workflow is described in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-Developer IRC is inactive please join us on discord in #development. https://discord.gg/fndp4NBGct
+Please join us on discord for questions or concerns.
 
 Testing
 -------
@@ -67,24 +68,24 @@ to add a test plan to the pull request description if testing the changes is
 not straightforward.
 
 
-About Ravencoin
+About Akitacoin
 ----------------
 A digital peer to peer network for the facilitation of asset transfer.
 
 
 
-In the fictional world of Westeros, ravens are used as messengers who carry statements of truth. Ravencoin is a use case specific blockchain designed to carry statements of truth about who owns what assets. 
+In the fictional world of Westeros, akitas are used as messengers who carry statements of truth. Akitacoin is a use case specific blockchain designed to carry statements of truth about who owns what assets. 
 
 
 
 Thank you to the Bitcoin developers. 
 
-The Ravencoin project is launched based on the hard work and continuous effort of over 400 Bitcoin developers who made over 14,000 commits over the life to date of the Bitcoin project. We are eternally grateful to you for your efforts and diligence in making a secure network and for their support of free and open source software development.  The Ravencoin experiment is made on the foundation you built.
+The Akitacoin project is launched based on the hard work and continuous effort of over 400 Bitcoin developers who made over 14,000 commits over the life to date of the Bitcoin project. We are eternally grateful to you for your efforts and diligence in making a secure network and for their support of free and open source software development.  The Akitacoin experiment is made on the foundation you built.
 
 
 Abstract
 ----------------
-Ravencoin aims to implement a blockchain which is optimized specifically for the use case of transferring assets such as securities from one holder to another. Based on the extensive development and testing of Bitcoin, Ravencoin is built on a fork of the Bitcoin code. Key changes include a faster block reward time and a change in the number, but not weighed distribution schedule, of coins. Ravencoin is free and open source and will be issued and mined transparently with no pre-mine, developer allocation or any other similar set aside. Ravencoin is intended to prioritize user control, privacy and censorship resistance and be jurisdiction agnostic while allowing simple optional additional features for users based on need.
+Akitacoin aims to implement a blockchain which is optimized specifically for the use case of transferring assets such as securities from one holder to another. Based on the extensive development and testing of Bitcoin, Akitacoin is built on a fork of the Bitcoin code. Key changes include a faster block reward time and a change in the number, but not weighed distribution schedule, of coins. Akitacoin is free and open source and will be issued and mined transparently with no pre-mine, developer allocation or any other similar set aside. Akitacoin is intended to prioritize user control, privacy and censorship resistance and be jurisdiction agnostic while allowing simple optional additional features for users based on need.
 
 
 
@@ -94,9 +95,9 @@ The success of the Ethereum ERC 20 token shows the demand for tokenized assets t
 
 Bitcoin also has the capability of serving as the rails for tokens by using projects such as Omnilayer, RSK or Counterparty. However, neither Bitcoin nor Ethereum was specifically designed for facilitating ownership of other assets. 
 
-Ravencoin is designed to be a use case specific blockchain designed to efficiently handle one specific function: the transfer of assets from one party to another.
+Akitacoin is designed to be a use case specific blockchain designed to efficiently handle one specific function: the transfer of assets from one party to another.
 
-Bitcoin is and always should be focused on its goals of being a better form of money. Bitcoin developers will unlikely prioritize improvements or features which are specifically beneficial to the facilitation of token transfers.  One goal of the Ravencoin project is to see if a use case specific blockchain and development effort can create code which can either improve existing structures like Bitcoin or provide advantages for specific use cases.
+Bitcoin is and always should be focused on its goals of being a better form of money. Bitcoin developers will unlikely prioritize improvements or features which are specifically beneficial to the facilitation of token transfers.  One goal of the Akitacoin project is to see if a use case specific blockchain and development effort can create code which can either improve existing structures like Bitcoin or provide advantages for specific use cases.
 
 In the new global economy, borders and jurisdictions will be less relevant as more assets are tradable and trade across borders is increasingly frictionless. In an age where people can move significant amounts of wealth instantly using Bitcoin, global consumers will likely demand the same efficiency for their securities and similar asset holdings.
 

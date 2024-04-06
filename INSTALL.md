@@ -1,5 +1,5 @@
-Building Raven
+Building Akitacoin
 ================
 
 See doc/build-*.md for instructions on building the various
-elements of the Raven Core reference implementation of Raven.
+elements of the Akitacoin Core reference implementation of Akitacoin.
