@@ -1,17 +1,14 @@
 PACKAGE=qt
 $(package)_version=5.9.6
 $(package)_download_path=https://download.qt.io/archive/qt/5.9/$($(package)_version)/submodules
-$(package)_suffix=everywhere-src-$($(package)_version).tar.xz
+$(package)_suffix=opensource-src-$($(package)_version).tar.xz
 $(package)_file_name=qtbase-$($(package)_suffix)
 $(package)_sha256_hash=eed620cb268b199bd83b3fc6a471c51d51e1dc2dbb5374fc97a0cc75facbe36f
-$(package)_dependencies=openssl
-$(package)_linux_dependencies=freetype fontconfig libxcb libxkbcommon
+$(package)_dependencies=openssl zlib
+$(package)_linux_dependencies=freetype fontconfig libxcb
+$(package)_build_subdir=qtbase
 $(package)_qt_libs=corelib network widgets gui plugins testlib
-$(package)_patches=fix_qt_pkgconfig.patch mac-qmake.conf fix_no_printer.patch no-xlib.patch
-$(package)_patches+= fix_android_qmake_conf.patch fix_android_jni_static.patch dont_hardcode_pwd.patch
-$(package)_patches+= drop_lrelease_dependency.patch no_sdk_version_check.patch
-$(package)_patches+= fix_lib_paths.patch fix_android_pch.patch
-$(package)_patches+= qtbase-moc-ignore-gcc-macro.patch
+$(package)_patches=fix_qt_pkgconfig.patch mac-qmake.conf fix_configure_mac.patch fix_no_printer.patch fix_rcc_determinism.patch xkb-default.patch no-xlib.patch
 
 $(package)_qttranslations_file_name=qttranslations-$($(package)_suffix)
 $(package)_qttranslations_sha256_hash=9822084f8e2d2939ba39f4af4c0c2320e45d5996762a9423f833055607604ed8
