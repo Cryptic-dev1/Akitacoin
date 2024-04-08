@@ -7,7 +7,7 @@
 #ifndef AKITACOIN_SERIALIZE_H
 #define AKITACOIN_SERIALIZE_H
 
-#include "compatendian.h"
+#include "compat/endian.h"
 
 #include <algorithm>
 #include <assert.h>
