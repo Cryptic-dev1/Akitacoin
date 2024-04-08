@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef AKIRACOIN_ASSETDB_H
+#ifndef AKITACOIN_ASSETDB_H
 #define AKITACOIN_ASSETDB_H
 
 #include "fs.h"
