@@ -34,7 +34,7 @@
 #include <crypto/ethash/include/ethash/ethash.hpp>
 #include <consensus/merkle.h>
 #include <crypto/ethash/include/ethash/progpow.hpp>
-#include <crypto/ethash/include/ethash/akitapow.hpp>
+
 
 extern uint64_t nHashesPerSec;
 
