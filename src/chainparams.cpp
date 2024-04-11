@@ -187,8 +187,8 @@ public:
 
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
-        assert(consensus.hashGenesisBlock == uint256S());
-        assert(genesis.hashMerkleRoot == uint256S());
+        assert(consensus.hashGenesisBlock == uint256S(""));
+        assert(genesis.hashMerkleRoot == uint256S(""));
 
         vSeeds.emplace_back("seed-mainnet-akic.akitacoin.net", false);
 
@@ -291,7 +291,6 @@ public:
         consensus.nCSVEnabled = true;
         consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.kawpowLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.akitapowLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
         consensus.nPowTargetSpacing = 1 * 60;
         consensus.fPowAllowMinDifficultyBlocks = true;
@@ -344,7 +343,7 @@ public:
 
         nPruneAfterHeight = 1000;
 
-        uint32_t nGenesisTime = 1711065600;  // Thursday, September 20, 2018 12:00:00 PM GMT-06:00
+        uint32_t nGenesisTime = 1713135600; //Sun Apr 14 2024 23:00:00 GMT+0000
 
  // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
 //        /////////////////////////////////////////////////////////////////
@@ -415,7 +414,7 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.emplace_back("seed-testnet-mewc.akitacoin.cc", false);
+        vSeeds.emplace_back("seed-testnet-akic.akitacoin.cc", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
