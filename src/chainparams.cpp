@@ -219,7 +219,7 @@ public:
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
             // Stats as of 0x00000000000016ec03d8d93f9751323bcc42137b1b4df67e6a11c4394fd8e5ad window size 43200
-            171097920, // * UNIX timestamp of last known number of transactions
+            1713135600, // * UNIX timestamp of last known number of transactions
            0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
           0         // * estimated number of transactions per second after that timestamp
@@ -409,8 +409,8 @@ public:
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
         //Test MerkleRoot and GenesisBlock
-        assert(consensus.hashGenesisBlock == uint256S());
-        assert(genesis.hashMerkleRoot == uint256S());
+        assert(consensus.hashGenesisBlock == uint256S(""));
+        assert(genesis.hashMerkleRoot == uint256S(""));
 
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -441,7 +441,7 @@ public:
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
             // Stats as of 00000023b66f46d74890287a7b1157dd780c7c5fdda2b561eb96684d2b39d62e window size 43200
-            , // * UNIX timestamp of last known number of transactions
+           1713135600, // * UNIX timestamp of last known number of transactions
             0,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0.0        // * estimated number of transactions per second after that timestamp
@@ -577,7 +577,7 @@ public:
         };
 
         chainTxData = ChainTxData{
-            0,
+            1713135600,
             0,
             0
         };
