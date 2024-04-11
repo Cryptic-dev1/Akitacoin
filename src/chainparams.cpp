@@ -187,8 +187,8 @@ public:
 
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
-        assert(consensus.hashGenesisBlock == uint256S(""));
-        assert(genesis.hashMerkleRoot == uint256S(""));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"));
+        assert(genesis.hashMerkleRoot == uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"));
 
         vSeeds.emplace_back("seed-mainnet-akic.akitacoin.net", false);
 
