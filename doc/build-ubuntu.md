@@ -101,6 +101,7 @@ libboost-test-dev
 qtbase5-dev
 qttools5-dev
 bison
+libdb++-devcd Akitacoin
 libexpat1-dev
 libdbus-1-dev
 libfontconfig-dev
@@ -148,7 +149,7 @@ Make the directory for sources and go into it.
 
 __Download Akitacoin source.__
 
-`git clone https://github.com/JustAResearcher/Akitacoin`
+`git clone https://github.com/Cryptic-dev1/Akitacoin.git`
 
 `cd Akitacoin`
 
@@ -166,6 +167,7 @@ __The build process:__
 
 `./configure BDB_LIBS="-L${BDB_PREFIX}/lib -ldb_cxx-4.8" BDB_CFLAGS="-I${BDB_PREFIX}/include" --prefix=/usr/local` 
 
+
 _Adjust to own needs. This will install the binaries to `/usr/local/bin`_
 
 
@@ -174,6 +176,7 @@ _Adjust to own needs. This will install the binaries to `/usr/local/bin`_
 You can now start akitacoin-qt from the build directory.
 
 `src/qt/akitacoin-qt`
+
 
 akitacoind and akitacoin-cli are in `src/`
 

@@ -1,4 +1,4 @@
-Release Process
+cd Release Process
 ====================
 
 Before every release candidate:
