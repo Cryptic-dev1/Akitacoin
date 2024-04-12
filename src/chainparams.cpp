@@ -189,7 +189,7 @@ public:
         test.SetCompact(0x1e00ffff, &fNegative, &fOverflow);
         std::cout << "Test threshold: " << test.GetHex() << "\n\n";
 
-        int genesisNonce = 0;
+        int genesisNonce = 15536767;
         uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         for (int i=0;i<80000000;i++) {
