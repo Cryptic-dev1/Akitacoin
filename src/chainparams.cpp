@@ -680,7 +680,7 @@ public:
 
         return;
 
-        genesis = CreateGenesisBlock(nGenesisTime, 1180242, 0x1e0ffff0, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1712960960, 1, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
         //assert(consensus.hashGenesisBlock == uint256S("0x0b2c703dc93bb63a36c4e33b85be4855ddbca2ac951a7a0a29b8de0408200a3c"));
