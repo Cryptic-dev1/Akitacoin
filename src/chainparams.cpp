@@ -181,16 +181,73 @@ public:
         nDefaultPort = 7788;
         nPruneAfterHeight = 100000;
 
-        uint32_t nGenesisTime = 1713135600; //Sun Apr 14 2024 23:00:00 GMT+0000
+        uint32_t nGenesisTime = 1713222000; //Sun Apr 15 2024 23:00:00 GMT+0000
+        /// merkle hash and genesis hash
+ // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
+///       /////////////////////////////////////////////////////////////////
+//
+             arith_uint256 test;
+            bool fNegative;
+            bool fOverflow;
+       test.SetCompact(0x1e00ffff, &fNegative, &fOverflow);
+        std::cout << "Test threshold: " << test.GetHex() << "\n\n";
+
+       int genesisNonce = 1180242;
+       uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
+      uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+       for (int i=0;i<40000000;i++) {
+                    genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e00ffff, 2, 5000 * COIN);
+
+           genesis.hashPrevBlock = TempHashHolding;
+           // Depending on when the timestamp is on the genesis block. You will need to use GetX16RHash or GetX16RV2Hash. Replace GetHash() with these below
+           consensus.hashGenesisBlock = genesis.GetHash();
+
+            arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
+            if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
+                BestBlockHash = consensus.hashGenesisBlock;
+               std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
+                std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
+           }
+
+           TempHashHolding = consensus.hashGenesisBlock;
+
+            if (BestBlockHashArith < test) {
+               genesisNonce = i - 1;
+                break;
+            }
+            std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
+        }
+        std::cout << "\n";
+        std::cout << "\n";
+        std::cout << "\n";
+
+        std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
+        std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
+       std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex() << std::endl;
+
+        std::cout << "\n";
+        std::cout << "\n";
+       int totalHits = 0;
+        double totalTime = 0.0;
+
+        for(int x = 0; x < 16; x++) {
+            totalHits += algoHashHits[x];
+            totalTime += algoHashTotal[x];
+            std::cout << "hash algo " << x << " hits " << algoHashHits[x] << " total " << algoHashTotal[x] << " avg " << algoHashTotal[x]/algoHashHits[x] << std::endl;
+        }
+
+        std::cout << "Totals: hash algo " <<  " hits " << totalHits << " total " << totalTime << " avg " << totalTime/totalHits << std::endl;
+
+       genesis.hashPrevBlock = TempHashHolding;
+
+          return;
 
         genesis = CreateGenesisBlock(nGenesisTime, 1180242, 0x1e0ffff0, 4, 5000 * COIN);
-
         consensus.hashGenesisBlock = genesis.GetX16RHash();
-
         assert(consensus.hashGenesisBlock == uint256S("0000064de606089f42e3099a1f7a4c9ffea22b50c440ac713a8b1b23ecf0d5e0"));
         assert(genesis.hashMerkleRoot == uint256S("744bd04b5685dc6281ab724fd4f2ab5e99532d19bca526258501939f8bfacc9c"));
 
-        vSeeds.emplace_back("seed-mainnet-akic.akitacoin.net", false);
+        vSeeds.emplace_back("", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,50);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
@@ -219,10 +276,10 @@ public:
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
             // Stats as of 0x00000000000016ec03d8d93f9751323bcc42137b1b4df67e6a11c4394fd8e5ad window size 43200
-            0, // * UNIX timestamp of last known number of transactions
+            1713135600, // * UNIX timestamp of last known number of transactions
            0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-          0         // * estimated number of transactions per second after that timestamp
+          0.1         // * estimated number of transactions per second after that timestamp
         };
 
         /** AKIC Start **/
@@ -293,9 +350,9 @@ public:
         consensus.kawpowLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
         consensus.nPowTargetSpacing = 1 * 60;
-        consensus.fPowAllowMinDifficultyBlocks = false;
+        consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 1613; // Approx 65% for testchains
+        consensus.nRuleChangeActivationThreshold = 1310; // Approx 65% for testchains
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1713049200; // January 1, 2008
@@ -329,10 +386,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideMinerConfirmationWindow = 2016;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000100010");
+        consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x000000eaab417d6dfe9bd75119972e1d07ecfe8ff655bef7c2acb3d9a0eeed81");
+        consensus.defaultAssumeValid = uint256S("0x00");
 
 
         pchMessageStart[0] = 0x41; // A
@@ -344,14 +401,6 @@ public:
         nPruneAfterHeight = 1000;
 
         uint32_t nGenesisTime = 1713135600; //Sun Apr 14 2024 23:00:00 GMT+0000
-
-
-
-
-
-
-
-
 
 
  /// merkle hash and genesis hash
@@ -423,10 +472,13 @@ public:
         //Test MerkleRoot and GenesisBlock
         assert(consensus.hashGenesisBlock == uint256S("0000064de606089f42e3099a1f7a4c9ffea22b50c440ac713a8b1b23ecf0d5e0"));
         assert(genesis.hashMerkleRoot == uint256S("744bd04b5685dc6281ab724fd4f2ab5e99532d19bca526258501939f8bfacc9c"));
+        //std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
+		//std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;		
+
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.emplace_back("seed-testnet-akic.akitacoin.cc", false);
+        vSeeds.emplace_back("", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,109);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);
