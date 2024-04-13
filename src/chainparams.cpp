@@ -401,7 +401,7 @@ arith_uint256 test;
 
         //Test MerkleRoot and GenesisBlock
         assert(consensus.hashGenesisBlock == uint256S("0x00000069fc369e1e1d69f037596338a16b9f68151ac6507215ae74b8268adf3c"));
-        assert(genesis.hashMerkleRoot == uint256S("32aaaf517b3fc92322393e4b2469b3bebb4f64a2281a5b552e96d6d22b644631"));
+        assert(genesis.hashMerkleRoot == uint256S("0x32aaaf517b3fc92322393e4b2469b3bebb4f64a2281a5b552e96d6d22b644631"));
         //std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
 		//std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;		
 
