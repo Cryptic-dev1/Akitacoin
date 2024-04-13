@@ -395,12 +395,12 @@ public:
 
         uint32_t nGenesisTime = 1713222000; //Sun Apr 14 2024 23:00:00 GMT+0000
 
-        genesis = CreateGenesisBlock(nGenesisTime, 15536767, 0x1e0ffff0, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(nGenesisTime, 14097833, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
         //Test MerkleRoot and GenesisBlock
         assert(consensus.hashGenesisBlock == uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608"));
-        assert(genesis.hashMerkleRoot == uint256S("0x32aaaf517b3fc92322393e4b2469b3bebb4f64a2281a5b552e96d6d22b644631"));
+        assert(genesis.hashMerkleRoot ==     uint256S("0x32aaaf517b3fc92322393e4b2469b3bebb4f64a2281a5b552e96d6d22b644631"));
         //std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
 		//std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;		
 
@@ -553,7 +553,7 @@ public:
         nDefaultPort = 18444;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1713222000, 1, 0x1e0ffff0, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1713222000, 14097833, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
         assert(consensus.hashGenesisBlock == uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608"));
         assert(genesis.hashMerkleRoot == uint256S("32aaaf517b3fc92322393e4b2469b3bebb4f64a2281a5b552e96d6d22b644631"));
