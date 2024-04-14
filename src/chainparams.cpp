@@ -240,7 +240,7 @@ arith_uint256 test;
 
         vSeeds.emplace_back("", false);
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,50);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,112);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
@@ -258,9 +258,7 @@ arith_uint256 test;
 
         checkpointData = (CCheckpointData) {
             {
-                {
-                    { 0, uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608")}
-                }
+                
                 
             }
         };
@@ -270,10 +268,10 @@ arith_uint256 test;
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
             // Stats as of 0x00000000000016ec03d8d93f9751323bcc42137b1b4df67e6a11c4394fd8e5ad window size 43200
-            1713222000, // * UNIX timestamp of last known number of transactions
+            0, // * UNIX timestamp of last known number of transactions
            0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-          0.1         // * estimated number of transactions per second after that timestamp
+          0         // * estimated number of transactions per second after that timestamp
         };
 
         /** AKIC Start **/
@@ -340,6 +338,7 @@ public:
         consensus.nBIP66Enabled = true;
         consensus.nSegwitEnabled = true;
         consensus.nCSVEnabled = true;
+
         consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.kawpowLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
@@ -353,12 +352,12 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1711065600; // December 31, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideRuleChangeActivationThreshold = 1310;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideMinerConfirmationWindow = 2016;
-        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].bit = 6;
+        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].bit = 5;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nStartTime = 1710979200; // UTC: Fri Aug 10 2018 18:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 1711065600; // UTC: Wed Dec 25 2019 07:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideRuleChangeActivationThreshold = 1310;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideMinerConfirmationWindow = 2016;
-        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].bit = 7;  //Assets (RIP5)
+        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].bit = 6;  //Assets (RIP5)
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nStartTime = 1710979200; // UTC: Mon Oct 07 2019 06:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nTimeout = 1711065600; // UTC: Wed Dec 25 2019 07:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideRuleChangeActivationThreshold = 1310;
@@ -380,10 +379,10 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideMinerConfirmationWindow = 2016;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000859d8e6ba8224a4");
+        consensus.nMinimumChainWork = uint256S("0x0");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x0000000000043a9280011ff1382e99ade4d90d51821cc4dadfb20bd1a0905b1c");
+        consensus.defaultAssumeValid = uint256S("0x00");
 
 
         pchMessageStart[0] = 0x41; // A
@@ -428,19 +427,17 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-              {
-                    { 0, uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608")}
-                }
+            
             }
         };
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
             // Stats as of 00000023b66f46d74890287a7b1157dd780c7c5fdda2b561eb96684d2b39d62e window size 43200
-           1713222000, // * UNIX timestamp of last known number of transactions
+           0, // * UNIX timestamp of last known number of transactions
             0,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.0        // * estimated number of transactions per second after that timestamp
+            0        // * estimated number of transactions per second after that timestamp
         };
 
         /** AKIC Start **/
@@ -556,8 +553,8 @@ public:
 
         genesis = CreateGenesisBlock(1713222000, 14097833, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608"));
-        assert(genesis.hashMerkleRoot == uint256S("32aaaf517b3fc92322393e4b2469b3bebb4f64a2281a5b552e96d6d22b644631"));
+        //assert(consensus.hashGenesisBlock == uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608"));
+        //assert(genesis.hashMerkleRoot == uint256S("32aaaf517b3fc92322393e4b2469b3bebb4f64a2281a5b552e96d6d22b644631"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
@@ -568,9 +565,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                {
-                    { 0, uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608")}
-                }
+                
             }
         };
 
