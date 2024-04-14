@@ -232,4 +232,4 @@ public:
     }
 };
 
-#endif // MEOWCOIN_PRIMITIVES_BLOCK_H
+#endif // AKITACOIN_PRIMITIVES_BLOCK_H
