@@ -258,6 +258,9 @@ arith_uint256 test;
 
         checkpointData = (CCheckpointData) {
             {
+                {
+                    { 0, uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608")}
+                }
                 
             }
         };
@@ -425,7 +428,9 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-              
+              {
+                    { 0, uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608")}
+                }
             }
         };
 
@@ -563,7 +568,9 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-                
+                {
+                    { 0, uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608")}
+                }
             }
         };
 
