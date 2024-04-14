@@ -63,9 +63,9 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
         BOOST_TEST_MESSAGE("Running Verify New Restricted transaction");
 
         /// Create CTxOut to use in the tests ///
-        // Create filler mewc tx
-        CScript mewcTransfer = GetScriptForDestination(DecodeDestination(GetParams().GlobalBurnAddress()));
-        CTxOut mewcOut(1*COIN, mewcTransfer);
+        // Create filler akic tx
+        CScript akicTransfer = GetScriptForDestination(DecodeDestination(GetParams().GlobalBurnAddress()));
+        CTxOut akicOut(1*COIN, akicTransfer);
 
         // Create transaction and add burn to it
         CScript burnScript = GetScriptForDestination(DecodeDestination(GetBurnAddress(AssetType::RESTRICTED)));
@@ -98,7 +98,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
         // Run successful test 1
         std::string error;
         CMutableTransaction mutTxTest1;
-        mutTxTest1.vout.emplace_back(mewcOut);
+        mutTxTest1.vout.emplace_back(akicOut);
         mutTxTest1.vout.emplace_back(burnOut);
         mutTxTest1.vout.emplace_back(parentOut);
         mutTxTest1.vout.emplace_back(verifierOut);
@@ -108,7 +108,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 2
         CMutableTransaction mutTxTest2;
-        mutTxTest2.vout.emplace_back(mewcOut);
+        mutTxTest2.vout.emplace_back(akicOut);
         mutTxTest2.vout.emplace_back(burnOut);
         mutTxTest2.vout.emplace_back(verifierOut);
         mutTxTest2.vout.emplace_back(assetOut);
@@ -118,7 +118,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 3
         CMutableTransaction mutTxTest3;
-        mutTxTest3.vout.emplace_back(mewcOut);
+        mutTxTest3.vout.emplace_back(akicOut);
         mutTxTest3.vout.emplace_back(burnOut);
         mutTxTest3.vout.emplace_back(parentOut);
         mutTxTest3.vout.emplace_back(assetOut);
@@ -128,7 +128,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 4
         CMutableTransaction mutTxTest4;
-        mutTxTest4.vout.emplace_back(mewcOut);
+        mutTxTest4.vout.emplace_back(akicOut);
         mutTxTest4.vout.emplace_back(parentOut);
         mutTxTest4.vout.emplace_back(verifierOut);
         mutTxTest4.vout.emplace_back(assetOut);
@@ -138,7 +138,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 5
         CMutableTransaction mutTxTest5;
-        mutTxTest5.vout.emplace_back(mewcOut);
+        mutTxTest5.vout.emplace_back(akicOut);
         mutTxTest5.vout.emplace_back(burnOut);
         mutTxTest5.vout.emplace_back(parentOut);
         mutTxTest5.vout.emplace_back(verifierOut);
@@ -148,7 +148,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 6
         CMutableTransaction mutTxTest6;
-        mutTxTest6.vout.emplace_back(mewcOut);
+        mutTxTest6.vout.emplace_back(akicOut);
         mutTxTest6.vout.emplace_back(burnOut);
         mutTxTest6.vout.emplace_back(parentOut);
         mutTxTest6.vout.emplace_back(verifierOut);
@@ -160,7 +160,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 7
         CMutableTransaction mutTxTest7;
-        mutTxTest7.vout.emplace_back(mewcOut);
+        mutTxTest7.vout.emplace_back(akicOut);
         mutTxTest7.vout.emplace_back(burnOut);
         mutTxTest7.vout.emplace_back(parentOut);
         mutTxTest7.vout.emplace_back(verifierOut);
@@ -172,7 +172,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
 
         // Run failure test 8
         CMutableTransaction mutTxTest8;
-        mutTxTest8.vout.emplace_back(mewcOut);
+        mutTxTest8.vout.emplace_back(akicOut);
         mutTxTest8.vout.emplace_back(burnOut);
         mutTxTest8.vout.emplace_back(parentOut);
         mutTxTest8.vout.emplace_back(verifierOut);
