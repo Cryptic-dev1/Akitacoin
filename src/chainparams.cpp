@@ -184,7 +184,7 @@ arith_uint256 test;
         uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         for (int i=0;i<80000000;i++) {
-            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e00ffff, 4, 5000 * COIN);
+            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 4, 5000 * COIN);
             genesis.hashPrevBlock = TempHashHolding;
 			// Depending on when the timestamp is on the genesis block. You will need to use GetX16RHash or GetX16RV2Hash. Replace GetHash() with these below
             consensus.hashGenesisBlock = genesis.GetX16RHash();
