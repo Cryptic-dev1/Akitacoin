@@ -229,15 +229,15 @@ arith_uint256 test;
         std::cout << "Totals: hash algo " <<  " hits " << totalHits << " total " << totalTime << " avg " << totalTime/totalHits << std::endl;
 
         genesis.hashPrevBlock = TempHashHolding;
-
+s
 //end here
 */
-        std::cout << "CHOOSE: genesis.GetX16RHash().GetHex(): " << genesis.GetX16RHash().GetHex();
-        std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex();
-         genesis = CreateGenesisBlock(nGenesisTime, 8764983, 0x1e0ffff0, 4, 5000 * COIN);
+            std::cout << "CHOOSE: genesis.GetX16RHash() " << genesis.GetX16RHash();
+            std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex();
+             genesis = CreateGenesisBlock(nGenesisTime, 8764983, 0x1e0ffff0, 4, 5000 * COIN);
             consensus.hashGenesisBlock = genesis.GetX16RHash();
-          assert(consensus.hashGenesisBlock == uint256S("0x0d2f374efe3c06fdbde89c1e9027e56693e4e16bebf76cd59655b8eb1d21ee03"));
-              assert(genesis.hashMerkleRoot == uint256S("0x46504b277ba0e06cb1407a9258b51d184b5ca8507418bdb93bf88e47dc80fb54"));
+            assert(consensus.hashGenesisBlock == uint256S(""));
+             assert(genesis.hashMerkleRoot == uint256S(""));
         vSeeds.emplace_back("", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
