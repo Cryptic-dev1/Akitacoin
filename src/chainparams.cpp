@@ -173,7 +173,7 @@ public:
         uint32_t nGenesisTime = 	1713744000; //Sun Apr 15 2024 23:00:00 GMT+0000
 
 //start here
-
+/*
 arith_uint256 test;
         bool fNegative;
         bool fOverflow;
@@ -231,13 +231,13 @@ arith_uint256 test;
         genesis.hashPrevBlock = TempHashHolding;
 
 //end here
-
+*/
             std::cout << "CHOOSE: genesis.GetX16RHash() " << genesis.GetX16RHash().GetHex();
             std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex();
-             genesis = CreateGenesisBlock(nGenesisTime, 8764983, 0x1e0ffff0, 4, 5000 * COIN);
+             genesis = CreateGenesisBlock(nGenesisTime, 3467220, 0x1e0ffff0, 4, 5000 * COIN);
             consensus.hashGenesisBlock = genesis.GetX16RHash();
-            assert(consensus.hashGenesisBlock == uint256S(""));
-             assert(genesis.hashMerkleRoot == uint256S(""));
+            assert(consensus.hashGenesisBlock == uint256S("0xaad9d3d8b93523967d47423eeb0f47adeec6fae83abeb263814a09b4f4c010a4"));
+             assert(genesis.hashMerkleRoot == uint256S("0x46504b277ba0e06cb1407a9258b51d184b5ca8507418bdb93bf88e47dc80fb54"));
         vSeeds.emplace_back("", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
@@ -395,11 +395,11 @@ public:
 
         uint32_t nGenesisTime = 1713744000; //Sun Apr 14 2024 23:00:00 GMT+0000
 
-        genesis = CreateGenesisBlock(nGenesisTime, 8764983, 0x1e0ffff0, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(nGenesisTime, 3467220, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
         //Test MerkleRoot and GenesisBlock
-        assert(consensus.hashGenesisBlock == uint256S("0x0d2f374efe3c06fdbde89c1e9027e56693e4e16bebf76cd59655b8eb1d21ee03"));
+        assert(consensus.hashGenesisBlock == uint256S("0xaad9d3d8b93523967d47423eeb0f47adeec6fae83abeb263814a09b4f4c010a4"));
         assert(genesis.hashMerkleRoot ==     uint256S("0x46504b277ba0e06cb1407a9258b51d184b5ca8507418bdb93bf88e47dc80fb54"));
         //std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
 		//std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;		
@@ -551,10 +551,10 @@ public:
         nDefaultPort = 18444;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1713744000, 8764983, 0x1e0ffff0, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1713744000, 3467220, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x32f01336ffb8529927eaf017b8707d496480531224185606761bf4972bb31608"));
-        //assert(genesis.hashMerkleRoot == uint256S("32aaaf517b3fc92322393e4b2469b3bebb4f64a2281a5b552e96d6d22b644631"));
+        //assert(consensus.hashGenesisBlock == uint256S("0xaad9d3d8b93523967d47423eeb0f47adeec6fae83abeb263814a09b4f4c010a4"));
+        //assert(genesis.hashMerkleRoot == uint256S("0x46504b277ba0e06cb1407a9258b51d184b5ca8507418bdb93bf88e47dc80fb54"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
