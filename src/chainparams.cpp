@@ -173,7 +173,7 @@ public:
         uint32_t nGenesisTime = 	1713744000; //Sun Apr 15 2024 23:00:00 GMT+0000
 
 //start here
-/*
+
 arith_uint256 test;
         bool fNegative;
         bool fOverflow;
@@ -229,10 +229,10 @@ arith_uint256 test;
         std::cout << "Totals: hash algo " <<  " hits " << totalHits << " total " << totalTime << " avg " << totalTime/totalHits << std::endl;
 
         genesis.hashPrevBlock = TempHashHolding;
-s
+
 //end here
-*/
-            std::cout << "CHOOSE: genesis.GetX16RHash() " << genesis.GetX16RHash();
+
+            std::cout << "CHOOSE: genesis.GetX16RHash() " << genesis.GetX16RHash().GetHex;
             std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex();
              genesis = CreateGenesisBlock(nGenesisTime, 8764983, 0x1e0ffff0, 4, 5000 * COIN);
             consensus.hashGenesisBlock = genesis.GetX16RHash();
