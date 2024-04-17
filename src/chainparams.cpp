@@ -232,7 +232,7 @@ arith_uint256 test;
 
 //end here
 
-            std::cout << "CHOOSE: genesis.GetX16RHash() " << genesis.GetX16RHash().GetHex;
+            std::cout << "CHOOSE: genesis.GetX16RHash() " << genesis.GetX16RHash().GetHex();
             std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex();
              genesis = CreateGenesisBlock(nGenesisTime, 8764983, 0x1e0ffff0, 4, 5000 * COIN);
             consensus.hashGenesisBlock = genesis.GetX16RHash();
