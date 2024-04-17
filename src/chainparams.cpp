@@ -177,7 +177,7 @@ public:
 arith_uint256 test;
         bool fNegative;
         bool fOverflow;
-        test.SetCompact(0x1e00ffff, &fNegative, &fOverflow);
+        test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
         std::cout << "Test threshold: " << test.GetHex() << "\n\n";
 
         int genesisNonce = 0;
