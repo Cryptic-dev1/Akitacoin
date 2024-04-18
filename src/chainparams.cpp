@@ -167,7 +167,7 @@ public:
         pchMessageStart[1] = 0x4B; // K
         pchMessageStart[2] = 0x49; // I
         pchMessageStart[3] = 0x43; // C
-        nDefaultPort = 7788;
+        nDefaultPort = 7766;
         nPruneAfterHeight = 100000;
 
         uint32_t nGenesisTime = 	1713744000; //Sun Apr 15 2024 23:00:00 GMT+0000
@@ -388,7 +388,7 @@ public:
         pchMessageStart[1] = 0x4B; // K
         pchMessageStart[2] = 0x49; // I
         pchMessageStart[3] = 0x43; // C 
-        nDefaultPort = 18877;
+        nDefaultPort = 18766;
 
         nPruneAfterHeight = 1000;
 
@@ -547,7 +547,7 @@ public:
         pchMessageStart[1] = 0x52; 
         pchMessageStart[2] = 0x4F; 
         pchMessageStart[3] = 0x57; 
-        nDefaultPort = 18444;
+        nDefaultPort = 18443;
         nPruneAfterHeight = 1000;
 
         genesis = CreateGenesisBlock(1713744000, 3467220, 0x1e0ffff0, 4, 5000 * COIN);
