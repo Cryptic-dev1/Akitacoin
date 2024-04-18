@@ -47,12 +47,17 @@ bool sanity_test_list(unsigned int size)
 bool sanity_test_range_fmt()
 {
     std::string test;
-    try {
-        test.at(1);
-    } catch (const std::out_of_range&) {
-        return true;
-    }
     
+    try
+    {
+        char ch = test.at(1);
+    }catch (const std::out_of_range&)
+    {
+        return true;
+    }catch (...)
+    {
+        return false;
+    }
     return false;
 }
 
