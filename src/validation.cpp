@@ -3170,7 +3170,7 @@ bool static DisconnectTip(CValidationState& state, const CChainParams& chainpara
     std::shared_ptr<CBlock> pblock = std::make_shared<CBlock>();
     CBlock& block = *pblock;
     if (!ReadBlockFromDisk(block, pindexDelete, chainparams.GetConsensus()))
-        return error(state, "Failed to read block");
+        return AbortNode(state, "Failed to read block");
     // Apply the block atomically to the chain state.
     int64_t nStart = GetTimeMicros();
     {
@@ -5774,11 +5774,6 @@ double GuessVerificationProgress(const ChainTxData& data, CBlockIndex *pindex) {
 // Only used by test framework
 void SetEnforcedValues(bool value) {
     fEnforcedValuesIsActive = value;
-}
-
-void SetEnforcedCoinbase(bool value)
-{
-    fCheckCoinbaseAssetsIsActive = value;
 }
 
 bool AreEnforcedValuesDeployed()
