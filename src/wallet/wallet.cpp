@@ -33,12 +33,11 @@
 #include "utilmoneystr.h"
 #include "wallet/fees.h"
 #include "wallet/bip39.h"
-
+#include <random>
 #include <assert.h>
 
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/thread.hpp>
-#include <random>
 #include <tinyformat.h>
 
 #include "assets/assets.h"
@@ -1449,20 +1448,7 @@ bool CWallet::IsMine(const CTransaction& tx) const
 
 bool CWallet::IsFromMe(const CTransaction& tx) const
 {
-    return (GetDebit(tx, ISMINE_ALL) > 0 || HasMyAssets(tx));
-}
-
-CAmount CWallet::HasMyAssets(const CTransaction& tx) const
-{
-    for (const CTxIn& txin : tx.vin)
-    {
-        CAssetOutputEntry assetData;
-        GetDebit(txin, ISMINE_ALL, assetData);
-        if (assetData.nAmount > 0)
-            return true;
-    }
-
-    return false;
+    return (GetDebit(tx, ISMINE_ALL) > 0);
 }
 
 CAmount CWallet::GetDebit(const CTransaction& tx, const isminefilter& filter) const
@@ -1635,6 +1621,46 @@ int64_t CWalletTx::GetTxTime() const
     int64_t n = nTimeSmart;
     return n ? n : nTimeReceived;
 }
+
+int CWalletTx::GetRequestCount() const
+{
+    // Returns -1 if it wasn't being tracked
+    int nRequests = -1;
+    {
+        LOCK(pwallet->cs_wallet);
+        if (IsCoinBase())
+        {
+            // Generated block
+            if (!hashUnset())
+            {
+                std::map<uint256, int>::const_iterator mi = pwallet->mapRequestCount.find(hashBlock);
+                if (mi != pwallet->mapRequestCount.end())
+                    nRequests = (*mi).second;
+            }
+        }
+        else
+        {
+            // Did anyone request this transaction?
+            std::map<uint256, int>::const_iterator mi = pwallet->mapRequestCount.find(GetHash());
+            if (mi != pwallet->mapRequestCount.end())
+            {
+                nRequests = (*mi).second;
+
+                // How about the block it's in?
+                if (nRequests == 0 && !hashUnset())
+                {
+                    std::map<uint256, int>::const_iterator _mi = pwallet->mapRequestCount.find(hashBlock);
+                    if (_mi != pwallet->mapRequestCount.end())
+                        nRequests = (*_mi).second;
+                    else
+                        nRequests = 1; // If it's in someone else's block it must have got out
+                }
+            }
+        }
+    }
+    return nRequests;
+}
+
 
 void CWalletTx::GetAmounts(std::list<COutputEntry>& listReceived,
                            std::list<COutputEntry>& listSent, CAmount& nFee, std::string& strSentAccount, const isminefilter& filter) const {
@@ -2724,7 +2750,7 @@ bool CWallet::SelectCoinsMinConf(const CAmount& nTargetValue, const int nConfMin
     std::vector<CInputCoin> vValue;
     CAmount nTotalLower = 0;
 
-    Shuffle(vCoins.begin(), vCoins.end(), FastRandomContext());
+    random_shuffle(vCoins.begin(), vCoins.end(), GetRandInt);
 
     for (const COutput &output : vCoins)
     {
@@ -2927,7 +2953,7 @@ bool CWallet::SelectAssetsMinConf(const CAmount& nTargetValue, const int nConfMi
     std::map<COutPoint, CAmount> mapValueAmount;
     CAmount nTotalLower = 0;
 
-    Shuffle(vCoins.begin(), vCoins.end(), FastRandomContext());
+    random_shuffle(vCoins.begin(), vCoins.end(), GetRandInt);
     #pragma GCC diagnostic ignored "-Wmaybe-uninitialized"
     for (const COutput &output : vCoins)
     {
@@ -3157,13 +3183,8 @@ bool CWallet::FundTransaction(CMutableTransaction& tx, CAmount& nFeeRet, int& nC
 
     coinControl.fAllowOtherInputs = true;
 
-    for (const CTxIn& txin : tx.vin) {
+    for (const CTxIn& txin : tx.vin) 
         coinControl.Select(txin.prevout);
-    }
-
-    // Acquire the locks to prevent races to the new locked unspents between the
-    // CreateTransaction call and LockCoin calls (when lockUnspents is true).
-    LOCK2(cs_main, cs_wallet);
 
     CReserveKey reservekey(this);
     CWalletTx wtx;
@@ -3180,9 +3201,9 @@ bool CWallet::FundTransaction(CMutableTransaction& tx, CAmount& nFeeRet, int& nC
 
     // Copy output sizes from new transaction; they may have had the fee
     // subtracted from them.
-    for (unsigned int idx = 0; idx < tx.vout.size(); idx++) {
+    for (unsigned int idx = 0; idx < tx.vout.size(); idx++) 
         tx.vout[idx].nValue = wtx.tx->vout[idx].nValue;
-    }
+    
 
     // Add new txins while keeping original txin scriptSig/order.
     for (const CTxIn& txin : wtx.tx->vin) {
@@ -3190,6 +3211,7 @@ bool CWallet::FundTransaction(CMutableTransaction& tx, CAmount& nFeeRet, int& nC
             tx.vin.push_back(txin);
 
             if (lockUnspents) {
+                LOCK2(cs_main, cs_wallet);
                 LockCoin(txin.prevout);
             }
         }
@@ -3847,6 +3869,9 @@ bool CWallet::CommitTransaction(CWalletTx& wtxNew, CReserveKey& reservekey, CCon
                 NotifyTransactionChanged(this, coin.GetHash(), CT_UPDATED);
             }
         }
+        
+        // Track how many getdata requests our transaction gets
+        mapRequestCount[wtxNew.GetHash()] = 0;
 
         if (fBroadcastTransactions)
         {
