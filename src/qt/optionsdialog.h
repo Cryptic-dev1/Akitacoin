@@ -6,7 +6,6 @@
 #ifndef AKITACOIN_QT_OPTIONSDIALOG_H
 #define AKITACOIN_QT_OPTIONSDIALOG_H
 
-#include "currencyunits.h"
 
 #include <QDialog>
 #include <QValidator>
