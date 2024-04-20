@@ -43,7 +43,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "The Times 16/04/2024 Copenhagen exchange fire a 'national disaster'";
+    const char* pszTimestamp = "The Times 20/04/2024 Tories considering stamp duty cut in autumn statement";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -173,7 +173,7 @@ public:
         uint32_t nGenesisTime = 	1713744000; //Sun Apr 15 2024 23:00:00 GMT+0000
 
 //start here
-/*
+
 arith_uint256 test;
         bool fNegative;
         bool fOverflow;
@@ -231,12 +231,14 @@ arith_uint256 test;
         genesis.hashPrevBlock = TempHashHolding;
 
 //end here
-*/
+
             
-             genesis = CreateGenesisBlock(nGenesisTime, 3467220, 0x1e0ffff0, 4, 5000 * COIN);
+            genesis = CreateGenesisBlock(nGenesisTime, genesisNonce, 0x1e0ffff0, 4, 5000 * COIN);
             consensus.hashGenesisBlock = genesis.GetX16RHash();
-            assert(consensus.hashGenesisBlock == uint256S("0x0490707a6484b5238d30baf811f051330939cc80dff9b24044be34fd6066ebcc"));
-             assert(genesis.hashMerkleRoot == uint256S("0x46504b277ba0e06cb1407a9258b51d184b5ca8507418bdb93bf88e47dc80fb54"));
+            std::cout << "genesis.GetX16RHash().GetHex() to 0x" << genesis.GetX16RHash().GetHex() << std::endl;
+            std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex() << std::endl;
+            assert(consensus.hashGenesisBlock == uint256S(""));
+             assert(genesis.hashMerkleRoot == uint256S(""));
         vSeeds.emplace_back("", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
@@ -398,8 +400,8 @@ public:
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
         //Test MerkleRoot and GenesisBlock
-        assert(consensus.hashGenesisBlock == uint256S("0x0490707a6484b5238d30baf811f051330939cc80dff9b24044be34fd6066ebcc"));
-        assert(genesis.hashMerkleRoot ==     uint256S("0x46504b277ba0e06cb1407a9258b51d184b5ca8507418bdb93bf88e47dc80fb54"));
+        assert(consensus.hashGenesisBlock == uint256S(""));
+        assert(genesis.hashMerkleRoot ==     uint256S(""));
         //std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
 		//std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;		
 
