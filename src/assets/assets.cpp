@@ -219,7 +219,7 @@ bool IsAssetNameValid(const std::string& name, AssetType& assetType, std::string
 
         return ret;
     }
-    else if (std::regex_match(name, MSG_CHANNEL_INDICATOR))
+    else if (std::regex_match(name, MSGCHANNEL_INDICATOR))
     {
         bool ret = IsTypeCheckNameValid(AssetType::MSGCHANNEL, name, error);
         if (ret)
@@ -4673,7 +4673,6 @@ bool CAssetsCache::CheckForAddressQualifier(const std::string &qualifier_name, c
 
     setIterator = passets->setNewQualifierAddressToAdd.find(cachedQualifierAddress);
     if (setIterator != passets->setNewQualifierAddressToAdd.end()) {
-        if (setIterator->type == QualifierType::ADD_QUALIFIER) {
           // Return true if we are adding the qualifier, and false if we are removing it
         return setIterator->type == QualifierType::ADD_QUALIFIER;
     }
