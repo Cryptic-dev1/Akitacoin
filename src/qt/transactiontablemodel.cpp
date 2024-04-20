@@ -576,6 +576,8 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
             return txAddressDecoration(rec);
         case AssetName:
             return QString::fromStdString(rec->assetName);
+        }
+        break;
     case Qt::DecorationRole:
     {
         QIcon icon = qvariant_cast<QIcon>(index.data(RawDecorationRole));
@@ -597,6 +599,7 @@ QVariant TransactionTableModel::data(const QModelIndex &index, int role) const
             else
                return QString(AkitacoinUnits::name(walletModel->getOptionsModel()->getDisplayUnit()));
         }
+        break;
     case Qt::EditRole:
         // Edit role is used for sorting, so return the unformatted values
         switch(index.column()) {
