@@ -11,7 +11,6 @@
 #endif
 
 #include "amount.h"
-#include "currencyunits.h"
 
 #include <QLabel>
 #include <QMainWindow>
