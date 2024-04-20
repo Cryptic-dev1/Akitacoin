@@ -413,9 +413,9 @@ void StopRPC()
     g_rpcSignals.Stopped();
 }
 
-bool fIRPCServerIsRunning()
+bool IsRPCRunning()
 {
-    return fIRPCServerIsRunning;
+    return fRPCRunning;
 }
 
 void SetRPCWarmupStatus(const std::string& newStatus)
