@@ -103,17 +103,15 @@ public Q_SLOTS:
         The new items are those between start and end inclusive, under the given parent item.
     */
     void processNewTransaction(const QModelIndex& parent, int start, int end);
-    /** Encrypt the wallet */
-    void encryptWallet(bool status);
     /** Backup the wallet */
     void backupWallet();
     /** Change encrypted wallet passphrase */
     void changePassphrase();
     /** Ask for passphrase to unlock wallet temporarily */
     void unlockWallet();
-
-    /** Show 12-words */
-    void getMyWords();
+    /**Lock the wallet */
+    void lockWalelt();
+    void getMnemonic();
 
     /** Show used sending addresses */
     void usedSendingAddresses();

@@ -81,8 +81,6 @@ private:
     QAction *issueUnique;
     QAction *reissue;
     QAction *openURL;
-    QAction *copyHashAction;
-
 
 private Q_SLOTS:
     void updateDisplayUnit();

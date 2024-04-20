@@ -33,7 +33,7 @@ using namespace boost::placeholders;
 
 #include "assets/assets.h"
 
-static std::atomic<bool> g_rpc_running{false};
+static fRPCRunning = false;
 static bool fRPCInWarmup = true;
 static std::string rpcWarmupStatus("RPC server started");
 static CCriticalSection cs_rpcWarmup;
@@ -393,7 +393,7 @@ bool CRPCTable::appendCommand(const std::string& name, const CRPCCommand* pcmd)
 bool StartRPC()
 {
     LogPrint(BCLog::RPC, "Starting RPC\n");
-    g_rpc_running = true;
+    fRPCRunning = true;
     g_rpcSignals.Started();
     return true;
 }
@@ -402,7 +402,7 @@ void InterruptRPC()
 {
     LogPrint(BCLog::RPC, "Interrupting RPC\n");
     // Interrupt e.g. running longpolls
-    g_rpc_running = false;
+    fRPCRunning = false;
 }
 
 void StopRPC()
@@ -415,7 +415,7 @@ void StopRPC()
 
 bool IsRPCRunning()
 {
-    return g_rpc_running;
+    return fRPCRunning;
 }
 
 void SetRPCWarmupStatus(const std::string& newStatus)
@@ -652,7 +652,7 @@ void CheckIPFSTxidMessage(const std::string &message, int64_t expireTime)
     size_t msglen = message.length();
     if (msglen == 46 || msglen == 64) {
         if (msglen == 64 && !AreMessagesDeployed()) {
-            throw JSONRPCError(RPC_INVALID_PARAMS, std::string("Invalid txid hash, only ipfs hashes available until RIP5 is activated"));
+            throw JSONRPCError(RPC_INVALID_PARAMS, std::string("Invalid txid hash, only ipfs hashes available until AIP5 is activated"));
         }
     } else {
         if (msglen)

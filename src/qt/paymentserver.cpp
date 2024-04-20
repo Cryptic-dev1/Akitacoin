@@ -19,7 +19,7 @@
 #include <cstdlib>
 
 #include <openssl/x509_vfy.h>
-
+#include <QDateTime>
 #include <QApplication>
 #include <QByteArray>
 #include <QDataStream>
@@ -408,11 +408,16 @@ void PaymentServer::handleURIOrFile(const QString& s)
 
     if (s.startsWith(AKITACOIN_IPC_PREFIX, Qt::CaseInsensitive)) // akitacoin: URI
     {
+
+        #if QT_VERSION < 0x050000
+        QUrl uri(s);
+        #else
         QUrlQuery uri((QUrl(s)));
+        #endif
         if (uri.hasQueryItem("r")) // payment request URI
         {
             QByteArray temp;
-            temp.append(uri.queryItemValue("r").toUtf8());
+            temp.append(uri.queryItemValue("r"));
             QString decoded = QUrl::fromPercentEncoding(temp);
             QUrl fetchUrl(decoded, QUrl::StrictMode);
 

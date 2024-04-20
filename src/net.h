@@ -374,7 +374,7 @@ private:
     uint64_t nMaxOutboundTotalBytesSentInCycle;
     uint64_t nMaxOutboundCycleStartTime;
     uint64_t nMaxOutboundLimit;
-    uint64_t nMaxOutboundTimeframe;;
+    uint64_t nMaxOutboundTimeframe;
 
     // Whitelisted ranges. Any node connecting from these is automatically
     // whitelisted (as well as those connecting to whitelisted binds).

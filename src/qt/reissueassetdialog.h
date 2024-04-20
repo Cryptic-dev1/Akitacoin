@@ -105,7 +105,6 @@ private Q_SLOTS:
     void onUnitChanged(int value);
     void onClearButtonClicked();
     void onVerifierStringChanged(QString verifier);
-    void openIpfsBrowser();
 
     //CoinControl
     void coinControlFeatureChanged(bool);

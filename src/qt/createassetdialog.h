@@ -101,7 +101,6 @@ private:
 private Q_SLOTS:
     void ipfsStateChanged();
     void checkAvailabilityClicked();
-    void openIpfsBrowser();
     void onNameChanged(QString name);
     void onAddressNameChanged(QString address);
     void onIPFSHashChanged(QString hash);

@@ -289,7 +289,7 @@ public:
 
     bool hdEnabled() const;
     bool hd44Enabled() const;
-    QString getMyWords() const;
+    QString getMnemonic() const;
 
     int getDefaultConfirmTarget() const;
 

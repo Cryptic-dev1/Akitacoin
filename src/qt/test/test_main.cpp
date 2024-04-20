@@ -73,9 +73,6 @@ int main(int argc, char *argv[])
 
     // Don't remove this, it's needed to access
     // QApplication:: and QCoreApplication:: in the tests
-    static int qt_argc = 1;
-    static const char* qt_argv = "Akitacoin-Qt-test";
-
     QApplication app(qt_argc, const_cast<char **>(&qt_argv));
     app.setApplicationName("Akitacoin-Qt-test");
 

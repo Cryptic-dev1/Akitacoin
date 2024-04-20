@@ -3,12 +3,11 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <qt/notificator.h>
+#include "notificator.h"
 
 #include <QApplication>
 #include <QByteArray>
 #include <QIcon>
-#include <QDBusInterface>
 #include <QImageWriter>
 #include <QMessageBox>
 #include <QMetaType>
@@ -17,7 +16,6 @@
 #include <QTemporaryFile>
 #include <QVariant>
 #ifdef USE_DBUS
-#include "notificator.h"
 #include <stdint.h>
 #include <QtDBus>
 #endif
@@ -43,7 +41,7 @@ Notificator::Notificator(const QString &_programName, QSystemTrayIcon *_trayIcon
     mode(None),
     trayIcon(_trayIcon)
 #ifdef USE_DBUS
-    ,interface(nullptr)
+    ,interface(0)
 #endif
 {
     if(_trayIcon && _trayIcon->supportsMessages())

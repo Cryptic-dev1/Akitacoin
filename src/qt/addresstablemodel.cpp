@@ -196,11 +196,10 @@ QVariant AddressTableModel::data(const QModelIndex &index, int role) const
 
     AddressTableEntry *rec = static_cast<AddressTableEntry*>(index.internalPointer());
 
-    const auto column = static_cast<ColumnIndex>(index.column());
-    if (role == Qt::DisplayRole || role == Qt::EditRole) {
-        switch (column) {
+    if(role == Qt::DisplayRole || role == Qt::EditRole) {
+        switch (index.column()) {
         case Label:
-            if (rec->label.isEmpty() && role == Qt::DisplayRole) {
+            if(rec->label.isEmpty() && role == Qt::DisplayRole) {
                 return tr("(no label)");
             } else {
                 return rec->label;
@@ -210,13 +209,12 @@ QVariant AddressTableModel::data(const QModelIndex &index, int role) const
         } // no default case, so the compiler can warn about missing cases
         assert(false);
     } else if (role == Qt::FontRole) {
-        switch (column) {
-        case Label:
-            return QFont();
-        case Address:
-            return GUIUtil::fixedPitchFont();
-        } // no default case, so the compiler can warn about missing cases
-        assert(false);
+        QFont font;
+        if(index.column() == Address)
+        {
+            font = GUIUtil::fixedPitchFont();
+        }
+        return font;
     } else if (role == TypeRole) {
         switch(rec->type)
         {
@@ -224,10 +222,8 @@ QVariant AddressTableModel::data(const QModelIndex &index, int role) const
             return Send;
         case AddressTableEntry::Receiving:
             return Receive;
-        case AddressTableEntry::Hidden:
-            return {};
-        } // no default case, so the compiler can warn about missing cases
-        assert(false);
+        default: break;
+        } 
     }
     return QVariant();
 }
@@ -302,7 +298,8 @@ QVariant AddressTableModel::headerData(int section, Qt::Orientation orientation,
 
 Qt::ItemFlags AddressTableModel::flags(const QModelIndex &index) const
 {
-    if(!index.isValid()) return Qt::NoItemFlags;
+    if(!index.isValid()) 
+        return 0;
     AddressTableEntry *rec = static_cast<AddressTableEntry*>(index.internalPointer());
 
     Qt::ItemFlags retval = Qt::ItemIsSelectable | Qt::ItemIsEnabled;
@@ -388,8 +385,11 @@ QString AddressTableModel::addRow(const QString &type, const QString &label, con
     }
 
     // Add entry
-    wallet->SetAddressBook(DecodeDestination(strAddress), strLabel,
+    {
+        LOCK(wallet->cs_wallet);
+        wallet->SetAddressBook(DecodeDestination(strAddress), strLabel,
                            (type == Send ? "send" : "receive"));
+    }
     return QString::fromStdString(strAddress);
 }
 
@@ -403,7 +403,10 @@ bool AddressTableModel::removeRows(int row, int count, const QModelIndex &parent
         // Also refuse to remove receiving addresses.
         return false;
     }
-    wallet->DelAddressBook(DecodeDestination(rec->address.toStdString()));
+    {
+        LOCK(wallet->cs_wallet);
+        wallet->DelAddressBook(DecodeDestination(rec->address.toStdString()));
+    }
     return true;
 }
 

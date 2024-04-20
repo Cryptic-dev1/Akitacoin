@@ -303,17 +303,6 @@ void WalletView::updateEncryptionStatus()
     Q_EMIT encryptionStatusChanged(walletModel->getEncryptionStatus());
 }
 
-void WalletView::encryptWallet(bool status)
-{
-    if(!walletModel)
-        return;
-    AskPassphraseDialog dlg(status ? AskPassphraseDialog::Encrypt : AskPassphraseDialog::Decrypt, this);
-    dlg.setModel(walletModel);
-    dlg.exec();
-
-    updateEncryptionStatus();
-}
-
 void WalletView::backupWallet()
 {
     QString filename = GUIUtil::getSaveFileName(this,
@@ -352,14 +341,21 @@ void WalletView::unlockWallet()
         dlg.exec();
     }
 }
-void WalletView::getMyWords()
+
+void WalletView::lockWallet()
+{
+    if (!walletModel)
+        return;
+
+    walletModel->setWalletLocked(true);
+}
+
+void WalletView::getMnemonic()
 {
     // Create the box and set the default text.
     QMessageBox box;
-    box.setWindowTitle(tr("Recovery information. (Will close after 5 min)"));
+    box.setWindowTitle(tr("Recovery information"));
     box.setText(tr("No words available."));
-    box.setStandardButtons(QMessageBox::Close);
-    box.button(QMessageBox::Close)->animateClick(300000);
 
     // Check for HD-wallet and set text if not HD-wallet.
     if(!walletModel->hd44Enabled())
@@ -371,7 +367,7 @@ void WalletView::getMyWords()
     // Make sure wallet is unlocked before trying to fetch the words.
     // When unlocked, set the text to 12words and passphrase.
     if (walletModel->getEncryptionStatus() != WalletModel::Locked)
-        box.setText(walletModel->getMyWords());
+        box.setText(walletModel->getMnemonic());
 
     // Show the box
     box.exec();

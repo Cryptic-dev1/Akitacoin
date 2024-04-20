@@ -153,13 +153,6 @@ void WalletFrame::gotoVerifyMessageTab(QString addr)
         walletView->gotoVerifyMessageTab(addr);
 }
 
-void WalletFrame::encryptWallet(bool status)
-{
-    WalletView *walletView = currentWalletView();
-    if (walletView)
-        walletView->encryptWallet(status);
-}
-
 void WalletFrame::backupWallet()
 {
     WalletView *walletView = currentWalletView();
@@ -181,13 +174,19 @@ void WalletFrame::unlockWallet()
         walletView->unlockWallet();
 }
 
-void WalletFrame::getMyWords()
+void WalletFrame::lockWallet()
+{
+    WalletView* walletView = currentWalletView();
+    if (walletView)
+        walletView->lockWallet();
+}
+
+void WalletFrame::getMnemonic()
 {
     WalletView *walletView = currentWalletView();
     if (walletView)
-        walletView->getMyWords();
+        walletView->getMnemonic();
 }
-
 
 void WalletFrame::usedSendingAddresses()
 {

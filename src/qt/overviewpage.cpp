@@ -20,7 +20,6 @@
 #include "assetrecord.h"
 
 #include <QAbstractItemDelegate>
-#include <QDateTime>
 #include <QPainter>
 #include <QDesktopServices>
 #include <QMouseEvent>
@@ -28,7 +27,7 @@
 #include <utiltime.h>
 
 #define DECORATION_SIZE 54
-#define NUM_ITEMS 8
+#define NUM_ITEMS 5
 
 #include <QDebug>
 #include <QTimer>
@@ -416,7 +415,6 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     sendAction = new QAction(tr("Send Asset"), this);
     QAction *copyAmountAction = new QAction(tr("Copy Amount"), this);
     QAction *copyNameAction = new QAction(tr("Copy Name"), this);
-    copyHashAction = new QAction(tr("Copy Hash"), this);
     issueSub = new QAction(tr("Issue Sub Asset"), this);
     issueUnique = new QAction(tr("Issue Unique Asset"), this);
     reissue = new QAction(tr("Reissue Asset"), this);
@@ -428,7 +426,6 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     reissue->setObjectName("Reissue");
     copyNameAction->setObjectName("Copy Name");
     copyAmountAction->setObjectName("Copy Amount");
-    copyHashAction->setObjectName("Copy Hash");
     openURL->setObjectName("Browse");
 
     // context menu
@@ -437,9 +434,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     contextMenu->addAction(issueSub);
     contextMenu->addAction(issueUnique);
     contextMenu->addAction(reissue);
-    contextMenu->addSeparator();
     contextMenu->addAction(openURL);
-    contextMenu->addAction(copyHashAction);
     contextMenu->addSeparator();
     contextMenu->addAction(copyNameAction);
     contextMenu->addAction(copyAmountAction);
@@ -480,7 +475,6 @@ void OverviewPage::handleAssetRightClicked(const QModelIndex &index)
         // Grab the data elements from the index that we need to disable and enable menu items
         QString name = index.data(AssetTableModel::AssetNameRole).toString();
         QString ipfshash = index.data(AssetTableModel::AssetIPFSHashRole).toString();
-        QString ipfsbrowser = walletModel->getOptionsModel()->getIpfsUrl();
 
         if (IsAssetNameAnOwner(name.toStdString())) {
             name = name.left(name.size() - 1);
@@ -490,16 +484,10 @@ void OverviewPage::handleAssetRightClicked(const QModelIndex &index)
         }
 
         // If the ipfs hash isn't there or doesn't start with Qm, disable the action item
-        if (ipfshash.count() > 0 && ipfshash.indexOf("Qm") == 0 && ipfsbrowser.indexOf("http") == 0 ) {
+        if (ipfshash.count() > 0 && ipfshash.indexOf("Qm") == 0) {
             openURL->setDisabled(false);
         } else {
             openURL->setDisabled(true);
-        }
-
-        if (ipfshash.count() > 0) {
-            copyHashAction->setDisabled(false);
-        } else {
-            copyHashAction->setDisabled(true);
         }
 
         if (!index.data(AssetTableModel::AdministratorRole).toBool()) {
@@ -533,10 +521,8 @@ void OverviewPage::handleAssetRightClicked(const QModelIndex &index)
                 GUIUtil::setClipboard(index.data(AssetTableModel::AssetNameRole).toString());
             else if (action->objectName() == "Copy Amount")
                 GUIUtil::setClipboard(index.data(AssetTableModel::FormattedAmountRole).toString());
-            else if (action->objectName() == "Copy Hash")
-                GUIUtil::setClipboard(ipfshash);
             else if (action->objectName() == "Browse") {
-                QDesktopServices::openUrl(QUrl::fromUserInput(ipfsbrowser.replace("%s", ipfshash)));
+                QDesktopServices::openUrl(QUrl::fromUserInput("https://cloudflare-ipfs.com/ipfs/" + ipfshash));
             }
         }
     }
@@ -703,28 +689,16 @@ void OverviewPage::assetSearchChanged()
 {
     if (!assetFilter)
         return;
-    assetFilter->setAssetNameContains(ui->assetSearch->text());
+    assetFilter->setAssetNamePrefix(ui->assetSearch->text());
 }
 
 void OverviewPage::openIPFSForAsset(const QModelIndex &index)
 {
     // Get the ipfs hash of the asset clicked
     QString ipfshash = index.data(AssetTableModel::AssetIPFSHashRole).toString();
-    QString ipfsbrowser = walletModel->getOptionsModel()->getIpfsUrl();
 
     // If the ipfs hash isn't there or doesn't start with Qm, disable the action item
-    if (ipfshash.count() > 0 && ipfshash.indexOf("Qm") == 0 && ipfsbrowser.indexOf("http") == 0)
-    {
-        QUrl ipfsurl = QUrl::fromUserInput(ipfsbrowser.replace("%s", ipfshash));
-
-        // Create the box with everything.
-        if(QMessageBox::Yes == QMessageBox::question(this,
-                                                        tr("Open IPFS content?"),
-                                                        tr("Open the following IPFS content in your default browser?\n")
-                                                        + ipfsurl.toString()
-                                                    ))
-        {
-        QDesktopServices::openUrl(ipfsurl);
-        }
+    if (ipfshash.count() > 0 && ipfshash.indexOf("Qm") == 0) {
+        QDesktopServices::openUrl(QUrl::fromUserInput("https://cloudflare-ipfs.com/ipfs/" + ipfshash));
     }
 }

@@ -512,7 +512,7 @@ UniValue createrawtransaction(const JSONRPCRequest& request)
             "               \"has_ipfs\":[0-1],            (boolean, optional, default=false), whether ifps hash is going \n"
             "                                                to be added to the asset\n"
             "               \"ipfs_hash\":\"hash\",        (string, optional but required if has_ipfs = 1), an ipfs hash or a \n"
-            "                                                txid hash once RIP5 is activated\n"
+            "                                                txid hash once AIP5 is activated\n"
             "               \"root_change_address\"        (string, optional) Only applies when issuing subqualifiers.\n"
             "                                                The address where the root qualifier will be sent.\n"
             "                                                If not specified, it will be sent to the output address.\n"
@@ -721,7 +721,7 @@ UniValue createrawtransaction(const JSONRPCRequest& request)
                     const UniValue& has_ipfs = find_value(assetData, "has_ipfs");
                     if (!has_ipfs.isNum())
                         throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, missing asset metadata for key: has_ipfs");
-// TODO, if we decide to remove the consensus check https://github.com/JustAResearcher/Akitacoin/issues/675, remove or add the code (requires consensus change)
+// TODO, if we decide to remove the consensus check https://github.com/Cryptic-Dev1/Akitacoin/issues/675, remove or add the code (requires consensus change)
 //                    const UniValue& custom_owner_address = find_value(assetData, "custom_owner_address");
 //                    if (!custom_owner_address.isNull()) {
 //                        CTxDestination dest = DecodeDestination(custom_owner_address.get_str());
@@ -975,7 +975,7 @@ UniValue createrawtransaction(const JSONRPCRequest& request)
                     if (keys.size() == 0)
                         throw JSONRPCError(RPC_INVALID_PARAMETER, std::string(
                                 "Invalid parameter, the format must follow { \"transferwithmessage\": {\"asset_name\": amount, \"message\": messagehash, \"expire_time\": utc_time} }"));
-
+                    UniValue asset_quantity;
                     std::string asset_name = keys[0];
 
                     if (!IsAssetNameValid(asset_name)) 

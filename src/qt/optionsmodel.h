@@ -31,7 +31,6 @@ public:
         StartAtStartup,         // bool
         HideTrayIcon,           // bool
         MinimizeToTray,         // bool
-        ToolbarIconsOnly,       // bool
         MapPortUPnP,            // bool
         MinimizeOnClose,        // bool
         ProxyUse,               // bool
@@ -41,9 +40,7 @@ public:
         ProxyIPTor,             // QString
         ProxyPortTor,           // int
         DisplayUnit,            // AkitacoinUnits::Unit
-        DisplayCurrencyIndex,   // int
         ThirdPartyTxUrls,       // QString
-        IpfsUrl,                // QString
         Language,               // QString
         CoinControlFeatures,    // bool
         ThreadsScriptVerif,     // int
@@ -71,9 +68,7 @@ public:
     bool getMinimizeToTray() const { return fMinimizeToTray; }
     bool getMinimizeOnClose() const { return fMinimizeOnClose; }
     int getDisplayUnit() const { return nDisplayUnit; }
-    int getDisplayCurrencyIndex() const { return nDisplayCurrencyIndex; }
     QString getThirdPartyTxUrls() const { return strThirdPartyTxUrls; }
-    QString getIpfsUrl() const { return strIpfsUrl; }
     bool getProxySettings(QNetworkProxy& proxy) const;
     bool getCoinControlFeatures() const { return fCoinControlFeatures; }
     bool getCustomFeeFeatures() const { return fCustomFeeFeatures; }
@@ -89,12 +84,9 @@ private:
     bool fHideTrayIcon;
     bool fMinimizeToTray;
     bool fMinimizeOnClose;
-    bool fToolbarIconsOnly;
     QString language;
     int nDisplayUnit;
-    int nDisplayCurrencyIndex;
     QString strThirdPartyTxUrls;
-    QString strIpfsUrl;
     bool fCoinControlFeatures;
     /** AKIC START*/
     bool fCustomFeeFeatures;
@@ -110,11 +102,9 @@ private:
     void checkAndMigrate();
 Q_SIGNALS:
     void displayUnitChanged(int unit);
-    void displayCurrencyIndexChanged(int unit);
     void coinControlFeaturesChanged(bool);
     void customFeeFeaturesChanged(bool);
     void hideTrayIconChanged(bool);
-    void updateIconsOnlyToolbar(bool);
 };
 
 #endif // AKITACOIN_QT_OPTIONSMODEL_H

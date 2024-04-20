@@ -40,8 +40,6 @@
 #include <QStringListModel>
 #include <QSortFilterProxyModel>
 #include <QCompleter>
-#include <QUrl>
-#include <QDesktopServices>
 
 #if QT_VERSION < QT_VERSION_CHECK(5, 11, 0)
 #define QTversionPreFiveEleven
@@ -58,7 +56,6 @@ ReissueAssetDialog::ReissueAssetDialog(const PlatformStyle *_platformStyle, QWid
     connect(ui->comboBox, SIGNAL(activated(int)), this, SLOT(onAssetSelected(int)));
     connect(ui->quantitySpinBox, SIGNAL(valueChanged(double)), this, SLOT(onQuantityChanged(double)));
     connect(ui->ipfsBox, SIGNAL(clicked()), this, SLOT(onIPFSStateChanged()));
-    connect(ui->openIpfsButton, SIGNAL(clicked()), this, SLOT(openIpfsBrowser()));
     connect(ui->ipfsText, SIGNAL(textChanged(QString)), this, SLOT(onIPFSHashChanged(QString)));
     connect(ui->addressText, SIGNAL(textChanged(QString)), this, SLOT(onAddressNameChanged(QString)));
     connect(ui->reissueAssetButton, SIGNAL(clicked()), this, SLOT(onReissueAssetClicked()));
@@ -138,8 +135,7 @@ ReissueAssetDialog::ReissueAssetDialog(const PlatformStyle *_platformStyle, QWid
 
     ui->comboBox->setModel(proxy);
     ui->comboBox->setEditable(true);
-    ui->comboBox->lineEdit()->setPlaceholderText(tr("Select an asset to reissue.."));
-    ui->comboBox->lineEdit()->setToolTip(tr("Select the asset you want to reissue."));
+    ui->comboBox->lineEdit()->setPlaceholderText(tr("Select an asset"));
 
     completer = new QCompleter(proxy,this);
     completer->setCompletionMode(QCompleter::PopupCompletion);
@@ -149,7 +145,6 @@ ReissueAssetDialog::ReissueAssetDialog(const PlatformStyle *_platformStyle, QWid
 
 
     ui->addressText->installEventFilter(this);
-    ui->comboBox->installEventFilter(this);
     ui->lineEditVerifierString->installEventFilter(this);
 }
 
@@ -262,13 +257,7 @@ bool ReissueAssetDialog::eventFilter(QObject *sender, QEvent *event)
         {
             hideInvalidVerifierStringMessage();
         }
-    } else if (sender == ui->comboBox)
-    {
-        if(event->type()== QEvent::Show)
-        {
-            updateAssetsList();
-        }
-    }
+    } 
     return QWidget::eventFilter(sender,event);
 }
 
@@ -280,7 +269,6 @@ void ReissueAssetDialog::setUpValues()
 
     ui->reissuableBox->setCheckState(Qt::CheckState::Checked);
     ui->ipfsText->setDisabled(true);
-    ui->openIpfsButton->setDisabled(true);
     hideMessage();
 
     ui->unitExampleLabel->setStyleSheet("font-weight: bold");
@@ -383,9 +371,6 @@ void ReissueAssetDialog::setupAssetDataView(const PlatformStyle *platformStyle)
 
     ui->frame_2->setStyleSheet(QString(".QFrame {background-color: %1; padding-top: 10px; padding-right: 5px; border: none;}").arg(platformStyle->WidgetBackGroundColor().name()));
     ui->frame_2->setGraphicsEffect(GUIUtil::getShadowEffect());
-
-    ui->currentDataLabel->setStyleSheet(STRING_LABEL_COLOR);
-    ui->currentDataLabel->setFont(GUIUtil::getTopLabelFont());
 
     ui->labelReissueAsset->setStyleSheet(STRING_LABEL_COLOR);
     ui->labelReissueAsset->setFont(GUIUtil::getTopLabelFont());
@@ -530,14 +515,10 @@ void ReissueAssetDialog::CheckFormState()
         }
     }
 
-    if (ui->ipfsBox->isChecked()) {
-        if (!checkIPFSHash(ui->ipfsText->text())) {
-            ui->openIpfsButton->setDisabled(true);
+    if (ui->ipfsBox->isChecked()) 
+        if (!checkIPFSHash(ui->ipfsText->text())) 
             return;
-        }
-        else
-            ui->openIpfsButton->setDisabled(false);
-    }
+        
 
     if (fReissuingRestricted) {
 
@@ -744,10 +725,6 @@ void ReissueAssetDialog::onAssetSelected(int index)
         ui->unitSpinBox->setMinimum(asset->units);
         ui->unitSpinBox->setValue(asset->units);
 
-        if (asset->units == MAX_ASSET_UNITS) {
-            ui->unitSpinBox->setDisabled(true);
-        }
-        
         ui->quantitySpinBox->setMaximum(21000000000 - value.get_real());
 
         ui->currentAssetData->clear();
@@ -822,7 +799,7 @@ bool ReissueAssetDialog::checkIPFSHash(QString hash)
     if (!hash.isEmpty()) {
         if (!AreMessagesDeployed()) {
             if (hash.length() > 46) {
-                showMessage(tr("Only IPFS Hashes allowed until RIP5 is activated"));
+                showMessage(tr("Only IPFS Hashes allowed until AIP5 is activated"));
                 disableReissueButton();
                 return false;
             }
@@ -861,26 +838,6 @@ void ReissueAssetDialog::onIPFSHashChanged(QString hash)
         CheckFormState();
 
     buildUpdatedData();
-}
-
-void ReissueAssetDialog::openIpfsBrowser()
-{
-    QString ipfshash = ui->ipfsText->text();
-    QString ipfsbrowser = model->getOptionsModel()->getIpfsUrl();
-
-    // If the ipfs hash isn't there or doesn't start with Qm, disable the action item
-    if (ipfshash.count() > 0 && ipfshash.indexOf("Qm") == 0 && ipfsbrowser.indexOf("http") == 0)
-    {
-        QUrl ipfsurl = QUrl::fromUserInput(ipfsbrowser.replace("%s", ipfshash));
-
-        // Create the box with everything.
-        if(QMessageBox::Yes == QMessageBox::question(this,
-                                                        tr("Open IPFS content?"),
-                                                        tr("Open the following IPFS content in your default browser?\n")
-                                                        + ipfsurl.toString()
-                                                    ))
-        QDesktopServices::openUrl(ipfsurl);
-    }
 }
 
 void ReissueAssetDialog::onAddressNameChanged(QString address)

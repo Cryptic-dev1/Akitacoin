@@ -53,7 +53,6 @@ struct Params {
     bool nBIP34Enabled;
     bool nBIP65Enabled;
     bool nBIP66Enabled;
-    int BIP34LockedIn; //I don't know what this is for, maybe a sanity check???
     // uint256 BIP34Hash;
     /** Block height at which BIP65 becomes active */
     // int BIP65Height;
