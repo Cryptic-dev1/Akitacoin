@@ -978,7 +978,7 @@ UniValue createrawtransaction(const JSONRPCRequest& request)
                     UniValue asset_quantity;
                     std::string asset_name = keys[0];
 
-                    if (!IsAssetNameValid(asset_name)) 
+                    if (!IsAssetNameValid(asset_name)) {
                         throw JSONRPCError(RPC_INVALID_PARAMETER,
                                            "Invalid parameter, missing valid asset name to transferwithmessage");
 
@@ -1015,7 +1015,7 @@ UniValue createrawtransaction(const JSONRPCRequest& request)
                     // Push into vouts
                     CTxOut out(0, scriptPubKey);
                     rawTx.vout.push_back(out);
-                    
+                    }
                 } else if (assetKey_ == "issue_restricted") {
                     if (asset_[0].type() != UniValue::VOBJ)
                         throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Invalid parameter, the format must follow { \"issue_restricted\": {\"key\": value}, ...}"));
