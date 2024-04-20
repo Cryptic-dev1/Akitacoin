@@ -135,7 +135,7 @@ ReissueAssetDialog::ReissueAssetDialog(const PlatformStyle *_platformStyle, QWid
 
     ui->comboBox->setModel(proxy);
     ui->comboBox->setEditable(true);
-    ui->comboBox->lineEdit()->setPlaceholderText(tr("Select an asset"));
+    ui->comboBox->lineEdit()->setPlaceholderText("Select an asset");
 
     completer = new QCompleter(proxy,this);
     completer->setCompletionMode(QCompleter::PopupCompletion);
@@ -372,8 +372,8 @@ void ReissueAssetDialog::setupAssetDataView(const PlatformStyle *platformStyle)
     ui->frame_2->setStyleSheet(QString(".QFrame {background-color: %1; padding-top: 10px; padding-right: 5px; border: none;}").arg(platformStyle->WidgetBackGroundColor().name()));
     ui->frame_2->setGraphicsEffect(GUIUtil::getShadowEffect());
 
-    ui->labelReissueAsset->setStyleSheet(STRING_LABEL_COLOR);
-    ui->labelReissueAsset->setFont(GUIUtil::getTopLabelFont());
+    ui->currentDataLabel->setStyleSheet(STRING_LABEL_COLOR);
+    ui->currentDataLabel->setFont(GUIUtil::getTopLabelFont());
 
     ui->reissueAssetDataLabel->setStyleSheet(STRING_LABEL_COLOR);
     ui->reissueAssetDataLabel->setFont(GUIUtil::getTopLabelFont());
@@ -722,8 +722,9 @@ void ReissueAssetDialog::onAssetSelected(int index)
         ss.precision(asset->units);
         ss << std::fixed << value.get_real();
 
-        ui->unitSpinBox->setMinimum(asset->units);
         ui->unitSpinBox->setValue(asset->units);
+        ui->unitSpinBox->setMinimum(asset->units);
+       
 
         ui->quantitySpinBox->setMaximum(21000000000 - value.get_real());
 

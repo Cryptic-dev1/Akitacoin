@@ -206,8 +206,7 @@ QVariant AddressTableModel::data(const QModelIndex &index, int role) const
             }
         case Address:
             return rec->address;
-        } // no default case, so the compiler can warn about missing cases
-        assert(false);
+        } 
     } else if (role == Qt::FontRole) {
         QFont font;
         if(index.column() == Address)
