@@ -395,7 +395,7 @@ public:
 
         uint32_t nGenesisTime = 1713744000; //Sun Apr 14 2024 23:00:00 GMT+0000
 
-        genesis = CreateGenesisBlock(nGenesisTime, 3467220, 0x1e0ffff0, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(nGenesisTime, 102921, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
         //Test MerkleRoot and GenesisBlock
@@ -551,7 +551,7 @@ public:
         nDefaultPort = 18443;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1713744000, 3467220, 0x1e0ffff0, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1713744000, 102921, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
         //assert(consensus.hashGenesisBlock == uint256S("0x4c057cf16521a6b86e20b1122d7891f1edebca2f7a026607871d39c2a9f17594"));
         //assert(genesis.hashMerkleRoot == uint256S("0xc7de19cd3db293af2c28a80ad1dbb6f5f5f3aec245ef6507d728ea679f50ac6a"));
