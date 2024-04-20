@@ -235,9 +235,12 @@ arith_uint256 test;
             
             genesis = CreateGenesisBlock(nGenesisTime, 102921, 0x1e0ffff0, 4, 5000 * COIN);
             consensus.hashGenesisBlock = genesis.GetX16RHash();
-            
+            std::cout << "genesis.GetX16RHash().GetHex() to 0x" << genesis.GetX16RHash().GetHex() << std::endl;
+             std::cout << "genesis.GetX16RHash() to 0x" << genesis.GetX16RHash() << std::endl;
+            std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
+            std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex() << std::endl;
             assert(consensus.hashGenesisBlock == uint256S("0x4c057cf16521a6b86e20b1122d7891f1edebca2f7a026607871d39c2a9f17594"));
-             assert(genesis.hashMerkleRoot == uint256S("0xc7de19cd3db293af2c28a80ad1dbb6f5f5f3aec245ef6507d728ea679f50ac6a"));
+            assert(genesis.hashMerkleRoot == uint256S("0xc7de19cd3db293af2c28a80ad1dbb6f5f5f3aec245ef6507d728ea679f50ac6a"));
         vSeeds.emplace_back("", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
