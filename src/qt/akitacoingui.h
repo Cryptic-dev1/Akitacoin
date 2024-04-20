@@ -1,10 +1,10 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2021 The Akitacoin Core developers
+// Copyright (c) 2017-2020 The OLDNAMENEEDKEEP__Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef AKITACOIN_QT_AKITACOINGUI_H
-#define AKITACOIN_QT_AKITACOINGUI_H
+#ifndef AKITACOIN_QT_AkitacoinGUI_H
+#define AKITACOIN_QT_AkitacoinGUI_H
 
 #if defined(HAVE_CONFIG_H)
 #include "config/akitacoin-config.h"
@@ -18,8 +18,6 @@
 #include <QMenu>
 #include <QPoint>
 #include <QSystemTrayIcon>
-#include <QComboBox>
-#include <QDateTime>
 
 class ClientModel;
 class NetworkStyle;
@@ -43,7 +41,7 @@ class QNetworkRequest;
 QT_END_NAMESPACE
 
 /**
-  Akitacoin GUI main class. This class represents the main window of the Akitacoin UI. It communicates with both the client and
+  akitacoin GUI main class. This class represents the main window of the akitacoin UI. It communicates with both the client and
   wallet models to give the user an up-to-date view of the current core state.
 */
 class AkitacoinGUI : public QMainWindow
@@ -79,7 +77,6 @@ public:
         HD44_ENABLED = 2
     };
 
-
 protected:
     void changeEvent(QEvent *e);
     void closeEvent(QCloseEvent *event);
@@ -89,81 +86,77 @@ protected:
     bool eventFilter(QObject *object, QEvent *event);
 
 private:
-    ClientModel *clientModel = nullptr;
-    WalletFrame *walletFrame = nullptr;
+    ClientModel *clientModel;
+    WalletFrame *walletFrame;
 
-    UnitDisplayStatusBarControl *unitDisplayControl = nullptr;
-    QLabel *labelWalletEncryptionIcon = nullptr;
-    QLabel *labelWalletHDStatusIcon = nullptr;
-    QLabel *connectionsControl = nullptr;
-    QLabel *labelBlocksIcon = nullptr;
-    QLabel *progressBarLabel = nullptr;
-    QProgressBar *progressBar = nullptr;
-    QProgressDialog *progressDialog = nullptr;
+    UnitDisplayStatusBarControl *unitDisplayControl;
+    QLabel *labelWalletEncryptionIcon;
+    QLabel *labelWalletHDStatusIcon;
+    QLabel *connectionsControl;
+    QLabel *labelBlocksIcon;
+    QLabel *progressBarLabel;
+    QProgressBar *progressBar;
+    QProgressDialog *progressDialog;
 
-    QMenuBar *appMenuBar = nullptr;
-    QAction *getMyWordsAction = nullptr;
-    QAction *overviewAction = nullptr;
-    QAction *historyAction = nullptr;
-    QAction *quitAction = nullptr;
-    QAction *sendCoinsAction = nullptr;
-    QAction *sendCoinsMenuAction = nullptr;
-    QAction *usedSendingAddressesAction = nullptr;
-    QAction *usedReceivingAddressesAction = nullptr;
-    QAction *signMessageAction = nullptr;
-    QAction *verifyMessageAction = nullptr;
-    QAction *aboutAction = nullptr;
-    QAction *receiveCoinsAction = nullptr;
-    QAction *receiveCoinsMenuAction = nullptr;
-    QAction *optionsAction = nullptr;
-    QAction *toggleHideAction = nullptr;
-    QAction *encryptWalletAction = nullptr;
-    QAction *backupWalletAction = nullptr;
-    QAction *changePassphraseAction = nullptr;
-    QAction *aboutQtAction = nullptr;
-    QAction *openRPCConsoleAction = nullptr;
-    QAction *openWalletRepairAction = nullptr;
-    QAction *openAction = nullptr;
-    QAction *showHelpMessageAction = nullptr;
+    QMenuBar *appMenuBar;
+    QAction *overviewAction;
+    QAction *historyAction;
+    QAction *quitAction;
+    QAction *sendCoinsAction;
+    QAction *sendCoinsMenuAction;
+    QAction *usedSendingAddressesAction;
+    QAction *usedReceivingAddressesAction;
+    QAction *signMessageAction;
+    QAction *verifyMessageAction;
+    QAction *aboutAction;
+    QAction *receiveCoinsAction;
+    QAction *receiveCoinsMenuAction;
+    QAction *optionsAction;
+    QAction *toggleHideAction;
+    QAction *backupWalletAction;
+    QAction *changePassphraseAction;
+    QAction *lockWalletAction;
+    QAction *unlockWalletAction;
+    QAction *getMnemonicAction;
+    QAction *aboutQtAction;
+    QAction *openRPCConsoleAction;
+    QAction *openWalletRepairAction;
+    QAction *openAction;
+    QAction *showHelpMessageAction;
+    QAction *openInformationAction;
+    QAction *openNetworkAction;
+    QAction *openPeerAction;
 
-    /** AKIC START */
-    QAction *transferAssetAction = nullptr;
-    QAction *createAssetAction = nullptr;
-    QAction *manageAssetAction = nullptr;
-    QAction *messagingAction = nullptr;
-    QAction *votingAction = nullptr;
-    QAction *restrictedAssetAction = nullptr;
-    QWidget *headerWidget = nullptr;
-    QLabel *labelCurrentMarket = nullptr;
-    QLabel *labelCurrentPrice = nullptr;
-    QComboBox *comboAkicUnit = nullptr;
-    QTimer *pricingTimer = nullptr;
-    QNetworkAccessManager* networkManager = nullptr;
-    QNetworkRequest* request = nullptr;
-    QLabel *labelVersionUpdate = nullptr;
-    QNetworkAccessManager* networkVersionManager = nullptr;
-    QNetworkRequest* versionRequest = nullptr;
+    /** AKITACOIN START */
+    QAction *transferAssetAction;
+    QAction *createAssetAction;
+    QAction *manageAssetAction;
+    QAction *messagingAction;
+    QAction *votingAction;
+    QAction *restrictedAssetAction;
+    QWidget *headerWidget;
+    QLabel *labelCurrentMarket;
+    QLabel *labelCurrentPrice;
+    QTimer *pricingTimer;
+    QNetworkAccessManager* networkManager;
+    QNetworkRequest* request;
+    QLabel *labelVersionUpdate;
+    QNetworkAccessManager* networkVersionManager;
+    QNetworkRequest* versionRequest;
+    /** AKITACOIN END */
 
-    QLabel *labelToolbar = nullptr;
-    QToolBar *m_toolbar = nullptr;
-
-    /** AKIC END */
-
-    QSystemTrayIcon *trayIcon = nullptr;
-    QMenu *trayIconMenu = nullptr;
-    Notificator *notificator = nullptr;
-    RPCConsole *rpcConsole = nullptr;
-    HelpMessageDialog *helpMessageDialog = nullptr;
-    ModalOverlay *modalOverlay = nullptr;
+    QSystemTrayIcon *trayIcon;
+    QMenu *trayIconMenu;
+    Notificator *notificator;
+    RPCConsole *rpcConsole;
+    HelpMessageDialog *helpMessageDialog;
+    ModalOverlay *modalOverlay;
 
     /** Keep track of previous number of blocks, to detect progress */
-    int prevBlocks = 0;
-    int spinnerFrame = 0;
+    int prevBlocks;
+    int spinnerFrame;
 
     const PlatformStyle *platformStyle;
-
-    const CurrencyUnitDetails* currentPriceDisplay = &CurrencyUnits::CurrencyOptions[0];
-    bool unitChanged = true; //Setting this true makes the first price update not appear as an uptick
 
     /** Load the custome open sans fonts into the font database */
     void loadFonts();
@@ -216,15 +209,9 @@ public Q_SLOTS:
     */
     void message(const QString &title, const QString &message, unsigned int style, bool *ret = nullptr);
 
-    void currencySelectionChanged(int unitIndex);
-    void onCurrencyChange(int newIndex);
-
     void getPriceInfo();
 
     void getLatestVersion();
-
-    /** IconsOnly true/false and updates toolbar accordingly. */
-    void updateIconsOnlyToolbar(bool);
 
 #ifdef ENABLE_WALLET
     /** Set the encryption status as shown in the UI.
@@ -268,13 +255,13 @@ private Q_SLOTS:
     /** Show open dialog */
     void openClicked();
 
-    /** AKIC START */
+    /** AKITACOIN START */
     /** Switch to assets page */
     void gotoAssetsPage();
     void gotoCreateAssetsPage();
     void gotoManageAssetsPage();
     void gotoRestrictedAssetsPage();
-    /** AKIC END */
+    /** AKITACOIN END */
 
 #endif // ENABLE_WALLET
     /** Show configuration dialog */
@@ -283,6 +270,10 @@ private Q_SLOTS:
     void aboutClicked();
     /** Show debug window */
     void showDebugWindow();
+    void showDebugWindowPeerList();
+    void showDebugWindowNetworkTraffic();
+
+    void showDebugWindowActivateInformation();
     /** Show debug window and set focus to the console */
     void showDebugWindowActivateConsole();
     /** Show debug window and set focus to the wallet repair tab */
@@ -343,5 +334,4 @@ private Q_SLOTS:
     void onMenuSelection(QAction* action);
 };
 
-
-#endif // AKITACOIN_QT_AKITACOINGUI_H
+#endif // AKITACOIN_QT_AkitacoinGUI_H
