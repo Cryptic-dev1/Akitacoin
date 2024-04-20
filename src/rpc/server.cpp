@@ -33,7 +33,7 @@ using namespace boost::placeholders;
 
 #include "assets/assets.h"
 
-static bool IsRPCRunning = false;
+static bool fRPCRunning = false;
 static bool fRPCInWarmup = true;
 static std::string rpcWarmupStatus("RPC server started");
 static CCriticalSection cs_rpcWarmup;
@@ -393,7 +393,7 @@ bool CRPCTable::appendCommand(const std::string& name, const CRPCCommand* pcmd)
 bool StartRPC()
 {
     LogPrint(BCLog::RPC, "Starting RPC\n");
-    IsRPCRunning = true;
+    fRPCRunning = true;
     g_rpcSignals.Started();
     return true;
 }
@@ -402,7 +402,7 @@ void InterruptRPC()
 {
     LogPrint(BCLog::RPC, "Interrupting RPC\n");
     // Interrupt e.g. running longpolls
-    IsRPCRunning = false;
+    fRPCRunning = false;
 }
 
 void StopRPC()
@@ -413,9 +413,9 @@ void StopRPC()
     g_rpcSignals.Stopped();
 }
 
-bool IsRPCRunning()
+bool fIRPCServerIsRunning()
 {
-    return IsRPCRunning;
+    return fIRPCServerIsRunning;
 }
 
 void SetRPCWarmupStatus(const std::string& newStatus)
