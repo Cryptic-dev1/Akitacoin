@@ -110,7 +110,7 @@ public Q_SLOTS:
     /** Ask for passphrase to unlock wallet temporarily */
     void unlockWallet();
     /**Lock the wallet */
-    void lockWalelt();
+    void lockWallet();
     void getMnemonic();
 
     /** Show used sending addresses */
