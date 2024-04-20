@@ -26,6 +26,7 @@
 #ifdef ENABLE_WALLET
 #include "paymentserver.h"
 #include "walletmodel.h"
+#include "encryptdialog.h"
 #endif
 
 #include "init.h"
@@ -76,7 +77,6 @@ Q_IMPORT_PLUGIN(QXcbIntegrationPlugin);
 Q_IMPORT_PLUGIN(QWindowsIntegrationPlugin);
 #elif defined(QT_QPA_PLATFORM_COCOA)
 Q_IMPORT_PLUGIN(QCocoaIntegrationPlugin);
-Q_IMPORT_PLUGIN(QMacStylePlugin);
 #endif
 #endif
 #endif
@@ -213,7 +213,7 @@ class AkitacoinApplication: public QApplication
 {
     Q_OBJECT
 public:
-    explicit AkitacoinApplication();
+    explicit AkitacoinApplication(int &argc, char **argv);
     ~AkitacoinApplication();
 
 #ifdef ENABLE_WALLET
@@ -364,11 +364,8 @@ void AkitacoinCore::shutdown()
     }
 }
 
-static int qt_argc = 1;
-static const char* qt_argv = "akitacoin-qt";
-
-AkitacoinApplication::AkitacoinApplication():
-    QApplication(qt_argc, const_cast<char **>(&qt_argv)),
+AkitacoinApplication::AkitacoinApplication(int &argc, char **argv):
+    QApplication(argc, argv),
     coreThread(0),
     optionsModel(0),
     clientModel(0),
@@ -440,7 +437,7 @@ void AkitacoinApplication::createWindow(const NetworkStyle *networkStyle)
 
 void AkitacoinApplication::createSplashScreen(const NetworkStyle *networkStyle)
 {
-    SplashScreen *splash = new SplashScreen(networkStyle);
+    SplashScreen *splash = new SplashScreen(0, networkStyle);
     // We don't hold a direct pointer to the splash screen after creation, but the splash
     // screen will take care of deleting itself when slotFinish happens.
     splash->show();
@@ -562,6 +559,16 @@ void AkitacoinApplication::initializeResult(bool success)
         connect(paymentServer, SIGNAL(message(QString,QString,unsigned int)),
                          window, SLOT(message(QString,QString,unsigned int)));
         QTimer::singleShot(100, paymentServer, SLOT(uiReady()));
+
+        if (walletModel->getEncryptionStatus() == WalletModel::Unencrypted) {
+            EncryptDialog dlg;
+
+            dlg.setModel(walletModel);
+            dlg.setWindowTitle("Encrypt Wallet");
+            dlg.exec();
+
+            walletModel->updateStatus();
+        }
 #endif
     } else {
         quit(); // Exit main loop
@@ -613,6 +620,8 @@ int main(int argc, char *argv[])
 #if QT_VERSION > 0x050600
     // Generate high-dpi pixmaps
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+    #endif
+#if QT_VERSION >= 0x050600
     QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
 #ifdef Q_OS_MAC
@@ -628,7 +637,7 @@ int main(int argc, char *argv[])
 #endif
 
     // This should be after the attributes.
-    AkitacoinApplication app;
+    AkitacoinApplication app(argc, argv);
 
     // Register meta types used for QMetaObject::invokeMethod
     qRegisterMetaType< bool* >();
