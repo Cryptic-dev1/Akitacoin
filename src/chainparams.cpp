@@ -289,18 +289,18 @@ arith_uint256 test;
 	    nCommunityAutonomousAmount = 5;
 
         // Burn Addresses
-        strIssueAssetBurnAddress = "ACissueAssetXXXXXXXXXXXXXXXXa1oUfD";
-        strReissueAssetBurnAddress = "ACReissueAssetXXXXXXXXXXXXXXUdjigq";
-        strIssueSubAssetBurnAddress = "ACissueSubAssetXXXXXXXXXXXXXbCnNFk";
-        strIssueUniqueAssetBurnAddress = "ACissueUniqueAssetXXXXXXXXXXSVUgF5";
-        strIssueMsgChannelAssetBurnAddress = "ACissueMsgChanneLAssetXXXXXXUe6Pvr";
-        strIssueQualifierAssetBurnAddress = "ACissueQuaLifierXXXXXXXXXXXXWLyvs5";
-        strIssueSubQualifierAssetBurnAddress = "ACissueSubQuaLifierXXXXXXXXXVHmaXW";
-        strIssueRestrictedAssetBurnAddress = "ACissueRestrictedXXXXXXXXXXXXfEYLU";
-        strAddNullQualifierTagBurnAddress = "ACaddTagBurnXXXXXXXXXXXXXXXXUrKr7b";
+        strIssueAssetBurnAddress = "";
+        strReissueAssetBurnAddress = "";
+        strIssueSubAssetBurnAddress = "";
+        strIssueUniqueAssetBurnAddress = "";
+        strIssueMsgChannelAssetBurnAddress = "";
+        strIssueQualifierAssetBurnAddress = "";
+        strIssueSubQualifierAssetBurnAddress = "";
+        strIssueRestrictedAssetBurnAddress = "";
+        strAddNullQualifierTagBurnAddress = "";
 
         //Global Burn Address
-        strGlobalBurnAddress = "ACBurnXXXXXXXXXXXXXXXXXXXXXXUkdzqy";
+        strGlobalBurnAddress = "";
 
         // Donation Address
         strCommunityAutonomousAddress = ""; // NEEDS UPDATING
@@ -404,9 +404,9 @@ public:
 		//std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;		
 
 
-        vFixedSeeds.clear();
-        vSeeds.clear();
-        vSeeds.emplace_back("", false);
+        //vFixedSeeds.clear();
+       // vSeeds.clear();
+       // vSeeds.emplace_back("", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,109);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);
@@ -424,20 +424,20 @@ public:
         fMineBlocksOnDemand = false;
         fMiningRequiresPeers = true;
 
-        checkpointData = (CCheckpointData) {
-            {
-            
-            }
-        };
+     //   checkpointData = (CCheckpointData) {
+    //        {
+      //      
+     //       }
+      //  };
 
-        chainTxData = ChainTxData{
+      //  chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
             // Stats as of 00000023b66f46d74890287a7b1157dd780c7c5fdda2b561eb96684d2b39d62e window size 43200
-           0, // * UNIX timestamp of last known number of transactions
-            0,     // * total number of transactions between genesis and that timestamp
+        //   0, // * UNIX timestamp of last known number of transactions
+       //     0,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0        // * estimated number of transactions per second after that timestamp
-        };
+        //    0        // * estimated number of transactions per second after that timestamp
+      //  };
 
         /** AKIC Start **/
         // Burn Amounts
@@ -452,18 +452,18 @@ public:
         nAddNullQualifierTagBurnAmount = .1 * COIN;
 
         // Burn Addresses
-        strIssueAssetBurnAddress = "mCissueAssetXXXXXXXXXXXXXXXXauYgzW";
-        strReissueAssetBurnAddress = "mCReissueAssetXXXXXXXXXXXXXXViYbet";
-        strIssueSubAssetBurnAddress = "mCissueSubAssetXXXXXXXXXXXXXb41gMc";
-        strIssueUniqueAssetBurnAddress = "mCissueUniqueAssetXXXXXXXXXXWguvk3";
-        strIssueMsgChannelAssetBurnAddress = "mCissueMsgChanneLAssetXXXXXXWPw4W6";
-        strIssueQualifierAssetBurnAddress = "mCissueQuaLifierXXXXXXXXXXXXW2VtZy";
-        strIssueSubQualifierAssetBurnAddress = "mCissueSubQuaLifierXXXXXXXXXTj8yy8";
-        strIssueRestrictedAssetBurnAddress = "mCissueRestrictedXXXXXXXXXXXX3xpZV";
-        strAddNullQualifierTagBurnAddress = "mCaddTagBurnXXXXXXXXXXXXXXXXapsVx8";
+        strIssueAssetBurnAddress = "";
+        strReissueAssetBurnAddress = "";
+        strIssueSubAssetBurnAddress = "";
+        strIssueUniqueAssetBurnAddress = "";
+        strIssueMsgChannelAssetBurnAddress = "";
+        strIssueQualifierAssetBurnAddress = "";
+        strIssueSubQualifierAssetBurnAddress = "";
+        strIssueRestrictedAssetBurnAddress = "";
+        strAddNullQualifierTagBurnAddress = "";
 
-        // Global Burn Address
-        strGlobalBurnAddress = "mCBurnXXXXXXXXXXXXXXXXXXXXXXUDUcus";
+        // Global Burn 
+        strGlobalBurnAddress = "";
 
         //CommunityAutonomousAddress
         strCommunityAutonomousAddress = "";
@@ -562,17 +562,17 @@ public:
         fRequireStandard = false;
         fMineBlocksOnDemand = true;
 
-        checkpointData = (CCheckpointData) {
-            {
-                
-            }
-        };
+       // checkpointData = (CCheckpointData) {
+      //      {
+      //          
+      //      }
+      //  };
 
-        chainTxData = ChainTxData{
-            0,
-            0,
-            0
-        };
+      ///  chainTxData = ChainTxData{
+       //     0,
+       //     0,
+       //     0
+      //  };
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);
@@ -599,18 +599,18 @@ public:
 	    nCommunityAutonomousAmount = 5;
 
         // Burn Addresses
-        strIssueAssetBurnAddress = "mCissueAssetXXXXXXXXXXXXXXXXauYgzW";
-        strReissueAssetBurnAddress = "mCReissueAssetXXXXXXXXXXXXXXViYbet";
-        strIssueSubAssetBurnAddress = "mCissueSubAssetXXXXXXXXXXXXXb41gMc";
-        strIssueUniqueAssetBurnAddress = "mCissueUniqueAssetXXXXXXXXXXWguvk3";
-        strIssueMsgChannelAssetBurnAddress = "mCissueMsgChanneLAssetXXXXXXWPw4W6";
-        strIssueQualifierAssetBurnAddress = "mCissueQuaLifierXXXXXXXXXXXXW2VtZy";
-        strIssueSubQualifierAssetBurnAddress = "mCissueSubQuaLifierXXXXXXXXXTj8yy8";
-        strIssueRestrictedAssetBurnAddress = "mCissueRestrictedXXXXXXXXXXXX3xpZV";
-        strAddNullQualifierTagBurnAddress = "mCaddTagBurnXXXXXXXXXXXXXXXXapsVx8";
+        strIssueAssetBurnAddress = "";
+        strReissueAssetBurnAddress = "";
+        strIssueSubAssetBurnAddress = "";
+        strIssueUniqueAssetBurnAddress = "";
+        strIssueMsgChannelAssetBurnAddress = "";
+        strIssueQualifierAssetBurnAddress = "";
+        strIssueSubQualifierAssetBurnAddress = "";
+        strIssueRestrictedAssetBurnAddress = "";
+        strAddNullQualifierTagBurnAddress = "";
 
         // Global Burn Address
-        strGlobalBurnAddress = "mCBurnXXXXXXXXXXXXXXXXXXXXXXUDUcus";
+        strGlobalBurnAddress = "";
 
         //CommunityAutonomousAddress
         strCommunityAutonomousAddress = "";
