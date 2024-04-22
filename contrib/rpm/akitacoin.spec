@@ -20,8 +20,8 @@ Summary:	Peer to Peer Cryptographic Currency
 
 Group:		Applications/System
 License:	MIT
-URL:		https://mewccrypto.com/
-Source0:	https://mewccrypto.com/bin/akitacoin-core-%{version}/akitacoin-%{version}.tar.gz
+URL:		https://akitacoin.net/
+Source0:	https://akitacoin.net/bin/akitacoin-core-%{version}/akitacoin-%{version}.tar.gz
 Source1:	http://download.oracle.com/berkeley-db/db-%{bdbv}.NC.tar.gz
 
 Source10:	https://raw.githubusercontent.com/akitacoin/akitacoin/v%{version}/contrib/debian/examples/akitacoin.conf

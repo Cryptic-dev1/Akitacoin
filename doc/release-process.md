@@ -3,9 +3,9 @@ cd Release Process
 
 Before every release candidate:
 
-* Update translations see [translation_process.md](https://github.com/JustAResearcher/Meowcoin/blob/master/doc/translation_process.md#synchronising-translations).
+* Update translations see [translation_process.md](https://github.com/Cryptic-Dev1/Akitacoin/blob/master/doc/translation_process.md#synchronising-translations).
 
-* Update manpages, see [gen-manpages.sh](https://github.com/JustAResearcher/Meowcoin/blob/master/contrib/devtools/README.md#gen-manpagessh).
+* Update manpages, see [gen-manpages.sh](https://github.com/Cryptic-Dev1/Akitacoin/blob/master/contrib/devtools/README.md#gen-manpagessh).
 
 Before every minor and major release:
 
@@ -28,9 +28,9 @@ Before every major release:
 ### First time / New builders
 
 
-    git clone https://github.com/JustAResearcher/Meowcoin.git
+    git clone https://github.com/Cryptic-Dev1/Akitacoin.git
 
-### Meowcoin maintainers/release engineers, suggestion for writing release notes
+### Akitacoin maintainers/release engineers, suggestion for writing release notes
 
 Write release notes. git shortlog helps a lot, for example:
 
@@ -56,15 +56,15 @@ Codesigner only: Create Windows/OS X detached signatures:
 
 Codesigner only: Sign the osx binary:
 
-    transfer meowcoin-osx-unsigned.tar.gz to osx for signing
-    tar xf meowcoin-osx-unsigned.tar.gz
+    transfer akitacoin-osx-unsigned.tar.gz to osx for signing
+    tar xf akitacoin-osx-unsigned.tar.gz
     ./detached-sig-create.sh -s "Key ID"
     Enter the keychain password and authorize the signature
     Move signature-osx.tar.gz back to the gitian host
 
 Codesigner only: Sign the windows binaries:
 
-    tar xf meowcoin-win-unsigned.tar.gz
+    tar xf akitacoin-win-unsigned.tar.gz
     ./detached-sig-create.sh -key /path/to/codesign.key
     Enter the passphrase for the key when prompted
     signature-win.tar.gz will be created
@@ -79,14 +79,14 @@ sha256sum * > SHA256SUMS
 
 The list of files should be:
 ```
-meowcoin-${VERSION}-aarch64-linux-gnu.tar.gz
-meowcoin-${VERSION}-arm-linux-gnueabihf.tar.gz
-meowcoin-${VERSION}-x86_64-linux-gnu.tar.gz
-meowcoin-${VERSION}-osx64.tar.gz
-meowcoin-${VERSION}-osx.dmg
-meowcoin-${VERSION}.tar.gz
-meowcoin-${VERSION}-win64-setup.exe
-meowcoin-${VERSION}-win64.zip
+akitacoin-${VERSION}-aarch64-linux-gnu.tar.gz
+akitacoin-${VERSION}-arm-linux-gnueabihf.tar.gz
+akitacoin-${VERSION}-x86_64-linux-gnu.tar.gz
+akitacoin-${VERSION}-osx64.tar.gz
+akitacoin-${VERSION}-osx.dmg
+akitacoin-${VERSION}.tar.gz
+akitacoin-${VERSION}-win64-setup.exe
+akitacoin-${VERSION}-win64.zip
 
 - GPG-sign it, delete the unsigned file:
 ```
@@ -102,12 +102,12 @@ Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spur
 
 - Announce the release:
 
-  - meowcore.org blog post
+  - akitacoincore.org blog post
 
-  - Optionally twitter, reddit /r/Meowcoin, ... but this will usually sort out itself
+  - Optionally twitter, reddit /r/Akitacoin, ... but this will usually sort out itself
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/JustAResearcher/Meowcoin/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://github.com/Cryptic-Dev1/Akitacoin/releases/new) with a link to the archived release notes.
 
   - Celebrate
