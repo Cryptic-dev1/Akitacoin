@@ -43,7 +43,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "The Times 22/04/2024 Long-range defence is Ukraine's pressing need";
+    const char* pszTimestamp = "The Times 18:10 22/04/2024 Parliamentary aide charged with spying for China";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -170,7 +170,7 @@ public:
         nDefaultPort = 7766;
         nPruneAfterHeight = 100000;
 
-        uint32_t nGenesisTime = 	1713830400; //Tue Apr 23 2024 00:00:00 GMT+0000
+        uint32_t nGenesisTime = 	1713916800; //Wed Apr 24 2024 00:00:00 GMT+0000
 
 //start here
 
@@ -319,7 +319,7 @@ arith_uint256 test;
         nMessagingActivationBlock = 1; // Messaging activated block height
         nRestrictedActivationBlock = 1; // Restricted activated block height
 
-        nKAAAWWWPOWActivationTime = 1712962800; // UTC: Wed May 06 2020 18:00:00
+        nKAAAWWWPOWActivationTime = 1713895200; // UTC: Wed May 06 2020 18:00:00
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
 
         /** AKIC End **/
@@ -394,16 +394,16 @@ public:
 
         nPruneAfterHeight = 1000;
 
-        uint32_t nGenesisTime = 1713830400; //Sun Apr 14 2024 23:00:00 GMT+0000
+        uint32_t nGenesisTime = 1713916800; //Sun Apr 14 2024 23:00:00 GMT+0000
 
-        genesis = CreateGenesisBlock(nGenesisTime, 102921, 0x1e0ffff0, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(nGenesisTime, 1, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
         //Test MerkleRoot and GenesisBlock
         assert(consensus.hashGenesisBlock == uint256S("0x96a5d5af7bf3ce39b8d5885c4bb3cab33cebce441b92705ef68608f72d98be58"));
         assert(genesis.hashMerkleRoot ==     uint256S("0xc7de19cd3db293af2c28a80ad1dbb6f5f5f3aec245ef6507d728ea679f50ac6a"));
-        //std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
-		//std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;		
+        std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
+		std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;		
 
 
         //vFixedSeeds.clear();
@@ -481,7 +481,7 @@ public:
         nMessagingActivationBlock = 1; // Messaging activated block height
         nRestrictedActivationBlock = 1; // Restricted activated block height
 
-        nKAAAWWWPOWActivationTime = 1712962800; //Wed Mar 25 2020 18:00:00 UTC
+        nKAAAWWWPOWActivationTime = 1713895200; //Wed Mar 25 2020 18:00:00 UTC
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
         /** AKIC End **/
     }
@@ -552,7 +552,7 @@ public:
         nDefaultPort = 18443;
         nPruneAfterHeight = 1000;
 
-        genesis = CreateGenesisBlock(1713830400, 102921, 0x1e0ffff0, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(1713916800, 1, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
         //assert(consensus.hashGenesisBlock == uint256S("0x96a5d5af7bf3ce39b8d5885c4bb3cab33cebce441b92705ef68608f72d98be58"));
         //assert(genesis.hashMerkleRoot == uint256S("0xc7de19cd3db293af2c28a80ad1dbb6f5f5f3aec245ef6507d728ea679f50ac6a"));
