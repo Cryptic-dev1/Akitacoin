@@ -367,7 +367,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
 
     /** Update the labels colors */
     ui->assetBalanceLabel->setStyleSheet(STRING_LABEL_COLOR);
-    ui->akicaBalancesLabel->setStyleSheet(STRING_LABEL_COLOR);
+    ui->akicBalancesLabel->setStyleSheet(STRING_LABEL_COLOR);
     ui->labelBalanceText->setStyleSheet(STRING_LABEL_COLOR);
     ui->labelPendingText->setStyleSheet(STRING_LABEL_COLOR);
     ui->labelImmatureText->setStyleSheet(STRING_LABEL_COLOR);
