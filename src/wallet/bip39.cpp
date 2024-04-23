@@ -22,7 +22,6 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include <array>
 #include "wallet/bip39.h"
 #include "wallet/bip39_english.h"
 #include "crypto/sha256.h"
@@ -102,13 +101,13 @@ bool CMnemonic::Check(SecureString mnemonic)
     uint32_t nWordIndex, ki, nBitsCount{};
 
     for (size_t i = 0; i < mnemonic.size(); ++i) {
-        ssCurrentWord = "";
+       ssCurrentWord = "";
         while (i + ssCurrentWord.size() < mnemonic.size() && mnemonic[i + ssCurrentWord.size()] != ' ') {
-            ssCurrentWord += mnemonic[i + ssCurrentWord.size()];
-        }
-        if (ssCurrentWord.size() >= 9) {
+            if (ssCurrentWord.size() >= 9) {
                 return false;
             }
+            ssCurrentWord += mnemonic[i + ssCurrentWord.size()];
+        }
         i += ssCurrentWord.size();
         nWordIndex = 0;
         for (;;) {
