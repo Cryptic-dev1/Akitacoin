@@ -173,7 +173,7 @@ public:
         uint32_t nGenesisTime = 	1713916800; //Wed Apr 24 2024 00:00:00 GMT+0000
 
 //start here
-
+/*
 arith_uint256 test;
         bool fNegative;
         bool fOverflow;
@@ -231,13 +231,13 @@ arith_uint256 test;
         genesis.hashPrevBlock = TempHashHolding;
 
 //end here
-
+*/
             
             genesis = CreateGenesisBlock(nGenesisTime, 1746380, 0x1e0ffff0, 4, 5000 * COIN);
             consensus.hashGenesisBlock = genesis.GetX16RHash();
             std::cout << "genesis.GetX16RHash().GetHex() to 0x" << genesis.GetX16RHash().GetHex() << std::endl;
             std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex() << std::endl;
-            assert(consensus.hashGenesisBlock == uint256S("0xba2313a5dce7982020123e4961d5b92a01764d10bf59f85a9884d55afac1ff20"));
+            assert(consensus.hashGenesisBlock == uint256S("0x8e7f007767f02fd4a52369686c6272f41e7a0613488eb4747d9bda2f07ee6465"));
             assert(genesis.hashMerkleRoot == uint256S("0x7a06b62201ec06ebf36736578ea2389f0fc32fb2900e5b09512722b8a55d5621"));
         vSeeds.emplace_back("", false);
 
@@ -400,7 +400,7 @@ public:
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
         //Test MerkleRoot and GenesisBlock
-        assert(consensus.hashGenesisBlock == uint256S("0xba2313a5dce7982020123e4961d5b92a01764d10bf59f85a9884d55afac1ff20"));
+        assert(consensus.hashGenesisBlock == uint256S("0x8e7f007767f02fd4a52369686c6272f41e7a0613488eb4747d9bda2f07ee6465"));
         assert(genesis.hashMerkleRoot ==     uint256S("0x7a06b62201ec06ebf36736578ea2389f0fc32fb2900e5b09512722b8a55d5621"));
         std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
 		std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;		
@@ -554,7 +554,7 @@ public:
 
         genesis = CreateGenesisBlock(1713916800, 1, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0xba2313a5dce7982020123e4961d5b92a01764d10bf59f85a9884d55afac1ff20"));
+        //assert(consensus.hashGenesisBlock == uint256S("0x8e7f007767f02fd4a52369686c6272f41e7a0613488eb4747d9bda2f07ee6465"));
         //assert(genesis.hashMerkleRoot == uint256S("0x7a06b62201ec06ebf36736578ea2389f0fc32fb2900e5b09512722b8a55d5621"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
