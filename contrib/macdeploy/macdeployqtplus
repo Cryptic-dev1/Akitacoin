@@ -187,8 +187,8 @@ class DeploymentInfo(object):
                 self.pluginPath = pluginPath
     
     def usesFramework(self, name):
-        nameDot = "%s..".format(name)
-        libNameDot = "lib{}." %name
+        nameDot = "%s.." % name
+        libNameDot = "lib%s." % name
         for framework in self.deployedFrameworks:
             if framework.endswith(".framework"):
                 if framework.startswith(nameDot):
@@ -208,7 +208,7 @@ def getFrameworks(binaryPath, verbose):
         if verbose >= 1:
             sys.stderr.write(o_stderr)
             sys.stderr.flush()
-            raise RuntimeError("otool failed with return code %d" %otool.returncode)
+            raise RuntimeError("otool failed with return code %d" % otool.returncode)
 
     otoolLines = o_stdout.split("\n")
     otoolLines.pop(0) # First line is the inspected binary

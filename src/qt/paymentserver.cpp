@@ -409,11 +409,11 @@ void PaymentServer::handleURIOrFile(const QString& s)
     if (s.startsWith(AKITACOIN_IPC_PREFIX, Qt::CaseInsensitive)) // akitacoin: URI
     {
 
-        #if QT_VERSION < 0x050000
+    #if QT_VERSION < 0x050000
         QUrl uri(s);
-        #else
+    #else
         QUrlQuery uri((QUrl(s)));
-        #endif
+    #endif
         if (uri.hasQueryItem("r")) // payment request URI
         {
             QByteArray temp;

@@ -176,7 +176,7 @@ void WalletFrame::unlockWallet()
 
 void WalletFrame::lockWallet()
 {
-    WalletView *walletView = currentWalletView();
+    WalletView* walletView = currentWalletView();
     if (walletView)
         walletView->lockWallet();
 }

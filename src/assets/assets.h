@@ -3,8 +3,8 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
-#ifndef AKITACOINCOIN_ASSET_PROTOCOL_H
-#define AKITACOINCOIN_ASSET_PROTOCOL_H
+#ifndef AKITACOIN_ASSET_PROTOCOL_H
+#define AKITACOIN_ASSET_PROTOCOL_H
 
 #include "amount.h"
 #include "tinyformat.h"
@@ -579,4 +579,4 @@ bool ContextualCheckReissueAsset(CAssetsCache* assetCache, const CReissueAsset& 
 bool ContextualCheckUniqueAssetTx(CAssetsCache* assetCache, std::string& strError, const CTransaction& tx);
 bool ContextualCheckUniqueAsset(CAssetsCache* assetCache, const CNewAsset& unique_asset, std::string& strError);
 
-#endif //AKITACOINCOIN_ASSET_PROTOCOL_H
+#endif //AKITACOIN_ASSET_PROTOCOL_H

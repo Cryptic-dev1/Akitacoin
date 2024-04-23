@@ -1,5 +1,6 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2024 The Akitacoin Core developers
+// Copyright (c) 2017-2019 The Raven Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -52,9 +53,9 @@ QString AkitacoinUnits::description(int unit)
 {
     switch(unit)
     {
-    case AKIC: return QString("Akitacoins");
-    case mAKIC: return QString("Milli-Akitacoins (1 / 1" THIN_SP_UTF8 "000)");
-    case uAKIC: return QString("Micro-Akitacoins (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+    case AKIC: return QString("Akitacoin");
+    case mAKIC: return QString("Milli-Akitacoin (1 / 1" THIN_SP_UTF8 "000)");
+    case uAKIC: return QString("Micro-Akitacoin (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
     default: return QString("???");
     }
 }
@@ -120,7 +121,7 @@ QString AkitacoinUnits::format(int unit, const CAmount& nIn, bool fPlus, Separat
     int q_size = quotient_str.size();
     if (separators == separatorAlways || (separators == separatorStandard && q_size > 4))
         for (int i = 3; i < q_size; i += 3)
-            quotient_str.insert(q_size - i, thin_sp);
+            quotient_str.insert(q_size - i, thin_sp); 
 
     if (n < 0)
         quotient_str.insert(0, '-');

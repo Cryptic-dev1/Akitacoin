@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef AKITACOINCOIN_NEWASSET_H
-#define AKITACOINCOIN_NEWASSET_H
+#ifndef AKITACOIN_NEWASSET_H
+#define AKITACOIN_NEWASSET_H
 
 #include <string>
 #include <sstream>
@@ -652,4 +652,4 @@ private:
     size_t maxSize;
 };
 
-#endif //AKITACOINCOIN_NEWASSET_H
+#endif //AKITACOIN_NEWASSET_H

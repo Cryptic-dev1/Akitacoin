@@ -1,0 +1,27 @@
+FROM amd64/ubuntu:latest
+
+MAINTAINER cade <cade.call@mediciventures.com>
+
+EXPOSE $RPCPORT
+
+EXPOSE $PORT
+
+RUN apt-get update && apt-get install -y bash net-tools && apt-get clean
+
+RUN useradd -ms /bin/bash akitacoin
+
+RUN mkdir /etc/akitacoin
+
+RUN mkdir /var/lib/akitacoin
+
+RUN chown akitacoin:akitacoin /etc/akitacoin /var/lib/akitacoin
+
+WORKDIR /home/akitacoin
+
+COPY --chown=akitacoin:akitacoin linux64/* /home/akitacoin/
+
+COPY --chown=akitacoin:akitacoin run.sh /home/akitacoin/
+
+USER akitacoin
+
+CMD ["/home/akitacoin/run.sh"]

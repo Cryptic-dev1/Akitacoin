@@ -186,7 +186,8 @@ QVariant PeerTableModel::data(const QModelIndex &index, int role) const
         case Sent:
         case Received:
             return QVariant(Qt::AlignRight | Qt::AlignVCenter);
-        default: return QVariant();
+        default: 
+            return QVariant();
         }
     }
 
@@ -207,7 +208,8 @@ QVariant PeerTableModel::headerData(int section, Qt::Orientation orientation, in
 
 Qt::ItemFlags PeerTableModel::flags(const QModelIndex &index) const
 {
-    if(!index.isValid()) return 0;
+    if(!index.isValid())
+        return 0;
 
     Qt::ItemFlags retval = Qt::ItemIsSelectable | Qt::ItemIsEnabled;
     return retval;

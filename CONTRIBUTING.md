@@ -56,9 +56,7 @@ The title of the pull request should be prefixed by the component or area that
 the pull request affects. Valid areas as:
 
 
-  - *Build* for changes to the build-system
   - *Consensus* for changes to consensus critical code
-  - *Depends* for changes to depends
   - *Docs* for changes to the documentation
   - *GUI* for changes to akitacoin-qt
   - *Mining* for changes to the mining code
@@ -79,7 +77,7 @@ the pull request affects. Valid areas as:
 
 Examples:
 
-    Consensus: Add new opcode for RIP-XXXX OP_CHECKAWESOMESIG
+    Consensus: Add new opcode for AIP-XXXX OP_CHECKAWESOMESIG
     Net: Automatically create hidden service, listen on Tor
     GUI: Add feed bump button
     Trivial: Fix typo in init.cpp

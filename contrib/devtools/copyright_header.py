@@ -87,7 +87,7 @@ EXPECTED_HOLDER_NAMES = [
     "The Akitacoin Core developers\n",
     "The Akitacoin Core developers \n",
     "Akitacoin Core Developers\n",
-    "the Akitacoin Core developers\n",
+    "The Akitacoin Core developers\n",
     "The Akitacoin developers\n",
     "The LevelDB Authors\. All rights reserved\.\n",
     "BitPay Inc\.\n",

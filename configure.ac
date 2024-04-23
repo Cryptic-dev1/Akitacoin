@@ -9,7 +9,7 @@ define(_CLIENT_VERSION_IS_RELEASE, true)
 define(_COPYRIGHT_YEAR, 2024)
 define(_COPYRIGHT_HOLDERS,[The %s developers])
 define(_COPYRIGHT_HOLDERS_SUBSTITUTION,[[Akitacoin Core]])
-AC_INIT([Akitacoin Core], _CLIENT_VERSION_MAJOR, _CLIENT_VERSION_MINOR, _CLIENT_VERSION_REVISION,[https://github.com/Cryptic-dev1/Akitacoin/issues],[akitacoin],[https://www.akitacoin.net/])
+AC_INIT([Akitacoin Core], [_CLIENT_VERSION_MAJOR. _CLIENT_VERSION_MINOR. _CLIENT_VERSION_REVISION],[https://github.com/Cryptic-dev1/Akitacoin/issues],[akitacoin],[https://www.akitacoin.net/])
 
 AC_CONFIG_SRCDIR([src/validation.cpp])
 AC_CONFIG_HEADERS([src/config/akitacoin-config.h])
@@ -1284,7 +1284,7 @@ if test x$need_bundled_univalue = xyes; then
   AC_CONFIG_SUBDIRS([src/univalue])
 fi
 
-ac_configure_args="${ac_configure_args} --disable-shared --with-pic --enable-benchmark=no --with-bignum=no --enable-module-recovery"
+ac_configure_args="${ac_configure_args} --disable-shared --with-pic --with-bignum=no --enable-module-recovery --disable-jni"
 AC_CONFIG_SUBDIRS([src/secp256k1])
 
 AC_OUTPUT

@@ -617,7 +617,7 @@ int main(int argc, char *argv[])
     Q_INIT_RESOURCE(akitacoin);
     Q_INIT_RESOURCE(akitacoin_locale);
 
-#if QT_VERSION > 0x050600
+#if QT_VERSION > 0x050100
     // Generate high-dpi pixmaps
     QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
     #endif

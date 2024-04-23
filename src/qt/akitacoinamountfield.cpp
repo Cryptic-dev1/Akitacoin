@@ -208,7 +208,7 @@ protected:
         if (text().isEmpty()) // Allow step-up with empty field
             return StepUpEnabled;
 
-        StepEnabled rv = StepNone;
+        StepEnabled rv = 0;
         bool valid = false;
         CAmount val = value(&valid);
         if(valid)
