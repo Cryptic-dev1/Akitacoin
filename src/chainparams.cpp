@@ -122,32 +122,32 @@ public:
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1713571200; //Sat Apr 13 2024 23:00:00 GMT+0000
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 	1713744000; //Sun Apr 14 2024 23:00:00 GMT+0000
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 	1713916800; //Sun Apr 14 2024 23:00:00 GMT+0000
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideRuleChangeActivationThreshold = 1814;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].bit = 6;  //Assets (AIP2)
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nStartTime = 1713571200; //Sat Apr 13 2024 23:00:00 GMT+0000
-        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 	1713744000; //Sun Apr 14 2024 23:00:00 GMT+0000
+        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 	1713916800; //Sun Apr 14 2024 23:00:00 GMT+0000
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideRuleChangeActivationThreshold = 1814;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].bit = 7;  // Assets (AIP5)
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nStartTime = 1713571200; //Sat Apr 13 2024 23:00:00 GMT+0000
-        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nTimeout = 	1713744000; //Sun Apr 14 2024 23:00:00 GMT+0000
+        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nTimeout = 	1713916800; //Sun Apr 14 2024 23:00:00 GMT+0000
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideRuleChangeActivationThreshold = 1714; // Approx 85% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].bit = 8;
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nStartTime = 1713571200; //Sat Apr 13 2024 23:00:00 GMT+0000
-        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nTimeout = 	1713744000; //Sun Apr 14 2024 23:00:00 GMT+0000
+        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nTimeout = 	1713916800; //Sun Apr 14 2024 23:00:00 GMT+0000
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nOverrideRuleChangeActivationThreshold = 1714; // Approx 85% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].bit = 9;
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nStartTime = 1713571200; //Sat Apr 13 2024 23:00:00 GMT+0000
-        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nTimeout = 	1713744000; //Sun Apr 14 2024 23:00:00 GMT+0000
+        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nTimeout = 	1713916800; //Sun Apr 14 2024 23:00:00 GMT+0000
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideRuleChangeActivationThreshold = 1411; // Approx 70% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].bit = 10;
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nStartTime = 1713571200; //Sat Apr 13 2024 23:00:00 GMT+0000
-        consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nTimeout = 	1713744000; //Sun Apr 14 2024 23:00:00 GMT+0000
+        consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nTimeout = 	1713916800; //Sun Apr 14 2024 23:00:00 GMT+0000
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideRuleChangeActivationThreshold = 1411; // Approx 70% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideMinerConfirmationWindow = 2016;
 
@@ -170,10 +170,10 @@ public:
         nDefaultPort = 7766;
         nPruneAfterHeight = 100000;
 
-        uint32_t nGenesisTime = 	1713916800; //Wed Apr 24 2024 00:00:00 GMT+0000
+        uint32_t nGenesisTime = 1713916800; //Wed Apr 24 2024 00:00:00 GMT+0000
 
 //start here
-/*
+
 arith_uint256 test;
         bool fNegative;
         bool fOverflow;
@@ -231,15 +231,13 @@ arith_uint256 test;
         genesis.hashPrevBlock = TempHashHolding;
 
 //end here
-*/
+
             
             genesis = CreateGenesisBlock(nGenesisTime, 1746380, 0x1e0ffff0, 4, 5000 * COIN);
             consensus.hashGenesisBlock = genesis.GetX16RHash();
-            std::cout << "genesis.GetX16RHash().GetHex() to 0x" << genesis.GetX16RHash().GetHex() << std::endl;
-            std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex() << std::endl;
             assert(consensus.hashGenesisBlock == uint256S("0x8e7f007767f02fd4a52369686c6272f41e7a0613488eb4747d9bda2f07ee6465"));
             assert(genesis.hashMerkleRoot == uint256S("0x7a06b62201ec06ebf36736578ea2389f0fc32fb2900e5b09512722b8a55d5621"));
-        vSeeds.emplace_back("", false);
+            vSeeds.emplace_back("", false);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
