@@ -235,6 +235,8 @@ arith_uint256 test;
             
             genesis = CreateGenesisBlock(nGenesisTime, 1746380, 0x1e0ffff0, 4, 5000 * COIN);
             consensus.hashGenesisBlock = genesis.GetX16RHash();
+            std::cout << "genesis.GetX16RHash().GetHex() to 0x" << genesis.GetX16RHash().GetHex() << std::endl;
+            std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex() << std::endl;
             assert(consensus.hashGenesisBlock == uint256S("0xa743f391da076d02b0ddf0fcbb110142c4f3f5d9435a2c91acd3ff22bb9a747d"));
             assert(genesis.hashMerkleRoot == uint256S("0x7a06b62201ec06ebf36736578ea2389f0fc32fb2900e5b09512722b8a55d5621"));
             vSeeds.emplace_back("", false);
