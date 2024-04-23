@@ -237,7 +237,7 @@ arith_uint256 test;
             consensus.hashGenesisBlock = genesis.GetX16RHash();
             std::cout << "genesis.GetX16RHash().GetHex() to 0x" << genesis.GetX16RHash().GetHex() << std::endl;
             std::cout << "Genesis Merkle " << genesis.hashMerkleRoot.GetHex() << std::endl;
-            assert(consensus.hashGenesisBlock == uint256S("0xa743f391da076d02b0ddf0fcbb110142c4f3f5d9435a2c91acd3ff22bb9a747d"));
+            assert(consensus.hashGenesisBlock == uint256S("0x8e7f007767f02fd4a52369686c6272f41e7a0613488eb4747d9bda2f07ee6465"));
             assert(genesis.hashMerkleRoot == uint256S("0x7a06b62201ec06ebf36736578ea2389f0fc32fb2900e5b09512722b8a55d5621"));
             vSeeds.emplace_back("", false);
 
@@ -400,7 +400,7 @@ public:
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 
         //Test MerkleRoot and GenesisBlock
-        assert(consensus.hashGenesisBlock == uint256S("0xa743f391da076d02b0ddf0fcbb110142c4f3f5d9435a2c91acd3ff22bb9a747d"));
+        assert(consensus.hashGenesisBlock == uint256S("0x8e7f007767f02fd4a52369686c6272f41e7a0613488eb4747d9bda2f07ee6465"));
         assert(genesis.hashMerkleRoot ==     uint256S("0x7a06b62201ec06ebf36736578ea2389f0fc32fb2900e5b09512722b8a55d5621"));
         std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
 		std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;		
@@ -554,7 +554,7 @@ public:
 
         genesis = CreateGenesisBlock(1713916800, 1746380, 0x1e0ffff0, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0xa743f391da076d02b0ddf0fcbb110142c4f3f5d9435a2c91acd3ff22bb9a747d"));
+        //assert(consensus.hashGenesisBlock == uint256S("0x8e7f007767f02fd4a52369686c6272f41e7a0613488eb4747d9bda2f07ee6465"));
         //assert(genesis.hashMerkleRoot == uint256S("0x7a06b62201ec06ebf36736578ea2389f0fc32fb2900e5b09512722b8a55d5621"));
 
         vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
