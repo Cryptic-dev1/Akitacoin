@@ -167,7 +167,7 @@ public:
         pchMessageStart[1] = 0x4B; // K
         pchMessageStart[2] = 0x49; // I
         pchMessageStart[3] = 0x43; // C
-        nDefaultPort = 7766;
+        nDefaultPort = 7787;
         nPruneAfterHeight = 100000;
 
         uint32_t nGenesisTime = 1714003200; //Thur Apr 25 2024 00:00:00 GMT+0000
