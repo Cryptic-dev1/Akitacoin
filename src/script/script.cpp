@@ -248,14 +248,14 @@ bool CScript::IsAssetScript(int& nType, bool& fIsOwner, int& nStartingIndex) con
     if (this->size() > 31) {
         if ((*this)[25] == OP_AKIC_ASSET) { // OP_AKIC_ASSET is always in the 25 index of the script if it exists
             int index = -1;
-            if ((*this)[27] == AKIC_N) { // Check to see if AKIC starts at 27 ( this->size() < 105)
-                if ((*this)[28] == AKIC_E)
-                    if ((*this)[29] == AKIC_X)
+            if ((*this)[27] == AKIC_A) { // Check to see if AKIC starts at 27 ( this->size() < 105)
+                if ((*this)[28] == AKIC_K)
+                    if ((*this)[29] == AKIC_I)
                         index = 30;
             } else {
-                if ((*this)[28] == AKIC_N) // Check to see if AKIC starts at 28 ( this->size() >= 105)
-                    if ((*this)[29] == AKIC_E)
-                        if ((*this)[30] == AKIC_X)
+                if ((*this)[28] == AKIC_A) // Check to see if AKIC starts at 28 ( this->size() >= 105)
+                    if ((*this)[29] == AKIC_K)
+                        if ((*this)[30] == AKIC_I)
                             index = 31;
             }
 
@@ -264,7 +264,7 @@ bool CScript::IsAssetScript(int& nType, bool& fIsOwner, int& nStartingIndex) con
                 if ((*this)[index] == AKIC_T) { // Transfer first anticipating more transfers than other assets operations
                     nType = TX_TRANSFER_ASSET;
                     return true;
-                } else if ((*this)[index] == AKIC_Q && this->size() > 39) {
+                } else if ((*this)[index] == AKIC_C && this->size() > 39) {
                     nType = TX_NEW_ASSET;
                     fIsOwner = false;
                     return true;
@@ -272,7 +272,7 @@ bool CScript::IsAssetScript(int& nType, bool& fIsOwner, int& nStartingIndex) con
                     nType = TX_NEW_ASSET;
                     fIsOwner = true;
                     return true;
-                } else if ((*this)[index] == AKIC_N) {
+                } else if ((*this)[index] == AKIC_A) {
                     nType = TX_REISSUE_ASSET;
                     return true;
                 }

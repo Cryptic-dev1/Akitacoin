@@ -524,10 +524,10 @@ void CNewAsset::ConstructTransaction(CScript& script) const
     ssAsset << *this;
 
     std::vector<unsigned char> vchMessage;
-    vchMessage.push_back(AKIC_N); 
-    vchMessage.push_back(AKIC_E);
-    vchMessage.push_back(AKIC_X); 
-    vchMessage.push_back(AKIC_Q); 
+    vchMessage.push_back(AKIC_A); 
+    vchMessage.push_back(AKIC_K);
+    vchMessage.push_back(AKIC_I); 
+    vchMessage.push_back(AKIC_C); 
 
     vchMessage.insert(vchMessage.end(), ssAsset.begin(), ssAsset.end());
     script << OP_AKIC_ASSET << ToByteVector(vchMessage) << OP_DROP;
@@ -539,10 +539,10 @@ void CNewAsset::ConstructOwnerTransaction(CScript& script) const
     ssOwner << std::string(this->strName + OWNER_TAG);
 
     std::vector<unsigned char> vchMessage;
-    vchMessage.push_back(AKIC_N); 
-    vchMessage.push_back(AKIC_E); 
-    vchMessage.push_back(AKIC_X); 
-    vchMessage.push_back(AKIC_O); 
+    vchMessage.push_back(AKIC_A); 
+    vchMessage.push_back(AKIC_K); 
+    vchMessage.push_back(AKIC_I); 
+    vchMessage.push_back(AKIC_C); 
 
     vchMessage.insert(vchMessage.end(), ssOwner.begin(), ssOwner.end());
     script << OP_AKIC_ASSET << ToByteVector(vchMessage) << OP_DROP;
@@ -1624,10 +1624,10 @@ void CAssetTransfer::ConstructTransaction(CScript& script) const
     ssTransfer << *this;
 
     std::vector<unsigned char> vchMessage;
-    vchMessage.push_back(AKIC_N);
-    vchMessage.push_back(AKIC_E);
-    vchMessage.push_back(AKIC_X);
-    vchMessage.push_back(AKIC_T);
+    vchMessage.push_back(AKIC_A);
+    vchMessage.push_back(AKIC_K);
+    vchMessage.push_back(AKIC_I);
+    vchMessage.push_back(AKIC_C);
 
     vchMessage.insert(vchMessage.end(), ssTransfer.begin(), ssTransfer.end());
     script << OP_AKIC_ASSET << ToByteVector(vchMessage) << OP_DROP;
@@ -1650,10 +1650,10 @@ void CReissueAsset::ConstructTransaction(CScript& script) const
     ssReissue << *this;
 
     std::vector<unsigned char> vchMessage;
-    vchMessage.push_back(AKIC_N); 
-    vchMessage.push_back(AKIC_E); 
-    vchMessage.push_back(AKIC_X); 
-    vchMessage.push_back(AKIC_N); 
+    vchMessage.push_back(AKIC_A); 
+    vchMessage.push_back(AKIC_K); 
+    vchMessage.push_back(AKIC_I); 
+    vchMessage.push_back(AKIC_K); 
 
     vchMessage.insert(vchMessage.end(), ssReissue.begin(), ssReissue.end());
     script << OP_AKIC_ASSET << ToByteVector(vchMessage) << OP_DROP;

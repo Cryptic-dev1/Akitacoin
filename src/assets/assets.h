@@ -18,10 +18,10 @@
 #include <list>
 
 
-#define AKIC_N 114
-#define AKIC_E 118
-#define AKIC_X 110
-#define AKIC_Q 113
+#define AKIC_A 114
+#define AKIC_K 118
+#define AKIC_I 110
+#define AKIC_C 113
 #define AKIC_T 116
 #define AKIC_O 111
 
