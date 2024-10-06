@@ -182,7 +182,7 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("1853f490513e29f34d769c6812e02e51930eb2d57eeb8c198d6f282bd68178bf"));
 	
 
-        vSeeds.emplace_back("seed.akitacoin.net", false);
+        vSeeds.emplace_back("", false);
 
         // Address start with A
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);
@@ -192,7 +192,7 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
         // AKITACOIN BIP44 cointype in mainnet is '1668'
-        nExtCoinType = 1668;
+        nExtCoinType = 166;
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
@@ -211,10 +211,10 @@ public:
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
-        	1729036800, // * UNIX timestamp of last known number of transactions 2024-10-16 00:00:00
+        	nGenesisTime, // * UNIX timestamp of last known number of transactions 2024-10-16 00:00:00
             0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            1       // * estimated number of transactions per second after that timestamp
+            0       // * estimated number of transactions per second after that timestamp
         };
 
 
@@ -230,22 +230,22 @@ public:
         nAddNullQualifierTagBurnAmount = .1 * COIN;
 		
 	
-	nCommunityAutonomousAmount = 15;
+	nCommunityAutonomousAmount = 5;
 
         // Burn Addresses
-	strIssueAssetBurnAddress = "GcmKXqWrFrbDnywuY8F3orEnNR5L1g2mZQ";
-        strReissueAssetBurnAddress = "GX61EFYjZdXKWAY5UsBt5sLxHkWaqjBL59";
-        strIssueSubAssetBurnAddress = "GNgg3bLoGocLD9iU2W1gw3McHipzfZ8R13";
-        strIssueUniqueAssetBurnAddress = "GKXyGTyzibPLhPpTpvqqBK3SJBz8gp7Kfa";
-        strIssueMsgChannelAssetBurnAddress = "GMm13zRL8eGjZxYXfiCN1zCJFHiL5HkMYa";
-        strIssueQualifierAssetBurnAddress = "GZW36RFFgRWcCQ3cN1qWJGC6z4EAqgt7M6";
-        strIssueSubQualifierAssetBurnAddress = "GcDdxyK7JCuQfg83SxFHRpD8QHFivbdYjZ";
-        strIssueRestrictedAssetBurnAddress = "GcDdxyK7JCuQfg83SxFHRpD8QHFivbdYjZ";
-        strAddNullQualifierTagBurnAddress = "GTfS34Z3CrzXSPEmGx9xpjw7PShUC93YFi";
+	strIssueAssetBurnAddress = "";
+        strReissueAssetBurnAddress = "";
+        strIssueSubAssetBurnAddress = "";
+        strIssueUniqueAssetBurnAddress = "";
+        strIssueMsgChannelAssetBurnAddress = "";
+        strIssueQualifierAssetBurnAddress = "";
+        strIssueSubQualifierAssetBurnAddress = "";
+        strIssueRestrictedAssetBurnAddress = "";
+        strAddNullQualifierTagBurnAddress = "";
         //Global Burn Address
-        strGlobalBurnAddress = "GeNvn7GXr1aLqhDx9HG9aYWnPA5qoRsz9X";
+        strGlobalBurnAddress = "";
         // Proof-Of-Play Address
-        strCommunityAutonomousAddress = "GTbBCJzqRWyFBMrap2fY39eZaXnLnojJ3F";
+        strCommunityAutonomousAddress = "";
 
         // DGW Activation
         nDGWActivationBlock = 1;
@@ -258,7 +258,7 @@ public:
         nMessagingActivationBlock = 1; // Messaging activated block height
         nRestrictedActivationBlock = 1; // Restricted activated block height
 
-        nKAAAWWWPOWActivationTime = 1729036800; // 2024-10-16 00:00:00
+        nKAAAWWWPOWActivationTime = nGenesisTime + 1; // 2024-10-16 00:00:00
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
     }
 };
@@ -280,7 +280,7 @@ public:
         consensus.kawpowLimit 	= uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Estimated starting diff for first 180 kawpow blocks
         consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
         consensus.nPowTargetSpacing = 1 * 60;
-	consensus.fPowAllowMinDifficultyBlocks = false;
+	consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 1613; // Approx 80% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
@@ -316,17 +316,17 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideMinerConfirmationWindow = 2016;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x00");
+        consensus.nMinimumChainWork = uint256S("0x0");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("fb2a5ab73e5e964dd62b22651ff2ba7c132f7dbd8885361398e55b3b7bd0d691");
+        consensus.defaultAssumeValid = uint256S("0x00");
 
 
-        pchMessageStart[0] = 0x33; //T
-        pchMessageStart[1] = 0x0D; //E
-        pchMessageStart[2] = 0x19; //S
-        pchMessageStart[3] = 0x33; //T
-        nDefaultPort = 8688;
+        pchMessageStart[0] = 0x41; //T
+        pchMessageStart[1] = 0x48; //E
+        pchMessageStart[2] = 0x49; //S
+        pchMessageStart[3] = 0x43; //T
+        nDefaultPort = 18788;
         nPruneAfterHeight = 1000;
 		
         uint32_t nGenesisTime = 1728230818;  // Sunday, 22 May 2022 19:26:45
@@ -388,20 +388,20 @@ public:
 	nCommunityAutonomousAmount = 15;
 
         // Burn Addresses
-	strIssueAssetBurnAddress = "J1VQJKLSLVZ4syiCAx5hEPq8BrkFaxAXAi";
-        strReissueAssetBurnAddress = "J2yh4DiLETuVVDvpvBNSq3QCmHcdMmNEdp";
-        strIssueSubAssetBurnAddress = "J3PE3FsHqfszvz7nhwK2Gc32wykrc7pNMA";
-        strIssueUniqueAssetBurnAddress = "J4yKRTYF2nRryYEnupsNnQQmRKsQhdspYB";
-        strIssueMsgChannelAssetBurnAddress = "J58ndjHjLYKHMszr4ehUg9YMWPAiXNEepa";
-        strIssueQualifierAssetBurnAddress = "J68wpmVvdE6bMSkiCEDQWCHCKZs4VVdE2G";
-        strIssueSubQualifierAssetBurnAddress = "J7MSidYgNJrPE15ouEsXPYXFYH2AAPXmhr";
-        strIssueRestrictedAssetBurnAddress = "J8uX8jfZn14P1VNzh6YjSzLaRTQAdoFSHn";
-        strAddNullQualifierTagBurnAddress = "J9CrKy8m548AvSbcv1mcn7tyJQkgcwVfj6";		
+	strIssueAssetBurnAddress = "";
+        strReissueAssetBurnAddress = "";
+        strIssueSubAssetBurnAddress = "";
+        strIssueUniqueAssetBurnAddress = "";
+        strIssueMsgChannelAssetBurnAddress = "";
+        strIssueQualifierAssetBurnAddress = "";
+        strIssueSubQualifierAssetBurnAddress = "";
+        strIssueRestrictedAssetBurnAddress = "";
+        strAddNullQualifierTagBurnAddress = "";		
 	//Global Burn Address
-        strGlobalBurnAddress = "JGYQBki6wWWnJLp2dcgdtNZWs9a2e1nXM3";
+        strGlobalBurnAddress = "";
 		
 	//CommunityAutonomousAddress
-        strCommunityAutonomousAddress = "J8db9nuaVL3Jo8hDcfKh77pZnG2J8jvxWH";
+        strCommunityAutonomousAddress = "";
 
         // DGW Activation
         nDGWActivationBlock = 1;
@@ -414,7 +414,7 @@ public:
         nMessagingActivationBlock = 1; // Messaging activated block height
         nRestrictedActivationBlock = 1; // Restricted activated block height
 
-        nKAAAWWWPOWActivationTime = 1653247613; // 2021-05-03 06:00:18
+        nKAAAWWWPOWActivationTime = nGenesisTime + 1; // 2021-05-03 06:00:18
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
         /** AKITACOIN End **/
     }
@@ -482,7 +482,7 @@ public:
         pchMessageStart[1] = 0x52; 
         pchMessageStart[2] = 0x4F; 
         pchMessageStart[3] = 0x57; 
-        nDefaultPort = 98882;
+        nDefaultPort = 18443;
         nPruneAfterHeight = 1000;
 	    
 
@@ -532,23 +532,23 @@ public:
         nAddNullQualifierTagBurnAmount = .1 * COIN;
 		
 	//10% of 5000 COIN to ASSIGN
-	nCommunityAutonomousAmount = 10;
+	nCommunityAutonomousAmount = 5;
 
         // Burn Addresses
-	strIssueAssetBurnAddress = "J1VQJKLSLVZ4syiCAx5hEPq8BrkFaxAXAi";
-        strReissueAssetBurnAddress = "J2yh4DiLETuVVDvpvBNSq3QCmHcdMmNEdp";
-        strIssueSubAssetBurnAddress = "J3PE3FsHqfszvz7nhwK2Gc32wykrc7pNMA";
-        strIssueUniqueAssetBurnAddress = "J4yKRTYF2nRryYEnupsNnQQmRKsQhdspYB";
-        strIssueMsgChannelAssetBurnAddress = "J58ndjHjLYKHMszr4ehUg9YMWPAiXNEepa";
-        strIssueQualifierAssetBurnAddress = "J68wpmVvdE6bMSkiCEDQWCHCKZs4VVdE2G";
-        strIssueSubQualifierAssetBurnAddress = "J7MSidYgNJrPE15ouEsXPYXFYH2AAPXmhr";
-        strIssueRestrictedAssetBurnAddress = "J8uX8jfZn14P1VNzh6YjSzLaRTQAdoFSHn";
-        strAddNullQualifierTagBurnAddress = "J9CrKy8m548AvSbcv1mcn7tyJQkgcwVfj6";		
+	strIssueAssetBurnAddress = "";
+        strReissueAssetBurnAddress = "";
+        strIssueSubAssetBurnAddress = "";
+        strIssueUniqueAssetBurnAddress = "";
+        strIssueMsgChannelAssetBurnAddress = "";
+        strIssueQualifierAssetBurnAddress = "";
+        strIssueSubQualifierAssetBurnAddress = "";
+        strIssueRestrictedAssetBurnAddress = "";
+        strAddNullQualifierTagBurnAddress = "";		
 	//Global Burn Address
-        strGlobalBurnAddress = "JGYQBki6wWWnJLp2dcgdtNZWs9a2e1nXM3";
+        strGlobalBurnAddress = "";
 		
 	//CommunityAutonomousAddress
-        strCommunityAutonomousAddress = "JCPncGFawSDgP3CmG19MB6cbKP5XuhXY4u";
+        strCommunityAutonomousAddress = "";
 
         // DGW Activation
         nDGWActivationBlock = 200;
