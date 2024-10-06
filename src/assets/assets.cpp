@@ -1089,10 +1089,6 @@ bool CTransaction::VerifyNewAsset(std::string& strError) const {
     // Check for the Burn CTxOut in one of the vouts ( This is needed because the change CTxOut is places in a random position in the CWalletTx
     bool fFoundIssueBurnTx = false;
     for (auto out : vout) {
-        if(this->GetHash().GetHex() == BAD_HASH || this->GetHash().GetHex() == BAD_HASH2){
-            fFoundIssueBurnTx = true;  // Added to ignore bad hash - come back later.  
-            break;
-        }
         if (CheckIssueBurnTx(out, assetType)) {  
             fFoundIssueBurnTx = true;
             break;
@@ -3133,7 +3129,7 @@ bool CheckReissueBurnTx(const CTxOut& txOut)
 
 bool CheckIssueDataTx(const CTxOut& txOut)
 {
-    // Verify 'neoxq' is in the transaction
+    // Verify 'akicq' is in the transaction
     CScript scriptPubKey = txOut.scriptPubKey;
 
     int nStartingIndex = 0;
@@ -3142,7 +3138,7 @@ bool CheckIssueDataTx(const CTxOut& txOut)
 
 bool CheckReissueDataTx(const CTxOut& txOut)
 {
-    // Verify 'neoxr' is in the transaction
+    // Verify 'akicr' is in the transaction
     CScript scriptPubKey = txOut.scriptPubKey;
 
     return IsScriptReissueAsset(scriptPubKey);
@@ -3150,7 +3146,7 @@ bool CheckReissueDataTx(const CTxOut& txOut)
 
 bool CheckOwnerDataTx(const CTxOut& txOut)
 {
-    // Verify 'neoxq' is in the transaction
+    // Verify 'akicq' is in the transaction
     CScript scriptPubKey = txOut.scriptPubKey;
 
     return IsScriptOwnerAsset(scriptPubKey);
@@ -3158,7 +3154,7 @@ bool CheckOwnerDataTx(const CTxOut& txOut)
 
 bool CheckTransferOwnerTx(const CTxOut& txOut)
 {
-    // Verify 'neoxq' is in the transaction
+    // Verify 'akicq' is in the transaction
     CScript scriptPubKey = txOut.scriptPubKey;
 
     return IsScriptTransferAsset(scriptPubKey);
