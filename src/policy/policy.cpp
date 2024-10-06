@@ -150,7 +150,7 @@ bool IsStandardTx(const CTransaction& tx, std::string& reason, const bool witnes
 
     // only one hundred OP_AKITACOIN_ASSET txout is permitted
     if (nAssetDataOut > 100) {
-        reason = "tomany-op-neox-asset";
+        reason = "tomany-op-akic-asset";
         return false;
     }
 
