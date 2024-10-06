@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_PRIMITIVES_BLOCK_H
-#define NEOXA_PRIMITIVES_BLOCK_H
+#ifndef AKITACOIN_PRIMITIVES_BLOCK_H
+#define AKITACOIN_PRIMITIVES_BLOCK_H
 
 #include "primitives/transaction.h"
 #include "serialize.h"
@@ -232,4 +232,4 @@ public:
     }
 };
 
-#endif // NEOXA_PRIMITIVES_BLOCK_H
+#endif // AKITACOIN_PRIMITIVES_BLOCK_H

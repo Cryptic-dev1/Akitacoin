@@ -3,8 +3,8 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
-#ifndef NEOXACOIN_MESSAGES_H
-#define NEOXACOIN_MESSAGES_H
+#ifndef AKITACOINCOIN_MESSAGES_H
+#define AKITACOINCOIN_MESSAGES_H
 
 #include <uint256.h>
 #include <serialize.h>
@@ -140,4 +140,4 @@ public:
     std::string createJsonString();
 };
 
-#endif //NEOXACOIN_MESSAGES_H
+#endif //AKITACOINCOIN_MESSAGES_H

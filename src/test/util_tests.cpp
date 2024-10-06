@@ -10,7 +10,7 @@
 #include "sync.h"
 #include "utilstrencodings.h"
 #include "utilmoneystr.h"
-#include "test/test_neoxa.h"
+#include "test/test_akitacoin.h"
 
 #include <stdint.h>
 #include <vector>

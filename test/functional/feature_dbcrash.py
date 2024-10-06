@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -36,11 +36,11 @@ import random
 import time
 from test_framework.mininode import CTxIn, COutPoint, COIN, to_hex
 from test_framework.script import CTransaction, CTxOut
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import create_confirmed_utxos, hex_str_to_bytes, assert_equal
 
 
-class ChainstateWriteCrashTest(NeoxaTestFramework):
+class ChainstateWriteCrashTest(AkitacoinTestFramework):
 
     def set_test_params(self):
         self.num_nodes = 4
@@ -84,15 +84,15 @@ class ChainstateWriteCrashTest(NeoxaTestFramework):
                 return utxo_hash
             except:
                 # An exception here should mean the node is about to crash.
-                # If neoxad exits, then try again.  wait_for_node_exit()
-                # should raise an exception if neoxad doesn't exit.
+                # If akitacoind exits, then try again.  wait_for_node_exit()
+                # should raise an exception if akitacoind doesn't exit.
                 self.log.debug("Wait for node exit ~~ during restart, node: %s", node_index)
                 self.wait_for_node_exit(node_index, timeout=10)
             self.crashed_on_restart += 1
             time.sleep(1)
 
-        # If we got here, neoxad isn't coming back up on restart.  Could be a
-        # bug in neoxad, or we've gotten unlucky with our dbcrash ratio --
+        # If we got here, akitacoind isn't coming back up on restart.  Could be a
+        # bug in akitacoind, or we've gotten unlucky with our dbcrash ratio --
         # perhaps we generated a test case that blew up our cache?
         # TODO: If this happens a lot, we should try to restart without -dbcrashratio
         # and make sure that recovery happens.

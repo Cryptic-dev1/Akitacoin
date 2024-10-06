@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,7 +12,7 @@ Test that the CHECKLOCKTIMEVERIFY soft-fork activates at (regtest) block height
 """
 
 from io import BytesIO
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import p2p_port, assert_equal
 from test_framework.mininode import to_hex, CTransaction, hex_str_to_bytes, NodeConn, NodeConnCB, NetworkThread, MsgBlock, wait_until, mininode_lock, MsgTx
 from test_framework.blocktools import create_coinbase, create_block
@@ -62,7 +62,7 @@ def create_transaction(node, coinbase, to_address, amount):
     tx.deserialize(BytesIO(hex_str_to_bytes(signresult['hex'])))
     return tx
 
-class BIP65Test(NeoxaTestFramework):
+class BIP65Test(AkitacoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.extra_args = [['-promiscuousmempoolflags=1', '-whitelist=127.0.0.1']]

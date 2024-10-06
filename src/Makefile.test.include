@@ -3,12 +3,12 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-TESTS += test/test_neoxa
-bin_PROGRAMS += test/test_neoxa
-noinst_PROGRAMS += test/test_neoxa_fuzzy
-noinst_PROGRAMS += test/test_neoxa_hash
+TESTS += test/test_akitacoin
+bin_PROGRAMS += test/test_akitacoin
+noinst_PROGRAMS += test/test_akitacoin_fuzzy
+noinst_PROGRAMS += test/test_akitacoin_hash
 TEST_SRCDIR = test
-TEST_BINARY=test/test_neoxa$(EXEEXT)
+TEST_BINARY=test/test_akitacoin$(EXEEXT)
 
 JSON_TEST_FILES = \
   test/data/script_tests.json \
@@ -23,8 +23,8 @@ RAW_TEST_FILES =
 
 GENERATED_TEST_FILES = $(JSON_TEST_FILES:.json=.json.h) $(RAW_TEST_FILES:.raw=.raw.h)
 
-# test_neoxa binary #
-NEOXA_TESTS =\
+# test_akitacoin binary #
+AKITACOIN_TESTS =\
   test/assets/asset_tests.cpp \
   test/assets/serialization_tests.cpp \
   test/assets/asset_tx_tests.cpp \
@@ -89,9 +89,9 @@ NEOXA_TESTS =\
   test/sigopcount_tests.cpp \
   test/skiplist_tests.cpp \
   test/streams_tests.cpp \
-  test/test_neoxa.cpp \
-  test/test_neoxa.h \
-  test/test_neoxa_main.cpp \
+  test/test_akitacoin.cpp \
+  test/test_akitacoin.h \
+  test/test_akitacoin_main.cpp \
   test/timedata_tests.cpp \
   test/torcontrol_tests.cpp \
   test/transaction_tests.cpp \
@@ -102,7 +102,7 @@ NEOXA_TESTS =\
   test/util_tests.cpp
 
 if ENABLE_WALLET
-NEOXA_TESTS += \
+AKITACOIN_TESTS += \
   wallet/test/wallet_test_fixture.cpp \
   wallet/test/wallet_test_fixture.h \
   wallet/test/accounting_tests.cpp \
@@ -110,77 +110,77 @@ NEOXA_TESTS += \
   wallet/test/crypto_tests.cpp
 endif
 
-test_test_neoxa_SOURCES = $(NEOXA_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
-test_test_neoxa_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES) -I$(builddir)/test/ $(TESTDEFS) $(EVENT_CFLAGS)
-test_test_neoxa_LDADD =
+test_test_akitacoin_SOURCES = $(AKITACOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
+test_test_akitacoin_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES) -I$(builddir)/test/ $(TESTDEFS) $(EVENT_CFLAGS)
+test_test_akitacoin_LDADD =
 if ENABLE_WALLET
-test_test_neoxa_LDADD += $(LIBNEOXA_WALLET)
+test_test_akitacoin_LDADD += $(LIBAKITACOIN_WALLET)
 endif
-test_test_neoxa_LDADD += $(LIBNEOXA_SERVER) $(LIBneoxa_cli) $(LIBNEOXA_COMMON) $(LIBNEOXA_UTIL) $(LIBNEOXA_CONSENSUS) $(LIBNEOXA_CRYPTO) $(LIBUNIVALUE) \
+test_test_akitacoin_LDADD += $(LIBAKITACOIN_SERVER) $(LIBakitacoin_cli) $(LIBAKITACOIN_COMMON) $(LIBAKITACOIN_UTIL) $(LIBAKITACOIN_CONSENSUS) $(LIBAKITACOIN_CRYPTO) $(LIBUNIVALUE) \
   $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) $(BOOST_LIBS) $(BOOST_UNIT_TEST_FRAMEWORK_LIB) $(LIBSECP256K1) $(EVENT_LIBS) $(EVENT_PTHREADS_LIBS)
-test_test_neoxa_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+test_test_akitacoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
-test_test_neoxa_LDADD += $(LIBNEOXA_CONSENSUS) $(LIBNEOXA_CRYPTO) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
-test_test_neoxa_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
+test_test_akitacoin_LDADD += $(LIBAKITACOIN_CONSENSUS) $(LIBAKITACOIN_CRYPTO) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS)
+test_test_akitacoin_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) -static
 
 if ENABLE_ZMQ
-test_test_neoxa_LDADD += $(ZMQ_LIBS)
+test_test_akitacoin_LDADD += $(ZMQ_LIBS)
 endif
 #
 
-# test_neoxa_fuzzy binary #
-test_test_neoxa_fuzzy_SOURCES = test/test_neoxa_fuzzy.cpp
-test_test_neoxa_fuzzy_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-test_test_neoxa_fuzzy_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-test_test_neoxa_fuzzy_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# test_akitacoin_fuzzy binary #
+test_test_akitacoin_fuzzy_SOURCES = test/test_akitacoin_fuzzy.cpp
+test_test_akitacoin_fuzzy_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES)
+test_test_akitacoin_fuzzy_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+test_test_akitacoin_fuzzy_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
-test_test_neoxa_fuzzy_LDADD = \
+test_test_akitacoin_fuzzy_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBNEOXA_SERVER) \
-  $(LIBNEOXA_COMMON) \
-  $(LIBNEOXA_UTIL) \
-  $(LIBNEOXA_CONSENSUS) \
-  $(LIBNEOXA_CRYPTO) \
+  $(LIBAKITACOIN_SERVER) \
+  $(LIBAKITACOIN_COMMON) \
+  $(LIBAKITACOIN_UTIL) \
+  $(LIBAKITACOIN_CONSENSUS) \
+  $(LIBAKITACOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-test_test_neoxa_fuzzy_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+test_test_akitacoin_fuzzy_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# test_neoxa_hash binary #
-test_test_neoxa_hash_SOURCES = test/test_neoxa_hash.cpp
-test_test_neoxa_hash_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-test_test_neoxa_hash_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-test_test_neoxa_hash_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_AP_LDFLAGS)
+# test_akitacoin_hash binary #
+test_test_akitacoin_hash_SOURCES = test/test_akitacoin_hash.cpp
+test_test_akitacoin_hash_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES)
+test_test_akitacoin_hash_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+test_test_akitacoin_hash_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_AP_LDFLAGS)
 
-test_test_neoxa_hash_LDADD = \
+test_test_akitacoin_hash_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBNEOXA_COMMON) \
-  $(LIBNEOXA_UTIL) \
-  $(LIBNEOXA_CONSENSUS) \
-  $(LIBNEOXA_CRYPTO)
+  $(LIBAKITACOIN_COMMON) \
+  $(LIBAKITACOIN_UTIL) \
+  $(LIBAKITACOIN_CONSENSUS) \
+  $(LIBAKITACOIN_CRYPTO)
 
-test_test_neoxa_hash_LDADD += $(CRYPTO_LIBS)
+test_test_akitacoin_hash_LDADD += $(CRYPTO_LIBS)
 #
 
-nodist_test_test_neoxa_SOURCES = $(GENERATED_TEST_FILES)
+nodist_test_test_akitacoin_SOURCES = $(GENERATED_TEST_FILES)
 
-$(NEOXA_TESTS): $(GENERATED_TEST_FILES)
+$(AKITACOIN_TESTS): $(GENERATED_TEST_FILES)
 
-CLEAN_NEOXA_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
+CLEAN_AKITACOIN_TEST = test/*.gcda test/*.gcno $(GENERATED_TEST_FILES)
 
-CLEANFILES += $(CLEAN_NEOXA_TEST)
+CLEANFILES += $(CLEAN_AKITACOIN_TEST)
 
-neoxa_test: $(TEST_BINARY)
+akitacoin_test: $(TEST_BINARY)
 
-neoxa_test_check: $(TEST_BINARY) FORCE
+akitacoin_test_check: $(TEST_BINARY) FORCE
 	$(MAKE) check-TESTS TESTS=$^
 
-neoxa_test_clean : FORCE
-	rm -f $(CLEAN_NEOXA_TEST) $(test_test_neoxa_OBJECTS) $(TEST_BINARY)
+akitacoin_test_clean : FORCE
+	rm -f $(CLEAN_AKITACOIN_TEST) $(test_test_akitacoin_OBJECTS) $(TEST_BINARY)
 
 check-local:
-	@echo "Running test/util/neoxa-util-test.py..."
-	$(PYTHON) $(top_builddir)/test/util/neoxa-util-test.py
+	@echo "Running test/util/akitacoin-util-test.py..."
+	$(PYTHON) $(top_builddir)/test/util/akitacoin-util-test.py
 	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C secp256k1 check
 if EMBEDDED_UNIVALUE
 	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C univalue check

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.neoxa;
+package org.akitacoin;
 
 /**
  * This class holds the context reference used in native methods 

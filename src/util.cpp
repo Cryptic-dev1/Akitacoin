@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/neoxa-config.h"
+#include "config/akitacoin-config.h"
 #endif
 
 #include "util.h"
@@ -89,8 +89,8 @@
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
 
-const char *const NEOXA_CONF_FILENAME = "neoxa.conf";
-const char *const NEOXA_PID_FILENAME = "neoxad.pid";
+const char *const AKITACOIN_CONF_FILENAME = "akitacoin.conf";
+const char *const AKITACOIN_PID_FILENAME = "akitacoind.pid";
 
 ArgsManager gArgs;
 bool fPrintToConsole = false;
@@ -531,7 +531,7 @@ static std::string FormatException(const std::exception *pex, const char *pszThr
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(nullptr, pszModule, sizeof(pszModule));
 #else
-    const char *pszModule = "neoxa";
+    const char *pszModule = "akitacoin";
 #endif
     if (pex)
         return strprintf(
@@ -550,13 +550,13 @@ void PrintExceptionContinue(const std::exception *pex, const char *pszThread)
 
 fs::path GetDefaultDataDir()
 {
-    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Neoxa
-    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Neoxa
-    // Mac: ~/Library/Application Support/Neoxa
-    // Unix: ~/.neoxa
+    // Windows < Vista: C:\Documents and Settings\Username\Application Data\Akitacoin
+    // Windows >= Vista: C:\Users\Username\AppData\Roaming\Akitacoin
+    // Mac: ~/Library/Application Support/Akitacoin
+    // Unix: ~/.akitacoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Neoxa";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "Akitacoin";
 #else
     fs::path pathRet;
     char *pszHome = getenv("HOME");
@@ -566,10 +566,10 @@ fs::path GetDefaultDataDir()
         pathRet = fs::path(pszHome);
 #ifdef MAC_OSX
     // Mac
-    return pathRet / "Library/Application Support/Neoxa";
+    return pathRet / "Library/Application Support/Akitacoin";
 #else
     // Unix
-    return pathRet / ".neoxa";
+    return pathRet / ".akitacoin";
 #endif
 #endif
 }
@@ -631,7 +631,7 @@ void ArgsManager::ReadConfigFile(const std::string &confPath)
 {
     fs::ifstream streamConfig(GetConfigFile(confPath));
     if (!streamConfig.good()){
-        // Create empty neoxa.conf if it does not exist
+        // Create empty akitacoin.conf if it does not exist
         FILE* configFile = fopen(GetConfigFile(confPath).string().c_str(), "a");
         if (configFile != nullptr)
             fclose(configFile);
@@ -645,7 +645,7 @@ void ArgsManager::ReadConfigFile(const std::string &confPath)
 
         for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it)
         {
-            // Don't overwrite existing settings so command line settings override neoxa.conf
+            // Don't overwrite existing settings so command line settings override akitacoin.conf
             std::string strKey = std::string("-") + it->string_key;
             std::string strValue = it->value[0];
             InterpretNegativeSetting(strKey, strValue);
@@ -662,7 +662,7 @@ void ArgsManager::ReadConfigFile(const std::string &confPath)
 
 fs::path GetPidFile()
 {
-    fs::path pathPidFile(gArgs.GetArg("-pid", NEOXA_PID_FILENAME));
+    fs::path pathPidFile(gArgs.GetArg("-pid", AKITACOIN_PID_FILENAME));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }
@@ -932,10 +932,10 @@ std::string CopyrightHolders(const std::string &strPrefix)
 {
     std::string strCopyrightHolders = strPrefix + strprintf(_(COPYRIGHT_HOLDERS), _(COPYRIGHT_HOLDERS_SUBSTITUTION));
 
-    // Check for untranslated substitution to make sure Neoxa Core copyright is not removed by accident
-    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Neoxa Core") == std::string::npos)
+    // Check for untranslated substitution to make sure Akitacoin Core copyright is not removed by accident
+    if (strprintf(COPYRIGHT_HOLDERS, COPYRIGHT_HOLDERS_SUBSTITUTION).find("Akitacoin Core") == std::string::npos)
     {
-        strCopyrightHolders += "\n" + strPrefix + "The Neoxa Core developers";
+        strCopyrightHolders += "\n" + strPrefix + "The Akitacoin Core developers";
     }
     return strCopyrightHolders;
 }

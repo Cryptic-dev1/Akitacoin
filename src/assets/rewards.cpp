@@ -61,13 +61,13 @@ bool GenerateDistributionList(const CRewardSnapshot& p_rewardSnapshot, std::vect
     //  Get details on the specified source asset
     CNewAsset distributionAsset;
     UNUSED_VAR bool srcIsIndivisible = false;
-    CAmount srcUnitDivisor = COIN;  //  Default to divisor for NEOX
+    CAmount srcUnitDivisor = COIN;  //  Default to divisor for AKIC
     const int8_t COIN_DIGITS_PAST_DECIMAL = 8;
 
     //  This value is in indivisible units of the source asset
     CAmount modifiedPaymentInAssetUnits = p_rewardSnapshot.nDistributionAmount;
 
-    if (p_rewardSnapshot.strDistributionAsset != "NEOX") {
+    if (p_rewardSnapshot.strDistributionAsset != "AKIC") {
         if (!passets->GetAssetMetaDataIfExists(p_rewardSnapshot.strDistributionAsset, distributionAsset)) {
             LogPrint(BCLog::REWARDS, "%s: Failed to retrieve asset details for '%s'\n", __func__, p_rewardSnapshot.strDistributionAsset.c_str());
             return false;
@@ -87,7 +87,7 @@ bool GenerateDistributionList(const CRewardSnapshot& p_rewardSnapshot, std::vect
                  p_rewardSnapshot.strDistributionAsset.c_str(), distributionAsset.units, srcUnitDivisor);
     }
     else {
-        LogPrint(BCLog::REWARDS, "%s: Distribution is NEOX with divisor %d\n", __func__, srcUnitDivisor);
+        LogPrint(BCLog::REWARDS, "%s: Distribution is AKIC with divisor %d\n", __func__, srcUnitDivisor);
     }
 
     LogPrint(BCLog::REWARDS, "%s: Scaled payment amount in %s is %d\n", __func__,
@@ -269,8 +269,8 @@ bool BuildTransaction(
     CAmount totalPaymentAmt = 0;
 
 
-    //  Handle payouts using NEOX differently from those using an asset
-    if (p_rewardSnapshot.strDistributionAsset == "NEOX") {
+    //  Handle payouts using AKIC differently from those using an asset
+    if (p_rewardSnapshot.strDistributionAsset == "AKIC") {
         // Check amount
         CAmount curBalance = p_walletPtr->GetBalance();
 
@@ -287,7 +287,7 @@ bool BuildTransaction(
         for (int i = start; i < (int)p_pendingPayments.size() && i < stop; i++) {
             expectedCount++;
 
-            // Parse Neoxa address (already validated during ownership snapshot creation)
+            // Parse Akitacoin address (already validated during ownership snapshot creation)
             CTxDestination dest = DecodeDestination(p_pendingPayments[i].address);
             CScript scriptPubKey = GetScriptForDestination(dest);
             CRecipient recipient = {scriptPubKey, p_pendingPayments[i].amount, false};

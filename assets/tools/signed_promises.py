@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Script to find signed contract_urls
-# Reads from a Neoxa node - make sure its running
+# Reads from a Akitacoin node - make sure its running
 # Runs through the assets looking for ones with meta data
 # Checks the meta data for contract_url
 # Downloads the documents - (named by asset)
@@ -23,7 +23,7 @@ import json
 import hashlib
 
 
-cli = "neoxa-cli"
+cli = "akitacoin-cli"
 mode =  "-testnet"
 rpc_user = 'rpcuser'
 rpc_pass = 'rpcpass555'
@@ -90,7 +90,7 @@ def get_signed_assets(assets):
     list_of_unsigned_assets = []
     print(assets)
     for key,value in assets.iteritems():
-        if key == 'NEOXA_WITH_METADATA':
+        if key == 'AKITACOIN_WITH_METADATA':
             print("Key " + key)
             #print("Value " + value)
             print("Reading metadata for " + str(key))

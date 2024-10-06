@@ -6,13 +6,13 @@ import subprocess
 import json
 
 
-#Set this to your neoxa-cli program
-cli = "neoxa-cli"
+#Set this to your akitacoin-cli program
+cli = "akitacoin-cli"
 
 #mode = "-testnet"
 mode = ""
 rpc_port = 8766
-#Set this information in your neoxa.conf file (in datadir, not testnet3)
+#Set this information in your akitacoin.conf file (in datadir, not testnet3)
 rpc_user = 'rpcuser'
 rpc_pass = 'rpcpass555'
 

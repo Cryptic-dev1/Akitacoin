@@ -1,6 +1,6 @@
 // Automatically generated file. Do not modify.
-#ifndef NEOXA_UNIVALUE_UNIVALUE_ESCAPES_H
-#define NEOXA_UNIVALUE_UNIVALUE_ESCAPES_H
+#ifndef AKITACOIN_UNIVALUE_UNIVALUE_ESCAPES_H
+#define AKITACOIN_UNIVALUE_UNIVALUE_ESCAPES_H
 static const char *escapes[256] = {
 	"\\u0000",
 	"\\u0001",
@@ -259,4 +259,4 @@ static const char *escapes[256] = {
 	NULL,
 	NULL,
 };
-#endif // NEOXA_UNIVALUE_UNIVALUE_ESCAPES_H
+#endif // AKITACOIN_UNIVALUE_UNIVALUE_ESCAPES_H

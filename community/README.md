@@ -1,2 +1,2 @@
-# Neoxa - Community Ideas
+# Akitacoin - Community Ideas
 

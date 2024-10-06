@@ -1,26 +1,26 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """Testing asset use cases"""
 
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import assert_equal, assert_is_hash_string, assert_does_not_contain_key, assert_raises_rpc_error, JSONRPCException, Decimal
 
 import string
 
 
-class AssetTest(NeoxaTestFramework):
+class AssetTest(AkitacoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3
         self.extra_args = [['-assetindex'], ['-assetindex'], ['-assetindex']]
 
     def activate_assets(self):
-        self.log.info("Generating NEOX for node[0] and activating assets...")
+        self.log.info("Generating AKIC for node[0] and activating assets...")
         n0 = self.nodes[0]
 
         n0.generate(1)
@@ -137,13 +137,13 @@ class AssetTest(NeoxaTestFramework):
         assert_equal(n0.listassetbalancesbyaddress(address0)["MY_ASSET"], 2000)
 
         self.log.info("Checking listassets()...")
-        n0.issue("NEOXA1", 1000)
-        n0.issue("NEOXA2", 1000)
-        n0.issue("NEOXA3", 1000)
+        n0.issue("AKITACOIN1", 1000)
+        n0.issue("AKITACOIN2", 1000)
+        n0.issue("AKITACOIN3", 1000)
         n0.generate(1)
         self.sync_all()
 
-        n0.listassets(asset="NEOXA*", verbose=False, count=2, start=-2)
+        n0.listassets(asset="AKITACOIN*", verbose=False, count=2, start=-2)
 
         self.log.info("Creating some sub-assets...")
         n0.issue(asset_name="MY_ASSET/SUB1", qty=1000, to_address=address0, change_address=address0, units=4, reissuable=True, has_ipfs=True, ipfs_hash=ipfs_hash)
@@ -162,10 +162,10 @@ class AssetTest(NeoxaTestFramework):
         assert_equal(assetdata["has_ipfs"], 1)
         assert_equal(assetdata["ipfs_hash"], ipfs_hash)
 
-        neoxa_assets = n0.listassets(asset="NEOXA*", verbose=False, count=2, start=-2)
-        assert_equal(len(neoxa_assets), 2)
-        assert_equal(neoxa_assets[0], "NEOXA2")
-        assert_equal(neoxa_assets[1], "NEOXA3")
+        akitacoin_assets = n0.listassets(asset="AKITACOIN*", verbose=False, count=2, start=-2)
+        assert_equal(len(akitacoin_assets), 2)
+        assert_equal(akitacoin_assets[0], "AKITACOIN2")
+        assert_equal(akitacoin_assets[1], "AKITACOIN3")
         self.sync_all()
 
     def issue_param_checks(self):

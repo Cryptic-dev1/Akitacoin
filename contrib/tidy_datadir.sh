@@ -1,6 +1,6 @@
 #!/bin/bash
 # Copyright (c) 2013 The Bitcoin Core developers
-# Copyright (c) 2017-2019 The Neoxa__Core developers
+# Copyright (c) 2017-2019 The Akitacoin__Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,7 @@ if [ -d "$1" ]; then
   cd "$1"
 else
   echo "Usage: $0 <datadir>" >&2
-  echo "Removes obsolete Neoxa database files" >&2
+  echo "Removes obsolete Akitacoin database files" >&2
   exit 1
 fi
 
@@ -20,22 +20,22 @@ if [ -f wallet.dat -a -f peers.dat -a -f chainstate/CURRENT -a -f blocks/index/C
 
 case $LEVEL in
   0)
-    echo "Error: no Neoxa datadir detected."
+    echo "Error: no Akitacoin datadir detected."
     exit 1
     ;;
   1)
-    echo "Detected old Neoxa datadir (before 0.7)."
+    echo "Detected old Akitacoin datadir (before 0.7)."
     echo "Nothing to do."
     exit 0
     ;;
   2)
-    echo "Detected Neoxa 0.7 datadir."
+    echo "Detected Akitacoin 0.7 datadir."
     ;;
   3)
-    echo "Detected Neoxa pre-0.8 datadir."
+    echo "Detected Akitacoin pre-0.8 datadir."
     ;;
   4)
-    echo "Detected Neoxa 0.8 datadir."
+    echo "Detected Akitacoin 0.8 datadir."
     ;;
 esac
 

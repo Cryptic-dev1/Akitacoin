@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,11 +9,11 @@
  * Server/client environment: argument handling, config file parsing,
  * logging, thread wrappers, startup time
  */
-#ifndef NEOXA_UTIL_H
-#define NEOXA_UTIL_H
+#ifndef AKITACOIN_UTIL_H
+#define AKITACOIN_UTIL_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/neoxa-config.h"
+#include "config/akitacoin-config.h"
 #endif
 
 #include "compat.h"
@@ -55,8 +55,8 @@ extern bool fLogIPs;
 extern std::atomic<bool> fReopenDebugLog;
 extern CTranslationInterface translationInterface;
 
-extern const char *const NEOXA_CONF_FILENAME;
-extern const char *const NEOXA_PID_FILENAME;
+extern const char *const AKITACOIN_CONF_FILENAME;
+extern const char *const AKITACOIN_PID_FILENAME;
 
 extern std::atomic<uint32_t> logCategories;
 
@@ -334,7 +334,7 @@ void RenameThread(const char *name);
 template<typename Callable>
 void TraceThread(const char *name, Callable func)
 {
-    std::string s = strprintf("neoxa-%s", name);
+    std::string s = strprintf("akitacoin-%s", name);
     RenameThread(s.c_str());
     try
     {
@@ -363,4 +363,4 @@ std::string CopyrightHolders(const std::string &strPrefix);
 
 void SetThreadPriority(int nPriority);
 
-#endif // NEOXA_UTIL_H
+#endif // AKITACOIN_UTIL_H

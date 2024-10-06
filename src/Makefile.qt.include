@@ -3,94 +3,94 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-bin_PROGRAMS += qt/neoxa-qt
-EXTRA_LIBRARIES += qt/libneoxaqt.a
+bin_PROGRAMS += qt/akitacoin-qt
+EXTRA_LIBRARIES += qt/libakitacoinqt.a
 
-# neoxa qt core #
+# akitacoin qt core #
 QT_TS = \
-  qt/locale/neoxa_af.ts \
-  qt/locale/neoxa_af_ZA.ts \
-  qt/locale/neoxa_ar.ts \
-  qt/locale/neoxa_be_BY.ts \
-  qt/locale/neoxa_bg_BG.ts \
-  qt/locale/neoxa_bg.ts \
-  qt/locale/neoxa_ca_ES.ts \
-  qt/locale/neoxa_ca.ts \
-  qt/locale/neoxa_ca@valencia.ts \
-  qt/locale/neoxa_cs.ts \
-  qt/locale/neoxa_cy.ts \
-  qt/locale/neoxa_da.ts \
-  qt/locale/neoxa_de.ts \
-  qt/locale/neoxa_el_GR.ts \
-  qt/locale/neoxa_el.ts \
-  qt/locale/neoxa_en_GB.ts \
-  qt/locale/neoxa_en.ts \
-  qt/locale/neoxa_eo.ts \
-  qt/locale/neoxa_es_AR.ts \
-  qt/locale/neoxa_es_CL.ts \
-  qt/locale/neoxa_es_CO.ts \
-  qt/locale/neoxa_es_DO.ts \
-  qt/locale/neoxa_es_ES.ts \
-  qt/locale/neoxa_es_MX.ts \
-  qt/locale/neoxa_es.ts \
-  qt/locale/neoxa_es_UY.ts \
-  qt/locale/neoxa_es_VE.ts \
-  qt/locale/neoxa_et_EE.ts \
-  qt/locale/neoxa_et.ts \
-  qt/locale/neoxa_eu_ES.ts \
-  qt/locale/neoxa_fa_IR.ts \
-  qt/locale/neoxa_fa.ts \
-  qt/locale/neoxa_fi.ts \
-  qt/locale/neoxa_fr_CA.ts \
-  qt/locale/neoxa_fr_FR.ts \
-  qt/locale/neoxa_fr.ts \
-  qt/locale/neoxa_gl.ts \
-  qt/locale/neoxa_he.ts \
-  qt/locale/neoxa_hi_IN.ts \
-  qt/locale/neoxa_hr.ts \
-  qt/locale/neoxa_hu.ts \
-  qt/locale/neoxa_id_ID.ts \
-  qt/locale/neoxa_it_IT.ts \
-  qt/locale/neoxa_it.ts \
-  qt/locale/neoxa_ja.ts \
-  qt/locale/neoxa_ka.ts \
-  qt/locale/neoxa_kk_KZ.ts \
-  qt/locale/neoxa_ko_KR.ts \
-  qt/locale/neoxa_ku_IQ.ts \
-  qt/locale/neoxa_ky.ts \
-  qt/locale/neoxa_la.ts \
-  qt/locale/neoxa_lt.ts \
-  qt/locale/neoxa_lv_LV.ts \
-  qt/locale/neoxa_mk_MK.ts \
-  qt/locale/neoxa_mn.ts \
-  qt/locale/neoxa_ms_MY.ts \
-  qt/locale/neoxa_nb.ts \
-  qt/locale/neoxa_ne.ts \
-  qt/locale/neoxa_nl.ts \
-  qt/locale/neoxa_pl.ts \
-  qt/locale/neoxa_pt_BR.ts \
-  qt/locale/neoxa_pt_PT.ts \
-  qt/locale/neoxa_ro_RO.ts \
-  qt/locale/neoxa_ro.ts \
-  qt/locale/neoxa_ru.ts \
-  qt/locale/neoxa_sk.ts \
-  qt/locale/neoxa_sl_SI.ts \
-  qt/locale/neoxa_sq.ts \
-  qt/locale/neoxa_sr@latin.ts \
-  qt/locale/neoxa_sr.ts \
-  qt/locale/neoxa_sv.ts \
-  qt/locale/neoxa_ta.ts \
-  qt/locale/neoxa_th_TH.ts \
-  qt/locale/neoxa_tr_TR.ts \
-  qt/locale/neoxa_tr.ts \
-  qt/locale/neoxa_uk.ts \
-  qt/locale/neoxa_ur_PK.ts \
-  qt/locale/neoxa_uz@Cyrl.ts \
-  qt/locale/neoxa_vi.ts \
-  qt/locale/neoxa_vi_VN.ts \
-  qt/locale/neoxa_zh_CN.ts \
-  qt/locale/neoxa_zh_HK.ts \
-  qt/locale/neoxa_zh_TW.ts
+  qt/locale/akitacoin_af.ts \
+  qt/locale/akitacoin_af_ZA.ts \
+  qt/locale/akitacoin_ar.ts \
+  qt/locale/akitacoin_be_BY.ts \
+  qt/locale/akitacoin_bg_BG.ts \
+  qt/locale/akitacoin_bg.ts \
+  qt/locale/akitacoin_ca_ES.ts \
+  qt/locale/akitacoin_ca.ts \
+  qt/locale/akitacoin_ca@valencia.ts \
+  qt/locale/akitacoin_cs.ts \
+  qt/locale/akitacoin_cy.ts \
+  qt/locale/akitacoin_da.ts \
+  qt/locale/akitacoin_de.ts \
+  qt/locale/akitacoin_el_GR.ts \
+  qt/locale/akitacoin_el.ts \
+  qt/locale/akitacoin_en_GB.ts \
+  qt/locale/akitacoin_en.ts \
+  qt/locale/akitacoin_eo.ts \
+  qt/locale/akitacoin_es_AR.ts \
+  qt/locale/akitacoin_es_CL.ts \
+  qt/locale/akitacoin_es_CO.ts \
+  qt/locale/akitacoin_es_DO.ts \
+  qt/locale/akitacoin_es_ES.ts \
+  qt/locale/akitacoin_es_MX.ts \
+  qt/locale/akitacoin_es.ts \
+  qt/locale/akitacoin_es_UY.ts \
+  qt/locale/akitacoin_es_VE.ts \
+  qt/locale/akitacoin_et_EE.ts \
+  qt/locale/akitacoin_et.ts \
+  qt/locale/akitacoin_eu_ES.ts \
+  qt/locale/akitacoin_fa_IR.ts \
+  qt/locale/akitacoin_fa.ts \
+  qt/locale/akitacoin_fi.ts \
+  qt/locale/akitacoin_fr_CA.ts \
+  qt/locale/akitacoin_fr_FR.ts \
+  qt/locale/akitacoin_fr.ts \
+  qt/locale/akitacoin_gl.ts \
+  qt/locale/akitacoin_he.ts \
+  qt/locale/akitacoin_hi_IN.ts \
+  qt/locale/akitacoin_hr.ts \
+  qt/locale/akitacoin_hu.ts \
+  qt/locale/akitacoin_id_ID.ts \
+  qt/locale/akitacoin_it_IT.ts \
+  qt/locale/akitacoin_it.ts \
+  qt/locale/akitacoin_ja.ts \
+  qt/locale/akitacoin_ka.ts \
+  qt/locale/akitacoin_kk_KZ.ts \
+  qt/locale/akitacoin_ko_KR.ts \
+  qt/locale/akitacoin_ku_IQ.ts \
+  qt/locale/akitacoin_ky.ts \
+  qt/locale/akitacoin_la.ts \
+  qt/locale/akitacoin_lt.ts \
+  qt/locale/akitacoin_lv_LV.ts \
+  qt/locale/akitacoin_mk_MK.ts \
+  qt/locale/akitacoin_mn.ts \
+  qt/locale/akitacoin_ms_MY.ts \
+  qt/locale/akitacoin_nb.ts \
+  qt/locale/akitacoin_ne.ts \
+  qt/locale/akitacoin_nl.ts \
+  qt/locale/akitacoin_pl.ts \
+  qt/locale/akitacoin_pt_BR.ts \
+  qt/locale/akitacoin_pt_PT.ts \
+  qt/locale/akitacoin_ro_RO.ts \
+  qt/locale/akitacoin_ro.ts \
+  qt/locale/akitacoin_ru.ts \
+  qt/locale/akitacoin_sk.ts \
+  qt/locale/akitacoin_sl_SI.ts \
+  qt/locale/akitacoin_sq.ts \
+  qt/locale/akitacoin_sr@latin.ts \
+  qt/locale/akitacoin_sr.ts \
+  qt/locale/akitacoin_sv.ts \
+  qt/locale/akitacoin_ta.ts \
+  qt/locale/akitacoin_th_TH.ts \
+  qt/locale/akitacoin_tr_TR.ts \
+  qt/locale/akitacoin_tr.ts \
+  qt/locale/akitacoin_uk.ts \
+  qt/locale/akitacoin_ur_PK.ts \
+  qt/locale/akitacoin_uz@Cyrl.ts \
+  qt/locale/akitacoin_vi.ts \
+  qt/locale/akitacoin_vi_VN.ts \
+  qt/locale/akitacoin_zh_CN.ts \
+  qt/locale/akitacoin_zh_HK.ts \
+  qt/locale/akitacoin_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -129,10 +129,10 @@ QT_MOC_CPP = \
   qt/moc_assetcontroltreewidget.cpp \
   qt/moc_assetfilterproxy.cpp \
   qt/moc_bantablemodel.cpp \
-  qt/moc_neoxaaddressvalidator.cpp \
-  qt/moc_neoxaamountfield.cpp \
-  qt/moc_neoxagui.cpp \
-  qt/moc_neoxaunits.cpp \
+  qt/moc_akitacoinaddressvalidator.cpp \
+  qt/moc_akitacoinamountfield.cpp \
+  qt/moc_akitacoingui.cpp \
+  qt/moc_akitacoinunits.cpp \
   qt/moc_callback.cpp \
   qt/moc_clientmodel.cpp \
   qt/moc_coincontroldialog.cpp \
@@ -184,28 +184,28 @@ QT_MOC_CPP = \
   qt/moc_sendassetsentry.cpp \
   qt/moc_mnemonicdialog.cpp
 
-NEOXA_MM = \
+AKITACOIN_MM = \
   qt/macdockiconhandler.mm \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/neoxa.moc \
-  qt/neoxaamountfield.moc \
+  qt/akitacoin.moc \
+  qt/akitacoinamountfield.moc \
   qt/callback.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_neoxa.cpp
-QT_QRC = qt/neoxa.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_neoxa_locale.cpp
-QT_QRC_LOCALE = qt/neoxa_locale.qrc
+QT_QRC_CPP = qt/qrc_akitacoin.cpp
+QT_QRC = qt/akitacoin.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_akitacoin_locale.cpp
+QT_QRC_LOCALE = qt/akitacoin_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
 PROTOBUF_PROTO = qt/paymentrequest.proto
 
-NEOXA_QT_H = \
+AKITACOIN_QT_H = \
   qt/addressbookpage.h \
   qt/addresstablemodel.h \
   qt/askpassphrasedialog.h \
@@ -216,10 +216,10 @@ NEOXA_QT_H = \
   qt/assetsdialog.h \
   qt/createassetdialog.h \
   qt/bantablemodel.h \
-  qt/neoxaaddressvalidator.h \
-  qt/neoxaamountfield.h \
-  qt/neoxagui.h \
-  qt/neoxaunits.h \
+  qt/akitacoinaddressvalidator.h \
+  qt/akitacoinamountfield.h \
+  qt/akitacoingui.h \
+  qt/akitacoinunits.h \
   qt/callback.h \
   qt/clientmodel.h \
   qt/coincontroldialog.h \
@@ -290,10 +290,10 @@ RES_ICONS = \
   qt/res/icons/asset_manage_selected.png \
   qt/res/icons/asset_transfer.png \
   qt/res/icons/asset_transfer_selected.png \
-  qt/res/icons/neoxacointext.png \
-  qt/res/icons/neoxa.ico \
-  qt/res/icons/neoxa_testnet.ico \
-  qt/res/icons/neoxa.png \
+  qt/res/icons/akitacoincointext.png \
+  qt/res/icons/akitacoin.ico \
+  qt/res/icons/akitacoin_testnet.ico \
+  qt/res/icons/akitacoin.png \
   qt/res/icons/chevron.png \
   qt/res/icons/clock1.png \
   qt/res/icons/clock2.png \
@@ -386,12 +386,12 @@ RES_ICONS = \
   qt/res/fonts/OpenSans-SemiBoldItalic.ttf
 
 
-NEOXA_QT_BASE_CPP = \
+AKITACOIN_QT_BASE_CPP = \
   qt/bantablemodel.cpp \
-  qt/neoxaaddressvalidator.cpp \
-  qt/neoxaamountfield.cpp \
-  qt/neoxagui.cpp \
-  qt/neoxaunits.cpp \
+  qt/akitacoinaddressvalidator.cpp \
+  qt/akitacoinamountfield.cpp \
+  qt/akitacoingui.cpp \
+  qt/akitacoinunits.cpp \
   qt/clientmodel.cpp \
   qt/csvmodelwriter.cpp \
   qt/darkstyle.cpp \
@@ -412,9 +412,9 @@ NEOXA_QT_BASE_CPP = \
   qt/trafficgraphwidget.cpp \
   qt/utilitydialog.cpp
 
-NEOXA_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+AKITACOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
 
-NEOXA_QT_WALLET_CPP = \
+AKITACOIN_QT_WALLET_CPP = \
   qt/addressbookpage.cpp \
   qt/addresstablemodel.cpp \
   qt/askpassphrasedialog.cpp \
@@ -456,31 +456,31 @@ NEOXA_QT_WALLET_CPP = \
   qt/walletview.cpp \
   qt/mnemonicdialog.cpp
 
-NEOXA_QT_CPP = $(NEOXA_QT_BASE_CPP)
+AKITACOIN_QT_CPP = $(AKITACOIN_QT_BASE_CPP)
 if TARGET_WINDOWS
-NEOXA_QT_CPP += $(NEOXA_QT_WINDOWS_CPP)
+AKITACOIN_QT_CPP += $(AKITACOIN_QT_WINDOWS_CPP)
 endif
 if ENABLE_WALLET
-NEOXA_QT_CPP += $(NEOXA_QT_WALLET_CPP)
+AKITACOIN_QT_CPP += $(AKITACOIN_QT_WALLET_CPP)
 endif
 
 RES_IMAGES = 
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-NEOXA_RC = qt/res/neoxa-qt-res.rc
+AKITACOIN_RC = qt/res/akitacoin-qt-res.rc
 
-NEOXA_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+AKITACOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
 
-qt_libneoxaqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES) $(NEOXA_QT_INCLUDES) \
+qt_libakitacoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES) $(AKITACOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_libneoxaqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libakitacoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_libneoxaqt_a_SOURCES = $(NEOXA_QT_CPP) $(NEOXA_QT_H) $(QT_FORMS_UI) \
+qt_libakitacoinqt_a_SOURCES = $(AKITACOIN_QT_CPP) $(AKITACOIN_QT_H) $(QT_FORMS_UI) \
   $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES)
 
-nodist_qt_libneoxaqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+nodist_qt_libakitacoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
   $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
 
 # forms/foo.h -> forms/ui_foo.h
@@ -489,71 +489,71 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libneoxaqt_a_OBJECTS) $(qt_neoxa_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libakitacoinqt_a_OBJECTS) $(qt_akitacoin_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# neoxa-qt binary #
-qt_neoxa_qt_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES) $(NEOXA_QT_INCLUDES) \
+# akitacoin-qt binary #
+qt_akitacoin_qt_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES) $(AKITACOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_neoxa_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_akitacoin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-qt_neoxa_qt_SOURCES = qt/neoxa.cpp
+qt_akitacoin_qt_SOURCES = qt/akitacoin.cpp
 if TARGET_DARWIN
-  qt_neoxa_qt_SOURCES += $(NEOXA_MM)
+  qt_akitacoin_qt_SOURCES += $(AKITACOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_neoxa_qt_SOURCES += $(NEOXA_RC)
+  qt_akitacoin_qt_SOURCES += $(AKITACOIN_RC)
 endif
-qt_neoxa_qt_LDADD = qt/libneoxaqt.a $(LIBNEOXA_SERVER)
+qt_akitacoin_qt_LDADD = qt/libakitacoinqt.a $(LIBAKITACOIN_SERVER)
 if ENABLE_WALLET
-qt_neoxa_qt_LDADD += $(LIBNEOXA_WALLET)
+qt_akitacoin_qt_LDADD += $(LIBAKITACOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_neoxa_qt_LDADD += $(LIBNEOXA_ZMQ) $(ZMQ_LIBS)
+qt_akitacoin_qt_LDADD += $(LIBAKITACOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_neoxa_qt_LDADD += $(LIBneoxa_cli) $(LIBNEOXA_COMMON) $(LIBNEOXA_UTIL) $(LIBNEOXA_CONSENSUS) $(LIBNEOXA_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+qt_akitacoin_qt_LDADD += $(LIBakitacoin_cli) $(LIBAKITACOIN_COMMON) $(LIBAKITACOIN_UTIL) $(LIBAKITACOIN_CONSENSUS) $(LIBAKITACOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_neoxa_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_neoxa_qt_LIBTOOLFLAGS = --tag CXX
+qt_akitacoin_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_akitacoin_qt_LIBTOOLFLAGS = --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-$(srcdir)/qt/neoxastrings.cpp: $(libneoxa_server_a_SOURCES) $(libneoxa_wallet_a_SOURCES) $(libneoxa_common_a_SOURCES) $(libneoxa_zmq_a_SOURCES) $(libneoxa_consensus_a_SOURCES) $(libneoxa_util_a_SOURCES)
+$(srcdir)/qt/akitacoinstrings.cpp: $(libakitacoin_server_a_SOURCES) $(libakitacoin_wallet_a_SOURCES) $(libakitacoin_common_a_SOURCES) $(libakitacoin_zmq_a_SOURCES) $(libakitacoin_consensus_a_SOURCES) $(libakitacoin_util_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" COPYRIGHT_HOLDERS="$(COPYRIGHT_HOLDERS)" COPYRIGHT_HOLDERS_SUBSTITUTION="$(COPYRIGHT_HOLDERS_SUBSTITUTION)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: $(srcdir)/qt/neoxastrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(NEOXA_QT_BASE_CPP) qt/neoxa.cpp $(NEOXA_QT_WINDOWS_CPP) $(NEOXA_QT_WALLET_CPP) $(NEOXA_QT_H) $(NEOXA_MM)
+translate: $(srcdir)/qt/akitacoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(AKITACOIN_QT_BASE_CPP) qt/akitacoin.cpp $(AKITACOIN_QT_WINDOWS_CPP) $(AKITACOIN_QT_WALLET_CPP) $(AKITACOIN_QT_H) $(AKITACOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/neoxa_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/akitacoin_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@cp -f $< $(@D)/temp_$(<F)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name neoxa_locale $(@D)/temp_$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name akitacoin_locale $(@D)/temp_$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 	@rm $(@D)/temp_$(<F)
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name neoxa $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name akitacoin $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
-CLEAN_QT = $(nodist_qt_libneoxaqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
+CLEAN_QT = $(nodist_qt_libakitacoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
 
 CLEANFILES += $(CLEAN_QT)
 
-neoxa_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libneoxaqt_a_OBJECTS) $(qt_neoxa_qt_OBJECTS) qt/neoxa-qt$(EXEEXT) $(LIBNEOXAQT)
+akitacoin_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libakitacoinqt_a_OBJECTS) $(qt_akitacoin_qt_OBJECTS) qt/akitacoin-qt$(EXEEXT) $(LIBAKITACOINQT)
 
-neoxa_qt : qt/neoxa-qt$(EXEEXT)
+akitacoin_qt : qt/akitacoin-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

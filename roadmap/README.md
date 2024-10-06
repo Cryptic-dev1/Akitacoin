@@ -1,3 +1,3 @@
-# Neoxa Roadmap
+# Akitacoin Roadmap
 
 

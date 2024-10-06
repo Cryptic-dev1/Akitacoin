@@ -1,9 +1,9 @@
 #!/usr/bin/env sh
 
 env
-if [[ -e /etc/neoxa/neoxad.conf ]]; then
-    source /etc/neoxa/neoxad.conf
-    /home/neoxa/neoxad \
+if [[ -e /etc/akitacoin/akitacoind.conf ]]; then
+    source /etc/akitacoin/akitacoind.conf
+    /home/akitacoin/akitacoind \
       -server=$SERVER \
       -printtoconsole=$PRINTTOCONSOLE \
       -maxconnections=$MAXCONNECTIONS \
@@ -37,7 +37,7 @@ else
     $SERVER_ARG = "-server=$SERVER"
   fi
 
-  /home/neoxa/neoxad \
+  /home/akitacoin/akitacoind \
     $SERVER_ARG \
     -printtoconsole=$PRINTTOCONSOLE \
     -maxconnections=$MAXCONNECTIONS \

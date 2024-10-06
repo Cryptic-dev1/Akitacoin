@@ -1,12 +1,12 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_RPCPROTOCOL_H
-#define NEOXA_RPCPROTOCOL_H
+#ifndef AKITACOIN_RPCPROTOCOL_H
+#define AKITACOIN_RPCPROTOCOL_H
 
 #include "fs.h"
 
@@ -30,7 +30,7 @@ enum HTTPStatusCode
     HTTP_SERVICE_UNAVAILABLE   = 503,
 };
 
-//! Neoxa RPC error codes
+//! Akitacoin RPC error codes
 enum RPCErrorCode
 {
     //! Standard JSON-RPC 2.0 errors
@@ -41,7 +41,7 @@ enum RPCErrorCode
     // It should not be used for application-layer errors.
     RPC_METHOD_NOT_FOUND = -32601,
     RPC_INVALID_PARAMS   = -32602,
-    // RPC_INTERNAL_ERROR should only be used for genuine errors in neoxad
+    // RPC_INTERNAL_ERROR should only be used for genuine errors in akitacoind
     // (for example datadir corruption).
     RPC_INTERNAL_ERROR   = -32603,
     RPC_PARSE_ERROR      = -32700,
@@ -67,7 +67,7 @@ enum RPCErrorCode
     RPC_TRANSACTION_ALREADY_IN_CHAIN= RPC_VERIFY_ALREADY_IN_CHAIN,
 
     //! P2P client errors
-    RPC_CLIENT_NOT_CONNECTED        = -9,  //!< Neoxa is not connected
+    RPC_CLIENT_NOT_CONNECTED        = -9,  //!< Akitacoin is not connected
     RPC_CLIENT_IN_INITIAL_DOWNLOAD  = -10, //!< Still downloading initial blocks
     RPC_CLIENT_NODE_ALREADY_ADDED   = -23, //!< Node is already added
     RPC_CLIENT_NODE_NOT_ADDED       = -24, //!< Node has not been added before
@@ -103,4 +103,4 @@ void DeleteAuthCookie();
 /** Parse JSON-RPC batch reply into a vector */
 std::vector<UniValue> JSONRPCProcessBatchReply(const UniValue &in, size_t num);
 
-#endif // NEOXA_RPCPROTOCOL_H
+#endif // AKITACOIN_RPCPROTOCOL_H

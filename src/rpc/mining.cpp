@@ -179,7 +179,7 @@ UniValue generatetoaddress(const JSONRPCRequest& request)
             "\nMine blocks immediately to a specified address (before the RPC call returns)\n"
             "\nArguments:\n"
             "1. nblocks      (numeric, required) How many blocks are generated immediately.\n"
-            "2. address      (string, required) The address to send the newly generated neoxa to.\n"
+            "2. address      (string, required) The address to send the newly generated akitacoin to.\n"
             "3. maxtries     (numeric, optional) How many iterations to try (default = 1000000).\n"
             "\nResult:\n"
             "[ blockhashes ]     (array) hashes of blocks generated\n"
@@ -222,7 +222,7 @@ UniValue getmininginfo(const JSONRPCRequest& request)
             "  \"pooledtx\": n              (numeric) The size of the mempool\n"
             "  \"chain\": \"xxxx\",           (string) current network name as defined in BIP70 (main, test, regtest)\n"
             "  \"warnings\": \"...\"          (string) any network and blockchain warnings\n"
-            "  \"errors\": \"...\"            (string) DEPRECATED. Same as warnings. Only shown when neoxad is started with -deprecatedrpc=getmininginfo\n"
+            "  \"errors\": \"...\"            (string) DEPRECATED. Same as warnings. Only shown when akitacoind is started with -deprecatedrpc=getmininginfo\n"
             "}\n"
             "\nExamples:\n"
             + HelpExampleCli("getmininginfo", "")
@@ -249,7 +249,7 @@ UniValue getmininginfo(const JSONRPCRequest& request)
 }
 
 
-// NOTE: Unlike wallet RPC (which use NEOX values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
+// NOTE: Unlike wallet RPC (which use AKIC values), mining RPCs follow GBT (BIP 22) in using satoshi amounts
 UniValue prioritisetransaction(const JSONRPCRequest& request)
 {
     if (request.fHelp || request.params.size() != 3)
@@ -465,10 +465,10 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
         throw JSONRPCError(RPC_CLIENT_P2P_DISABLED, "Error: Peer-to-peer functionality missing or disabled");
 
     if (g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && !gArgs.GetBoolArg("-bypassdownload", false))
-        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Neoxa is not connected!");
+        throw JSONRPCError(RPC_CLIENT_NOT_CONNECTED, "Akitacoin is not connected!");
 
     if (IsInitialBlockDownload() && !gArgs.GetBoolArg("-bypassdownload", false))
-        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Neoxa is downloading blocks...");
+        throw JSONRPCError(RPC_CLIENT_IN_INITIAL_DOWNLOAD, "Akitacoin is downloading blocks...");
 
     static unsigned int nTransactionsUpdatedLast;
 
@@ -937,7 +937,7 @@ UniValue submitblock(const JSONRPCRequest& request)
         throw std::runtime_error(
             "submitblock \"hexdata\"  ( \"dummy\" )\n"
             "\nAttempts to submit new block to network.\n"
-            "See https://en.neoxa.it/wiki/BIP_0022 for full specification.\n"
+            "See https://en.akitacoin.it/wiki/BIP_0022 for full specification.\n"
 
             "\nArguments\n"
             "1. \"hexdata\"        (string, required) the hex-encoded block data to submit\n"
@@ -1029,7 +1029,7 @@ UniValue estimatefee(const JSONRPCRequest& request)
 
     if (!IsDeprecatedRPCEnabled("estimatefee")) {
         throw JSONRPCError(RPC_METHOD_DEPRECATED, "estimatefee is deprecated and will be fully removed in v0.17. "
-            "To use estimatefee in v0.16, restart neoxad with -deprecatedrpc=estimatefee.\n"
+            "To use estimatefee in v0.16, restart akitacoind with -deprecatedrpc=estimatefee.\n"
             "Projects should transition to using estimatesmartfee before upgrading to v0.17");
     }
 
@@ -1216,7 +1216,7 @@ UniValue getgenerate(const JSONRPCRequest& request)
         throw std::runtime_error(
             "getgenerate\n"
             "\nReturn if the server is set to generate coins or not. The default is false.\n"
-            "It is set with the command line argument -gen (or " + std::string(NEOXA_CONF_FILENAME) + " setting gen)\n"
+            "It is set with the command line argument -gen (or " + std::string(AKITACOIN_CONF_FILENAME) + " setting gen)\n"
             "It can also be set with the setgenerate call.\n"
             "\nResult\n"
             "true|false      (boolean) If the server is set to generate coins or not\n"
@@ -1271,7 +1271,7 @@ UniValue setgenerate(const JSONRPCRequest& request)
     gArgs.SoftSetArg("-genproclimit", itostr(nGenProcLimit));
     //mapArgs["-gen"] = (fGenerate ? "1" : "0");
     //mapArgs ["-genproclimit"] = itostr(nGenProcLimit);
-    int numCores = GenerateNeoxas(fGenerate, nGenProcLimit, GetParams());
+    int numCores = GenerateAkitacoins(fGenerate, nGenProcLimit, GetParams());
 
     nGenProcLimit = nGenProcLimit >= 0 ? nGenProcLimit : numCores;
     std::string msg = std::to_string(nGenProcLimit) + " of " + std::to_string(numCores);

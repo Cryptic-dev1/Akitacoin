@@ -8,20 +8,20 @@ EXPOSE $PORT
 
 RUN apt-get update && apt-get install -y bash net-tools && apt-get clean
 
-RUN useradd -ms /bin/bash neoxa
+RUN useradd -ms /bin/bash akitacoin
 
-RUN mkdir /etc/neoxa
+RUN mkdir /etc/akitacoin
 
-RUN mkdir /var/lib/neoxa
+RUN mkdir /var/lib/akitacoin
 
-RUN chown neoxa:neoxa /etc/neoxa /var/lib/neoxa
+RUN chown akitacoin:akitacoin /etc/akitacoin /var/lib/akitacoin
 
-WORKDIR /home/neoxa
+WORKDIR /home/akitacoin
 
-COPY --chown=neoxa:neoxa linux64/* /home/neoxa/
+COPY --chown=akitacoin:akitacoin linux64/* /home/akitacoin/
 
-COPY --chown=neoxa:neoxa run.sh /home/neoxa/
+COPY --chown=akitacoin:akitacoin run.sh /home/akitacoin/
 
-USER neoxa
+USER akitacoin
 
-CMD ["/home/neoxa/run.sh"]
+CMD ["/home/akitacoin/run.sh"]

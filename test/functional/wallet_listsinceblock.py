@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """Test the listsincelast RPC."""
 
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import assert_equal
 
-class ListSinceBlockTest (NeoxaTestFramework):
+class ListSinceBlockTest (AkitacoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
         self.setup_clean_chain = True
@@ -94,8 +94,8 @@ class ListSinceBlockTest (NeoxaTestFramework):
 
         Problematic case:
 
-        1. User 1 receives NEOX in tx1 from utxo1 in block aa1.
-        2. User 2 receives NEOX in tx2 from utxo1 (same) in block bb1
+        1. User 1 receives AKIC in tx1 from utxo1 in block aa1.
+        2. User 2 receives AKIC in tx2 from utxo1 (same) in block bb1
         3. User 1 sees 2 confirmations at block aa3.
         4. Reorg into bb chain.
         5. User 1 asks `listsinceblock aa3` and does not see that tx1 is now

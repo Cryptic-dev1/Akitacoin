@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QT_ASSETTABLEMODEL_H
-#define NEOXA_QT_ASSETTABLEMODEL_H
+#ifndef AKITACOIN_QT_ASSETTABLEMODEL_H
+#define AKITACOIN_QT_ASSETTABLEMODEL_H
 
 #include "amount.h"
 
@@ -39,13 +39,13 @@ public:
     enum RoleIndex {
         /** Net amount of transaction */
             AmountRole = 100,
-        /** NEOX or name of an asset */
+        /** AKIC or name of an asset */
             AssetNameRole = 101,
         /** Formatted amount, without brackets when unconfirmed */
             FormattedAmountRole = 102,
         /** AdministratorRole */
             AdministratorRole = 103,
-        /** NEOX or name of an asset */
+        /** AKIC or name of an asset */
             AssetIPFSHashRole = 104,
         /** IPFS Decoration Role */
             AssetIPFSHashDecorationRole = 105
@@ -71,4 +71,4 @@ private:
     friend class AssetTablePriv;
 };
 
-#endif // NEOXA_QT_ASSETTABLEMODEL_H
+#endif // AKITACOIN_QT_ASSETTABLEMODEL_H

@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,7 +9,7 @@
 
 #include "addressbookpage.h"
 #include "addresstablemodel.h"
-#include "neoxaunits.h"
+#include "akitacoinunits.h"
 #include "guiutil.h"
 #include "optionsmodel.h"
 #include "platformstyle.h"
@@ -334,7 +334,7 @@ void ReceiveCoinsDialog::copyURI()
     }
 
     const RecentRequestsTableModel * const submodel = model->getRecentRequestsTableModel();
-    const QString uri = GUIUtil::formatNeoxaURI(submodel->entry(sel.row()).recipient);
+    const QString uri = GUIUtil::formatAkitacoinURI(submodel->entry(sel.row()).recipient);
     GUIUtil::setClipboard(uri);
 }
 

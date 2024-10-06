@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QT_CLIENTMODEL_H
-#define NEOXA_QT_CLIENTMODEL_H
+#ifndef AKITACOIN_QT_CLIENTMODEL_H
+#define AKITACOIN_QT_CLIENTMODEL_H
 
 #include <QObject>
 #include <QDateTime>
@@ -36,7 +36,7 @@ enum NumConnections {
     CONNECTIONS_ALL  = (CONNECTIONS_IN | CONNECTIONS_OUT),
 };
 
-/** Model for neoxa network client. */
+/** Model for akitacoin network client. */
 class ClientModel : public QObject
 {
     Q_OBJECT
@@ -118,4 +118,4 @@ public Q_SLOTS:
     void updateBanlist();
 };
 
-#endif // NEOXA_QT_CLIENTMODEL_H
+#endif // AKITACOIN_QT_CLIENTMODEL_H

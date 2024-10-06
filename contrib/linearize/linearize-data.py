@@ -4,7 +4,7 @@
 #
 # Copyright (c) 2013-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
@@ -51,7 +51,7 @@ def wordreverse(in_buf):
 	return b''.join(out_words)
 
 def calc_hash_str(blk_hdr):
-	x16r_hash_cmd = os.path.dirname(os.path.realpath(__file__)) + "/../../src/test/test_neoxa_hash"
+	x16r_hash_cmd = os.path.dirname(os.path.realpath(__file__)) + "/../../src/test/test_akitacoin_hash"
 	cmd = [x16r_hash_cmd, hexlify(blk_hdr).decode('utf-8'), "2"]
 	blk_hash = subprocess.run(cmd, stdout=subprocess.PIPE, check=True).stdout.decode('ascii')
 	return blk_hash

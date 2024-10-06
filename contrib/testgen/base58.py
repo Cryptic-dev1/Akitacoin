@@ -1,10 +1,10 @@
 # Copyright (c) 2012-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 '''
-Neoxa base58 encoding and decoding.
+Akitacoin base58 encoding and decoding.
 
 Based on https://bitcointalk.org/index.php?topic=1026.0 (public domain)
 '''
@@ -39,7 +39,7 @@ def b58encode(v):
         long_value = div
     result = __b58chars[long_value] + result
 
-    # Neoxa does a little leading-zero-compression:
+    # Akitacoin does a little leading-zero-compression:
     # leading 0-bytes in the input become leading-1s
     nPad = 0
     for c in v:
@@ -99,7 +99,7 @@ def get_bcaddress_version(strAddress):
     return ord(version)
 
 if __name__ == '__main__':
-    # Test case (from http://gitorious.org/neoxa/python-base58.git)
+    # Test case (from http://gitorious.org/akitacoin/python-base58.git)
     assert get_bcaddress_version('15VjRaDX9zpbA8LVnbrCAFzrVzN7ixHNsC') is 0
     _ohai = 'o hai'.encode('ascii')
     _tmp = b58encode(_ohai)

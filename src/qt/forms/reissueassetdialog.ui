@@ -320,7 +320,7 @@
                     <enum>Qt::ActionsContextMenu</enum>
                    </property>
                    <property name="text">
-                    <string notr="true">0.00 NEOX</string>
+                    <string notr="true">0.00 AKIC</string>
                    </property>
                    <property name="textInteractionFlags">
                     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -400,7 +400,7 @@
                     <enum>Qt::ActionsContextMenu</enum>
                    </property>
                    <property name="text">
-                    <string notr="true">0.00 NEOX</string>
+                    <string notr="true">0.00 AKIC</string>
                    </property>
                    <property name="textInteractionFlags">
                     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -451,7 +451,7 @@
                     <enum>Qt::ActionsContextMenu</enum>
                    </property>
                    <property name="text">
-                    <string notr="true">0.00 NEOX</string>
+                    <string notr="true">0.00 AKIC</string>
                    </property>
                    <property name="textInteractionFlags">
                     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -480,7 +480,7 @@
                     <enum>Qt::ActionsContextMenu</enum>
                    </property>
                    <property name="text">
-                    <string notr="true">0.00 NEOX</string>
+                    <string notr="true">0.00 AKIC</string>
                    </property>
                    <property name="textInteractionFlags">
                     <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByKeyboard|Qt::TextSelectableByMouse</set>
@@ -648,7 +648,7 @@
                <string/>
               </property>
               <property name="placeholderText">
-               <string>The NEOX address that will hold this asset (You must own this address). Leave blank to create a new address.</string>
+               <string>The AKIC address that will hold this asset (You must own this address). Leave blank to create a new address.</string>
               </property>
              </widget>
             </item>
@@ -1233,7 +1233,7 @@
                     </widget>
                    </item>
                    <item>
-                    <widget class="NeoxaAmountField" name="customFee"/>
+                    <widget class="AkitacoinAmountField" name="customFee"/>
                    </item>
                    <item>
                     <spacer name="horizontalSpacer_6">
@@ -1255,7 +1255,7 @@
                    <item>
                     <widget class="QCheckBox" name="checkBoxMinimumFee">
                      <property name="toolTip">
-                      <string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for neoxa transactions than the network can process.</string>
+                      <string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for akitacoin transactions than the network can process.</string>
                      </property>
                      <property name="text">
                       <string/>
@@ -1268,7 +1268,7 @@
                       <bool>true</bool>
                      </property>
                      <property name="toolTip">
-                      <string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for neoxa transactions than the network can process.</string>
+                      <string>Paying only the minimum fee is just fine as long as there is less transaction volume than space in the blocks. But be aware that this can end up in a never confirming transaction once there is more demand for akitacoin transactions than the network can process.</string>
                      </property>
                      <property name="text">
                       <string>(read the tooltip)</string>
@@ -1566,7 +1566,7 @@
          <item>
           <widget class="QLabel" name="labelBalance">
            <property name="text">
-            <string>123.456 NEOX</string>
+            <string>123.456 AKIC</string>
            </property>
           </widget>
          </item>
@@ -1585,9 +1585,9 @@
    <header>qvalidatedlineedit.h</header>
   </customwidget>
   <customwidget>
-   <class>NeoxaAmountField</class>
+   <class>AkitacoinAmountField</class>
    <extends>QLineEdit</extends>
-   <header>neoxaamountfield.h</header>
+   <header>akitacoinamountfield.h</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

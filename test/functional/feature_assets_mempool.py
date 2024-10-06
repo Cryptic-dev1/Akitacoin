@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """Testing asset mempool use cases"""
 
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import assert_equal, disconnect_all_nodes, connect_all_nodes_bi
 
-class AssetMempoolTest(NeoxaTestFramework):
+class AssetMempoolTest(AkitacoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2
 
 
     def activate_assets(self):
-        self.log.info("Generating NEOX and activating assets...")
+        self.log.info("Generating AKIC and activating assets...")
         n0, n1 = self.nodes[0], self.nodes[1]
 
         n0.generate(1)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2018 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -13,10 +13,10 @@ with or without a label and then its private key is imported with importprivkey
 with and without a label.
 """
 
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.wallet_util import test_address
 
-class ImportWithLabel(NeoxaTestFramework):
+class ImportWithLabel(AkitacoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = True

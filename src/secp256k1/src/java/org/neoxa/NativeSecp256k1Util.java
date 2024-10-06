@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.neoxa;
+package org.akitacoin;
 
 public class NativeSecp256k1Util{
 

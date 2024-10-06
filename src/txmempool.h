@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_TXMEMPOOL_H
-#define NEOXA_TXMEMPOOL_H
+#ifndef AKITACOIN_TXMEMPOOL_H
+#define AKITACOIN_TXMEMPOOL_H
 
 #include <memory>
 #include <set>
@@ -847,4 +847,4 @@ struct ConnectedBlockAssetData
     std::set<CAssetCacheQualifierAddress> newQualifiersToAdd;
 };
 
-#endif // NEOXA_TXMEMPOOL_H
+#endif // AKITACOIN_TXMEMPOOL_H

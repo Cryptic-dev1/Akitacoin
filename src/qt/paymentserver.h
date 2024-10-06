@@ -1,14 +1,14 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QT_PAYMENTSERVER_H
-#define NEOXA_QT_PAYMENTSERVER_H
+#ifndef AKITACOIN_QT_PAYMENTSERVER_H
+#define AKITACOIN_QT_PAYMENTSERVER_H
 
 // This class handles payment requests from clicking on
-// neoxa: URIs
+// akitacoin: URIs
 //
 // This is somewhat tricky, because we have to deal with
 // the situation where the user clicks on a link during
@@ -147,4 +147,4 @@ private:
     OptionsModel *optionsModel;
 };
 
-#endif // NEOXA_QT_PAYMENTSERVER_H
+#endif // AKITACOIN_QT_PAYMENTSERVER_H

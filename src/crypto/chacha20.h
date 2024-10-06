@@ -1,11 +1,11 @@
 // Copyright (c) 2017 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_CRYPTO_CHACHA20_H
-#define NEOXA_CRYPTO_CHACHA20_H
+#ifndef AKITACOIN_CRYPTO_CHACHA20_H
+#define AKITACOIN_CRYPTO_CHACHA20_H
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -25,4 +25,4 @@ public:
     void Output(unsigned char* output, size_t bytes);
 };
 
-#endif // NEOXA_CRYPTO_CHACHA20_H
+#endif // AKITACOIN_CRYPTO_CHACHA20_H

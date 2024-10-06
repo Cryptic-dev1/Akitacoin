@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """
 Big number routines.
-This file is copied from python-neoxalib.
+This file is copied from python-akitacoinlib.
 """
 
 import struct
@@ -49,7 +49,7 @@ def bn2mpi(v):
             v_bin[0] |= 0x80
     return s + ext + v_bin
 
-# neoxa-specific little endian format, with implicit size
+# akitacoin-specific little endian format, with implicit size
 def mpi2vch(s):
     r = s[4:]           # strip size
     r = r[::-1]         # reverse string, converting BE->LE

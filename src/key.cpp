@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -179,7 +179,7 @@ bool CKey::VerifyPubKey(const CPubKey& pubkey) const {
         return false;
     }
     unsigned char rnd[8];
-    std::string str = "Neoxa key verification\n";
+    std::string str = "Akitacoin key verification\n";
     GetRandBytes(rnd, sizeof(rnd));
     uint256 hash;
     CHash256().Write((unsigned char*)str.data(), str.size()).Write(rnd, sizeof(rnd)).Finalize(hash.begin());

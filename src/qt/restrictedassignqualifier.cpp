@@ -5,7 +5,7 @@
 #include "restrictedassignqualifier.h"
 #include "ui_restrictedassignqualifier.h"
 
-#include "neoxaunits.h"
+#include "akitacoinunits.h"
 #include "clientmodel.h"
 #include "guiconstants.h"
 #include "guiutil.h"

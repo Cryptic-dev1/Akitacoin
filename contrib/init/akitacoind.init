@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  akitacoind The akitacoin core server.
+#
+#
+# chkconfig: 345 80 20
+# description: akitacoind
+# processname: akitacoind
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/akitacoind, see below
+if [ -f /etc/sysconfig/akitacoind ]; then
+        . /etc/sysconfig/akitacoind
+fi
+
+RETVAL=0
+
+prog=akitacoind
+# you can override the lockfile via AKITACOIND_LOCKFILE in /etc/sysconfig/akitacoind
+lockfile=${AKITACOIND_LOCKFILE-/var/lock/subsys/akitacoind}
+
+# akitacoind defaults to /usr/bin/akitacoind, override with AKITACOIND_BIN
+akitacoind=${AKITACOIND_BIN-/usr/bin/akitacoind}
+
+# akitacoind opts default to -disablewallet, override with AKITACOIND_OPTS
+akitacoind_opts=${AKITACOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $akitacoind $akitacoind_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

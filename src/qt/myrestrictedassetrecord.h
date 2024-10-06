@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -32,12 +32,12 @@ public:
     static const int RecommendedNumConfirmations = 6;
 
     MyRestrictedAssetRecord():
-            hash(), time(0), type(Other), address(""), assetName("NEOX"), idx(0)
+            hash(), time(0), type(Other), address(""), assetName("AKIC"), idx(0)
     {
     }
 
     MyRestrictedAssetRecord(uint256 _hash, qint64 _time):
-            hash(_hash), time(_time), type(Other), address(""), assetName("NEOX"), idx(0)
+            hash(_hash), time(_time), type(Other), address(""), assetName("AKIC"), idx(0)
     {
     }
 
@@ -45,7 +45,7 @@ public:
                       Type _type, const std::string &_address,
                       const CAmount& _debit, const CAmount& _credit):
             hash(_hash), time(_time), type(_type), address(_address),
-            assetName("NEOX"), idx(0)
+            assetName("AKIC"), idx(0)
     {
     }
 

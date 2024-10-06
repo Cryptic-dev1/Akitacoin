@@ -1,4 +1,4 @@
-#include "neoxaunits.h"
+#include "akitacoinunits.h"
 
 #include <QAbstractTableModel>
 #include <QStringList>
@@ -53,7 +53,7 @@ public:
                 TxPlainTextRole,
         /** Unprocessed icon */
                 RawDecorationRole,
-        /** NEOX or name of an asset */
+        /** AKIC or name of an asset */
                 AssetNameRole,
     };
 

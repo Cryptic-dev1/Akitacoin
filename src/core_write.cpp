@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -114,8 +114,8 @@ std::string ScriptToAsmStr(const CScript& script, const bool fAttemptSighashDeco
             return str;
         }
 
-        if (opcode == OP_NEOX_ASSET) {
-            // Once we hit an OP_NEOX_ASSET, we know that all the next data should be considered as hex
+        if (opcode == OP_AKIC_ASSET) {
+            // Once we hit an OP_AKIC_ASSET, we know that all the next data should be considered as hex
             str += GetOpName(opcode);
             str += " ";
             str += HexStr(vch);
@@ -175,7 +175,7 @@ void ScriptPubKeyToUniv(const CScript& scriptPubKey,
     out.pushKV("reqSigs", nRequired);
     out.pushKV("type", GetTxnOutputType(type));
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     if (type == TX_NEW_ASSET || type == TX_TRANSFER_ASSET || type == TX_REISSUE_ASSET) {
         UniValue assetInfo(UniValue::VOBJ);
 
@@ -263,7 +263,7 @@ void ScriptPubKeyToUniv(const CScript& scriptPubKey,
 
         out.pushKV("asset_data", assetInfo);
     }
-     /** NEOXA END */
+     /** AKITACOIN END */
 
     UniValue a(UniValue::VARR);
     for (const CTxDestination& addr : addresses) {

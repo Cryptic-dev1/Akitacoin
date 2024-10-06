@@ -1,11 +1,11 @@
 // Copyright (c) 2015 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QT_PLATFORMSTYLE_H
-#define NEOXA_QT_PLATFORMSTYLE_H
+#ifndef AKITACOIN_QT_PLATFORMSTYLE_H
+#define AKITACOIN_QT_PLATFORMSTYLE_H
 
 #include <QIcon>
 #include <QPixmap>
@@ -80,5 +80,5 @@ private:
     /* ... more to come later */
 };
 
-#endif // NEOXA_QT_PLATFORMSTYLE_H
+#endif // AKITACOIN_QT_PLATFORMSTYLE_H
 

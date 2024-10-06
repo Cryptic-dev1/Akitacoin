@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,7 @@
 import configparser
 import os
 import struct
-from test_framework.test_framework import NeoxaTestFramework, SkipTest
+from test_framework.test_framework import AkitacoinTestFramework, SkipTest
 from test_framework.util import assert_equal, hash256, x16_hash_block
 
 
@@ -36,7 +36,7 @@ class ZMQSubscriber:
 
 
 # noinspection PyUnresolvedReferences
-class ZMQTest(NeoxaTestFramework):
+class ZMQTest(AkitacoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
 
@@ -47,14 +47,14 @@ class ZMQTest(NeoxaTestFramework):
         except ImportError:
             raise SkipTest("python3-zmq module not available.")
 
-        # Check that neoxa has been built with ZMQ enabled.
+        # Check that akitacoin has been built with ZMQ enabled.
         config = configparser.ConfigParser()
         if not self.options.configfile:
             self.options.configfile = os.path.abspath(os.path.join(os.path.dirname(__file__), "../config.ini"))
         config.read_file(open(self.options.configfile))
 
         if not config["components"].getboolean("ENABLE_ZMQ"):
-            raise SkipTest("neoxad has not been built with zmq enabled.")
+            raise SkipTest("akitacoind has not been built with zmq enabled.")
 
         # Initialize ZMQ context and socket.
         # All messages are received in the same socket which means

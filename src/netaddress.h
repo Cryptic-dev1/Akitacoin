@@ -1,14 +1,14 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_NETADDRESS_H
-#define NEOXA_NETADDRESS_H
+#ifndef AKITACOIN_NETADDRESS_H
+#define AKITACOIN_NETADDRESS_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/neoxa-config.h"
+#include "config/akitacoin-config.h"
 #endif
 
 #include "compat.h"
@@ -176,4 +176,4 @@ class CService : public CNetAddr
         }
 };
 
-#endif // NEOXA_NETADDRESS_H
+#endif // AKITACOIN_NETADDRESS_H

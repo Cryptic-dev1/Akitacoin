@@ -1,11 +1,11 @@
 // Copyright (c) 2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_POLICY_RBF_H
-#define NEOXA_POLICY_RBF_H
+#ifndef AKITACOIN_POLICY_RBF_H
+#define AKITACOIN_POLICY_RBF_H
 
 #include "txmempool.h"
 
@@ -27,4 +27,4 @@ bool SignalsOptInRBF(const CTransaction &tx);
 // as the sequence numbers of all in-mempool ancestors.
 RBFTransactionState IsRBFOptIn(const CTransaction &tx, CTxMemPool &pool);
 
-#endif // NEOXA_POLICY_RBF_H
+#endif // AKITACOIN_POLICY_RBF_H

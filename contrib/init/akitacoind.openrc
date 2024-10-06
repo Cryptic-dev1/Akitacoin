@@ -1,0 +1,92 @@
+#!/sbin/runscript
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/akitacoin/.akitacoin" ]; then
+	AKITACOIND_DEFAULT_DATADIR="/var/lib/akitacoin/.akitacoin"
+else
+	AKITACOIND_DEFAULT_DATADIR="/var/lib/akitacoind"
+fi
+
+AKITACOIND_CONFIGFILE=${AKITACOIND_CONFIGFILE:-/etc/akitacoin/akitacoin.conf}
+AKITACOIND_PIDDIR=${AKITACOIND_PIDDIR:-/var/run/akitacoind}
+AKITACOIND_PIDFILE=${AKITACOIND_PIDFILE:-${AKITACOIND_PIDDIR}/akitacoind.pid}
+AKITACOIND_DATADIR=${AKITACOIND_DATADIR:-${AKITACOIND_DEFAULT_DATADIR}}
+AKITACOIND_USER=${AKITACOIND_USER:-${AKITACOIN_USER:-akitacoin}}
+AKITACOIND_GROUP=${AKITACOIND_GROUP:-akitacoin}
+AKITACOIND_BIN=${AKITACOIND_BIN:-/usr/bin/akitacoind}
+AKITACOIND_NICE=${AKITACOIND_NICE:-${NICELEVEL:-0}}
+AKITACOIND_OPTS="${AKITACOIND_OPTS:-${AKITACOIN_OPTS}}"
+
+name="Akitacoin Core Daemon"
+description="Akitacoin cryptocurrency P2P network daemon"
+
+command="/usr/bin/akitacoind"
+command_args="-pid=\"${AKITACOIND_PIDFILE}\" \
+		-conf=\"${AKITACOIND_CONFIGFILE}\" \
+		-datadir=\"${AKITACOIND_DATADIR}\" \
+		-daemon \
+		${AKITACOIND_OPTS}"
+
+required_files="${AKITACOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${AKITACOIND_USER} \
+			-N ${AKITACOIND_NICE} -w 2000"
+pidfile="${AKITACOIND_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${AKITACOIND_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${AKITACOIND_USER}:${AKITACOIND_GROUP}" \
+	"${AKITACOIND_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${AKITACOIND_USER}:${AKITACOIND_GROUP}" \
+	"${AKITACOIND_PIDDIR}"
+
+	checkpath -f \
+	-o ${AKITACOIND_USER}:${AKITACOIND_GROUP} \
+	-m 0660 \
+	${AKITACOIND_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${AKITACOIND_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run akitacoind."
+		eerror "The setting must appear in ${AKITACOIND_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following "
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"Akitacoin Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}

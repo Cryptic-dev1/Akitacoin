@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """
 Functionality to build scripts, as well as signature_hash().
 
-This file is modified from python-neoxalib.
+This file is modified from python-akitacoinlib.
 """
 
 from .mininode import CTransaction, CTxOut, sha256, hash256, uint256_from_str, ser_uint256, ser_string
@@ -235,7 +235,7 @@ OP_NOP8 = CScriptOp(0xb7)
 OP_NOP9 = CScriptOp(0xb8)
 OP_NOP10 = CScriptOp(0xb9)
 
-OP_NEOX_ASSET = CScriptOp(0xc0)
+OP_AKIC_ASSET = CScriptOp(0xc0)
 
 # template matching params
 OP_SMALLINTEGER = CScriptOp(0xfa)
@@ -357,7 +357,7 @@ OPCODE_NAMES.update({
     OP_NOP8: 'OP_NOP8',
     OP_NOP9: 'OP_NOP9',
     OP_NOP10: 'OP_NOP10',
-    OP_NEOX_ASSET: 'OP_NEOX_ASSET',
+    OP_AKIC_ASSET: 'OP_AKIC_ASSET',
     OP_SMALLINTEGER: 'OP_SMALLINTEGER',
     OP_PUBKEYS: 'OP_PUBKEYS',
     OP_PUBKEYHASH: 'OP_PUBKEYHASH',

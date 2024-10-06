@@ -1,21 +1,21 @@
 
 Debian
 ====================
-This directory contains files used to package neoxad/neoxa-qt
-for Debian-based Linux systems. If you compile neoxad/neoxa-qt yourself, there are some useful files here.
+This directory contains files used to package akitacoind/akitacoin-qt
+for Debian-based Linux systems. If you compile akitacoind/akitacoin-qt yourself, there are some useful files here.
 
-## neoxa: URI support ##
+## akitacoin: URI support ##
 
 
-neoxa-qt.desktop  (Gnome / Open Desktop)
+akitacoin-qt.desktop  (Gnome / Open Desktop)
 To install:
 
-	sudo desktop-file-install neoxa-qt.desktop
+	sudo desktop-file-install akitacoin-qt.desktop
 	sudo update-desktop-database
 
 If you build yourself, you will either need to modify the paths in
-the .desktop file or copy or symlink your neoxa-qt binary to `/usr/bin`
-and the `../../share/pixmaps/neoxa128.png` to `/usr/share/pixmaps`
+the .desktop file or copy or symlink your akitacoin-qt binary to `/usr/bin`
+and the `../../share/pixmaps/akitacoin128.png` to `/usr/share/pixmaps`
 
-neoxa-qt.protocol (KDE)
+akitacoin-qt.protocol (KDE)
 

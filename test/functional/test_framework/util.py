@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -68,10 +68,10 @@ def assert_fee_amount(fee, tx_size, fee_per_kb):
     """Assert the fee was in range"""
     target_fee = tx_size * fee_per_kb / 1000
     if fee < target_fee:
-        raise AssertionError("Fee of %s NEOX too low! (Should be %s NEOX)" % (str(fee), str(target_fee)))
+        raise AssertionError("Fee of %s AKIC too low! (Should be %s AKIC)" % (str(fee), str(target_fee)))
     # allow the wallet's estimation to be at most 2 bytes off
     if fee > (tx_size + 2) * fee_per_kb / 1000:
-        raise AssertionError("Fee of %s NEOX too high! (Should be %s NEOX)" % (str(fee), str(target_fee)))
+        raise AssertionError("Fee of %s AKIC too high! (Should be %s AKIC)" % (str(fee), str(target_fee)))
 
 
 def assert_equal(thing1, thing2, *args):
@@ -237,7 +237,7 @@ def assert_happening(date_str, within_secs=120):
 ##########################################################################################
 
 def check_json_precision():
-    """Make sure json library being used does not lose precision converting NEOX values"""
+    """Make sure json library being used does not lose precision converting AKIC values"""
     n = Decimal("20000000.00000003")
     satoshis = int(json.loads(json.dumps(float(n))) * 1.0e8)
     if satoshis != 2000000000000003:
@@ -260,7 +260,7 @@ def hash256(byte_str):
     return sha256d.digest()[::-1]
 
 
-x16r_hash_cmd = os.path.dirname(os.path.realpath(__file__)) + "/../../../src/test/test_neoxa_hash"
+x16r_hash_cmd = os.path.dirname(os.path.realpath(__file__)) + "/../../../src/test/test_akitacoin_hash"
 
 
 def x16_hash_block(hex_str, algorithm="2"):
@@ -412,7 +412,7 @@ def initialize_data_dir(dirname, n):
     datadir = os.path.join(dirname, "node" + str(n))
     if not os.path.isdir(datadir):
         os.makedirs(datadir)
-    with open(os.path.join(datadir, "neoxa.conf"), 'w', encoding='utf8') as f:
+    with open(os.path.join(datadir, "akitacoin.conf"), 'w', encoding='utf8') as f:
         f.write("regtest=1\n")
         f.write("port=" + str(p2p_port(n)) + "\n")
         f.write("rpcport=" + str(rpc_port(n)) + "\n")
@@ -427,8 +427,8 @@ def get_datadir_path(dirname, n):
 def get_auth_cookie(datadir):
     user = None
     password = None
-    if os.path.isfile(os.path.join(datadir, "neoxa.conf")):
-        with open(os.path.join(datadir, "neoxa.conf"), 'r', encoding='utf8') as f:
+    if os.path.isfile(os.path.join(datadir, "akitacoin.conf")):
+        with open(os.path.join(datadir, "akitacoin.conf"), 'r', encoding='utf8') as f:
             for line in f:
                 if line.startswith("rpcuser="):
                     assert user is None  # Ensure that there is only one rpcuser line

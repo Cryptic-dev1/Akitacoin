@@ -1,11 +1,11 @@
 // Copyright (c) 2012-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_CHECKQUEUE_H
-#define NEOXA_CHECKQUEUE_H
+#ifndef AKITACOIN_CHECKQUEUE_H
+#define AKITACOIN_CHECKQUEUE_H
 
 #include "sync.h"
 
@@ -216,4 +216,4 @@ public:
     }
 };
 
-#endif // NEOXA_CHECKQUEUE_H
+#endif // AKITACOIN_CHECKQUEUE_H

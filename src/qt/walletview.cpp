@@ -7,7 +7,7 @@
 
 #include "addressbookpage.h"
 #include "askpassphrasedialog.h"
-#include "neoxagui.h"
+#include "akitacoingui.h"
 #include "clientmodel.h"
 #include "guiutil.h"
 #include "optionsmodel.h"
@@ -76,12 +76,12 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     addWidget(receiveCoinsPage);
     addWidget(sendCoinsPage);
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     addWidget(assetsPage);
     addWidget(createAssetsPage);
     addWidget(manageAssetsPage);
     addWidget(restrictedAssetsPage);
-    /** NEOXA END */
+    /** AKITACOIN END */
 
     // Clicking on a transaction on the overview pre-selects the transaction on the transaction history page
     connect(overviewPage, SIGNAL(transactionClicked(QModelIndex)), transactionView, SLOT(focusTransaction(QModelIndex)));
@@ -98,7 +98,7 @@ WalletView::WalletView(const PlatformStyle *_platformStyle, QWidget *parent):
     // Pass through messages from transactionView
     connect(transactionView, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     connect(assetsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
     connect(createAssetsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
     connect(manageAssetsPage, SIGNAL(message(QString,QString,unsigned int)), this, SIGNAL(message(QString,QString,unsigned int)));
@@ -114,7 +114,7 @@ WalletView::~WalletView()
 {
 }
 
-void WalletView::setNeoxaGUI(NeoxaGUI *gui)
+void WalletView::setAkitacoinGUI(AkitacoinGUI *gui)
 {
     if (gui)
     {
@@ -170,7 +170,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
     usedReceivingAddressesPage->setModel(_walletModel ? _walletModel->getAddressTableModel() : nullptr);
     usedSendingAddressesPage->setModel(_walletModel ? _walletModel->getAddressTableModel() : nullptr);
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     assetsPage->setModel(_walletModel);
     createAssetsPage->setModel(_walletModel);
     manageAssetsPage->setModel(_walletModel);
@@ -186,7 +186,7 @@ void WalletView::setWalletModel(WalletModel *_walletModel)
         updateEncryptionStatus();
 
         // update HD status
-        Q_EMIT hdEnabledStatusChanged(_walletModel->hd44Enabled() ? NeoxaGUI::HD44_ENABLED : _walletModel->hdEnabled() ? NeoxaGUI::HD_ENABLED : NeoxaGUI::HD_DISABLED);
+        Q_EMIT hdEnabledStatusChanged(_walletModel->hd44Enabled() ? AkitacoinGUI::HD44_ENABLED : _walletModel->hdEnabled() ? AkitacoinGUI::HD_ENABLED : AkitacoinGUI::HD_DISABLED);
 
         // Balloon pop-up for new transaction
         connect(_walletModel->getTransactionTableModel(), SIGNAL(rowsInserted(QModelIndex,int,int)),
@@ -210,7 +210,7 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
     if (!ttm || ttm->processingQueuedTransactions())
         return;
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     // With the addition of asset transactions, there can be multiple transaction that need notifications
     // so we need to loop through all new transaction that were added to the transaction table and display
     // notifications for each individual transaction
@@ -227,7 +227,7 @@ void WalletView::processNewTransaction(const QModelIndex& parent, int start, int
         Q_EMIT incomingTransaction(date, walletModel->getOptionsModel()->getDisplayUnit(), amount, type, address, label,
                                    assetName);
     }
-    /** NEOXA END */
+    /** AKITACOIN END */
 
     /** Everytime we get an new transaction. We should check to see if assets are enabled or not */
     overviewPage->showAssets();
@@ -422,7 +422,7 @@ void WalletView::requestedSyncWarningInfo()
 }
 
 bool fFirstVisit = true;
-/** NEOXA START */
+/** AKITACOIN START */
 void WalletView::gotoAssetsPage()
 {
     if (fFirstVisit){
@@ -447,4 +447,4 @@ void WalletView::gotoRestrictedAssetsPage()
 {
     setCurrentWidget(restrictedAssetsPage);
 }
-/** NEOXA END */
+/** AKITACOIN END */

@@ -1,5 +1,5 @@
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -63,7 +63,7 @@ UniValue viewallmessages(const JSONRPCRequest& request) {
 
     if (!fMessaging) {
         UniValue ret(UniValue::VSTR);
-        ret.push_back("Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your neoxa.conf");
+        ret.push_back("Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your akitacoin.conf");
         return ret;
     }
 
@@ -138,7 +138,7 @@ UniValue viewallmessagechannels(const JSONRPCRequest& request) {
 
     if (!fMessaging) {
         UniValue ret(UniValue::VSTR);
-        ret.push_back("Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your neoxa.conf");
+        ret.push_back("Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your akitacoin.conf");
         return ret;
     }
 
@@ -189,7 +189,7 @@ UniValue subscribetochannel(const JSONRPCRequest& request) {
         );
 
     if (!fMessaging) {
-        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your neoxa.conf");
+        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your akitacoin.conf");
     }
 
     if (!pMessageSubscribedChannelsCache || !pmessagechanneldb) {
@@ -239,7 +239,7 @@ UniValue unsubscribefromchannel(const JSONRPCRequest& request) {
         );
 
     if (!fMessaging) {
-        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your neoxa.conf");
+        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your akitacoin.conf");
     }
 
     if (!pMessageSubscribedChannelsCache || !pmessagechanneldb) {
@@ -286,7 +286,7 @@ UniValue clearmessages(const JSONRPCRequest& request) {
         );
 
     if (!fMessaging) {
-        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your neoxa.conf");
+        throw JSONRPCError(RPC_DATABASE_ERROR, "Messaging is disabled. To enable messaging, run the wallet without -disablemessaging or remove disablemessaging from your akitacoin.conf");
     }
 
     if (!pMessagesCache || !pmessagedb) {

@@ -7,7 +7,7 @@
 #include "key.h"
 #include "util.h"
 #include "utilstrencodings.h"
-#include "test/test_neoxa.h"
+#include "test/test_akitacoin.h"
 #include "wallet/bip39.h"
 
 #include <boost/test/unit_test.hpp>
@@ -57,9 +57,9 @@ BOOST_AUTO_TEST_CASE(bip39_vectors)
         key.SetSeed(&seed[0], 64);
         pubkey = key.Neuter();
 
-        CNeoxaExtKey b58key;
+        CAkitacoinExtKey b58key;
         b58key.SetKey(key);
-        // printf("CNeoxaExtKey: %s\n", b58key.ToString().c_str());
+        // printf("CAkitacoinExtKey: %s\n", b58key.ToString().c_str());
         BOOST_CHECK(b58key.ToString() == test[3].get_str());
     }
 }

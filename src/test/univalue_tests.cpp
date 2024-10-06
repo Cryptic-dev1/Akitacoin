@@ -1,7 +1,7 @@
 // Copyright (c) 2014 BitPay Inc.
 // Copyright (c) 2014-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,7 +10,7 @@
 #include <string>
 #include <map>
 #include <univalue.h>
-#include "test/test_neoxa.h"
+#include "test/test_akitacoin.h"
 
 #include <boost/test/unit_test.hpp>
 

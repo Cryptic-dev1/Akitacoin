@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -84,7 +84,7 @@ static bool SignStep(const BaseSignatureCreator& creator, const CScript& scriptP
         return false;
     case TX_RESTRICTED_ASSET_DATA:
         return false;
-    /** NEOXA START */
+    /** AKITACOIN START */
     case TX_NEW_ASSET:
         keyID = CKeyID(uint160(vSolutions[0]));
         if (!Sign1(keyID, creator, scriptPubKey, ret, sigversion))
@@ -119,7 +119,7 @@ static bool SignStep(const BaseSignatureCreator& creator, const CScript& scriptP
             ret.push_back(ToByteVector(vch));
         }
         return true;
-    /** NEOXA END */
+    /** AKITACOIN END */
     case TX_PUBKEY:
         keyID = CPubKey(vSolutions[0]).GetID();
         return Sign1(keyID, creator, scriptPubKey, ret, sigversion);

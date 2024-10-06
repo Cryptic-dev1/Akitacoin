@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_TIMESTAMPINDEX_H
-#define NEOXA_TIMESTAMPINDEX_H
+#ifndef AKITACOIN_TIMESTAMPINDEX_H
+#define AKITACOIN_TIMESTAMPINDEX_H
 
 #include "uint256.h"
 
@@ -128,4 +128,4 @@ struct CTimestampBlockIndexValue {
     }
 };
 
-#endif // NEOXA_TIMESTAMPINDEX_H
+#endif // AKITACOIN_TIMESTAMPINDEX_H

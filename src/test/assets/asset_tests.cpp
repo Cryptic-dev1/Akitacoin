@@ -1,11 +1,11 @@
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <assets/assets.h>
 
-#include <test/test_neoxa.h>
+#include <test/test_akitacoin.h>
 
 #include <boost/test/unit_test.hpp>
 #include "core_write.cpp"
@@ -48,23 +48,23 @@ BOOST_FIXTURE_TEST_SUITE(asset_tests, BasicTestingSetup)
         BOOST_CHECK(!IsAssetNameValid("A._BC", type));
         BOOST_CHECK(!IsAssetNameValid("AB_.C", type));
 
-        //- Versions of NEOXA NOT allowed
+        //- Versions of AKITACOIN NOT allowed
         BOOST_CHECK(!IsAssetNameValid("RVN", type));
         BOOST_CHECK(!IsAssetNameValid("RAVEN", type));
         BOOST_CHECK(!IsAssetNameValid("RAVENCOIN", type));
-        BOOST_CHECK(!IsAssetNameValid("NEOX", type));
-        BOOST_CHECK(!IsAssetNameValid("NEOXA", type));
+        BOOST_CHECK(!IsAssetNameValid("AKIC", type));
+        BOOST_CHECK(!IsAssetNameValid("AKITACOIN", type));
 
-        //- Versions of NEOXA ALLOWED
+        //- Versions of AKITACOIN ALLOWED
         BOOST_CHECK(IsAssetNameValid("RAVEN.COIN", type));
-        BOOST_CHECK(IsAssetNameValid("NEOXA.COIN", type));
+        BOOST_CHECK(IsAssetNameValid("AKITACOIN.COIN", type));
         BOOST_CHECK(IsAssetNameValid("RAVEN_COIN", type));
-        BOOST_CHECK(IsAssetNameValid("NEOXA_COIN", type));
+        BOOST_CHECK(IsAssetNameValid("AKITACOIN_COIN", type));
         BOOST_CHECK(IsAssetNameValid("RVNSPYDER", type));
         BOOST_CHECK(IsAssetNameValid("SPYDERRVN", type));
         BOOST_CHECK(IsAssetNameValid("RAVENSPYDER", type));
         BOOST_CHECK(IsAssetNameValid("SPYDERAVEN", type));
-        BOOST_CHECK(IsAssetNameValid("BLACK_NEOXA", type));
+        BOOST_CHECK(IsAssetNameValid("BLACK_AKITACOIN", type));
         BOOST_CHECK(IsAssetNameValid("SERVNOT", type));
 
         // subs

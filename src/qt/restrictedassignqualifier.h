@@ -2,8 +2,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QT_ASSIGNQUALIFIER_H
-#define NEOXA_QT_ASSIGNQUALIFIER_H
+#ifndef AKITACOIN_QT_ASSIGNQUALIFIER_H
+#define AKITACOIN_QT_ASSIGNQUALIFIER_H
 
 #include "amount.h"
 
@@ -64,4 +64,4 @@ private Q_SLOTS:
     void changeAddressChanged(int);
 };
 
-#endif // NEOXA_QT_ASSIGNQUALIFIER_H
+#endif // AKITACOIN_QT_ASSIGNQUALIFIER_H

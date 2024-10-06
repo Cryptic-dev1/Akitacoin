@@ -1,17 +1,17 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QT_WALLETVIEW_H
-#define NEOXA_QT_WALLETVIEW_H
+#ifndef AKITACOIN_QT_WALLETVIEW_H
+#define AKITACOIN_QT_WALLETVIEW_H
 
 #include "amount.h"
 
 #include <QStackedWidget>
 
-class NeoxaGUI;
+class AkitacoinGUI;
 class ClientModel;
 class OverviewPage;
 class PlatformStyle;
@@ -45,13 +45,13 @@ public:
     explicit WalletView(const PlatformStyle *platformStyle, QWidget *parent);
     ~WalletView();
 
-    void setNeoxaGUI(NeoxaGUI *gui);
+    void setAkitacoinGUI(AkitacoinGUI *gui);
     /** Set the client model.
         The client model represents the part of the core that communicates with the P2P network, and is wallet-agnostic.
     */
     void setClientModel(ClientModel *clientModel);
     /** Set the wallet model.
-        The wallet model represents a neoxa wallet, and offers access to the list of transactions, address book and sending
+        The wallet model represents a akitacoin wallet, and offers access to the list of transactions, address book and sending
         functionality.
     */
     void setWalletModel(WalletModel *walletModel);
@@ -77,12 +77,12 @@ private:
     const PlatformStyle *platformStyle;
 
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     AssetsDialog *assetsPage;
     CreateAssetDialog *createAssetsPage;
     ReissueAssetDialog *manageAssetsPage;
     RestrictedAssetsDialog *restrictedAssetsPage;
-    /** NEOXA END */
+    /** AKITACOIN END */
 
 public Q_SLOTS:
     /** Switch to overview (home) page */
@@ -129,7 +129,7 @@ public Q_SLOTS:
     void requestedSyncWarningInfo();
 
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     /** Switch to assets page */
 
     void gotoAssetsPage();
@@ -137,7 +137,7 @@ public Q_SLOTS:
     void gotoManageAssetsPage();
     void gotoRestrictedAssetsPage();
 
-    /** NEOXA END */
+    /** AKITACOIN END */
 
 Q_SIGNALS:
     /** Signal that we want to show the main window */
@@ -156,4 +156,4 @@ Q_SIGNALS:
     void checkAssets();
 };
 
-#endif // NEOXA_QT_WALLETVIEW_H
+#endif // AKITACOIN_QT_WALLETVIEW_H

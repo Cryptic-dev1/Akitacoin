@@ -1,13 +1,13 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "guiutil.h"
 
-#include "neoxaaddressvalidator.h"
-#include "neoxaunits.h"
+#include "akitacoinaddressvalidator.h"
+#include "akitacoinunits.h"
 #include "qvalidatedlineedit.h"
 #include "walletmodel.h"
 
@@ -213,11 +213,11 @@ void setupAddressWidget(QValidatedLineEdit *widget, QWidget *parent)
 #if QT_VERSION >= 0x040700
     // We don't want translators to use own addresses in translations
     // and this is the only place, where this address is supplied.
-    widget->setPlaceholderText(QObject::tr("Enter a neoxa address (e.g. %1)").arg(
+    widget->setPlaceholderText(QObject::tr("Enter a akitacoin address (e.g. %1)").arg(
         QString::fromStdString(DummyAddress(GetParams()))));
 #endif
-    widget->setValidator(new NeoxaAddressEntryValidator(parent));
-    widget->setCheckValidator(new NeoxaAddressCheckValidator(parent));
+    widget->setValidator(new AkitacoinAddressEntryValidator(parent));
+    widget->setCheckValidator(new AkitacoinAddressCheckValidator(parent));
 }
 
 void setupAmountWidget(QLineEdit *widget, QWidget *parent)
@@ -229,10 +229,10 @@ void setupAmountWidget(QLineEdit *widget, QWidget *parent)
     widget->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
 }
 
-bool parseNeoxaURI(const QUrl &uri, SendCoinsRecipient *out)
+bool parseAkitacoinURI(const QUrl &uri, SendCoinsRecipient *out)
 {
-    // return if URI is not valid or is no neoxa: URI
-    if(!uri.isValid() || uri.scheme() != QString("neoxa"))
+    // return if URI is not valid or is no akitacoin: URI
+    if(!uri.isValid() || uri.scheme() != QString("akitacoin"))
         return false;
 
     SendCoinsRecipient rv;
@@ -272,7 +272,7 @@ bool parseNeoxaURI(const QUrl &uri, SendCoinsRecipient *out)
         {
             if(!i->second.isEmpty())
             {
-                if(!NeoxaUnits::parse(NeoxaUnits::NEOX, i->second, &rv.amount))
+                if(!AkitacoinUnits::parse(AkitacoinUnits::AKIC, i->second, &rv.amount))
                 {
                     return false;
                 }
@@ -290,28 +290,28 @@ bool parseNeoxaURI(const QUrl &uri, SendCoinsRecipient *out)
     return true;
 }
 
-bool parseNeoxaURI(QString uri, SendCoinsRecipient *out)
+bool parseAkitacoinURI(QString uri, SendCoinsRecipient *out)
 {
-    // Convert neoxa:// to neoxa:
+    // Convert akitacoin:// to akitacoin:
     //
-    //    Cannot handle this later, because neoxa:// will cause Qt to see the part after // as host,
+    //    Cannot handle this later, because akitacoin:// will cause Qt to see the part after // as host,
     //    which will lower-case it (and thus invalidate the address).
-    if(uri.startsWith("neoxa://", Qt::CaseInsensitive))
+    if(uri.startsWith("akitacoin://", Qt::CaseInsensitive))
     {
-        uri.replace(0, 10, "neoxa:");
+        uri.replace(0, 10, "akitacoin:");
     }
     QUrl uriInstance(uri);
-    return parseNeoxaURI(uriInstance, out);
+    return parseAkitacoinURI(uriInstance, out);
 }
 
-QString formatNeoxaURI(const SendCoinsRecipient &info)
+QString formatAkitacoinURI(const SendCoinsRecipient &info)
 {
-    QString ret = QString("neoxa:%1").arg(info.address);
+    QString ret = QString("akitacoin:%1").arg(info.address);
     int paramCount = 0;
 
     if (info.amount)
     {
-        ret += QString("?amount=%1").arg(NeoxaUnits::format(NeoxaUnits::NEOX, info.amount, false, NeoxaUnits::separatorNever));
+        ret += QString("?amount=%1").arg(AkitacoinUnits::format(AkitacoinUnits::AKIC, info.amount, false, AkitacoinUnits::separatorNever));
         paramCount++;
     }
  
@@ -501,11 +501,11 @@ void openDebugLogfile()
         QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathDebug)));
 }
 
-bool openNeoxaConf()
+bool openAkitacoinConf()
 {
-    fs::path pathConfig = GetConfigFile(gArgs.GetArg("-conf", NEOXA_CONF_FILENAME));
+    fs::path pathConfig = GetConfigFile(gArgs.GetArg("-conf", AKITACOIN_CONF_FILENAME));
 
-    /* Open neoxa.conf with the associated application */
+    /* Open akitacoin.conf with the associated application */
     if (fs::exists(pathConfig))
         return QDesktopServices::openUrl(QUrl::fromLocalFile(boostPathToQString(pathConfig)));
 }
@@ -715,15 +715,15 @@ fs::path static StartupShortcutPath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Neoxa.lnk";
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Akitacoin.lnk";
     if (chain == CBaseChainParams::TESTNET) // Remove this special case when CBaseChainParams::TESTNET = "testnet4"
-        return GetSpecialFolderPath(CSIDL_STARTUP) / "Neoxa (testnet).lnk";
-    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Neoxa (%s).lnk", chain);
+        return GetSpecialFolderPath(CSIDL_STARTUP) / "Akitacoin (testnet).lnk";
+    return GetSpecialFolderPath(CSIDL_STARTUP) / strprintf("Akitacoin (%s).lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
 {
-    // check for Neoxa*.lnk
+    // check for Akitacoin*.lnk
     return fs::exists(StartupShortcutPath());
 }
 
@@ -813,8 +813,8 @@ fs::path static GetAutostartFilePath()
 {
     std::string chain = ChainNameFromCommandLine();
     if (chain == CBaseChainParams::MAIN)
-        return GetAutostartDir() / "neoxa.desktop";
-    return GetAutostartDir() / strprintf("neoxa-%s.lnk", chain);
+        return GetAutostartDir() / "akitacoin.desktop";
+    return GetAutostartDir() / strprintf("akitacoin-%s.lnk", chain);
 }
 
 bool GetStartOnSystemStartup()
@@ -854,13 +854,13 @@ bool SetStartOnSystemStartup(bool fAutoStart)
         if (!optionFile.good())
             return false;
         std::string chain = ChainNameFromCommandLine();
-        // Write a neoxa.desktop file to the autostart directory:
+        // Write a akitacoin.desktop file to the autostart directory:
         optionFile << "[Desktop Entry]\n";
         optionFile << "Type=Application\n";
         if (chain == CBaseChainParams::MAIN)
-            optionFile << "Name=Neoxa\n";
+            optionFile << "Name=Akitacoin\n";
         else
-            optionFile << strprintf("Name=Neoxa (%s)\n", chain);
+            optionFile << strprintf("Name=Akitacoin (%s)\n", chain);
         optionFile << "Exec=" << pszExePath << strprintf(" -min -testnet=%d -regtest=%d\n", gArgs.GetBoolArg("-testnet", false), gArgs.GetBoolArg("-regtest", false));
         optionFile << "Terminal=false\n";
         optionFile << "Hidden=false\n";
@@ -886,7 +886,7 @@ LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef
         return nullptr;
     }
     
-    // loop through the list of startup items and try to find the neoxa app
+    // loop through the list of startup items and try to find the akitacoin app
     for(int i = 0; i < CFArrayGetCount(listSnapshot); i++) {
         LSSharedFileListItemRef item = (LSSharedFileListItemRef)CFArrayGetValueAtIndex(listSnapshot, i);
         UInt32 resolutionFlags = kLSSharedFileListNoUserInteraction | kLSSharedFileListDoNotMountVolumes;
@@ -920,38 +920,38 @@ LSSharedFileListItemRef findStartupItemInList(LSSharedFileListRef list, CFURLRef
 
 bool GetStartOnSystemStartup()
 {
-    CFURLRef neoxaAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
-    if (neoxaAppUrl == nullptr) {
+    CFURLRef akitacoinAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
+    if (akitacoinAppUrl == nullptr) {
         return false;
     }
     
     LSSharedFileListRef loginItems = LSSharedFileListCreate(nullptr, kLSSharedFileListSessionLoginItems, nullptr);
-    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, neoxaAppUrl);
+    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, akitacoinAppUrl);
 
-    CFRelease(neoxaAppUrl);
+    CFRelease(akitacoinAppUrl);
     return !!foundItem; // return boolified object
 }
 
 bool SetStartOnSystemStartup(bool fAutoStart)
 {
-    CFURLRef neoxaAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
-    if (neoxaAppUrl == nullptr) {
+    CFURLRef akitacoinAppUrl = CFBundleCopyBundleURL(CFBundleGetMainBundle());
+    if (akitacoinAppUrl == nullptr) {
         return false;
     }
     
     LSSharedFileListRef loginItems = LSSharedFileListCreate(nullptr, kLSSharedFileListSessionLoginItems, nullptr);
-    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, neoxaAppUrl);
+    LSSharedFileListItemRef foundItem = findStartupItemInList(loginItems, akitacoinAppUrl);
 
     if(fAutoStart && !foundItem) {
-        // add neoxa app to startup item list
-        LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, nullptr, nullptr, neoxaAppUrl, nullptr, nullptr);
+        // add akitacoin app to startup item list
+        LSSharedFileListInsertItemURL(loginItems, kLSSharedFileListItemBeforeFirst, nullptr, nullptr, akitacoinAppUrl, nullptr, nullptr);
     }
     else if(!fAutoStart && foundItem) {
         // remove item
         LSSharedFileListItemRemove(loginItems, foundItem);
     }
     
-    CFRelease(neoxaAppUrl);
+    CFRelease(akitacoinAppUrl);
     return true;
 }
 #pragma GCC diagnostic pop

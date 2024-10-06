@@ -19,28 +19,28 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-NEOXA_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
+AKITACOIN_INCLUDES=-I$(builddir) -I$(builddir)/obj $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS) $(SSL_CFLAGS)
 
-NEOXA_INCLUDES += -I$(srcdir)/secp256k1/include
-NEOXA_INCLUDES += $(UNIVALUE_CFLAGS)
+AKITACOIN_INCLUDES += -I$(srcdir)/secp256k1/include
+AKITACOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
-LIBNEOXA_SERVER=libneoxa_server.a
-LIBNEOXA_COMMON=libneoxa_common.a
-LIBNEOXA_CONSENSUS=libneoxa_consensus.a
-LIBneoxa_cli=libneoxa_cli.a
-LIBNEOXA_UTIL=libneoxa_util.a
-LIBNEOXA_CRYPTO=crypto/libneoxa_crypto.a
-LIBNEOXAQT=qt/libneoxaqt.a
+LIBAKITACOIN_SERVER=libakitacoin_server.a
+LIBAKITACOIN_COMMON=libakitacoin_common.a
+LIBAKITACOIN_CONSENSUS=libakitacoin_consensus.a
+LIBakitacoin_cli=libakitacoin_cli.a
+LIBAKITACOIN_UTIL=libakitacoin_util.a
+LIBAKITACOIN_CRYPTO=crypto/libakitacoin_crypto.a
+LIBAKITACOINQT=qt/libakitacoinqt.a
 LIBSECP256K1=secp256k1/libsecp256k1.la
 
 if ENABLE_ZMQ
-LIBNEOXA_ZMQ=libneoxa_zmq.a
+LIBAKITACOIN_ZMQ=libakitacoin_zmq.a
 endif
-if BUILD_NEOXA_LIBS
-LIBNEOXACONSENSUS=libneoxaconsensus.la
+if BUILD_AKITACOIN_LIBS
+LIBAKITACOINCONSENSUS=libakitacoinconsensus.la
 endif
 if ENABLE_WALLET
-LIBNEOXA_WALLET=libneoxa_wallet.a
+LIBAKITACOIN_WALLET=libakitacoin_wallet.a
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
@@ -49,37 +49,37 @@ $(LIBSECP256K1): $(wildcard secp256k1/src/*) $(wildcard secp256k1/include/*)
 # Make is not made aware of per-object dependencies to avoid limiting building parallelization
 # But to build the less dependent modules first, we manually select their order here:
 EXTRA_LIBRARIES += \
-  $(LIBNEOXA_CRYPTO) \
-  $(LIBNEOXA_UTIL) \
-  $(LIBNEOXA_COMMON) \
-  $(LIBNEOXA_CONSENSUS) \
-  $(LIBNEOXA_SERVER) \
-  $(LIBneoxa_cli) \
-  $(LIBNEOXA_WALLET) \
-  $(LIBNEOXA_ZMQ)
+  $(LIBAKITACOIN_CRYPTO) \
+  $(LIBAKITACOIN_UTIL) \
+  $(LIBAKITACOIN_COMMON) \
+  $(LIBAKITACOIN_CONSENSUS) \
+  $(LIBAKITACOIN_SERVER) \
+  $(LIBakitacoin_cli) \
+  $(LIBAKITACOIN_WALLET) \
+  $(LIBAKITACOIN_ZMQ)
 
-lib_LTLIBRARIES = $(LIBNEOXACONSENSUS)
+lib_LTLIBRARIES = $(LIBAKITACOINCONSENSUS)
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
 TESTS =
 BENCHMARKS =
 
-if BUILD_NEOXAD
-  bin_PROGRAMS += neoxad
+if BUILD_AKITACOIND
+  bin_PROGRAMS += akitacoind
 endif
 
-if BUILD_NEOXA_CLI
-  bin_PROGRAMS += neoxa-cli
+if BUILD_AKITACOIN_CLI
+  bin_PROGRAMS += akitacoin-cli
 endif
 
-if BUILD_NEOXA_TX
-  bin_PROGRAMS += neoxa-tx
+if BUILD_AKITACOIN_TX
+  bin_PROGRAMS += akitacoin-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
-# neoxa core #
-NEOXA_CORE_H = \
+# akitacoin core #
+AKITACOIN_CORE_H = \
   addrdb.h \
   addressindex.h \
   algo/sph_groestl.h \
@@ -240,12 +240,12 @@ obj/build.h: FORCE
 	@$(MKDIR_P) $(builddir)/obj
 	@$(top_srcdir)/share/genbuild.sh "$(abs_top_builddir)/src/obj/build.h" \
 	  "$(abs_top_srcdir)"
-libneoxa_util_a-clientversion.$(OBJEXT): obj/build.h
+libakitacoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between neoxad and neoxa-qt
-libneoxa_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libneoxa_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_server_a_SOURCES = \
+# server: shared between akitacoind and akitacoin-qt
+libakitacoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libakitacoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakitacoin_server_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
   bloom.cpp \
@@ -297,23 +297,23 @@ libneoxa_server_a_SOURCES = \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
-  $(NEOXA_CORE_H)
+  $(AKITACOIN_CORE_H)
 
 if ENABLE_ZMQ
-libneoxa_zmq_a_CPPFLAGS = $(NEOXA_INCLUDES) $(ZMQ_CFLAGS)
-libneoxa_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_zmq_a_SOURCES = \
+libakitacoin_zmq_a_CPPFLAGS = $(AKITACOIN_INCLUDES) $(ZMQ_CFLAGS)
+libakitacoin_zmq_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakitacoin_zmq_a_SOURCES = \
   zmq/zmqabstractnotifier.cpp \
   zmq/zmqnotificationinterface.cpp \
   zmq/zmqpublishnotifier.cpp
 endif
 
 
-# wallet: shared between neoxad and neoxa-qt, but only linked
+# wallet: shared between akitacoind and akitacoin-qt, but only linked
 # when wallet enabled
-libneoxa_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-libneoxa_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_wallet_a_SOURCES = \
+libakitacoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES)
+libakitacoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakitacoin_wallet_a_SOURCES = \
   wallet/crypter.cpp \
   wallet/db.cpp \
   wallet/feebumper.cpp \
@@ -324,12 +324,12 @@ libneoxa_wallet_a_SOURCES = \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
   wallet/bip39.cpp \
-  $(NEOXA_CORE_H)
+  $(AKITACOIN_CORE_H)
 
 # crypto primitives library
-crypto_libneoxa_crypto_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libneoxa_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libneoxa_crypto_a_SOURCES = \
+crypto_libakitacoin_crypto_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libakitacoin_crypto_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libakitacoin_crypto_a_SOURCES = \
   crypto/aes.cpp \
   crypto/aes.h \
   crypto/chacha20.h \
@@ -372,13 +372,13 @@ crypto_libneoxa_crypto_a_SOURCES = \
   crypto/ethash/progpow_test_vectors.hpp
 
 if USE_ASM
-crypto_libneoxa_crypto_a_SOURCES += crypto/sha256_sse4.cpp
+crypto_libakitacoin_crypto_a_SOURCES += crypto/sha256_sse4.cpp
 endif
 
 # consensus: shared between all executables that validate any consensus rules.
-libneoxa_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-libneoxa_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_consensus_a_SOURCES = \
+libakitacoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES)
+libakitacoin_consensus_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakitacoin_consensus_a_SOURCES = \
   amount.h \
   arith_uint256.cpp \
   arith_uint256.h \
@@ -395,7 +395,7 @@ libneoxa_consensus_a_SOURCES = \
   primitives/transaction.h \
   pubkey.cpp \
   pubkey.h \
-  script/neoxaconsensus.cpp \
+  script/akitacoinconsensus.cpp \
   script/interpreter.cpp \
   script/interpreter.h \
   script/script.cpp \
@@ -413,12 +413,12 @@ libneoxa_consensus_a_SOURCES = \
   version.h \
   LibBoolEE.cpp \
   LibBoolEE.h \
-  $(NEOXA_CORE_H)
+  $(AKITACOIN_CORE_H)
 
-# common: shared between neoxad, and neoxa-qt and non-server tools
-libneoxa_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-libneoxa_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_common_a_SOURCES = \
+# common: shared between akitacoind, and akitacoin-qt and non-server tools
+libakitacoin_common_a_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES)
+libakitacoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakitacoin_common_a_SOURCES = \
   base58.cpp \
   chainparams.cpp \
   coins.cpp \
@@ -435,14 +435,14 @@ libneoxa_common_a_SOURCES = \
   script/sign.cpp \
   script/standard.cpp \
   warnings.cpp \
-  $(NEOXA_CORE_H)
+  $(AKITACOIN_CORE_H)
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
 # backward-compatibility objects and their sanity checks are linked.
-libneoxa_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-libneoxa_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_util_a_SOURCES = \
+libakitacoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES)
+libakitacoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakitacoin_util_a_SOURCES = \
   support/lockedpool.cpp \
   chainparamsbase.cpp \
   clientversion.cpp \
@@ -458,102 +458,102 @@ libneoxa_util_a_SOURCES = \
   utilmoneystr.cpp \
   utilstrencodings.cpp \
   utiltime.cpp \
-  $(NEOXA_CORE_H)
+  $(AKITACOIN_CORE_H)
 
 if GLIBC_BACK_COMPAT
-libneoxa_util_a_SOURCES += compat/glibc_compat.cpp
+libakitacoin_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
 endif
 
-# cli: shared between neoxa-cli and neoxa-qt
-libneoxa_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-libneoxa_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libneoxa_cli_a_SOURCES = \
+# cli: shared between akitacoin-cli and akitacoin-qt
+libakitacoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES)
+libakitacoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakitacoin_cli_a_SOURCES = \
   rpc/client.cpp \
-  $(NEOXA_CORE_H)
+  $(AKITACOIN_CORE_H)
 
-nodist_libneoxa_util_a_SOURCES = $(srcdir)/obj/build.h
+nodist_libakitacoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# neoxad binary #
-neoxad_SOURCES = neoxad.cpp
-neoxad_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-neoxad_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-neoxad_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# akitacoind binary #
+akitacoind_SOURCES = akitacoind.cpp
+akitacoind_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES)
+akitacoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+akitacoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-neoxad_SOURCES += neoxad-res.rc
+akitacoind_SOURCES += akitacoind-res.rc
 endif
 
-neoxad_LDADD = \
-  $(LIBNEOXA_SERVER) \
-  $(LIBNEOXA_COMMON) \
+akitacoind_LDADD = \
+  $(LIBAKITACOIN_SERVER) \
+  $(LIBAKITACOIN_COMMON) \
   $(LIBUNIVALUE) \
-  $(LIBNEOXA_UTIL) \
-  $(LIBNEOXA_WALLET) \
-  $(LIBNEOXA_ZMQ) \
-  $(LIBNEOXA_CONSENSUS) \
-  $(LIBNEOXA_CRYPTO) \
+  $(LIBAKITACOIN_UTIL) \
+  $(LIBAKITACOIN_WALLET) \
+  $(LIBAKITACOIN_ZMQ) \
+  $(LIBAKITACOIN_CONSENSUS) \
+  $(LIBAKITACOIN_CRYPTO) \
   $(LIBLEVELDB) \
   $(LIBLEVELDB_SSE42) \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-neoxad_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+akitacoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
-# neoxa-cli binary #
-neoxa_cli_SOURCES = neoxa-cli.cpp
-neoxa_cli_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES) $(EVENT_CFLAGS)
-neoxa_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-neoxa_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# akitacoin-cli binary #
+akitacoin_cli_SOURCES = akitacoin-cli.cpp
+akitacoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES) $(EVENT_CFLAGS)
+akitacoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+akitacoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-neoxa_cli_SOURCES += neoxa-cli-res.rc
+akitacoin_cli_SOURCES += akitacoin-cli-res.rc
 endif
 
-neoxa_cli_LDADD = \
-  $(LIBneoxa_cli) \
+akitacoin_cli_LDADD = \
+  $(LIBakitacoin_cli) \
   $(LIBUNIVALUE) \
-  $(LIBNEOXA_UTIL) \
-  $(LIBNEOXA_CRYPTO)
+  $(LIBAKITACOIN_UTIL) \
+  $(LIBAKITACOIN_CRYPTO)
 
-neoxa_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+akitacoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
-# neoxa-tx binary #
-neoxa_tx_SOURCES = neoxa-tx.cpp
-neoxa_tx_CPPFLAGS = $(AM_CPPFLAGS) $(NEOXA_INCLUDES)
-neoxa_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-neoxa_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# akitacoin-tx binary #
+akitacoin_tx_SOURCES = akitacoin-tx.cpp
+akitacoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(AKITACOIN_INCLUDES)
+akitacoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+akitacoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-neoxa_tx_SOURCES += neoxa-tx-res.rc
+akitacoin_tx_SOURCES += akitacoin-tx-res.rc
 endif
 
-neoxa_tx_LDADD = \
+akitacoin_tx_LDADD = \
   $(LIBUNIVALUE) \
-  $(LIBNEOXA_COMMON) \
-  $(LIBNEOXA_UTIL) \
-  $(LIBNEOXA_CONSENSUS) \
-  $(LIBNEOXA_CRYPTO) \
+  $(LIBAKITACOIN_COMMON) \
+  $(LIBAKITACOIN_UTIL) \
+  $(LIBAKITACOIN_CONSENSUS) \
+  $(LIBAKITACOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-neoxa_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+akitacoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
-# neoxaconsensus library #
-if BUILD_NEOXA_LIBS
-include_HEADERS = script/neoxaconsensus.h
-libneoxaconsensus_la_SOURCES = $(crypto_libneoxa_crypto_a_SOURCES) $(libneoxa_consensus_a_SOURCES)
+# akitacoinconsensus library #
+if BUILD_AKITACOIN_LIBS
+include_HEADERS = script/akitacoinconsensus.h
+libakitacoinconsensus_la_SOURCES = $(crypto_libakitacoin_crypto_a_SOURCES) $(libakitacoin_consensus_a_SOURCES)
 
 if GLIBC_BACK_COMPAT
-  libneoxaconsensus_la_SOURCES += compat/glibc_compat.cpp
+  libakitacoinconsensus_la_SOURCES += compat/glibc_compat.cpp
 endif
 
-libneoxaconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
-libneoxaconsensus_la_LIBADD = $(LIBSECP256K1) $(BOOST_LIBS)
-libneoxaconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_NEOXA_INTERNAL
-libneoxaconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libakitacoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
+libakitacoinconsensus_la_LIBADD = $(LIBSECP256K1) $(BOOST_LIBS)
+libakitacoinconsensus_la_CPPFLAGS = $(AM_CPPFLAGS) -I$(builddir)/obj -I$(srcdir)/secp256k1/include -DBUILD_AKITACOIN_INTERNAL
+libakitacoinconsensus_la_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 endif
 #
@@ -583,12 +583,12 @@ CLEANFILES += obj/build.h
 EXTRA_DIST = $(CTAES_DIST)
 
 
-config/neoxa-config.h: config/stamp-h1
+config/akitacoin-config.h: config/stamp-h1
 	@$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-config/stamp-h1: $(top_srcdir)/$(subdir)/config/neoxa-config.h.in $(top_builddir)/config.status
+config/stamp-h1: $(top_srcdir)/$(subdir)/config/akitacoin-config.h.in $(top_builddir)/config.status
 	$(AM_V_at)$(MAKE) -C $(top_builddir) $(subdir)/$(@)
-$(top_srcdir)/$(subdir)/config/neoxa-config.h.in:  $(am__configure_deps)
-	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/neoxa-config.h.in
+$(top_srcdir)/$(subdir)/config/akitacoin-config.h.in:  $(am__configure_deps)
+	$(AM_V_at)$(MAKE) -C $(top_srcdir) $(subdir)/config/akitacoin-config.h.in
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean

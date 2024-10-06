@@ -3,8 +3,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_VERSION_H
-#define NEOXA_VERSION_H
+#ifndef AKITACOIN_VERSION_H
+#define AKITACOIN_VERSION_H
 
 /**
  * network protocol versioning
@@ -61,4 +61,4 @@ static const int ASSETDATA_VERSION_UPDATED = 70020;
 static const int MESSAGING_RESTRICTED_ASSETS_VERSION = 70026;
 
 
-#endif // NEOXA_VERSION_H
+#endif // AKITACOIN_VERSION_H

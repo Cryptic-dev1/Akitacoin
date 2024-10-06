@@ -1,11 +1,11 @@
 // Copyright (c) 2014 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_CRYPTO_HMAC_SHA512_H
-#define NEOXA_CRYPTO_HMAC_SHA512_H
+#ifndef AKITACOIN_CRYPTO_HMAC_SHA512_H
+#define AKITACOIN_CRYPTO_HMAC_SHA512_H
 
 #include "crypto/sha512.h"
 
@@ -31,4 +31,4 @@ public:
     void Finalize(unsigned char hash[OUTPUT_SIZE]);
 };
 
-#endif // NEOXA_CRYPTO_HMAC_SHA512_H
+#endif // AKITACOIN_CRYPTO_HMAC_SHA512_H

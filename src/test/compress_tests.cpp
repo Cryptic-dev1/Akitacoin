@@ -1,12 +1,12 @@
 // Copyright (c) 2012-2015 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "compressor.h"
 #include "util.h"
-#include "test/test_neoxa.h"
+#include "test/test_akitacoin.h"
 
 #include <stdint.h>
 
@@ -19,10 +19,10 @@
 #define NUM_MULTIPLES_CENT 10000
 
 // amounts 1 .. 10000
-#define NUM_MULTIPLES_1NEOX 10000
+#define NUM_MULTIPLES_1AKIC 10000
 
 // amounts 50 .. 21000000
-#define NUM_MULTIPLES_50NEOX 420000
+#define NUM_MULTIPLES_50AKIC 420000
 
 BOOST_FIXTURE_TEST_SUITE(compress_tests, BasicTestingSetup)
 
@@ -59,10 +59,10 @@ BOOST_FIXTURE_TEST_SUITE(compress_tests, BasicTestingSetup)
         for (uint64_t i = 1; i <= NUM_MULTIPLES_CENT; i++)
             BOOST_CHECK(TestEncode(i * CENT));
 
-        for (uint64_t i = 1; i <= NUM_MULTIPLES_1NEOX; i++)
+        for (uint64_t i = 1; i <= NUM_MULTIPLES_1AKIC; i++)
             BOOST_CHECK(TestEncode(i * COIN));
 
-        for (uint64_t i = 1; i <= NUM_MULTIPLES_50NEOX; i++)
+        for (uint64_t i = 1; i <= NUM_MULTIPLES_50AKIC; i++)
             BOOST_CHECK(TestEncode(i * 5000 * COIN));
 
         for (uint64_t i = 0; i < 100000; i++)

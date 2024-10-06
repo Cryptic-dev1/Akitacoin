@@ -1,4 +1,4 @@
-## Please read https://github.com/NeoxaChain/Neoxa/blob/master/doc/build-windows.md
+## Please read https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/build-windows.md
 
 ## STEP1: Setup dependency
 # sudo apt-get install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl nsis
@@ -10,10 +10,10 @@
 
 ## STEP3: Run this script
 
-NEOXA_ROOT=$(pwd)
+AKITACOIN_ROOT=$(pwd)
 
-# Pick some path to install BDB to, here we create a directory within the Neoxa directory
-BDB_PREFIX="${NEOXA_ROOT}/db4"
+# Pick some path to install BDB to, here we create a directory within the Akitacoin directory
+BDB_PREFIX="${AKITACOIN_ROOT}/db4"
 mkdir -p $BDB_PREFIX
 
 # Fetch the source and verify that it is not tampered with
@@ -33,8 +33,8 @@ cd db-4.8.30.NC/build_unix/
 make
 make install
 
-# Configure Neoxa Core to use our own-built instance of BDB
-cd $NEOXA_ROOT
+# Configure Akitacoin Core to use our own-built instance of BDB
+cd $AKITACOIN_ROOT
 PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
 cd depends
 make HOST=x86_64-w64-mingw32

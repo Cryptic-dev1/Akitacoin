@@ -2091,7 +2091,7 @@ void test_add_neg_y_diff_x(void) {
      * of the sum to be wrong (since infinity has no xy coordinates).
      * HOWEVER, if the x-coordinates are different, infinity is the
      * wrong answer, and such degeneracies are exposed. This is the
-     * root of https://github.com/neoxa-core/secp256k1/issues/257
+     * root of https://github.com/akitacoin-core/secp256k1/issues/257
      * which this test is a regression test for.
      *
      * These points were generated in sage as
@@ -2387,7 +2387,7 @@ void run_point_times_order(void) {
 void ecmult_const_random_mult(void) {
     /* random starting point A (on the curve) */
     secp256k1_ge a = SECP256K1_GE_CONST(
-        0x6d986544, 0x57ff52b8, 0xcf1b8126, 0x5b802a5b,
+        0x6d986884, 0x57ff52b8, 0xcf1b8126, 0x5b802a5b,
         0xa97f9263, 0xb1e88044, 0x93351325, 0x91bc450a,
         0x535c59f7, 0x325e5d2b, 0xc391fbe8, 0x3c12787c,
         0x337e4a98, 0xe82a9011, 0x0123ba37, 0xdd769c7d

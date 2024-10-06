@@ -245,7 +245,7 @@ WalletModel::SendCoinsReturn WalletModel::prepareTransaction(WalletModelTransact
             total += subtotal;
         }
         else
-        {   // User-entered neoxa address / amount:
+        {   // User-entered akitacoin address / amount:
             if(!validateAddress(rcp.address))
             {
                 return InvalidAddress;
@@ -336,7 +336,7 @@ WalletModel::SendCoinsReturn WalletModel::sendCoins(WalletModelTransaction &tran
                 rcp.paymentRequest.SerializeToString(&value);
                 newTx->vOrderForm.push_back(make_pair(key, value));
             }
-            else if (!rcp.message.isEmpty()) // Message from normal neoxa:URI (neoxa:123...?message=example)
+            else if (!rcp.message.isEmpty()) // Message from normal akitacoin:URI (akitacoin:123...?message=example)
                 newTx->vOrderForm.push_back(make_pair("Message", rcp.message.toStdString()));
         }
 
@@ -685,7 +685,7 @@ void WalletModel::listCoins(std::map<QString, std::vector<COutput> >& mapCoins) 
     }
 }
 
-/** NEOXA START */
+/** AKITACOIN START */
 // AvailableCoins + LockedCoins grouped by wallet address (put change in one group with wallet address)
 void WalletModel::listAssets(std::map<QString, std::map<QString, std::vector<COutput> > >& mapCoins) const
 {
@@ -711,7 +711,7 @@ void WalletModel::listAssets(std::map<QString, std::map<QString, std::vector<COu
         }
     }
 }
-/** NEOXA END */
+/** AKITACOIN END */
 
 bool WalletModel::isLockedCoin(uint256 hash, unsigned int n) const
 {
@@ -803,15 +803,15 @@ bool WalletModel::bumpFee(uint256 hash)
 //    questionString.append("<tr><td>");
 //    questionString.append(tr("Current fee:"));
 //    questionString.append("</td><td>");
-//    questionString.append(NeoxaUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), oldFee));
+//    questionString.append(AkitacoinUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), oldFee));
 //    questionString.append("</td></tr><tr><td>");
 //    questionString.append(tr("Increase:"));
 //    questionString.append("</td><td>");
-//    questionString.append(NeoxaUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), newFee - oldFee));
+//    questionString.append(AkitacoinUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), newFee - oldFee));
 //    questionString.append("</td></tr><tr><td>");
 //    questionString.append(tr("New fee:"));
 //    questionString.append("</td><td>");
-//    questionString.append(NeoxaUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), newFee));
+//    questionString.append(AkitacoinUnits::formatHtmlWithUnit(getOptionsModel()->getDisplayUnit(), newFee));
 //    questionString.append("</td></tr></table>");
 //    SendConfirmationDialog confirmationDialog(tr("Confirm fee bump"), questionString);
 //    confirmationDialog.exec();

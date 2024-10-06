@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,7 +14,7 @@ forward all unrecognized arguments onto the individual test scripts.
 Functional tests are disabled on Windows by default. Use --force to run them anyway.
 
 For a description of arguments recognized by test scripts, see
-`test/functional/test_framework/test_framework.py:NeoxaTestFramework.main`.
+`test/functional/test_framework/test_framework.py:AkitacoinTestFramework.main`.
 
 
 """
@@ -151,7 +151,7 @@ BASE_SCRIPTS= [
     'feature_notifications.py',
     'rpc_net.py',
     'rpc_misc.py',
-    'interface_neoxa_cli.py',
+    'interface_akitacoin_cli.py',
     'mempool_resurrect.py',
     'rpc_signrawtransaction.py',
     'wallet_resendtransactions.py',
@@ -253,23 +253,23 @@ def main():
     logging.basicConfig(format='%(message)s', level=logging_level)
 
     # Create base test directory
-    tmpdir = "%s/neoxa_test_runner_%s" % (args.tmpdirprefix, datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
+    tmpdir = "%s/akitacoin_test_runner_%s" % (args.tmpdirprefix, datetime.datetime.now().strftime("%Y%m%d_%H%M%S"))
     os.makedirs(tmpdir)
     logging.debug("Temporary test directory at %s" % tmpdir)
 
     # Don't run tests on Windows by default
     if config["environment"]["EXEEXT"] == ".exe" and not args.force:
-        # https://github.com/NeoxaChain/Neoxa/commit/d52802551752140cf41f0d9a225a43e84404d3e9
+        # https://github.com/AkitacoinChain/Akitacoin/commit/d52802551752140cf41f0d9a225a43e84404d3e9
         # https://github.com/Bitcoin/bitcoin/pull/5677#issuecomment-136646964
         print("Tests currently disabled on Windows by default. Use --force option to enable")
         sys.exit(0)
 
-    # Check that the build was configured with wallet, utils, and neoxad
+    # Check that the build was configured with wallet, utils, and akitacoind
     enable_wallet = config["components"].getboolean("ENABLE_WALLET")
     enable_cli = config["components"].getboolean("ENABLE_UTILS")
-    enable_neoxad = config["components"].getboolean("ENABLE_NEOXAD")
-    if not (enable_wallet and enable_cli and enable_neoxad):
-        print("No functional tests to run. Wallet, utils, and neoxad must all be enabled")
+    enable_akitacoind = config["components"].getboolean("ENABLE_AKITACOIND")
+    if not (enable_wallet and enable_cli and enable_akitacoind):
+        print("No functional tests to run. Wallet, utils, and akitacoind must all be enabled")
         print("Rerun `configure` with --enable-wallet, --with-cli and --with-daemon and rerun make")
         sys.exit(0)
 
@@ -361,12 +361,12 @@ def main():
 
 
 def run_tests(test_list, src_dir, build_dir, exeext, tmpdir, use_term_control, jobs=1, enable_coverage=False, args=None, combined_logs_len=0, failfast=False, last_loop=False):
-    # Warn if neoxad is already running (unix only)
+    # Warn if akitacoind is already running (unix only)
     if args is None:
         args = []
     try:
-        if subprocess.check_output(["pidof", "neoxad"]) is not None:
-            print("%sWARNING!%s There is already a neoxad process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
+        if subprocess.check_output(["pidof", "akitacoind"]) is not None:
+            print("%sWARNING!%s There is already a akitacoind process running on this system. Tests may fail unexpectedly due to resource contention!" % (BOLD[1], BOLD[0]))
     except (OSError, subprocess.SubprocessError):
         pass
 
@@ -376,9 +376,9 @@ def run_tests(test_list, src_dir, build_dir, exeext, tmpdir, use_term_control, j
         print("%sWARNING!%s There is a cache directory here: %s. If tests fail unexpectedly, try deleting the cache directory." % (BOLD[1], BOLD[0], cache_dir))
 
     #Set env vars
-    if "NEOXAD" not in os.environ:
-        os.environ["NEOXAD"] = build_dir + '/src/neoxad' + exeext
-        os.environ["NEOXACLI"] = build_dir + '/src/neoxa-cli' + exeext
+    if "AKITACOIND" not in os.environ:
+        os.environ["AKITACOIND"] = build_dir + '/src/akitacoind' + exeext
+        os.environ["AKITACOINCLI"] = build_dir + '/src/akitacoin-cli' + exeext
 
     tests_dir = src_dir + '/test/functional/'
 
@@ -667,7 +667,7 @@ class RPCCoverage:
     Coverage calculation works by having each test script subprocess write
     coverage files into a particular directory. These files contain the RPC
     commands invoked during testing, as well as a complete listing of RPC
-    commands per `neoxa-cli help` (`rpc_interface.txt`).
+    commands per `akitacoin-cli help` (`rpc_interface.txt`).
 
     After all tests complete, the commands run are combined and diff'd against
     the complete list to calculate uncovered RPC commands.

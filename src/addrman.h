@@ -1,12 +1,12 @@
 // Copyright (c) 2012 Pieter Wuille
 // Copyright (c) 2012-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_ADDRMAN_H
-#define NEOXA_ADDRMAN_H
+#ifndef AKITACOIN_ADDRMAN_H
+#define AKITACOIN_ADDRMAN_H
 
 #include "netaddress.h"
 #include "protocol.h"
@@ -604,4 +604,4 @@ public:
 
 };
 
-#endif // NEOXA_ADDRMAN_H
+#endif // AKITACOIN_ADDRMAN_H

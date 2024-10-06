@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_UNDO_H
-#define NEOXA_UNDO_H
+#ifndef AKITACOIN_UNDO_H
+#define AKITACOIN_UNDO_H
 
 #include "compressor.h" 
 #include "consensus/consensus.h"
@@ -63,11 +63,11 @@ public:
 };
 
 static const size_t MIN_TRANSACTION_INPUT_WEIGHT = WITNESS_SCALE_FACTOR * ::GetSerializeSize(CTxIn(), SER_NETWORK, PROTOCOL_VERSION);
-/** NEOXA START */
+/** AKITACOIN START */
 // Deprecated for HIP2 implementation
 //static const size_t MAX_INPUTS_PER_BLOCK = /*fAssetsIsActive ? MAX_BLOCK_WEIGHT_HIP2 / MIN_TRANSACTION_INPUT_WEIGHT :*/ MAX_BLOCK_WEIGHT / MIN_TRANSACTION_INPUT_WEIGHT;
 
-/** NEOXA END */
+/** AKITACOIN END */
 
 /** Undo information for a CTransaction */
 class CTxUndo
@@ -121,4 +121,4 @@ public:
     }
 };
 
-#endif // NEOXA_UNDO_H
+#endif // AKITACOIN_UNDO_H

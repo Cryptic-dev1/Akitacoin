@@ -1,11 +1,11 @@
 // Copyright (c) 2014-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_CRYPTO_SHA256_H
-#define NEOXA_CRYPTO_SHA256_H
+#ifndef AKITACOIN_CRYPTO_SHA256_H
+#define AKITACOIN_CRYPTO_SHA256_H
 
 #include <stdint.h>
 #include <stdlib.h>
@@ -33,4 +33,4 @@ public:
  */
 std::string SHA256AutoDetect();
 
-#endif // NEOXA_CRYPTO_SHA256_H
+#endif // AKITACOIN_CRYPTO_SHA256_H

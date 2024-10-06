@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-# Script to issue assets on the Neoxa platform
+# Script to issue assets on the Akitacoin platform
 # Reads from a csv file
 # Template Google Spreadsheet at:  
 #   https://docs.google.com/spreadsheets/d/1Ym88-ggbw8yiMgVxOtVYDsCXJGNGZqlpOfgdbVK8iYU
 # In Google Sheets: File->Download As->.csv
-# Prerequisite: neoxad daemon to be running
+# Prerequisite: akitacoind daemon to be running
 # In order to use metadata, you must install be running IPFS
 # Steps:
 #   1. Get IPFS - https://ipfs.io/
@@ -23,15 +23,15 @@ import json
 import hashlib
 
 
-#Set this to your neoxa-cli program
-cli = "neoxa-cli"
+#Set this to your akitacoin-cli program
+cli = "akitacoin-cli"
 
 mode =  "-testnet"
 rpc_port = 18766
 #mode =  "-regtest"
 #rpc_port = 18443
-csv_file = "Neoxa Assets - Sheet1.csv"
-#Set this information in your neoxa.conf file (in datadir, not testnet3)
+csv_file = "Akitacoin Assets - Sheet1.csv"
+#Set this information in your akitacoin.conf file (in datadir, not testnet3)
 rpc_user = 'rpcuser'
 rpc_pass = 'rpcpass555'
 

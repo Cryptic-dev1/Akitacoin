@@ -6,7 +6,7 @@
 #include "overviewpage.h"
 #include "ui_overviewpage.h"
 
-#include "neoxaunits.h"
+#include "akitacoinunits.h"
 #include "clientmodel.h"
 #include "guiconstants.h"
 #include "guiutil.h"
@@ -45,7 +45,7 @@ class TxViewDelegate : public QAbstractItemDelegate
     Q_OBJECT
 public:
     explicit TxViewDelegate(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
-        QAbstractItemDelegate(parent), unit(NeoxaUnits::NEOX),
+        QAbstractItemDelegate(parent), unit(AkitacoinUnits::AKIC),
         platformStyle(_platformStyle)
     {
 
@@ -154,7 +154,7 @@ class AssetViewDelegate : public QAbstractItemDelegate
 Q_OBJECT
 public:
     explicit AssetViewDelegate(const PlatformStyle *_platformStyle, QObject *parent=nullptr):
-            QAbstractItemDelegate(parent), unit(NeoxaUnits::NEOX),
+            QAbstractItemDelegate(parent), unit(AkitacoinUnits::AKIC),
             platformStyle(_platformStyle)
     {
 
@@ -298,7 +298,7 @@ public:
 
 };
 #include "overviewpage.moc"
-#include "neoxagui.h"
+#include "akitacoingui.h"
 #include <QFontDatabase>
 
 OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) :
@@ -367,7 +367,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
 
     /** Update the labels colors */
     ui->assetBalanceLabel->setStyleSheet(STRING_LABEL_COLOR);
-    ui->neoxaBalancesLabel->setStyleSheet(STRING_LABEL_COLOR);
+    ui->akitacoinBalancesLabel->setStyleSheet(STRING_LABEL_COLOR);
     ui->labelBalanceText->setStyleSheet(STRING_LABEL_COLOR);
     ui->labelPendingText->setStyleSheet(STRING_LABEL_COLOR);
     ui->labelImmatureText->setStyleSheet(STRING_LABEL_COLOR);
@@ -377,7 +377,7 @@ OverviewPage::OverviewPage(const PlatformStyle *platformStyle, QWidget *parent) 
     ui->recentTransactionsLabel->setStyleSheet(STRING_LABEL_COLOR);
 
     /** Update the labels font */
-    ui->neoxaBalancesLabel->setFont(GUIUtil::getTopLabelFont());
+    ui->akitacoinBalancesLabel->setFont(GUIUtil::getTopLabelFont());
     ui->assetBalanceLabel->setFont(GUIUtil::getTopLabelFont());
     ui->recentTransactionsLabel->setFont(GUIUtil::getTopLabelFont());
 
@@ -547,14 +547,14 @@ void OverviewPage::setBalance(const CAmount& balance, const CAmount& unconfirmed
     currentWatchOnlyBalance = watchOnlyBalance;
     currentWatchUnconfBalance = watchUnconfBalance;
     currentWatchImmatureBalance = watchImmatureBalance;
-    ui->labelBalance->setText(NeoxaUnits::formatWithUnit(unit, balance, false, NeoxaUnits::separatorAlways));
-    ui->labelUnconfirmed->setText(NeoxaUnits::formatWithUnit(unit, unconfirmedBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelImmature->setText(NeoxaUnits::formatWithUnit(unit, immatureBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelTotal->setText(NeoxaUnits::formatWithUnit(unit, balance + unconfirmedBalance + immatureBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelWatchAvailable->setText(NeoxaUnits::formatWithUnit(unit, watchOnlyBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelWatchPending->setText(NeoxaUnits::formatWithUnit(unit, watchUnconfBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelWatchImmature->setText(NeoxaUnits::formatWithUnit(unit, watchImmatureBalance, false, NeoxaUnits::separatorAlways));
-    ui->labelWatchTotal->setText(NeoxaUnits::formatWithUnit(unit, watchOnlyBalance + watchUnconfBalance + watchImmatureBalance, false, NeoxaUnits::separatorAlways));
+    ui->labelBalance->setText(AkitacoinUnits::formatWithUnit(unit, balance, false, AkitacoinUnits::separatorAlways));
+    ui->labelUnconfirmed->setText(AkitacoinUnits::formatWithUnit(unit, unconfirmedBalance, false, AkitacoinUnits::separatorAlways));
+    ui->labelImmature->setText(AkitacoinUnits::formatWithUnit(unit, immatureBalance, false, AkitacoinUnits::separatorAlways));
+    ui->labelTotal->setText(AkitacoinUnits::formatWithUnit(unit, balance + unconfirmedBalance + immatureBalance, false, AkitacoinUnits::separatorAlways));
+    ui->labelWatchAvailable->setText(AkitacoinUnits::formatWithUnit(unit, watchOnlyBalance, false, AkitacoinUnits::separatorAlways));
+    ui->labelWatchPending->setText(AkitacoinUnits::formatWithUnit(unit, watchUnconfBalance, false, AkitacoinUnits::separatorAlways));
+    ui->labelWatchImmature->setText(AkitacoinUnits::formatWithUnit(unit, watchImmatureBalance, false, AkitacoinUnits::separatorAlways));
+    ui->labelWatchTotal->setText(AkitacoinUnits::formatWithUnit(unit, watchOnlyBalance + watchUnconfBalance + watchImmatureBalance, false, AkitacoinUnits::separatorAlways));
 
     // only show immature (newly mined) balance if it's non-zero, so as not to complicate things
     // for the non-mining users
@@ -630,7 +630,7 @@ void OverviewPage::setWalletModel(WalletModel *model)
         connect(model, SIGNAL(notifyWatchonlyChanged(bool)), this, SLOT(updateWatchOnlyLabels(bool)));
     }
 
-    // update the display unit, to not use the default ("NEOX")
+    // update the display unit, to not use the default ("AKIC")
     updateDisplayUnit();
 }
 
@@ -679,7 +679,7 @@ void OverviewPage::showAssets()
         ui->assetBalanceLabel->hide();
         ui->labelAssetStatus->hide();
 
-        // This keeps the NEOX balance grid from expanding and looking terrible when asset balance is hidden
+        // This keeps the AKIC balance grid from expanding and looking terrible when asset balance is hidden
         ui->assetVerticalSpaceWidget->show();
         ui->assetVerticalSpaceWidget2->show();
     }

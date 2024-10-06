@@ -11,8 +11,8 @@
 ###############################################################################
 */
 
-#ifndef NEOXA_DARKSTYLE_H
-#define NEOXA_DARKSTYLE_H
+#ifndef AKITACOIN_DARKSTYLE_H
+#define AKITACOIN_DARKSTYLE_H
 
 #include <QApplication>
 #include <QProxyStyle>
@@ -37,4 +37,4 @@ private:
     QStyle *styleBase(QStyle *style = Q_NULLPTR) const;
 };
 
-#endif //NEOXA_DARKSTYLE_H
+#endif //AKITACOIN_DARKSTYLE_H

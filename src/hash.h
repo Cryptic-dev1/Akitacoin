@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_HASH_H
-#define NEOXA_HASH_H
+#ifndef AKITACOIN_HASH_H
+#define AKITACOIN_HASH_H
 #include <iostream>
 #include <chrono>
 #include "crypto/ripemd160.h"
@@ -609,5 +609,5 @@ uint256 KAWPOWHash(const CBlockHeader& blockHeader, uint256& mix_hash);
 uint256 KAWPOWHash_OnlyMix(const CBlockHeader& blockHeader);
 
 
-#endif // NEOXA_HASH_H
+#endif // AKITACOIN_HASH_H
 

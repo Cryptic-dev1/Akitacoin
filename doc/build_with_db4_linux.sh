@@ -1,10 +1,10 @@
 ## Build for linux version, see /doc/build-unix.md
 
 
-NEOXA_ROOT=$(pwd)
+AKITACOIN_ROOT=$(pwd)
 
-# Pick some path to install BDB to, here we create a directory within the Neoxa directory
-BDB_PREFIX="${NEOXA_ROOT}/db4"
+# Pick some path to install BDB to, here we create a directory within the Akitacoin directory
+BDB_PREFIX="${AKITACOIN_ROOT}/db4"
 mkdir -p $BDB_PREFIX
 
 # Fetch the source and verify that it is not tampered with
@@ -24,8 +24,8 @@ cd db-4.8.30.NC/build_unix/
 make
 make install
 
-# Configure Neoxa Core to use our own-built instance of BDB
-cd $NEOXA_ROOT
+# Configure Akitacoin Core to use our own-built instance of BDB
+cd $AKITACOIN_ROOT
 cd depends
 make HOST=x86_64-pc-linux-gnu
 

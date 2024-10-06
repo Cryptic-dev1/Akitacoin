@@ -1,5 +1,5 @@
-#ifndef NEOXA_QT_TEST_WALLETTESTS_H
-#define NEOXA_QT_TEST_WALLETTESTS_H
+#ifndef AKITACOIN_QT_TEST_WALLETTESTS_H
+#define AKITACOIN_QT_TEST_WALLETTESTS_H
 
 #include <QObject>
 #include <QTest>
@@ -12,4 +12,4 @@ private Q_SLOTS:
     void walletTests();
 };
 
-#endif // NEOXA_QT_TEST_WALLETTESTS_H
+#endif // AKITACOIN_QT_TEST_WALLETTESTS_H

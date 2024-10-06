@@ -1,11 +1,11 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_LIMITEDMAP_H
-#define NEOXA_LIMITEDMAP_H
+#ifndef AKITACOIN_LIMITEDMAP_H
+#define AKITACOIN_LIMITEDMAP_H
 
 #include <assert.h>
 #include <map>
@@ -99,4 +99,4 @@ public:
     }
 };
 
-#endif // NEOXA_LIMITEDMAP_H
+#endif // AKITACOIN_LIMITEDMAP_H

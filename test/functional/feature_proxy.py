@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """
-Test neoxad with different proxy configuration.
+Test akitacoind with different proxy configuration.
 
 Test plan:
-- Start neoxad's with different proxy configurations
+- Start akitacoind's with different proxy configurations
 - Use addnode to initiate connections
 - Verify that proxies are connected to, and the right connection command is given
-- Proxy configurations to test on neoxad side:
+- Proxy configurations to test on akitacoind side:
     - `-proxy` (proxy everything)
     - `-onion` (proxy just onions)
     - `-proxyrandomize` Circuit randomization
@@ -22,8 +22,8 @@ Test plan:
     - proxy on IPv6
 
 - Create various proxies (as threads)
-- Create NEOXADs that connect to them
-- Manipulate the NEOXADs using addnode (onetry) an observe effects
+- Create AKITACOINDs that connect to them
+- Manipulate the AKITACOINDs using addnode (onetry) an observe effects
 
 addnode connect to IPv4
 addnode connect to IPv6
@@ -34,13 +34,13 @@ addnode connect to generic DNS name
 import socket
 import os
 from test_framework.socks5 import Socks5Configuration, Socks5Command, Socks5Server, AddressType
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import PORT_MIN, PORT_RANGE, assert_equal
 from test_framework.netutil import test_ipv6_local
 
 RANGE_BEGIN = PORT_MIN + 2 * PORT_RANGE  # Start after p2p and rpc ports
 
-class ProxyTest(NeoxaTestFramework):
+class ProxyTest(AkitacoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 4
 
@@ -94,7 +94,7 @@ class ProxyTest(NeoxaTestFramework):
         node.addnode("15.61.23.23:1234", "onetry")
         cmd = proxies[0].queue.get()
         assert(isinstance(cmd, Socks5Command))
-        # Note: neoxad's SOCKS5 implementation only sends atyp DOMAINNAME, even if connecting directly to IPv4/IPv6
+        # Note: akitacoind's SOCKS5 implementation only sends atyp DOMAINNAME, even if connecting directly to IPv4/IPv6
         assert_equal(cmd.atyp, AddressType.DOMAINNAME)
         assert_equal(cmd.addr, b"15.61.23.23")
         assert_equal(cmd.port, 1234)
@@ -108,7 +108,7 @@ class ProxyTest(NeoxaTestFramework):
             node.addnode("[1233:3432:2434:2343:3234:2345:6546:4534]:5443", "onetry")
             cmd = proxies[1].queue.get()
             assert(isinstance(cmd, Socks5Command))
-            # Note: neoxad's SOCKS5 implementation only sends atyp DOMAINNAME, even if connecting directly to IPv4/IPv6
+            # Note: akitacoind's SOCKS5 implementation only sends atyp DOMAINNAME, even if connecting directly to IPv4/IPv6
             assert_equal(cmd.atyp, AddressType.DOMAINNAME)
             assert_equal(cmd.addr, b"1233:3432:2434:2343:3234:2345:6546:4534")
             assert_equal(cmd.port, 5443)

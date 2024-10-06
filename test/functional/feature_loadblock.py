@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017-2019 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,10 +20,10 @@ import subprocess
 import sys
 import tempfile
 import urllib
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import assert_equal, wait_until
 
-class LoadblockTest(NeoxaTestFramework):
+class LoadblockTest(AkitacoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 2

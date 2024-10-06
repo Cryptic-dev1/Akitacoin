@@ -1,6 +1,6 @@
 #include "wallettests.h"
 
-#include "qt/neoxaamountfield.h"
+#include "qt/akitacoinamountfield.h"
 #include "qt/callback.h"
 #include "qt/optionsmodel.h"
 #include "qt/platformstyle.h"
@@ -10,7 +10,7 @@
 #include "qt/transactiontablemodel.h"
 #include "qt/transactionview.h"
 #include "qt/walletmodel.h"
-#include "test/test_neoxa.h"
+#include "test/test_akitacoin.h"
 #include "validation.h"
 #include "wallet/wallet.h"
 #include "qt/overviewpage.h"
@@ -69,7 +69,7 @@ uint256 SendCoins(CWallet& wallet, SendCoinsDialog& sendCoinsDialog, const CTxDe
     QVBoxLayout* entries = sendCoinsDialog.findChild<QVBoxLayout*>("entries");
     SendCoinsEntry* entry = qobject_cast<SendCoinsEntry*>(entries->itemAt(0)->widget());
     entry->findChild<QValidatedLineEdit*>("payTo")->setText(QString::fromStdString(EncodeDestination(address)));
-    entry->findChild<NeoxaAmountField*>("payAmount")->setValue(amount);
+    entry->findChild<AkitacoinAmountField*>("payAmount")->setValue(amount);
     sendCoinsDialog.findChild<QFrame*>("frameFee")
         ->findChild<QFrame*>("frameFeeSelection")
         ->findChild<QCheckBox*>("optInRBF")
@@ -144,9 +144,9 @@ void BumpFee(TransactionView& view, const uint256& txid, bool expectDisabled, st
 //
 // This also requires overriding the default minimal Qt platform:
 //
-//     src/qt/test/test_neoxa-qt -platform xcb      # Linux
-//     src/qt/test/test_neoxa-qt -platform windows  # Windows
-//     src/qt/test/test_neoxa-qt -platform cocoa    # macOS
+//     src/qt/test/test_akitacoin-qt -platform xcb      # Linux
+//     src/qt/test/test_akitacoin-qt -platform windows  # Windows
+//     src/qt/test/test_akitacoin-qt -platform cocoa    # macOS
 void TestGUI()
 {
     // Set up wallet and chain with 105 blocks (5 mature blocks for spending).
@@ -198,7 +198,7 @@ void TestGUI()
     QString balanceText = balanceLabel->text();
     int unit = walletModel.getOptionsModel()->getDisplayUnit();
     CAmount balance = walletModel.getBalance();
-    QString balanceComparison = NeoxaUnits::formatWithUnit(unit, balance, false, NeoxaUnits::separatorAlways);
+    QString balanceComparison = AkitacoinUnits::formatWithUnit(unit, balance, false, AkitacoinUnits::separatorAlways);
     QCOMPARE(balanceText, balanceComparison);
 
     // Check Request Payment button
@@ -211,7 +211,7 @@ void TestGUI()
     labelInput->setText("TEST_LABEL_1");
 
     // Amount input
-    NeoxaAmountField* amountInput = receiveCoinsDialog.findChild<NeoxaAmountField*>("reqAmount");
+    AkitacoinAmountField* amountInput = receiveCoinsDialog.findChild<AkitacoinAmountField*>("reqAmount");
     amountInput->setValue(1);
 
     // Message input
@@ -227,7 +227,7 @@ void TestGUI()
             QString paymentText = rlist->toPlainText();
             QStringList paymentTextList = paymentText.split('\n');
             QCOMPARE(paymentTextList.at(0), QString("Payment information"));
-            QVERIFY(paymentTextList.at(1).indexOf(QString("URI: neoxa:")) != -1);
+            QVERIFY(paymentTextList.at(1).indexOf(QString("URI: akitacoin:")) != -1);
             QVERIFY(paymentTextList.at(2).indexOf(QString("Address:")) != -1);
             QCOMPARE(paymentTextList.at(3), QString("Amount: 0.00000001 ") + QString::fromStdString(CURRENCY_UNIT));
             QCOMPARE(paymentTextList.at(4), QString("Label: TEST_LABEL_1"));

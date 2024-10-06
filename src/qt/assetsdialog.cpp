@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,7 +9,7 @@
 #include "ui_assetsdialog.h"
 
 #include "addresstablemodel.h"
-#include "neoxaunits.h"
+#include "akitacoinunits.h"
 #include "clientmodel.h"
 #include "assetcontroldialog.h"
 #include "guiutil.h"
@@ -123,11 +123,11 @@ AssetsDialog::AssetsDialog(const PlatformStyle *_platformStyle, QWidget *parent)
     ui->checkBoxMinimumFee->setChecked(settings.value("fPayOnlyMinFee").toBool());
     minimizeFeeSection(settings.value("fFeeSectionMinimized").toBool());
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     setupAssetControlFrame(platformStyle);
     setupScrollView(platformStyle);
     setupFeeControl(platformStyle);
-    /** NEOXA END */
+    /** AKITACOIN END */
 }
 
 void AssetsDialog::setClientModel(ClientModel *_clientModel)
@@ -440,7 +440,7 @@ void AssetsDialog::on_sendButton_clicked()
     {
         // append fee string if a fee is required
         questionString.append("<hr /><span style='color:#aa0000;'>");
-        questionString.append(NeoxaUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), nFeeRequired));
+        questionString.append(AkitacoinUnits::formatHtmlWithUnit(model->getOptionsModel()->getDisplayUnit(), nFeeRequired));
         questionString.append("</span> ");
         questionString.append(tr("added as transaction fee"));
 
@@ -650,7 +650,7 @@ void AssetsDialog::setBalance(const CAmount& balance, const CAmount& unconfirmed
 
     if(model && model->getOptionsModel())
     {
-        ui->labelBalance->setText(NeoxaUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), balance));
+        ui->labelBalance->setText(AkitacoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), balance));
     }
 }
 
@@ -697,7 +697,7 @@ void AssetsDialog::processSendCoinsReturn(const WalletModel::SendCoinsReturn &se
             msgParams.second = CClientUIInterface::MSG_ERROR;
             break;
         case WalletModel::AbsurdFee:
-            msgParams.first = tr("A fee higher than %1 is considered an absurdly high fee.").arg(NeoxaUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), maxTxFee));
+            msgParams.first = tr("A fee higher than %1 is considered an absurdly high fee.").arg(AkitacoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), maxTxFee));
             break;
         case WalletModel::PaymentRequestExpired:
             msgParams.first = tr("Payment request expired.");
@@ -759,7 +759,7 @@ void AssetsDialog::updateFeeMinimizedLabel()
     if (ui->radioSmartFee->isChecked())
         ui->labelFeeMinimized->setText(ui->labelSmartFee->text());
     else {
-        ui->labelFeeMinimized->setText(NeoxaUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), ui->customFee->value()) + "/kB");
+        ui->labelFeeMinimized->setText(AkitacoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), ui->customFee->value()) + "/kB");
     }
 }
 
@@ -767,7 +767,7 @@ void AssetsDialog::updateMinFeeLabel()
 {
     if (model && model->getOptionsModel())
         ui->checkBoxMinimumFee->setText(tr("Pay only the required fee of %1").arg(
-                NeoxaUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), GetRequiredFee(1000)) + "/kB")
+                AkitacoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), GetRequiredFee(1000)) + "/kB")
         );
 }
 
@@ -794,7 +794,7 @@ void AssetsDialog::updateSmartFeeLabel()
     FeeCalculation feeCalc;
     CFeeRate feeRate = CFeeRate(GetMinimumFee(1000, coin_control, ::mempool, ::feeEstimator, &feeCalc));
 
-    ui->labelSmartFee->setText(NeoxaUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), feeRate.GetFeePerK()) + "/kB");
+    ui->labelSmartFee->setText(AkitacoinUnits::formatWithUnit(model->getOptionsModel()->getDisplayUnit(), feeRate.GetFeePerK()) + "/kB");
 
     if (feeCalc.reason == FeeReason::FALLBACK) {
         ui->labelSmartFee2->show(); // (Smart fee not initialized yet. This usually takes a few blocks...)
@@ -919,7 +919,7 @@ void AssetsDialog::assetControlChangeEdited(const QString& text)
         }
         else if (!IsValidDestination(dest)) // Invalid address
         {
-            ui->labelAssetControlChangeLabel->setText(tr("Warning: Invalid Neoxa address"));
+            ui->labelAssetControlChangeLabel->setText(tr("Warning: Invalid Akitacoin address"));
         }
         else // Valid address
         {
@@ -998,7 +998,7 @@ void AssetsDialog::assetControlUpdateLabels()
     }
 }
 
-/** NEOXA START */
+/** AKITACOIN START */
 void AssetsDialog::assetControlUpdateSendCoinsDialog()
 {
     for(int i = 0; i < ui->entries->count(); ++i)
@@ -1063,4 +1063,4 @@ void AssetsDialog::handleFirstSelection()
         entry->refreshAssetList();
     }
 }
-/** NEOXA END */
+/** AKITACOIN END */

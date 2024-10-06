@@ -1,11 +1,11 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_DBWRAPPER_H
-#define NEOXA_DBWRAPPER_H
+#ifndef AKITACOIN_DBWRAPPER_H
+#define AKITACOIN_DBWRAPPER_H
 
 #include "clientversion.h"
 #include "fs.h"
@@ -342,4 +342,4 @@ public:
 
 };
 
-#endif // NEOXA_DBWRAPPER_H
+#endif // AKITACOIN_DBWRAPPER_H

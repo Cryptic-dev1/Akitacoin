@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -39,7 +39,7 @@ from test_framework.blocktools import create_block, create_coinbase
 from test_framework.key import ECKey
 from test_framework.mininode import CBlockHeader, COutPoint, CTransaction, CTxIn, CTxOut, NetworkThread, NodeConn, NodeConnCB, MsgBlock, MsgHeaders
 from test_framework.script import CScript, OP_TRUE
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import p2p_port, assert_equal
 
 
@@ -50,7 +50,7 @@ class BaseNode(NodeConnCB):
         self.send_message(headers_message)
 
 
-class AssumeValidTest(NeoxaTestFramework):
+class AssumeValidTest(AkitacoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3

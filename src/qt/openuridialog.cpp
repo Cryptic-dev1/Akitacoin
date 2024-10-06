@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2014 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +18,7 @@ OpenURIDialog::OpenURIDialog(QWidget *parent) :
 {
     ui->setupUi(this);
 #if QT_VERSION >= 0x040700
-    ui->uriEdit->setPlaceholderText("neoxa:");
+    ui->uriEdit->setPlaceholderText("akitacoin:");
 #endif
 }
 
@@ -35,7 +35,7 @@ QString OpenURIDialog::getURI()
 void OpenURIDialog::accept()
 {
     SendCoinsRecipient rcp;
-    if(GUIUtil::parseNeoxaURI(getURI(), &rcp))
+    if(GUIUtil::parseAkitacoinURI(getURI(), &rcp))
     {
         /* Only accept value URIs */
         QDialog::accept();
@@ -50,5 +50,5 @@ void OpenURIDialog::on_selectFileButton_clicked()
     if(filename.isEmpty())
         return;
     QUrl fileUri = QUrl::fromLocalFile(filename);
-    ui->uriEdit->setText("neoxa:?r=" + QUrl::toPercentEncoding(fileUri.toString()));
+    ui->uriEdit->setText("akitacoin:?r=" + QUrl::toPercentEncoding(fileUri.toString()));
 }

@@ -1,7 +1,7 @@
 
 #include "assets/assets.h"
 #include <boost/test/unit_test.hpp>
-#include <test/test_neoxa.h>
+#include <test/test_akitacoin.h>
 
 BOOST_FIXTURE_TEST_SUITE(cache_tests, BasicTestingSetup)
 

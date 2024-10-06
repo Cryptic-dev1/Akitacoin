@@ -1,0 +1,6 @@
+usr/local/bin/akitacoin-qt usr/bin
+share/pixmaps/akitacoin32.xpm usr/share/pixmaps
+share/pixmaps/akitacoin16.xpm usr/share/pixmaps
+share/pixmaps/akitacoin128.png usr/share/pixmaps
+debian/akitacoin-qt.desktop usr/share/applications
+debian/akitacoin-qt.protocol usr/share/kde4/services/

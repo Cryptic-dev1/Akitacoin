@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """
     ZMQ example using python3's asyncio
 
-    Neoxa should be started with the command line arguments:
-        neoxad -testnet -daemon \
+    Akitacoin should be started with the command line arguments:
+        akitacoind -testnet -daemon \
                 -zmqpubhashblock=tcp://127.0.0.1:28766 \
                 -zmqpubrawtx=tcp://127.0.0.1:28766 \
                 -zmqpubhashtx=tcp://127.0.0.1:28766 \
@@ -21,7 +21,7 @@
     alternative is to wrap the contents of `handle` inside `while True`.
 
     A blocking example using python 2.7 can be obtained from the git history:
-    https://github.com/NeoxaChain/Neoxa/blob/37a7fe9e440b83e2364d5498931253937abe9294/contrib/zmq/zmq_sub.py
+    https://github.com/AkitacoinChain/Akitacoin/blob/37a7fe9e440b83e2364d5498931253937abe9294/contrib/zmq/zmq_sub.py
 """
 
 import binascii

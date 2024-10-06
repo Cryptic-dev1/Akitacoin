@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
-#include <test/test_neoxa.h>
+#include <test/test_akitacoin.h>
 
 #include <boost/test/unit_test.hpp>
 

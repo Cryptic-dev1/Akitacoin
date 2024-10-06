@@ -1,0 +1,33 @@
+# /etc/conf.d/akitacoind: config file for /etc/init.d/akitacoind
+
+# Config file location
+#AKITACOIND_CONFIGFILE="/etc/akitacoin/akitacoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $AKITACOIND_USER)
+#AKITACOIND_PIDDIR="/var/run/akitacoind"
+
+# What filename to give the pidfile
+#AKITACOIND_PIDFILE="${AKITACOIND_PIDDIR}/akitacoind.pid"
+
+# Where to write akitacoind data (be mindful that the blockchain is large)
+#AKITACOIND_DATADIR="/var/lib/akitacoind"
+
+# User and group to own akitacoind process
+#AKITACOIND_USER="akitacoin"
+#AKITACOIND_GROUP="akitacoin"
+
+# Path to akitacoind executable
+#AKITACOIND_BIN="/usr/bin/akitacoind"
+
+# Nice value to run akitacoind under
+#AKITACOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#AKITACOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for akitacoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+AKITACOIND_SIGTERM_TIMEOUT=60

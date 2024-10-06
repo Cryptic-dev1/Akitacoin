@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 # Copyright (c) 2019 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """Test RPC misc output."""
 
 import xml.etree.ElementTree as ElementTree
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import assert_raises_rpc_error, assert_equal, assert_greater_than, assert_greater_than_or_equal
 from test_framework.authproxy import JSONRPCException
 
 
-class RpcMiscTest(NeoxaTestFramework):
+class RpcMiscTest(AkitacoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
 

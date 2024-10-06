@@ -1,13 +1,13 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Neoxa
+Upstream-Name: Akitacoin
 Upstream-Contact: Satoshi Nakamoto <satoshin@gmx.com>
- irc://#neoxa@freenode.net
-Source: https://github.com/NeoxaChain/Neoxa
+ irc://#akitacoin@freenode.net
+Source: https://github.com/AkitacoinChain/Akitacoin
 
 Files: *
-Copyright: 2009-2017, Neoxa Core Developers
+Copyright: 2009-2017, Akitacoin Core Developers
 License: Expat
-Comment: The Neoxa__Core developers encompasses the current developers listed on neoxacoin.net,
+Comment: The Akitacoin__Core developers encompasses the current developers listed on akitacoincoin.net,
          as well as the numerous contributors to the project.
 
 Files: debian/*
@@ -78,9 +78,9 @@ License: Expat
 Comment: Modifications of Stephan Hutchings Typicons
 
 Files: src/qt/res/icons/about.png
-       src/qt/res/icons/neoxa.*
-       share/pixmaps/neoxa*
-       src/qt/res/src/neoxa.svg
+       src/qt/res/icons/akitacoin.*
+       share/pixmaps/akitacoin*
+       src/qt/res/src/akitacoin.svg
 Copyright: Bitboy, Jonas Schnelli
 License: public-domain
 Comment: Site: https://bitcointalk.org/?topic=1756.0

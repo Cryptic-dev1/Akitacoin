@@ -1,12 +1,12 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_MERKLEBLOCK_H
-#define NEOXA_MERKLEBLOCK_H
+#ifndef AKITACOIN_MERKLEBLOCK_H
+#define AKITACOIN_MERKLEBLOCK_H
 
 #include "serialize.h"
 #include "uint256.h"
@@ -166,4 +166,4 @@ private:
     CMerkleBlock(const CBlock& block, CBloomFilter* filter, const std::set<uint256>* txids);
 };
 
-#endif // NEOXA_MERKLEBLOCK_H
+#endif // AKITACOIN_MERKLEBLOCK_H

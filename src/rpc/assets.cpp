@@ -152,7 +152,7 @@ UniValue UpdateAddressTag(const JSONRPCRequest &request, const int8_t &flag)
     std::string address = request.params[1].get_str();
     CTxDestination destination = DecodeDestination(address);
     if (!IsValidDestination(destination)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + address);
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + address);
     }
 
     // Get the optional change address
@@ -162,7 +162,7 @@ UniValue UpdateAddressTag(const JSONRPCRequest &request, const int8_t &flag)
         if (!change_address.empty()) {
            CTxDestination change_dest = DecodeDestination(change_address);
            if (!IsValidDestination(change_dest)) {
-               throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa change address: ") + change_address);
+               throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin change address: ") + change_address);
            }
         }
     }
@@ -252,7 +252,7 @@ UniValue UpdateAddressRestriction(const JSONRPCRequest &request, const int8_t &f
     std::string address = request.params[1].get_str();
     CTxDestination destination = DecodeDestination(address);
     if (!IsValidDestination(destination)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + address);
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + address);
     }
 
     // Get the optional change address
@@ -262,7 +262,7 @@ UniValue UpdateAddressRestriction(const JSONRPCRequest &request, const int8_t &f
         if (!change_address.empty()) {
            CTxDestination change_dest = DecodeDestination(change_address);
            if (!IsValidDestination(change_dest)) {
-               throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa change address: ") + change_address);
+               throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin change address: ") + change_address);
            }
         }
     }
@@ -359,7 +359,7 @@ UniValue UpdateGlobalRestrictedAsset(const JSONRPCRequest &request, const int8_t
         if (!change_address.empty()) {
            CTxDestination change_dest = DecodeDestination(change_address);
            if (!IsValidDestination(change_dest)) {
-               throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa change address: ") + change_address);
+               throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin change address: ") + change_address);
            }
         }
     }
@@ -494,7 +494,7 @@ UniValue issue(const JSONRPCRequest& request)
     if (!address.empty()) {
         CTxDestination destination = DecodeDestination(address);
         if (!IsValidDestination(destination)) {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + address);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + address);
         }
     } else {
         // Create a new address
@@ -523,7 +523,7 @@ UniValue issue(const JSONRPCRequest& request)
             CTxDestination destination = DecodeDestination(change_address);
             if (!IsValidDestination(destination)) {
                 throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                                   std::string("Invalid Change Address: Invalid Neoxa address: ") + change_address);
+                                   std::string("Invalid Change Address: Invalid Akitacoin address: ") + change_address);
             }
         }
     }
@@ -599,7 +599,7 @@ UniValue issueunique(const JSONRPCRequest& request)
                 "root_name must be an asset you own.\n"
                 "An asset will be created for each element of asset_tags.\n"
                 "If provided ipfs_hashes must be the same length as asset_tags.\n"
-                "Five (5) NEOX will be burned for each asset created.\n"
+                "Five (5) AKIC will be burned for each asset created.\n"
 
                 "\nArguments:\n"
                 "1. \"root_name\"             (string, required) name of the asset the unique asset(s) are being issued under\n"
@@ -656,7 +656,7 @@ UniValue issueunique(const JSONRPCRequest& request)
     if (!address.empty()) {
         CTxDestination destination = DecodeDestination(address);
         if (!IsValidDestination(destination)) {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + address);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + address);
         }
     } else {
         // Create a new address
@@ -685,7 +685,7 @@ UniValue issueunique(const JSONRPCRequest& request)
         CTxDestination destination = DecodeDestination(changeAddress);
         if (!IsValidDestination(destination)) {
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                               std::string("Invalid Change Address: Invalid Neoxa address: ") + changeAddress);
+                               std::string("Invalid Change Address: Invalid Akitacoin address: ") + changeAddress);
         }
     }
 
@@ -750,7 +750,7 @@ UniValue listassetbalancesbyaddress(const JSONRPCRequest& request)
             "\nReturns a list of all asset balances for an address.\n"
 
             "\nArguments:\n"
-            "1. \"address\"                  (string, required) a neoxa address\n"
+            "1. \"address\"                  (string, required) a akitacoin address\n"
             "2. \"onlytotal\"                (boolean, optional, default=false) when false result is just a list of assets balances -- when true the result is just a single number representing the number of assets\n"
             "3. \"count\"                    (integer, optional, default=50000, MAX=50000) truncates results to include only the first _count_ assets found\n"
             "4. \"start\"                    (integer, optional, default=0) results skip over the first _start_ assets found (if negative it skips back from the end)\n"
@@ -773,7 +773,7 @@ UniValue listassetbalancesbyaddress(const JSONRPCRequest& request)
     std::string address = request.params[0].get_str();
     CTxDestination destination = DecodeDestination(address);
     if (!IsValidDestination(destination)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + address);
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + address);
     }
 
     bool fOnlyTotal = false;
@@ -1157,7 +1157,7 @@ UniValue transfer(const JSONRPCRequest& request)
                 "3. \"to_address\"               (string, required) address to send the asset to\n"
                 "4. \"message\"                  (string, optional) Once HIP5 is voted in ipfs hash or txid hash to send along with the transfer\n"
                 "5. \"expire_time\"              (numeric, optional) UTC timestamp of when the message expires\n"
-                "6. \"change_address\"       (string, optional, default = \"\") the transactions NEOX change will be sent to this address\n"
+                "6. \"change_address\"       (string, optional, default = \"\") the transactions AKIC change will be sent to this address\n"
                 "7. \"asset_change_address\"     (string, optional, default = \"\") the transactions Asset change will be sent to this address\n"
 
                 "\nResult:\n"
@@ -1191,7 +1191,7 @@ UniValue transfer(const JSONRPCRequest& request)
     std::string to_address = request.params[2].get_str();
     CTxDestination to_dest = DecodeDestination(to_address);
     if (!IsValidDestination(to_dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + to_address);
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + to_address);
     }
 
     bool fMessageCheck = false;
@@ -1230,7 +1230,7 @@ UniValue transfer(const JSONRPCRequest& request)
 
     CTxDestination neox_change_dest = DecodeDestination(neox_change_address);
     if (!neox_change_address.empty() && !IsValidDestination(neox_change_dest))
-        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("NEOX change address must be a valid address. Invalid address: ") + neox_change_address);
+        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("AKIC change address must be a valid address. Invalid address: ") + neox_change_address);
 
     CTxDestination asset_change_dest = DecodeDestination(asset_change_address);
     if (!asset_change_address.empty() && !IsValidDestination(asset_change_dest))
@@ -1283,7 +1283,7 @@ UniValue transferfromaddresses(const JSONRPCRequest& request)
             "4. \"to_address\"               (string, required) address to send the asset to\n"
             "5. \"message\"                  (string, optional) Once HIP5 is voted in ipfs hash or txid hash to send along with the transfer\n"
             "6. \"expire_time\"              (numeric, optional) UTC timestamp of when the message expires\n"
-            "7. \"neox_change_address\"       (string, optional, default = \"\") the transactions NEOX change will be sent to this address\n"
+            "7. \"neox_change_address\"       (string, optional, default = \"\") the transactions AKIC change will be sent to this address\n"
             "8. \"asset_change_address\"     (string, optional, default = \"\") the transactions Asset change will be sent to this address\n"
 
             "\nResult:\n"
@@ -1361,7 +1361,7 @@ UniValue transferfromaddresses(const JSONRPCRequest& request)
 
     CTxDestination neox_change_dest = DecodeDestination(neox_change_address);
     if (!neox_change_address.empty() && !IsValidDestination(neox_change_dest))
-        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("NEOX change address must be a valid address. Invalid address: ") + neox_change_address);
+        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("AKIC change address must be a valid address. Invalid address: ") + neox_change_address);
 
     CTxDestination asset_change_dest = DecodeDestination(asset_change_address);
     if (!asset_change_address.empty() && !IsValidDestination(asset_change_dest))
@@ -1436,7 +1436,7 @@ UniValue transferfromaddress(const JSONRPCRequest& request)
                 "4. \"to_address\"               (string, required) address to send the asset to\n"
                 "5. \"message\"                  (string, optional) Once HIP5 is voted in ipfs hash or txid hash to send along with the transfer\n"
                 "6. \"expire_time\"              (numeric, optional) UTC timestamp of when the message expires\n"
-                "7. \"neox_change_address\"       (string, optional, default = \"\") the transaction NEOX change will be sent to this address\n"
+                "7. \"neox_change_address\"       (string, optional, default = \"\") the transaction AKIC change will be sent to this address\n"
                 "8. \"asset_change_address\"     (string, optional, default = \"\") the transaction Asset change will be sent to this address\n"
 
                 "\nResult:\n"
@@ -1505,7 +1505,7 @@ UniValue transferfromaddress(const JSONRPCRequest& request)
 
     CTxDestination neox_change_dest = DecodeDestination(neox_change_address);
     if (!neox_change_address.empty() && !IsValidDestination(neox_change_dest))
-        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("NEOX change address must be a valid address. Invalid address: ") + neox_change_address);
+        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("AKIC change address must be a valid address. Invalid address: ") + neox_change_address);
 
     CTxDestination asset_change_dest = DecodeDestination(asset_change_address);
     if (!asset_change_address.empty() && !IsValidDestination(asset_change_dest))
@@ -2028,7 +2028,7 @@ UniValue listtagsforaddress(const JSONRPCRequest &request)
     // Check to make sure the given from address is valid
     CTxDestination dest = DecodeDestination(address);
     if (!IsValidDestination(dest))
-        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Not valid NEOX address: ") + address);
+        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Not valid AKIC address: ") + address);
 
     std::vector<std::string> qualifiers;
 
@@ -2121,7 +2121,7 @@ UniValue listaddressrestrictions(const JSONRPCRequest& request)
     // Check to make sure the given from address is valid
     CTxDestination dest = DecodeDestination(address);
     if (!IsValidDestination(dest))
-        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Not valid NEOX address: ") + address);
+        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Not valid AKIC address: ") + address);
 
     std::vector<std::string> restrictions;
 
@@ -2218,7 +2218,7 @@ UniValue checkaddresstag(const JSONRPCRequest& request)
                 "\nChecks to see if an address has the given tag\n"
 
                 "\nArguments:\n"
-                "1. \"address\"          (string, required) the NEOX address to search\n"
+                "1. \"address\"          (string, required) the AKIC address to search\n"
                 "1. \"tag_name\"         (string, required) the tag to search\n"
 
                 "\nResult:\n"
@@ -2245,7 +2245,7 @@ UniValue checkaddresstag(const JSONRPCRequest& request)
     // Check to make sure the given from address is valid
     CTxDestination dest = DecodeDestination(address);
     if (!IsValidDestination(dest))
-        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Not valid NEOX address: ") + address);
+        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Not valid AKIC address: ") + address);
 
     return passets->CheckForAddressQualifier(qualifier_name, address);
 }
@@ -2259,7 +2259,7 @@ UniValue checkaddressrestriction(const JSONRPCRequest& request)
                 "\nChecks to see if an address has been frozen by the given restricted asset\n"
 
                 "\nArguments:\n"
-                "1. \"address\"          (string, required) the NEOX address to search\n"
+                "1. \"address\"          (string, required) the AKIC address to search\n"
                 "1. \"restricted_name\"   (string, required) the restricted asset to search\n"
 
                 "\nResult:\n"
@@ -2285,7 +2285,7 @@ UniValue checkaddressrestriction(const JSONRPCRequest& request)
     // Check to make sure the given from address is valid
     CTxDestination dest = DecodeDestination(address);
     if (!IsValidDestination(dest))
-        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Not valid NEOX address: ") + address);
+        throw JSONRPCError(RPC_INVALID_PARAMETER, std::string("Not valid AKIC address: ") + address);
 
     return passets->CheckForAddressRestriction(restricted_name, address);
 }
@@ -2402,7 +2402,7 @@ UniValue issuequalifierasset(const JSONRPCRequest& request)
     if (!address.empty()) {
         CTxDestination destination = DecodeDestination(address);
         if (!IsValidDestination(destination)) {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + address);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + address);
         }
     } else {
         // Create a new address
@@ -2431,7 +2431,7 @@ UniValue issuequalifierasset(const JSONRPCRequest& request)
             CTxDestination destination = DecodeDestination(change_address);
             if (!IsValidDestination(destination)) {
                 throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                                   std::string("Invalid Change Address: Invalid Neoxa address: ") + change_address);
+                                   std::string("Invalid Change Address: Invalid Akitacoin address: ") + change_address);
             }
         }
     }
@@ -2553,7 +2553,7 @@ UniValue issuerestrictedasset(const JSONRPCRequest& request)
     // Validate the address
     CTxDestination destination = DecodeDestination(to_address);
     if (!IsValidDestination(destination)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + to_address);
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + to_address);
     }
 
 
@@ -2572,7 +2572,7 @@ UniValue issuerestrictedasset(const JSONRPCRequest& request)
         CTxDestination destination = DecodeDestination(change_address);
         if (!IsValidDestination(destination)) {
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                               std::string("Invalid Change Address: Invalid Neoxa address: ") + change_address);
+                               std::string("Invalid Change Address: Invalid Akitacoin address: ") + change_address);
         }
     }
 
@@ -2697,7 +2697,7 @@ UniValue reissuerestrictedasset(const JSONRPCRequest& request)
 
     CTxDestination to_dest = DecodeDestination(to_address);
     if (!IsValidDestination(to_dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + to_address);
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + to_address);
     }
 
     bool fChangeVerifier = false;
@@ -2714,7 +2714,7 @@ UniValue reissuerestrictedasset(const JSONRPCRequest& request)
         CTxDestination change_dest = DecodeDestination(change_address);
         if (!IsValidDestination(change_dest)) {
             throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY,
-                               std::string("Invalid Change Address: Invalid Neoxa address: ") + change_address);
+                               std::string("Invalid Change Address: Invalid Akitacoin address: ") + change_address);
         }
     }
 
@@ -2821,7 +2821,7 @@ UniValue transferqualifier(const JSONRPCRequest& request)
     std::string to_address = request.params[2].get_str();
     CTxDestination to_dest = DecodeDestination(to_address);
     if (!IsValidDestination(to_dest)) {
-        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + to_address);
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + to_address);
     }
 
     std::string change_address = "";
@@ -2830,7 +2830,7 @@ UniValue transferqualifier(const JSONRPCRequest& request)
 
         CTxDestination change_dest = DecodeDestination(change_address);
         if (!IsValidDestination(change_dest)) {
-            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Neoxa address: ") + change_address);
+            throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, std::string("Invalid Akitacoin address: ") + change_address);
         }
     }
 

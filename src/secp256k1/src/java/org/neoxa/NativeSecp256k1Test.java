@@ -1,10 +1,10 @@
-package org.neoxa;
+package org.akitacoin;
 
 import com.google.common.io.BaseEncoding;
 import java.util.Arrays;
 import java.math.BigInteger;
 import javax.xml.bind.DatatypeConverter;
-import static org.neoxa.NativeSecp256k1Util.*;
+import static org.akitacoin.NativeSecp256k1Util.*;
 
 /**
  * This class holds test cases defined for testing this library.

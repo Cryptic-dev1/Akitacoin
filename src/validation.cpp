@@ -65,7 +65,7 @@
 using namespace boost::placeholders;
 
 #if defined(NDEBUG)
-# error "Neoxa cannot be compiled without assertions."
+# error "Akitacoin cannot be compiled without assertions."
 #endif
 
 #define MICRO 0.000001
@@ -126,7 +126,7 @@ static void CheckBlockIndex(const Consensus::Params& consensusParams);
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
 
-const std::string strMessageMagic = "Neoxa Signed Message:\n";
+const std::string strMessageMagic = "Akitacoin Signed Message:\n";
 
 // Internal stuff
 namespace {
@@ -521,7 +521,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
     const CTransaction& tx = *ptx;
     const uint256 hash = tx.GetHash();
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     std::vector<std::pair<std::string, uint256>> vReissueAssets;
     AssertLockHeld(cs_main);
     if (pfMissingInputs)
@@ -656,7 +656,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
             return error("%s: Consensus::CheckTxInputs: %s, %s", __func__, tx.GetHash().ToString(), FormatStateMessage(state));
         }
 
-        /** NEOXA START */
+        /** AKITACOIN START */
         if (!AreAssetsDeployed()) {
             for (auto out : tx.vout) {
                 if (out.scriptPubKey.IsAssetScript())
@@ -669,7 +669,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
                 return error("%s: Consensus::CheckTxAssets: %s, %s", __func__, tx.GetHash().ToString(),
                              FormatStateMessage(state));
         }
-        /** NEOXA END */
+        /** AKITACOIN END */
 
         // Check for non-standard pay-to-script-hash in inputs
         if (fRequireStandard && !AreInputsStandard(tx, view))
@@ -944,7 +944,7 @@ static bool AcceptToMemoryPoolWorker(const CChainParams& chainparams, CTxMemPool
         // Remove conflicting transactions from the mempool
         for (const CTxMemPool::txiter it : allConflicting)
         {
-            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s NEOX additional fees, %d delta bytes\n",
+            LogPrint(BCLog::MEMPOOL, "replacing tx %s with %s for %s AKIC additional fees, %d delta bytes\n",
                     it->GetTx().GetHash().ToString(),
                     hash.ToString(),
                     FormatMoney(nModifiedFees - nConflictingFees),
@@ -1535,12 +1535,12 @@ void UpdateCoins(const CTransaction& tx, CCoinsViewCache& inputs, CTxUndo &txund
         txundo.vprevout.reserve(tx.vin.size());
         for (const CTxIn &txin : tx.vin) {
             txundo.vprevout.emplace_back();
-            bool is_spent = inputs.SpendCoin(txin.prevout, &txundo.vprevout.back(), assetCache); /** NEOXA START */ /* Pass assetCache into function */ /** NEOXA END */
+            bool is_spent = inputs.SpendCoin(txin.prevout, &txundo.vprevout.back(), assetCache); /** AKITACOIN START */ /* Pass assetCache into function */ /** AKITACOIN END */
             assert(is_spent);
         }
     }
     // add outputs
-    AddCoins(inputs, tx, nHeight, blockHash, false, assetCache, undoAssetData); /** NEOXA START */ /* Pass assetCache into function */ /** NEOXA END */
+    AddCoins(inputs, tx, nHeight, blockHash, false, assetCache, undoAssetData); /** AKITACOIN START */ /* Pass assetCache into function */ /** AKITACOIN END */
 }
 
 void UpdateCoins(const CTransaction& tx, CCoinsViewCache& inputs, int nHeight)
@@ -1767,7 +1767,7 @@ int ApplyTxInUndo(Coin&& undo, CCoinsViewCache& view, const COutPoint& out, CAss
 {
     bool fClean = true;
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     // This is needed because undo, is going to be cleared and moved when AddCoin is called. We need this for undo assets
     Coin tempCoin;
     bool fIsAsset = false;
@@ -1775,7 +1775,7 @@ int ApplyTxInUndo(Coin&& undo, CCoinsViewCache& view, const COutPoint& out, CAss
         fIsAsset = true;
         tempCoin = undo;
     }
-    /** NEOXA END */
+    /** AKITACOIN END */
 
     if (view.HaveCoin(out)) fClean = false; // overwriting transaction output
 
@@ -1797,14 +1797,14 @@ int ApplyTxInUndo(Coin&& undo, CCoinsViewCache& view, const COutPoint& out, CAss
     // it is an overwrite.
     view.AddCoin(out, std::move(undo), !fClean);
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     if (AreAssetsDeployed()) {
         if (assetCache && fIsAsset) {
             if (!assetCache->UndoAssetCoin(tempCoin, out))
                 fClean = false;
         }
     }
-    /** NEOXA END */
+    /** AKITACOIN END */
 
     return fClean ? DISCONNECT_OK : DISCONNECT_UNCLEAN;
 }
@@ -1877,7 +1877,7 @@ static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* 
                     addressIndex.push_back(std::make_pair(CAddressIndexKey(1, hashBytes, pindex->nHeight, i, hash, k, false), out.nValue));
                     addressUnspentIndex.push_back(std::make_pair(CAddressUnspentKey(1, hashBytes, hash, k), CAddressUnspentValue()));
                 } else {
-                    /** NEOXA START */
+                    /** AKITACOIN START */
                     if (AreAssetsDeployed()) {
                         std::string assetName;
                         CAmount assetAmount;
@@ -1900,7 +1900,7 @@ static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* 
                             continue;
                         }
                     }
-                    /** NEOXA END */
+                    /** AKITACOIN END */
                 }
             }
         }
@@ -1912,19 +1912,19 @@ static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* 
             if (!tx.vout[o].scriptPubKey.IsUnspendable()) {
                 COutPoint out(hash, o);
                 Coin coin;
-                bool is_spent = view.SpendCoin(out, &coin, &tempCache); /** NEOXA START */ /* Pass assetsCache into the SpendCoin function */ /** NEOXA END */
+                bool is_spent = view.SpendCoin(out, &coin, &tempCache); /** AKITACOIN START */ /* Pass assetsCache into the SpendCoin function */ /** AKITACOIN END */
                 if (!is_spent || tx.vout[o] != coin.out || pindex->nHeight != coin.nHeight || is_coinbase != coin.fCoinBase) {
                     fClean = false; // transaction output mismatch
                 }
 
-                /** NEOXA START */
+                /** AKITACOIN START */
                 if (AreAssetsDeployed()) {
                     if (assetsCache) {
                         if (IsScriptTransferAsset(tx.vout[o].scriptPubKey))
                             vAssetTxIndex.emplace_back(o);
                     }
                 }
-                /** NEOXA START */
+                /** AKITACOIN START */
             } else {
                 if(AreRestrictedAssetsDeployed()) {
                     if (assetsCache) {
@@ -1940,7 +1940,7 @@ static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* 
             }
         }
 
-        /** NEOXA START */
+        /** AKITACOIN START */
         if (AreAssetsDeployed()) {
             if (assetsCache) {
                 if (tx.IsNewAsset()) {
@@ -2157,7 +2157,7 @@ static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* 
                 }
             }
         }
-        /** NEOXA END */
+        /** AKITACOIN END */
 
         // restore inputs
         if (i > 0) { // not coinbases
@@ -2169,7 +2169,7 @@ static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* 
             for (unsigned int j = tx.vin.size(); j-- > 0;) {
                 const COutPoint &out = tx.vin[j].prevout;
                 Coin &undo = txundo.vprevout[j];
-                int res = ApplyTxInUndo(std::move(undo), view, out, assetsCache); /** NEOXA START */ /* Pass assetsCache into ApplyTxInUndo function */ /** NEOXA END */
+                int res = ApplyTxInUndo(std::move(undo), view, out, assetsCache); /** AKITACOIN START */ /* Pass assetsCache into ApplyTxInUndo function */ /** AKITACOIN END */
                 if (res == DISCONNECT_FAILED) return DISCONNECT_FAILED;
                 fClean = fClean && res != DISCONNECT_UNCLEAN;
 
@@ -2206,7 +2206,7 @@ static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* 
                         addressIndex.push_back(std::make_pair(CAddressIndexKey(1, hashBytes, pindex->nHeight, i, hash, j, false), prevout.nValue));
                         addressUnspentIndex.push_back(std::make_pair(CAddressUnspentKey(1, hashBytes, hash, j), CAddressUnspentValue()));
                     } else {
-                        /** NEOXA START */
+                        /** AKITACOIN START */
                         if (AreAssetsDeployed()) {
                             std::string assetName;
                             CAmount assetAmount;
@@ -2230,7 +2230,7 @@ static DisconnectResult DisconnectBlock(const CBlock& block, const CBlockIndex* 
                                 continue;
                             }
                         }
-                        /** NEOXA END */
+                        /** AKITACOIN END */
                     }
                 }
             }
@@ -2284,7 +2284,7 @@ static bool FindUndoPos(CValidationState &state, int nFile, CDiskBlockPos &pos, 
 static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck() {
-    RenameThread("neoxa-scriptch");
+    RenameThread("akitacoin-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -2533,7 +2533,7 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
                                  REJECT_INVALID, "bad-txns-accumulated-fee-outofrange");
             }
 
-            /** NEOXA START */
+            /** AKITACOIN START */
             if (!AreAssetsDeployed()) {
                 for (auto out : tx.vout)
                     if (out.scriptPubKey.IsAssetScript())
@@ -2551,7 +2551,7 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
                 }
             }
 
-            /** NEOXA END */
+            /** AKITACOIN END */
 
             // Check that transaction is BIP68 final
             // BIP68 lock checks (as opposed to nLockTime checks) must
@@ -2588,7 +2588,7 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
                         hashBytes = Hash160(prevout.scriptPubKey.begin() + 1, prevout.scriptPubKey.end() - 1);
                         addressType = 1;
                     } else {
-                        /** NEOXA START */
+                        /** AKITACOIN START */
                         if (AreAssetsDeployed()) {
                             hashBytes.SetNull();
                             addressType = 0;
@@ -2598,11 +2598,11 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
                                 isAsset = true;
                             }
                         }
-                        /** NEOXA END */
+                        /** AKITACOIN END */
                     }
 
                     if (fAddressIndex && addressType > 0) {
-                        /** NEOXA START */
+                        /** AKITACOIN START */
                         if (isAsset) {
 //                            std::cout << "ConnectBlock(): pushing assets onto addressIndex: " << "1" << ", " << hashBytes.GetHex() << ", " << assetName << ", " << pindex->nHeight
 //                                      << ", " << i << ", " << txhash.GetHex() << ", " << j << ", " << "true" << ", " << assetAmount * -1 << std::endl;
@@ -2612,7 +2612,7 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
 
                             // remove address from unspent index
                             addressUnspentIndex.push_back(std::make_pair(CAddressUnspentKey(addressType, hashBytes, assetName, input.prevout.hash, input.prevout.n), CAddressUnspentValue()));
-                        /** NEOXA END */
+                        /** AKITACOIN END */
                         } else {
                             // record spending activity
                             addressIndex.push_back(std::make_pair(CAddressIndexKey(addressType, hashBytes, pindex->nHeight, i, txhash, j, true), prevout.nValue * -1));
@@ -2621,7 +2621,7 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
                             addressUnspentIndex.push_back(std::make_pair(CAddressUnspentKey(addressType, hashBytes, input.prevout.hash, input.prevout.n), CAddressUnspentValue()));
                         }
                     }
-                    /** NEOXA END */
+                    /** AKITACOIN END */
 
                     if (fSpentIndex) {
                         // add the spent index to determine the txid and input that spent an output
@@ -2684,7 +2684,7 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
                                                                  CAddressUnspentValue(out.nValue, out.scriptPubKey,
                                                                                       pindex->nHeight)));
                 } else {
-                    /** NEOXA START */
+                    /** AKITACOIN START */
                     if (AreAssetsDeployed()) {
                         std::string assetName;
                         CAmount assetAmount;
@@ -2708,7 +2708,7 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
                     } else {
                         continue;
                     }
-                    /** NEOXA END */
+                    /** AKITACOIN END */
                 }
             }
         }
@@ -2717,19 +2717,19 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
         if (i > 0) {
             blockundo.vtxundo.push_back(CTxUndo());
         }
-        /** NEOXA START */
+        /** AKITACOIN START */
         // Create the basic empty string pair for the undoblock
         std::pair<std::string, CBlockAssetUndo> undoPair = std::make_pair("", CBlockAssetUndo());
         std::pair<std::string, CBlockAssetUndo>* undoAssetData = &undoPair;
-        /** NEOXA END */
+        /** AKITACOIN END */
 
         UpdateCoins(tx, view, i == 0 ? undoDummy : blockundo.vtxundo.back(), pindex->nHeight, block.GetHash(), assetsCache, undoAssetData);
 
-        /** NEOXA START */
+        /** AKITACOIN START */
         if (!undoAssetData->first.empty()) {
             vUndoAssetData.emplace_back(*undoAssetData);
         }
-        /** NEOXA END */
+        /** AKITACOIN END */
 
         vPos.push_back(std::make_pair(tx.GetHash(), pos));
         pos.nTxOffset += ::GetSerializeSize(tx, SER_DISK, CLIENT_VERSION);
@@ -2743,14 +2743,14 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
                          error("ConnectBlock(): coinbase pays too much (actual=%d vs limit=%d)",block.vtx[0]->GetValueOut(AreEnforcedValuesDeployed()), blockReward),
                          REJECT_INVALID, "bad-cb-amount");
 	
-    /** NEOXA START */
+    /** AKITACOIN START */
 	//CommunityAutonomousAddress Assign 10%
 	std::string  GetCommunityAutonomousAddress 	= GetParams().CommunityAutonomousAddress();
 	CTxDestination destCommunityAutonomous 		= DecodeDestination(GetCommunityAutonomousAddress);
     if (!IsValidDestination(destCommunityAutonomous)) {
-		LogPrintf("IsValidDestination: Invalid Neoxa address %s \n", GetCommunityAutonomousAddress);
+		LogPrintf("IsValidDestination: Invalid Akitacoin address %s \n", GetCommunityAutonomousAddress);
     }
-	// Parse Neoxa address
+	// Parse Akitacoin address
     CScript scriptPubKeyCommunityAutonomous 	= GetScriptForDestination(destCommunityAutonomous);
 	
 	CAmount nCommunityAutonomousAmount 			= GetParams().CommunityAutonomousAmount();
@@ -2776,7 +2776,7 @@ static bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockInd
                          error("ConnectBlock(): coinbase Community Autonomous Address Is Invalid. Actual: %s Should Be: %s \n",HexStr(block.vtx[0]->vout[1].scriptPubKey), HexStr(scriptPubKeyCommunityAutonomous)),
                          REJECT_INVALID, "bad-cb-community-autonomous-address");
 	}
-	/** NEOXA END */
+	/** AKITACOIN END */
 	
     if (!control.Wait())
         return state.DoS(100, error("%s: CheckQueue failed", __func__), REJECT_INVALID, "block-validation-failed");
@@ -3021,14 +3021,14 @@ bool static FlushStateToDisk(const CChainParams& chainparams, CValidationState &
             // twice (once in the log, and once in the tables). This is already
             // an overestimation, as most will delete an existing entry or
             // overwrite one. Still, use a conservative safety factor of 2.
-            if (!CheckDiskSpace((48 * 2 * 2 * pcoinsTip->GetCacheSize()) + assetDirtyCacheSize * 2)) /** NEOXA START */ /** NEOXA END */
+            if (!CheckDiskSpace((48 * 2 * 2 * pcoinsTip->GetCacheSize()) + assetDirtyCacheSize * 2)) /** AKITACOIN START */ /** AKITACOIN END */
                 return state.Error("out of disk space");
 
             // Flush the chainstate (which may refer to block index entries).
             if (!pcoinsTip->Flush())
                 return AbortNode(state, "Failed to write to coin database");
 
-            /** NEOXA START */
+            /** AKITACOIN START */
             // Flush the assetstate
             if (AreAssetsDeployed()) {
                 // Flush the assetstate
@@ -3056,7 +3056,7 @@ bool static FlushStateToDisk(const CChainParams& chainparams, CValidationState &
                         return AbortNode(state, "Failed to Flush the message channel database");
                 }
             }
-            /** NEOXA END */
+            /** AKITACOIN END */
 
             nLastFlush = nNow;
         }
@@ -3312,20 +3312,20 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
     int64_t nTimeAssetsFlush;
     LogPrint(BCLog::BENCH, "  - Load block from disk: %.2fms [%.2fs]\n", (nTime2 - nTime1) * MILLI, nTimeReadFromDisk * MICRO);
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     // Initialize sets used from removing asset entries from the mempool
     ConnectedBlockAssetData assetDataFromBlock;
-    /** NEOXA END */
+    /** AKITACOIN END */
 
     {
         CCoinsViewCache view(pcoinsTip);
-        /** NEOXA START */
+        /** AKITACOIN START */
         // Create the empty asset cache, that will be sent into the connect block
         // All new data will be added to the cache, and will be flushed back into passets after a successful
         // Connect Block cycle
         CAssetsCache assetCache;
         std::vector<std::pair<std::string, CNullAssetTxData>> myNullAssetData;
-        /** NEOXA END */
+        /** AKITACOIN END */
 
         int64_t nTimeConnectStart = GetTimeMicros();
 
@@ -3340,7 +3340,7 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
         LogPrint(BCLog::BENCH, "  - Connect Block only time: %.2fms [%.2fs (%.2fms/blk)]\n", (nTimeConnectDone - nTimeConnectStart) * MILLI, nTimeConnectTotal * MICRO, nTimeConnectTotal * MILLI / nBlocksTotal);
 
         int64_t nTimeAssetsStart = GetTimeMicros();
-        /** NEOXA START */
+        /** AKITACOIN START */
         // Get the newly created assets, from the connectblock assetCache so we can remove the correct assets from the mempool
         assetDataFromBlock = {assetCache.setNewAssetsToAdd, assetCache.setNewRestrictedVerifierToAdd, assetCache.setNewRestrictedAddressToAdd, assetCache.setNewRestrictedGlobalToAdd, assetCache.setNewQualifierAddressToAdd};
 
@@ -3355,22 +3355,22 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
         }
         int64_t nTimeAssetsEnd = GetTimeMicros(); nTimeAssetTasks += nTimeAssetsEnd - nTimeAssetsStart;
         LogPrint(BCLog::BENCH, "  - Compute Asset Tasks total: %.2fms [%.2fs (%.2fms/blk)]\n", (nTimeAssetsEnd - nTimeAssetsStart) * MILLI, nTimeAssetsEnd * MICRO, nTimeAssetsEnd * MILLI / nBlocksTotal);
-        /** NEOXA END */
+        /** AKITACOIN END */
 
         nTime3 = GetTimeMicros(); nTimeConnectTotal += nTime3 - nTime2;
         LogPrint(BCLog::BENCH, "  - Connect total: %.2fms [%.2fs (%.2fms/blk)]\n", (nTime3 - nTime2) * MILLI, nTimeConnectTotal * MICRO, nTimeConnectTotal * MILLI / nBlocksTotal);
         bool flushed = view.Flush();
         assert(flushed);
         nTime4 = GetTimeMicros(); nTimeFlush += nTime4 - nTime3;
-        LogPrint(BCLog::BENCH, "  - Flush NEOX: %.2fms [%.2fs (%.2fms/blk)]\n", (nTime4 - nTime3) * MILLI, nTimeFlush * MICRO, nTimeFlush * MILLI / nBlocksTotal);
+        LogPrint(BCLog::BENCH, "  - Flush AKIC: %.2fms [%.2fs (%.2fms/blk)]\n", (nTime4 - nTime3) * MILLI, nTimeFlush * MICRO, nTimeFlush * MILLI / nBlocksTotal);
 
-        /** NEOXA START */
+        /** AKITACOIN START */
         nTimeAssetsFlush = GetTimeMicros();
         bool assetFlushed = assetCache.Flush();
         assert(assetFlushed);
         int64_t nTimeAssetFlushFinished = GetTimeMicros(); nTimeAssetFlush += nTimeAssetFlushFinished - nTimeAssetsFlush;
         LogPrint(BCLog::BENCH, "  - Flush Assets: %.2fms [%.2fs (%.2fms/blk)]\n", (nTimeAssetFlushFinished - nTimeAssetsFlush) * MILLI, nTimeAssetFlush * MICRO, nTimeAssetFlush * MILLI / nBlocksTotal);
-        /** NEOXA END */
+        /** AKITACOIN END */
     }
 
     // Write the chain state to disk, if necessary.
@@ -3390,7 +3390,7 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
 
     connectTrace.BlockConnected(pindexNew, std::move(pthisBlock));
 
-    /** NEOXA START */
+    /** AKITACOIN START */
 
     //  Determine if the new block height has any pending snapshot requests,
     //      and if so, capture a snapshot of the relevant target assets.
@@ -3417,7 +3417,7 @@ bool static ConnectTip(CValidationState& state, const CChainParams& chainparams,
         CheckRewardDistributions(vpwallets[0]);
     }
 #endif
-    /** NEOXA END */
+    /** AKITACOIN END */
 
     return true;
 }
@@ -4505,9 +4505,9 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
     indexDummy.pprev = pindexPrev;
     indexDummy.nHeight = pindexPrev->nHeight + 1;
 
-    /** NEOXA START */
+    /** AKITACOIN START */
     CAssetsCache assetCache = *GetCurrentAssetCache();
-    /** NEOXA END */
+    /** AKITACOIN END */
 
     // NOTE: CheckBlockHeader is called by CheckBlock
     if (!ContextualCheckBlockHeader(block, state, chainparams, pindexPrev, GetAdjustedTime()))
@@ -4516,7 +4516,7 @@ bool TestBlockValidity(CValidationState& state, const CChainParams& chainparams,
         return error("%s: Consensus::CheckBlock: %s", __func__, FormatStateMessage(state));
     if (!ContextualCheckBlock(block, state, chainparams.GetConsensus(), pindexPrev, &assetCache))
         return error("%s: Consensus::ContextualCheckBlock: %s", __func__, FormatStateMessage(state));
-    if (!ConnectBlock(block, state, &indexDummy, viewNew, chainparams, &assetCache, true)) /** NEOXA START */ /*Add asset to function */ /** NEOX END*/
+    if (!ConnectBlock(block, state, &indexDummy, viewNew, chainparams, &assetCache, true)) /** AKITACOIN START */ /*Add asset to function */ /** AKIC END*/
         return error("%s: Consensus::ConnectBlock: %s", __func__, FormatStateMessage(state));
     assert(state.IsValid());
 
@@ -5766,7 +5766,7 @@ double GuessVerificationProgress(const ChainTxData& data, CBlockIndex *pindex) {
     return pindex->nChainTx / fTxTotal;
 }
 
-/** NEOXA START */
+/** AKITACOIN START */
 
 // Only used by test framework
 void SetEnforcedValues(bool value) {
@@ -5869,7 +5869,7 @@ CAssetsCache* GetCurrentAssetCache()
 {
     return passets;
 }
-/** NEOXA END */
+/** AKITACOIN END */
 
 class CMainCleanup
 {

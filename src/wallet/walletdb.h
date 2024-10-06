@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_WALLET_WALLETDB_H
-#define NEOXA_WALLET_WALLETDB_H
+#ifndef AKITACOIN_WALLET_WALLETDB_H
+#define AKITACOIN_WALLET_WALLETDB_H
 
 #include "amount.h"
 #include "primitives/transaction.h"
@@ -289,4 +289,4 @@ private:
 //! Compacts BDB state so that wallet.dat is self-contained (if there are changes)
 void MaybeCompactWalletDB();
 
-#endif // NEOXA_WALLET_WALLETDB_H
+#endif // AKITACOIN_WALLET_WALLETDB_H

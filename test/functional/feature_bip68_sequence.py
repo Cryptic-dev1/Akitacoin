@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,7 @@ Test BIP68 implementation.
 
 import time
 import random
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import satoshi_round, assert_raises_rpc_error, get_bip9_status, assert_equal, assert_greater_than, sync_blocks
 from test_framework.blocktools import CTransaction, COIN, CTxIn, COutPoint, CTxOut, CScript, create_block, create_coinbase
 from test_framework.mininode import to_hex, from_hex
@@ -25,7 +25,7 @@ SEQUENCE_LOCKTIME_MASK = 0x0000ffff
 NOT_FINAL_ERROR = "64: non-BIP68-final"
 
 
-class BIP68Test(NeoxaTestFramework):
+class BIP68Test(AkitacoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.extra_args = [[], ["-acceptnonstdtxn=0"]]
@@ -47,7 +47,7 @@ class BIP68Test(NeoxaTestFramework):
     def test_disable_flag(self):
         # Create some unconfirmed inputs
         new_addr = self.nodes[0].getnewaddress()
-        self.nodes[0].sendtoaddress(new_addr, 2)  # send 2 NEOX
+        self.nodes[0].sendtoaddress(new_addr, 2)  # send 2 AKIC
 
         utxos = self.nodes[0].listunspent(0, 0)
         assert (len(utxos) > 0)

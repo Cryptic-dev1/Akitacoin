@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_CONSENSUS_PARAMS_H
-#define NEOXA_CONSENSUS_PARAMS_H
+#ifndef AKITACOIN_CONSENSUS_PARAMS_H
+#define AKITACOIN_CONSENSUS_PARAMS_H
 
 #include "uint256.h"
 #include <map>
@@ -82,4 +82,4 @@ struct Params {
 };
 } // namespace Consensus
 
-#endif // NEOXA_CONSENSUS_PARAMS_H
+#endif // AKITACOIN_CONSENSUS_PARAMS_H

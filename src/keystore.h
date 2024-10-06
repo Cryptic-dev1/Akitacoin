@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_KEYSTORE_H
-#define NEOXA_KEYSTORE_H
+#ifndef AKITACOIN_KEYSTORE_H
+#define AKITACOIN_KEYSTORE_H
 
 #include "key.h"
 #include "pubkey.h"
@@ -117,4 +117,4 @@ public:
 typedef std::vector<unsigned char, secure_allocator<unsigned char> > CKeyingMaterial;
 typedef std::map<CKeyID, std::pair<CPubKey, std::vector<unsigned char> > > CryptedKeyMap;
 
-#endif // NEOXA_KEYSTORE_H
+#endif // AKITACOIN_KEYSTORE_H

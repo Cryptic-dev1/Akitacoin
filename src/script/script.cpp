@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include "streams.h"
@@ -144,9 +144,9 @@ const char* GetOpName(opcodetype opcode)
     case OP_NOP9                   : return "OP_NOP9";
     case OP_NOP10                  : return "OP_NOP10";
 
-    /** NEOXA START */
-    case OP_NEOX_ASSET              : return "OP_NEOX_ASSET";
-    /** NEOXA END */
+    /** AKITACOIN START */
+    case OP_AKIC_ASSET              : return "OP_AKIC_ASSET";
+    /** AKITACOIN END */
 
     case OP_INVALIDOPCODE          : return "OP_INVALIDOPCODE";
 
@@ -228,7 +228,7 @@ bool CScript::IsPayToScriptHash() const
             (*this)[22] == OP_EQUAL);
 }
 
-/** NEOXA START */
+/** AKITACOIN START */
 bool CScript::IsAssetScript() const
 {
     int nType = 0;
@@ -246,33 +246,33 @@ bool CScript::IsAssetScript(int& nType, bool& isOwner) const
 bool CScript::IsAssetScript(int& nType, bool& fIsOwner, int& nStartingIndex) const
 {
     if (this->size() > 31) {
-        if ((*this)[25] == OP_NEOX_ASSET) { // OP_NEOX_ASSET is always in the 25 index of the script if it exists
+        if ((*this)[25] == OP_AKIC_ASSET) { // OP_AKIC_ASSET is always in the 25 index of the script if it exists
             int index = -1;
-            if ((*this)[27] == NEOX_N) { // Check to see if NEOX starts at 27 ( this->size() < 105)
-                if ((*this)[28] == NEOX_E)
-                    if ((*this)[29] == NEOX_X)
+            if ((*this)[27] == AKIC_N) { // Check to see if AKIC starts at 27 ( this->size() < 105)
+                if ((*this)[28] == AKIC_E)
+                    if ((*this)[29] == AKIC_X)
                         index = 30;
             } else {
-                if ((*this)[28] == NEOX_N) // Check to see if NEOX starts at 28 ( this->size() >= 105)
-                    if ((*this)[29] == NEOX_E)
-                        if ((*this)[30] == NEOX_X)
+                if ((*this)[28] == AKIC_N) // Check to see if AKIC starts at 28 ( this->size() >= 105)
+                    if ((*this)[29] == AKIC_E)
+                        if ((*this)[30] == AKIC_X)
                             index = 31;
             }
 
             if (index > 0) {
                 nStartingIndex = index + 1; // Set the index where the asset data begins. Use to serialize the asset data into asset objects
-                if ((*this)[index] == NEOX_T) { // Transfer first anticipating more transfers than other assets operations
+                if ((*this)[index] == AKIC_T) { // Transfer first anticipating more transfers than other assets operations
                     nType = TX_TRANSFER_ASSET;
                     return true;
-                } else if ((*this)[index] == NEOX_Q && this->size() > 39) {
+                } else if ((*this)[index] == AKIC_Q && this->size() > 39) {
                     nType = TX_NEW_ASSET;
                     fIsOwner = false;
                     return true;
-                } else if ((*this)[index] == NEOX_O) {
+                } else if ((*this)[index] == AKIC_O) {
                     nType = TX_NEW_ASSET;
                     fIsOwner = true;
                     return true;
-                } else if ((*this)[index] == NEOX_N) {
+                } else if ((*this)[index] == AKIC_N) {
                     nType = TX_REISSUE_ASSET;
                     return true;
                 }
@@ -332,15 +332,15 @@ bool CScript::IsNullAsset() const
 bool CScript::IsNullAssetTxDataScript() const
 {
     return (this->size() > 23 &&
-            (*this)[0] == OP_NEOX_ASSET &&
+            (*this)[0] == OP_AKIC_ASSET &&
             (*this)[1] == 0x14);
 }
 
 bool CScript::IsNullGlobalRestrictionAssetTxDataScript() const
 {
-    // 1 OP_NEOX_ASSET followed by two OP_RESERVED + atleast 4 characters for the restricted name $ABC
+    // 1 OP_AKIC_ASSET followed by two OP_RESERVED + atleast 4 characters for the restricted name $ABC
     return (this->size() > 6 &&
-            (*this)[0] == OP_NEOX_ASSET &&
+            (*this)[0] == OP_AKIC_ASSET &&
             (*this)[1] == OP_RESERVED &&
             (*this)[2] == OP_RESERVED);
 }
@@ -348,13 +348,13 @@ bool CScript::IsNullGlobalRestrictionAssetTxDataScript() const
 
 bool CScript::IsNullAssetVerifierTxDataScript() const
 {
-    // 1 OP_NEOX_ASSET followed by one OP_RESERVED
+    // 1 OP_AKIC_ASSET followed by one OP_RESERVED
     return (this->size() > 3 &&
-            (*this)[0] == OP_NEOX_ASSET &&
+            (*this)[0] == OP_AKIC_ASSET &&
             (*this)[1] == OP_RESERVED &&
             (*this)[2] != OP_RESERVED);
 }
-/** NEOXA END */
+/** AKITACOIN END */
 
 bool CScript::IsPayToWitnessScriptHash() const
 {
@@ -450,7 +450,7 @@ bool CScript::HasValidOps() const
 bool CScript::IsUnspendable() const
 {
     CAmount nAmount;
-    return (size() > 0 && *begin() == OP_RETURN) || (size() > 0 && *begin() == OP_NEOX_ASSET) || (size() > MAX_SCRIPT_SIZE) || (GetAssetAmountFromScript(*this, nAmount) && nAmount == 0);
+    return (size() > 0 && *begin() == OP_RETURN) || (size() > 0 && *begin() == OP_AKIC_ASSET) || (size() > MAX_SCRIPT_SIZE) || (GetAssetAmountFromScript(*this, nAmount) && nAmount == 0);
 }
 
 //!--------------------------------------------------------------------------------------------------------------------------!//

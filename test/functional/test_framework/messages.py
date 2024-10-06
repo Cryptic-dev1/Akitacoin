@@ -3,12 +3,12 @@
 # Copyright (c) 2012 Jeff Garzik
 # Copyright (c) 2010-2017 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """
-Neoxa test framework primitive and message structures.
+Akitacoin test framework primitive and message structures.
 
 CBlock, CTransaction, CBlockHeader, CTxIn, CTxOut, etc....:
     data structures that should map to corresponding structures in
@@ -213,7 +213,7 @@ def to_hex(obj):
 
 class CAddress:
     """
-    Objects that map to neoxad objects, which can be serialized/deserialized
+    Objects that map to akitacoind objects, which can be serialized/deserialized
     """
     __slots__ = ("ip", "nServices", "pchReserved", "port", "time")
 
@@ -550,7 +550,7 @@ class CTransaction:
         if len(self.vin) == 0:
             flags = struct.unpack("<B", f.read(1))[0]
             # Not sure why flags can't be zero, but this
-            # matches the implementation in neoxad
+            # matches the implementation in akitacoind
             if flags != 0:
                 self.vin = deser_vector(f, CTxIn)
                 self.vout = deser_vector(f, CTxOut)
@@ -1494,7 +1494,7 @@ class MsgHeaders:
         self.headers = headers if headers is not None else []
 
     def deserialize(self, f):
-        # comment in neoxad indicates these should be deserialized as blocks
+        # comment in akitacoind indicates these should be deserialized as blocks
         blocks = deser_vector(f, CBlock)
         for x in blocks:
             self.headers.append(CBlockHeader(x))

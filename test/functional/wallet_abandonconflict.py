@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -15,10 +15,10 @@ Test the abandontransaction RPC.
  no effect on transactions which are already conflicted or abandoned.
 """
 
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import sync_blocks, Decimal, sync_mempools, disconnect_nodes, assert_equal, connect_nodes
 
-class AbandonConflictTest(NeoxaTestFramework):
+class AbandonConflictTest(AkitacoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.extra_args = [["-minrelaytxfee=0.00001"], []]
@@ -135,13 +135,13 @@ class AbandonConflictTest(NeoxaTestFramework):
         connect_nodes(self.nodes[0], 1)
         sync_blocks(self.nodes)
 
-        # Verify that B and C's 10 NEOX outputs are available for spending again because AB1 is now conflicted
+        # Verify that B and C's 10 AKIC outputs are available for spending again because AB1 is now conflicted
         new_balance = self.nodes[0].getbalance()
         assert_equal(new_balance, balance + Decimal("20"))
         balance = new_balance
 
         # There is currently a minor bug around this and so this test doesn't work.  See Issue #7315
-        # Invalidate the block with the double spend and B's 10 NEOX output should no longer be available
+        # Invalidate the block with the double spend and B's 10 AKIC output should no longer be available
         # Don't think C's should either
         self.nodes[0].invalidateblock(self.nodes[0].getbestblockhash())
         new_balance = self.nodes[0].getbalance()

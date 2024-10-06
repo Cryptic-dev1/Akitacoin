@@ -1,11 +1,11 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/neoxa-config.h"
+#include "config/akitacoin-config.h"
 #endif
 
 #include "rpcconsole.h"
@@ -772,7 +772,7 @@ void RPCConsole::buildParameterlist(QString arg)
     // Append repair parameter to command line.
     args.append(arg);
 
-    // Send command-line arguments to NeoxaGUI::handleRestart()
+    // Send command-line arguments to AkitacoinGUI::handleRestart()
     Q_EMIT handleRestart(args);
 }
 

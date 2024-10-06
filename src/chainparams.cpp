@@ -43,7 +43,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "The Times 03/30/2021 Bitcoin is name of the game for new generation of firms";
+    const char* pszTimestamp = "The Times 06/10/2024 Sue Gray resigns as Keir Stamer's chaif of staff";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -121,33 +121,33 @@ public:
         consensus.nRuleChangeActivationThreshold = 1613; // Approx 80% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1653004800; // Friday, 20 May 2022 00:00:00
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1653264000; // Monday, 23 May 2022 00:00:00
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1729036800; // Wednesday, 16 October 2024 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideRuleChangeActivationThreshold = 1814;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].bit = 6;  //Assets (HIP2)
-        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nStartTime = 1653004800; // Friday, 20 May 2022 00:00:00
-        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 1653264000; // Monday, 23 May 2022 00:00:00
+        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 1729036800; // Wednesday, 16 October 2024 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideRuleChangeActivationThreshold = 1814;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].bit = 7;  // Assets (HIP5)
-        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nStartTime = 1653004800; // Friday, 20 May 2022 00:00:00
-        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nTimeout = 1653264000; // Monday, 23 May 2022 00:00:00
+        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nTimeout = 1729036800; // Wednesday, 16 October 2024 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideRuleChangeActivationThreshold = 1714; // Approx 85% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].bit = 8;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nStartTime = 1653004800; // Friday, 20 May 2022 00:00:00
-        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nTimeout = 1653264000; // Monday, 23 May 2022 00:00:00
+        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nTimeout = 1729036800; // Wednesday, 16 October 2024 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nOverrideRuleChangeActivationThreshold = 1714; // Approx 85% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].bit = 9;
-        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nStartTime = 1653004800; // Friday, 20 May 2022 00:00:00
-        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nTimeout = 1653264000; // Monday, 23 May 2022 00:00:00
+        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nTimeout = 1729036800; // Wednesday, 16 October 2024 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideRuleChangeActivationThreshold = 1411; // Approx 70% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].bit = 10;
-        consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nStartTime = 1653004800; // Friday, 20 May 2022 00:00:00
-        consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nTimeout = 1653264000; // Monday, 23 May 2022 00:00:00
+        consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nTimeout = 1729036800; // Wednesday, 16 October 2024 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideRuleChangeActivationThreshold = 1411; // Approx 70% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideMinerConfirmationWindow = 2016;
 	
@@ -158,38 +158,40 @@ public:
         consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000004b53b99b492446"); // Block 21899
 
         // By default assume that the signatures in ancestors of this block are valid. Block# 
-        consensus.defaultAssumeValid = uint256S("0x0000000000e0b9c5b59fa1203722afa45b9887fdf415f0cbee3d4fb9d8a1902c"); // Block 21899
+        consensus.defaultAssumeValid = uint256S("ed17bd41ea38c96d7d264c7e69b5c5a708b61f1d3feec3a5a9ace832042acb7e"); // Block 21899
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x47; // G
-        pchMessageStart[1] = 0x41; // A
-        pchMessageStart[2] = 0x4d; // M
-        pchMessageStart[3] = 0x45; // E
-        nDefaultPort = 8788;
+        pchMessageStart[0] = 0x17; // A
+        pchMessageStart[1] = 0x2E; // K
+        pchMessageStart[2] = 0x22; // I
+        pchMessageStart[3] = 0x0C; // C
+        nDefaultPort = 9971;
         nPruneAfterHeight = 100000;
 		
-	uint32_t nGenesisTime = 1651442858;	
-
-	genesis = CreateGenesisBlock(nGenesisTime, 3244753, 0x1e00ffff, 4, 5000 * COIN);
-        consensus.hashGenesisBlock = genesis.GetX16RHash();	
-	assert(consensus.hashGenesisBlock == uint256S("0000000a50fdaaf22f1c98b8c61559e15ab2269249aa1fb20683180703cdbf07"));
-        assert(genesis.hashMerkleRoot == uint256S("7c1d71731b98c560a80cee3b88993c8c863342b9661894304fd843bf7e75a41f"));
+	uint32_t nGenesisTime = 1729036800; //2024-10-16 00:00:00
 
 
-        vSeeds.emplace_back("seed.neoxa.net", false);
+	genesis = CreateGenesisBlock(nGenesisTime, 982222, 0x1e00ffff, 4, 5000 * COIN);
+	
+	consensus.hashGenesisBlock = genesis.GetX16RHash();	
+	assert(consensus.hashGenesisBlock == uint256S("ed17bd41ea38c96d7d264c7e69b5c5a708b61f1d3feec3a5a9ace832042acb7e"));
+        assert(genesis.hashMerkleRoot == uint256S("1853f490513e29f34d769c6812e02e51930eb2d57eeb8c198d6f282bd68178bf"));
+	
 
-        // Address start with G
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,38);
+        vSeeds.emplace_back("seed.akitacoin.net", false);
+
+        // Address start with A
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,112);
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        // NEOXA BIP44 cointype in mainnet is '1668'
+        // AKITACOIN BIP44 cointype in mainnet is '1668'
         nExtCoinType = 1668;
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
@@ -202,23 +204,17 @@ public:
 		checkpointData = (CCheckpointData) {
             {
             	{
-            	{0, uint256S("0000000a50fdaaf22f1c98b8c61559e15ab2269249aa1fb20683180703cdbf07")},
-                {1600, uint256S("000000000dae516974be0590d0dcd1ba8ecd28f6969cd04b719dfec483445286")},
-                {1900, uint256S("00000000008ec6725fd46ab63b46d30f34632ce3caec68c59aae5fc19092871f")},
-                {2582, uint256S("00000000002029b6964d84ee232c027573c9b33da2673f9cdeed5238a1b65a32")},
-		{7028, uint256S("0000000000f6e894e284e9a447ecdcfe888623d2df9d908c49904a4e04b53431")},
-		{7339, uint256S("00000000012be3885f8c8648cacf55b1ee45021cf3c5dd214c61526e5bf81363")},
-		{20000, uint256S("0000000000e244579b5e0a2622db902bba222022577aff23169506893bb18fc2")}	
+            		{0, genesis.GetHash()}
             	}
             }
         };
 
         chainTxData = ChainTxData{
-            // Update as we know more about the contents of the Neoxa chain
-        	1654208769, // * UNIX timestamp of last known number of transactions 2021-02-21 05:09:15
-            28600,    // * total number of transactions between genesis and that timestamp
+            // Update as we know more about the contents of the Akitacoin chain
+        	1729036800, // * UNIX timestamp of last known number of transactions 2024-10-16 00:00:00
+            0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.02364903697859943       // * estimated number of transactions per second after that timestamp
+            1       // * estimated number of transactions per second after that timestamp
         };
 
 
@@ -262,7 +258,7 @@ public:
         nMessagingActivationBlock = 1; // Messaging activated block height
         nRestrictedActivationBlock = 1; // Restricted activated block height
 
-        nKAAAWWWPOWActivationTime = 1651444217; // 2021-05-03 06:00:18
+        nKAAAWWWPOWActivationTime = 1729036800; // 2024-10-16 00:00:00
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
     }
 };
@@ -289,33 +285,33 @@ public:
         consensus.nRuleChangeActivationThreshold = 1613; // Approx 80% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1653248479; // Sunday, 22 May 2022 19:41:19
-        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1653594079; // Thursday, 26 May 2022 19:41:19
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1729036800; // 2024-10-16 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideRuleChangeActivationThreshold = 1814;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].bit = 6;  //Assets (HIP2)
-        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nStartTime = 1653248479; // Sunday, 22 May 2022 19:41:19
-        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 1653594079; // Thursday, 26 May 2022 19:41:19
+        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nTimeout = 1729036800; // 2024-10-16 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideRuleChangeActivationThreshold = 1814;
         consensus.vDeployments[Consensus::DEPLOYMENT_ASSETS].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].bit = 7;  // Assets (HIP5)
-        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nStartTime = 1653248479; // Sunday, 22 May 2022 19:41:19
-        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nTimeout = 1653594079; // Thursday, 26 May 2022 19:41:19
+        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nTimeout = 1729036800; // 2024-10-16 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideRuleChangeActivationThreshold = 1714; // Approx 85% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_MSG_REST_ASSETS].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].bit = 8;
-        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nStartTime = 1653248479; // Sunday, 22 May 2022 19:41:19
-        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nTimeout = 1653594079; // Thursday, 26 May 2022 19:41:19
+        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nTimeout = 1729036800; // 2024-10-16 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nOverrideRuleChangeActivationThreshold = 1714; // Approx 85% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_TRANSFER_SCRIPT_SIZE].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].bit = 9;
-        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nStartTime = 1653248479; // Sunday, 22 May 2022 19:41:19
-        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nTimeout = 1653594079; // Thursday, 26 May 2022 19:41:19
+        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nTimeout = 1729036800; // 2024-10-16 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideRuleChangeActivationThreshold = 1411; // Approx 70% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_ENFORCE_VALUE].nOverrideMinerConfirmationWindow = 2016;
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].bit = 10;
-        consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nStartTime = 1653248479; // Sunday, 22 May 2022 19:41:19
-        consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nTimeout = 1653594079; // Thursday, 26 May 2022 19:41:19
+        consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nStartTime = 1728230818; // Sunday, 06 October 2024 16:06:58
+        consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nTimeout = 1729036800; // 2024-10-16 00:00:00
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideRuleChangeActivationThreshold = 1411; // Approx 70% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideMinerConfirmationWindow = 2016;
 
@@ -323,27 +319,27 @@ public:
         consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
-        consensus.defaultAssumeValid = uint256S("0x00");
+        consensus.defaultAssumeValid = uint256S("fb2a5ab73e5e964dd62b22651ff2ba7c132f7dbd8885361398e55b3b7bd0d691");
 
 
-        pchMessageStart[0] = 0x60;
-        pchMessageStart[1] = 0x63;
-        pchMessageStart[2] = 0x56;
-        pchMessageStart[3] = 0x65;
-        nDefaultPort = 4568;
+        pchMessageStart[0] = 0x33; //T
+        pchMessageStart[1] = 0x0D; //E
+        pchMessageStart[2] = 0x19; //S
+        pchMessageStart[3] = 0x33; //T
+        nDefaultPort = 8688;
         nPruneAfterHeight = 1000;
 		
-        uint32_t nGenesisTime = 1653247605;  // Sunday, 22 May 2022 19:26:45
+        uint32_t nGenesisTime = 1728230818;  // Sunday, 22 May 2022 19:26:45
 
-        genesis = CreateGenesisBlock(nGenesisTime, 11903232, 0x1e00ffff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(nGenesisTime, 1697678, 0x1e00ffff, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 	    
-        assert(consensus.hashGenesisBlock == uint256S("00000065c2d5777fe4f059f9ac7579b35c1ad4c7042aebae8c105179cca0f8f0"));
-        assert(genesis.hashMerkleRoot == uint256S("7c1d71731b98c560a80cee3b88993c8c863342b9661894304fd843bf7e75a41f"));		
+        assert(consensus.hashGenesisBlock == uint256S("fb2a5ab73e5e964dd62b22651ff2ba7c132f7dbd8885361398e55b3b7bd0d691"));
+        assert(genesis.hashMerkleRoot == uint256S("1853f490513e29f34d769c6812e02e51930eb2d57eeb8c198d6f282bd68178bf"));		
 		
         vFixedSeeds.clear();
         vSeeds.clear();
-	vSeeds.emplace_back("testnet.neoxacoin.net", false);
+	vSeeds.emplace_back("testnet.akitacoincoin.net", false);
 		
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);
@@ -351,7 +347,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Neoxa BIP44 cointype in testnet
+        // Akitacoin BIP44 cointype in testnet
         nExtCoinType = 1;
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
@@ -363,19 +359,20 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
+		{0, genesis.GetHash()}
             }
         };
 
         chainTxData = ChainTxData{
-            // Update as we know more about the contents of the Neoxa chain
+            // Update as we know more about the contents of the Akitacoin chain
             // Stats as of 00000023b66f46d74890287a7b1157dd780c7c5fdda2b561eb96684d2b39d62e window size 43200
-            1653247605, // * UNIX timestamp of last known number of transactions
+            1728230818, // * UNIX timestamp of last known number of transactions
             0,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            0.02        // * estimated number of transactions per second after that timestamp
+            1        // * estimated number of transactions per second after that timestamp
         };
 
-        /** NEOXA Start **/
+        /** AKITACOIN Start **/
         // Burn Amounts
         nIssueAssetBurnAmount = 500 * COIN;
         nReissueAssetBurnAmount = 100 * COIN;
@@ -419,7 +416,7 @@ public:
 
         nKAAAWWWPOWActivationTime = 1653247613; // 2021-05-03 06:00:18
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
-        /** NEOXA End **/
+        /** AKITACOIN End **/
     }
 };
 
@@ -485,7 +482,7 @@ public:
         pchMessageStart[1] = 0x52; 
         pchMessageStart[2] = 0x4F; 
         pchMessageStart[3] = 0x57; 
-        nDefaultPort = 19444;
+        nDefaultPort = 98882;
         nPruneAfterHeight = 1000;
 	    
 
@@ -519,10 +516,10 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
 
-        // Neoxa BIP44 cointype in regtest
+        // Akitacoin BIP44 cointype in regtest
         nExtCoinType = 1;
 
-        /** NEOXA Start **/
+        /** AKITACOIN Start **/
         // Burn Amounts
         nIssueAssetBurnAmount = 500 * COIN;
         nReissueAssetBurnAmount = 100 * COIN;
@@ -569,7 +566,7 @@ public:
         // If you are looking to test the kawpow hashing function in regtest. You will need to change this number
         nKAAAWWWPOWActivationTime = 3582830167;
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
-        /** NEOXA End **/
+        /** AKITACOIN End **/
     }
 };
 

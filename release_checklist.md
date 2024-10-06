@@ -2,15 +2,15 @@
 
   1. Check PROTOCOL_VERSION in the following location: src/version.h
 
-  2. Check Neoxad Version in the following locations: configure.ac, src/version.h
+  2. Check Akitacoind Version in the following locations: configure.ac, src/version.h
 
   3. All unit and functional tests pass
 
-  4. Check PROTOCOL_VERSION in the iOS app located at neoxawallet-ios
+  4. Check PROTOCOL_VERSION in the iOS app located at akitacoinwallet-ios
 
-  5. Check PROTOCOL_VERSION is the android app located at neoxawallet-android
+  5. Check PROTOCOL_VERSION is the android app located at akitacoinwallet-android
 
-  6. Check the Javascript stack (neoxacore) for any block serialization or rpc changes
+  6. Check the Javascript stack (akitacoincore) for any block serialization or rpc changes
   
   7. Build release notes for all new features and bug fixes
 
@@ -20,9 +20,9 @@
 
 **Post Release :**
 
-  1. Update neoxacoin.net with correct popup version
+  1. Update akitacoincoin.net with correct popup version
   
-  2. Update neoxacoin.net with correct release download urls for each platform (Windows, Linux, Mac)
+  2. Update akitacoincoin.net with correct release download urls for each platform (Windows, Linux, Mac)
 
 **Build Process**
 

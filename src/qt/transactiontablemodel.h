@@ -1,13 +1,13 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Neoxa Core developers
+// Copyright (c) 2020-2021 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef NEOXA_QT_TRANSACTIONTABLEMODEL_H
-#define NEOXA_QT_TRANSACTIONTABLEMODEL_H
+#ifndef AKITACOIN_QT_TRANSACTIONTABLEMODEL_H
+#define AKITACOIN_QT_TRANSACTIONTABLEMODEL_H
 
-#include "neoxaunits.h"
+#include "akitacoinunits.h"
 
 #include <QAbstractTableModel>
 #include <QStringList>
@@ -75,7 +75,7 @@ public:
         StatusRole,
         /** Unprocessed icon */
         RawDecorationRole,
-        /** NEOX or name of an asset */
+        /** AKIC or name of an asset */
         AssetNameRole,
     };
 
@@ -103,7 +103,7 @@ private:
     QString formatTxDate(const TransactionRecord *wtx) const;
     QString formatTxType(const TransactionRecord *wtx) const;
     QString formatTxToAddress(const TransactionRecord *wtx, bool tooltip) const;
-    QString formatTxAmount(const TransactionRecord *wtx, bool showUnconfirmed=true, NeoxaUnits::SeparatorStyle separators=NeoxaUnits::separatorStandard) const;
+    QString formatTxAmount(const TransactionRecord *wtx, bool showUnconfirmed=true, AkitacoinUnits::SeparatorStyle separators=AkitacoinUnits::separatorStandard) const;
     QString formatTooltip(const TransactionRecord *rec) const;
     QVariant txStatusDecoration(const TransactionRecord *wtx) const;
     QVariant txWatchonlyDecoration(const TransactionRecord *wtx) const;
@@ -122,4 +122,4 @@ public Q_SLOTS:
     friend class TransactionTablePriv;
 };
 
-#endif // NEOXA_QT_TRANSACTIONTABLEMODEL_H
+#endif // AKITACOIN_QT_TRANSACTIONTABLEMODEL_H

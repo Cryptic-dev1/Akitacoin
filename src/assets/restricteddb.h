@@ -3,8 +3,8 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
-#ifndef NEOXACOIN_RESTRICTEDDB_H
-#define NEOXACOIN_RESTRICTEDDB_H
+#ifndef AKITACOINCOIN_RESTRICTEDDB_H
+#define AKITACOINCOIN_RESTRICTEDDB_H
 
 #include <dbwrapper.h>
 
@@ -56,4 +56,4 @@ public:
 };
 
 
-#endif //NEOXACOIN_RESTRICTEDDB_H
+#endif //AKITACOINCOIN_RESTRICTEDDB_H

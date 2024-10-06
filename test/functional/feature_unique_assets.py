@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Neoxa Core developers
+# Copyright (c) 2020-2021 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 """Testing unique asset use cases"""
 
 import random
-from test_framework.test_framework import NeoxaTestFramework
+from test_framework.test_framework import AkitacoinTestFramework
 from test_framework.util import assert_contains, assert_does_not_contain_key, assert_equal, assert_raises_rpc_error
 
 
@@ -31,14 +31,14 @@ def gen_unique_asset_name(root):
     return name
 
 
-class UniqueAssetTest(NeoxaTestFramework):
+class UniqueAssetTest(AkitacoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3
         self.extra_args = [['-assetindex'], ['-assetindex'], ['-assetindex']]
 
     def activate_assets(self):
-        self.log.info("Generating NEOX for node[0] and activating assets...")
+        self.log.info("Generating AKIC for node[0] and activating assets...")
         n0 = self.nodes[0]
         n0.generate(432)
         self.sync_all()
