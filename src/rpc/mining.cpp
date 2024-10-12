@@ -371,7 +371,7 @@ UniValue getblocktemplate(const JSONRPCRequest& request)
             "  },\n"
             "  \"coinbasevalue\" : n,              (numeric) maximum allowable input to coinbase transaction, including the generation award and transaction fees (in satoshis)\n"
             "  \"CommunityAutonomousAddress\" : n, (string) Community Autonomous Address\n"
-            "  \"CommunityAutonomousValue\" : n,   (numeric) Community Autonomous Value, 10% of the coinbase\n"
+            "  \"CommunityAutonomousValue\" : n,   (numeric) Community Autonomous Value, 5% of the coinbase\n"
             "  \"coinbasetxn\" : { ... },          (json object) information for coinbase transaction\n"
             "  \"target\" : \"xxxx\",                (string) The hash target\n"
             "  \"mintime\" : xxx,                  (numeric) The minimum timestamp appropriate for next block time in seconds since epoch (Jan 1 1970 GMT)\n"
