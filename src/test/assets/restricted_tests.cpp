@@ -66,7 +66,7 @@ BOOST_FIXTURE_TEST_SUITE(restricted_tests, BasicTestingSetup)
         /// Create CTxOut to use in the tests ///
         // Create filler AKIC tx
         CScript akicTransfer = GetScriptForDestination(DecodeDestination(GetParams().GlobalBurnAddress()));
-        CTxOut akicOut(1*COIN, neoxTransfer);
+        CTxOut akicOut(1*COIN, akicTransfer);
 
         // Create transaction and add burn to it
         CScript burnScript = GetScriptForDestination(DecodeDestination(GetBurnAddress(AssetType::RESTRICTED)));
