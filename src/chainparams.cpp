@@ -244,7 +244,7 @@ public:
         strAddNullQualifierTagBurnAddress = "";
         //Global Burn Address
         strGlobalBurnAddress = "";
-        // Proof-Of-Play Address
+        // community Address
         strCommunityAutonomousAddress = "";
 
         // DGW Activation
@@ -341,7 +341,7 @@ public:
 		
         vFixedSeeds.clear();
         vSeeds.clear();
-	    vSeeds.emplace_back("testnet.akitacoincoin.net", false);
+	    vSeeds.emplace_back("testnet.akitacoin.net", false);
 		
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);

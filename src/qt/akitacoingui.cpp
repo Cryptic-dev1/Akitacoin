@@ -1915,6 +1915,6 @@ void AkitacoinGUI::mnemonic()
 
 void AkitacoinGUI::getLatestVersion()
 {
-    versionRequest->setUrl(QUrl("https://api.github.com/repos/AkitacoinChain/Akitacoin/releases"));
+    versionRequest->setUrl(QUrl("https://api.github.com/repos/Cryptic-dev1/Akitacoin/releases"));
     networkVersionManager->get(*versionRequest);
 }
