@@ -663,7 +663,7 @@ void AkitacoinGUI::createToolBars()
         toolbarWidget->setStyleSheet(widgetStyleSheet.arg(platformStyle->LightBlueColor().name(), platformStyle->DarkBlueColor().name()));
 
         QLabel* label = new QLabel();
-        label->setPixmap(QPixmap::fromImage(QImage(":/icons/akitacoincointext")));
+        label->setPixmap(QPixmap::fromImage(QImage(":/icons/akitacointext")));
         label->setContentsMargins(0,0,0,50);
         label->setStyleSheet(".QLabel{background-color: transparent;}");
         /** AKITACOIN END */
