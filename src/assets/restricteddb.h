@@ -1,10 +1,10 @@
-// Copyright (c) 2019 The OLDNAMENEEDKEEP__Core developers
+// Copyright (c) 2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 
-#ifndef AKITACOINCOIN_RESTRICTEDDB_H
-#define AKITACOINCOIN_RESTRICTEDDB_H
+#ifndef AKITACOIN_RESTRICTEDDB_H
+#define AKITACOIN_RESTRICTEDDB_H
 
 #include <dbwrapper.h>
 
@@ -56,4 +56,4 @@ public:
 };
 
 
-#endif //AKITACOINCOIN_RESTRICTEDDB_H
+#endif //AKITACOIN_RESTRICTEDDB_H

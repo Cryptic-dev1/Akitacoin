@@ -332,10 +332,10 @@ if [ `%{_sbindir}/sestatus |grep -c "disabled"` -eq 0 ]; then
 for selinuxvariant in %{selinux_variants}; do
 	%{_sbindir}/semodule -s ${selinuxvariant} -i %{_datadir}/selinux/${selinuxvariant}/akitacoin.pp &> /dev/null || :
 done
-%{_sbindir}/semanage port -a -t akitacoin_port_t -p tcp 8766
-%{_sbindir}/semanage port -a -t akitacoin_port_t -p tcp 7787
+%{_sbindir}/semanage port -a -t akitacoin_port_t -p tcp 9766
+%{_sbindir}/semanage port -a -t akitacoin_port_t -p tcp 8788
 %{_sbindir}/semanage port -a -t akitacoin_port_t -p tcp 18766
-%{_sbindir}/semanage port -a -t akitacoin_port_t -p tcp 17787
+%{_sbindir}/semanage port -a -t akitacoin_port_t -p tcp 18767
 %{_sbindir}/semanage port -a -t akitacoin_port_t -p tcp 18443
 %{_sbindir}/semanage port -a -t akitacoin_port_t -p tcp 18444
 %{_sbindir}/fixfiles -R akitacoin-server restore &> /dev/null || :
@@ -353,10 +353,10 @@ fi
 # SELinux
 if [ $1 -eq 0 ]; then
 	if [ `%{_sbindir}/sestatus |grep -c "disabled"` -eq 0 ]; then
-	%{_sbindir}/semanage port -d -p tcp 8766
-	%{_sbindir}/semanage port -d -p tcp 7787
+	%{_sbindir}/semanage port -d -p tcp 9766
+	%{_sbindir}/semanage port -d -p tcp 8788
 	%{_sbindir}/semanage port -d -p tcp 18766
-	%{_sbindir}/semanage port -d -p tcp 17787
+	%{_sbindir}/semanage port -d -p tcp 18767
 	%{_sbindir}/semanage port -d -p tcp 18443
 	%{_sbindir}/semanage port -d -p tcp 18444
 	for selinuxvariant in %{selinux_variants}; do

@@ -1,4 +1,4 @@
-## Please read https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/build-windows.md
+## Please read https://github.com/Cryptic-dev1/Akitacoin/blob/master/doc/build-windows.md
 
 ## STEP1: Setup dependency
 # sudo apt-get install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl nsis

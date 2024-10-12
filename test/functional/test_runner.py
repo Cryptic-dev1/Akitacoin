@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Akitacoin Core developers
+# Copyright (c) 2020-2024 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -259,7 +259,7 @@ def main():
 
     # Don't run tests on Windows by default
     if config["environment"]["EXEEXT"] == ".exe" and not args.force:
-        # https://github.com/AkitacoinChain/Akitacoin/commit/d52802551752140cf41f0d9a225a43e84404d3e9
+        # https://github.com/bitcoin/bitcoin/commit/d52802551752140cf41f0d9a225a43e84404d3e9
         # https://github.com/Bitcoin/bitcoin/pull/5677#issuecomment-136646964
         print("Tests currently disabled on Windows by default. Use --force option to enable")
         sys.exit(0)

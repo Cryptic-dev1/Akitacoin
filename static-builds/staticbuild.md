@@ -5,11 +5,11 @@ cd ~/
 export PATH_orig=$PATH
 DISTNAME=akitacoin-2.0.1
 sudo apt install -y curl g++-aarch64-linux-gnu g++-7-aarch64-linux-gnu gcc-7-aarch64-linux-gnu binutils-aarch64-linux-gnu g++-arm-linux-gnueabihf g++-7-arm-linux-gnueabihf gcc-7-arm-linux-gnueabihf binutils-arm-linux-gnueabihf g++-7-multilib gcc-7-multilib binutils-gold git pkg-config autoconf libtool automake bsdmainutils ca-certificates python
-git clone https://github.com/AkitacoinChain/Akitacoin
+git clone https://github.com/Cryptic-dev1/Akitacoin
 mkdir -p release
-cd akitacoincoin/depends
+cd akitacoin/depends
 make HOST=x86_64-linux-gnu -j4
-cd ~/akitacoincoin
+cd ~/akitacoin
 export PATH=$PWD/depends/x86_64-linux-gnu/native/bin:$PATH
 sudo ./autogen.sh
 CONFIG_SITE=$PWD/depends/x86_64-linux-gnu/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-glibc-back-compat --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g" LDFLAGS="-static-libstdc++"
@@ -22,10 +22,10 @@ cd ~/linux64
 sudo find . -name "lib*.la" -delete
 sudo find . -name "lib*.a" -delete
 sudo rm -rf $DISTNAME/lib/pkgconfig
-sudo find ${DISTNAME}/bin -type f -executable -exec ../akitacoincoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-sudo find ${DISTNAME}/lib -type f -exec ../akitacoincoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+sudo find ${DISTNAME}/bin -type f -executable -exec ../akitacoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+sudo find ${DISTNAME}/lib -type f -exec ../akitacoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
 find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release/$DISTNAME-x86_64-linux-gnu.tar.gz
-cd ~/akitacoincoin
+cd ~/akitacoin
 sudo rm -rf ~/linux64
 make clean
 export PATH=$PATH_orig
@@ -33,7 +33,7 @@ export PATH=$PATH_orig
 ## Build general sourcecode while we are at it ##
 ```
 export PATH_orig=$PATH
-cd ~/akitacoincoin
+cd ~/akitacoin
 export PATH=$PWD/depends/x86_64-linux-gnu/native/bin:$PATH
 sudo ./autogen.sh
 CONFIG_SITE=$PWD/depends/x86_64-linux-gnu/share/config.site ./configure --prefix=/
@@ -43,7 +43,7 @@ mkdir -p temp
 cd temp
 tar xf ../$SOURCEDIST
 find akitacoin-* | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ../$SOURCEDIST
-cd ~/akitacoincoin
+cd ~/akitacoin
 mv $SOURCEDIST ~/release
 sudo rm -rf temp
 make clean
@@ -59,7 +59,7 @@ cd ~/
 export PATH_orig=$PATH
 DISTNAME=akitacoin-2.0.1
 sudo apt install -y curl g++-aarch64-linux-gnu g++-7-aarch64-linux-gnu gcc-7-aarch64-linux-gnu binutils-aarch64-linux-gnu g++-arm-linux-gnueabihf g++-7-arm-linux-gnueabihf gcc-7-arm-linux-gnueabihf binutils-arm-linux-gnueabihf g++-7-multilib gcc-7-multilib binutils-gold git pkg-config autoconf libtool automake bsdmainutils ca-certificates python
-git clone https://github.com/AkitacoinChain/Akitacoin
+git clone https://github.com/Cryptic-Dev1/Akitacoin
 mkdir -p release
 mkdir -p ~/wrapped
 mkdir -p ~/wrapped/extra_includes
@@ -90,10 +90,10 @@ done
 
 export PATH=~/wrapped:$PATH
 export HOST_ID_SALT="~/wrapped/extra_includes/i386-linux-gnu"
-cd akitacoincoin/depends
+cd akitacoin/depends
 make HOST=i686-pc-linux-gnu -j4
 unset HOST_ID_SALT
-cd ~/akitacoincoin
+cd ~/akitacoin
 export PATH=$PWD/depends/i686-pc-linux-gnu/native/bin:$PATH
 sudo ./autogen.sh
 CONFIG_SITE=$PWD/depends/i686-pc-linux-gnu/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-glibc-back-compat --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g" LDFLAGS="-static-libstdc++"
@@ -105,10 +105,10 @@ cd ~/linux32
 sudo find . -name "lib*.la" -delete
 sudo find . -name "lib*.a" -delete
 sudo rm -rf $DISTNAME/lib/pkgconfig
-sudo find ${DISTNAME}/bin -type f -executable -exec ../akitacoincoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-sudo find ${DISTNAME}/lib -type f -exec ../akitacoincoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+sudo find ${DISTNAME}/bin -type f -executable -exec ../akitacoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+sudo find ${DISTNAME}/lib -type f -exec ../akitacoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
 find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release/$DISTNAME-i686-pc-linux-gnu.tar.gz
-cd ~/akitacoincoin
+cd ~/akitacoin
 sudo rm -rf ~/linux32
 sudo rm -rf ~/wrapped
 make clean
@@ -124,11 +124,11 @@ cd ~/
 export PATH_orig=$PATH
 DISTNAME=akitacoin-2.0.1
 sudo apt install -y curl g++-aarch64-linux-gnu g++-7-aarch64-linux-gnu gcc-7-aarch64-linux-gnu binutils-aarch64-linux-gnu g++-arm-linux-gnueabihf g++-7-arm-linux-gnueabihf gcc-7-arm-linux-gnueabihf binutils-arm-linux-gnueabihf g++-7-multilib gcc-7-multilib binutils-gold git pkg-config autoconf libtool automake bsdmainutils ca-certificates python
-git clone https://github.com/AkitacoinChain/Akitacoin
+git clone https://github.com/Cryptic-dev1/Akitacoin
 mkdir -p release
-cd akitacoincoin/depends
+cd akitacoin/depends
 make HOST=arm-linux-gnueabihf -j4
-cd ~/akitacoincoin
+cd ~/akitacoin
 export PATH=$PWD/depends/arm-linux-gnueabihf/native/bin:$PATH
 sudo ./autogen.sh
 CONFIG_SITE=$PWD/depends/arm-linux-gnueabihf/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-glibc-back-compat --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g" LDFLAGS="-static-libstdc++"
@@ -140,10 +140,10 @@ cd ~/linuxARM
 sudo find . -name "lib*.la" -delete
 sudo find . -name "lib*.a" -delete
 sudo rm -rf $DISTNAME/lib/pkgconfig
-sudo find ${DISTNAME}/bin -type f -executable -exec ../akitacoincoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-sudo find ${DISTNAME}/lib -type f -exec ../akitacoincoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+sudo find ${DISTNAME}/bin -type f -executable -exec ../akitacoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+sudo find ${DISTNAME}/lib -type f -exec ../akitacoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
 find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release/$DISTNAME-arm-linux-gnueabihf.tar.gz
-cd ~/akitacoincoin
+cd ~/akitacoin
 sudo rm -rf ~/linuxARM
 make clean
 export PATH=$PATH_orig
@@ -158,11 +158,11 @@ cd ~/
 export PATH_orig=$PATH
 DISTNAME=akitacoin-2.0.1
 sudo apt install -y curl g++-aarch64-linux-gnu g++-7-aarch64-linux-gnu gcc-7-aarch64-linux-gnu binutils-aarch64-linux-gnu g++-arm-linux-gnueabihf g++-7-arm-linux-gnueabihf gcc-7-arm-linux-gnueabihf binutils-arm-linux-gnueabihf g++-7-multilib gcc-7-multilib binutils-gold git pkg-config autoconf libtool automake bsdmainutils ca-certificates python
-git clone https://github.com/AkitacoinChain/Akitacoin
+git clone https://github.com/Cryptic-Dev1/Akitacoin
 mkdir -p release
-cd akitacoincoin/depends
+cd akitacoin/depends
 make HOST=aarch64-linux-gnu -j4
-cd ~/akitacoincoin
+cd ~/akitacoin
 export PATH=$PWD/depends/aarch64-linux-gnu/native/bin:$PATH
 sudo ./autogen.sh
 CONFIG_SITE=$PWD/depends/aarch64-linux-gnu/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-glibc-back-compat --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g" LDFLAGS="-static-libstdc++"
@@ -174,10 +174,10 @@ cd ~/linuxaarch64
 sudo find . -name "lib*.la" -delete
 sudo find . -name "lib*.a" -delete
 sudo rm -rf $DISTNAME/lib/pkgconfig
-sudo find ${DISTNAME}/bin -type f -executable -exec ../akitacoincoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
-sudo find ${DISTNAME}/lib -type f -exec ../akitacoincoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+sudo find ${DISTNAME}/bin -type f -executable -exec ../akitacoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
+sudo find ${DISTNAME}/lib -type f -exec ../akitacoin/contrib/devtools/split-debug.sh {} {} {}.dbg \;
 find $DISTNAME/ -not -name "*.dbg" | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release/$DISTNAME-aarch64-linux-gnu.tar.gz
-cd ~/akitacoincoin
+cd ~/akitacoin
 sudo rm -rf ~/linuxaarch64
 make clean
 export PATH=$PATH_orig
@@ -194,14 +194,14 @@ DISTNAME=akitacoin-2.0.1
 sudo apt install -y build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git python nsis rename zip
 sudo apt install -y g++-mingw-w64-x86-64
 sudo update-alternatives --config x86_64-w64-mingw32-g++ # Set the default mingw32 g++ compiler option to posix.
-git clone https://github.com/AkitacoinChain/Akitacoin
+git clone https://github.com/Cryptic-dev1/Akitacoin
 mkdir -p release
 mkdir -p release/unsigned/
 mkdir -p sign/win64
 PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
-cd akitacoincoin/depends
+cd akitacoin/depends
 make HOST=x86_64-w64-mingw32 -j4
-cd ~/akitacoincoin
+cd ~/akitacoin
 export PATH=$PWD/depends/x86_64-w64-mingw32/native/bin:$PATH
 sudo ./autogen.sh
 CONFIG_SITE=$PWD/depends/x86_64-w64-mingw32/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g"
@@ -222,14 +222,14 @@ find ./$DISTNAME -not -name "*.dbg"  -type f | sort | zip -X@ ./$DISTNAME-x86_64
 mv ./$DISTNAME-x86_64-*.zip ~/release/$DISTNAME-win64.zip
 cd ~/
 sudo rm -rf win64
-cp -rf akitacoincoin/contrib/windeploy ~/sign/win64
+cp -rf akitacoin/contrib/windeploy ~/sign/win64
 cd ~/sign/win64/windeploy
 mkdir unsigned
-mv ~/akitacoincoin/akitacoin-*setup-unsigned.exe unsigned/
+mv ~/akitacoin/akitacoin-*setup-unsigned.exe unsigned/
 find . | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/sign/$DISTNAME-win64-unsigned.tar.gz
 cd ~/sign
 sudo rm -rf win64
-cd ~/akitacoincoin
+cd ~/akitacoin
 sudo rm -rf release
 make clean
 export PATH=$PATH_orig
@@ -276,14 +276,14 @@ DISTNAME=akitacoin-2.0.1
 sudo apt install -y build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git python nsis rename zip
 sudo apt install -y g++-mingw-w64-i686 mingw-w64-i686-dev
 sudo update-alternatives --config i686-w64-mingw32-g++  # Set the default mingw32 g++ compiler option to posix.
-git clone https://github.com/AkitacoinChain/Akitacoin
+git clone https://github.com/Cryptic-dev1/Akitacoin
 mkdir -p release
 mkdir -p release/unsigned/
 mkdir -p sign/win32
 PATH=$(echo "$PATH" | sed -e 's/:\/mnt.*//g') # strip out problematic Windows %PATH% imported var
-cd akitacoincoin/depends
+cd akitacoin/depends
 make HOST=i686-w64-mingw32 -j4
-cd ~/akitacoincoin
+cd ~/akitacoin
 export PATH=$PWD/depends/i686-w64-mingw32/native/bin:$PATH
 sudo ./autogen.sh
 CONFIG_SITE=$PWD/depends/i686-w64-mingw32/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-reduce-exports --disable-bench --disable-gui-tests CFLAGS="-O2 -g" CXXFLAGS="-O2 -g"
@@ -304,14 +304,14 @@ find ./$DISTNAME -not -name "*.dbg"  -type f | sort | zip -X@ ./$DISTNAME-i686-w
 mv ./$DISTNAME-i686-w64-*.zip ~/release/$DISTNAME-win32.zip
 cd ~/
 sudo rm -rf win32
-cp -rf akitacoincoin/contrib/windeploy ~/sign/win32
+cp -rf akitacoin/contrib/windeploy ~/sign/win32
 cd ~/sign/win32/windeploy
 mkdir unsigned
-mv ~/akitacoincoin/akitacoin-*setup-unsigned.exe unsigned/
+mv ~/akitacoin/akitacoin-*setup-unsigned.exe unsigned/
 find . | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/sign/$DISTNAME-win32-unsigned.tar.gz
 cd ~/sign
 sudo rm -rf win32
-cd ~/akitacoincoin
+cd ~/akitacoin
 sudo rm -rf release
 make clean
 export PATH=$PATH_orig
@@ -354,11 +354,11 @@ From an ubuntu 18 bionic server(required)
 ```
 cd ~/
 sudo apt install git p7zip-full sleuthkit
-git clone https://github.com/AkitacoinChain/Akitacoin
+git clone https://github.com/Cryptic-dev1/Akitacoin
 mkdir ~/dmg && cd ~/dmg
 #Register for a developer account with Apple, then download the Xcode 7.3.1 dmg from: https://developer.apple.com/devcenter/download.action?path=/Developer_Tools/Xcode_9.4.1/Xcode_9.4.1.dmg
 #Transfer Xcode_7.3.1.dmg to the target machine into ~/dmg 
-~/akitacoincoin/contrib/macdeploy/extract-osx-sdk.sh
+~/akitacoin/contrib/macdeploy/extract-osx-sdk.sh
 rm -rf 5.hfs MacOSX10.11.sdk Xcode_7.3.1.dmg
 # Save MacOSX10.11.sdk.tar.gz somewhere safe for future builds
 ```
@@ -372,14 +372,14 @@ cd ~/
 export PATH_orig=$PATH
 DISTNAME=akitacoin-2.0.1
 sudo apt install ca-certificates curl g++ git pkg-config autoconf librsvg2-bin libtiff-tools libtool automake bsdmainutils cmake imagemagick libcap-dev libz-dev libbz2-dev python python-dev python-setuptools fonts-tuffy
-git clone https://github.com/AkitacoinChain/Akitacoin
-mkdir ~/akitacoincoin/depends/SDKs
-#transfer MacOSX10.11.sdk.tar.gz to the folder akitacoincoin/depends/SDKs
-cd akitacoincoin/depends/SDKs && tar -xf MacOSX10.11.sdk.tar.gz 
+git clone https://github.com/Cryptic-dev1/Akitacoin
+mkdir ~/akitacoin/depends/SDKs
+#transfer MacOSX10.11.sdk.tar.gz to the folder akitacoin/depends/SDKs
+cd akitacoin/depends/SDKs && tar -xf MacOSX10.11.sdk.tar.gz 
 rm MacOSX10.11.sdk.tar.gz 
-cd ~/akitacoincoin/depends
+cd ~/akitacoin/depends
 make -j4 HOST="x86_64-apple-darwin14"
-cd ~/akitacoincoin
+cd ~/akitacoin
 sudo ./autogen.sh
 CONFIG_SITE=$PWD/depends/x86_64-apple-darwin14/share/config.site ./configure --prefix=/ --disable-ccache --disable-maintainer-mode --disable-dependency-tracking --enable-reduce-exports --disable-bench --disable-gui-tests GENISOIMAGE=$PWD/depends/x86_64-apple-darwin14/native/bin/genisoimage
 make -j4 
@@ -398,7 +398,7 @@ cp $PWD/depends/x86_64-apple-darwin14/native/bin/x86_64-apple-darwin14-pagestuff
 mv dist unsigned-app-$DISTNAME
 cd unsigned-app-$DISTNAME
 find . | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/sign/$DISTNAME-osx-unsigned.tar.gz
-cd ~/akitacoincoin
+cd ~/akitacoin
 make deploy
 $PWD/depends/x86_64-apple-darwin14/native/bin/dmg dmg "Akitacoin-Core.dmg" ~/release/unsigned/$DISTNAME-osx-unsigned.dmg
 sudo rm -rf unsigned-app-$DISTNAME dist osx_volname dpi36.background.tiff dpi72.background.tiff
@@ -407,7 +407,7 @@ find . -name "lib*.la" -delete
 find . -name "lib*.a" -delete
 rm -rf $DISTNAME/lib/pkgconfig
 find $DISTNAME | sort | tar --no-recursion --mode='u+rw,go+r-w,a+X' --owner=0 --group=0 -c -T - | gzip -9n > ~/release/$DISTNAME-osx64.tar.gz
-cd ~/akitacoincoin
+cd ~/akitacoin
 rm -rf ~/OSX
 make clean
 export PATH=$PATH_orig

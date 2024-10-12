@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 The OLDNAMENEEDKEEP__Core developers
+// Copyright (c) 2018-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #include "validation.h"

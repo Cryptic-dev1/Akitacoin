@@ -36,7 +36,7 @@ sudo make install
 # Build Akitacoin
 ```
 cd ~/build/
-git clone https://github.com/AkitacoinChain/Akitacoin
+git clone https://github.com/Cryptic-dev1/Akitacoin
 cd Akitacoin/
 ./autogen.sh
 ./configure --disable-tests --with-gui=no CPPFLAGS="-I/usr/local/BerkeleyDB.4.8/include -O2" LDFLAGS="-L/usr/local/BerkeleyDB.4.8/lib"

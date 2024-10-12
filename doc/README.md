@@ -5,7 +5,7 @@ Setup
 ---------------------
 Akitacoin Core is the original Akitacoin client and it builds the backbone of the network. It downloads and, by default, stores the entire history of Akitacoin transactions; depending on the speed of your computer and network connection, the synchronization process is typically complete in under an hour.
 
-To download compiled binaries of the Akitacoin Core and wallet, visit the [GitHub release page](https://github.com/AkitacoinChain/Akitacoin/releases).
+To download compiled binaries of the Akitacoin Core and wallet, visit the [GitHub release page](https://github.com/Ceryptic-dev1/Akitacoin/releases).
 
 Running
 ---------------------
@@ -109,29 +109,29 @@ Building from source
 ---------------------
 The following are developer notes on how to build the Akitacoin core software on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
-- [Dependencies](https://github.com/AkitacoinChain/Akitacoin/tree/master/doc/dependencies.md)
-- [OS X Build Notes](https://github.com/AkitacoinChain/Akitacoin/tree/master/doc/build-osx.md)
-- [Unix Build Notes](https://github.com/AkitacoinChain/Akitacoin/tree/master/doc/build-unix.md)
-- [Windows Build Notes](https://github.com/AkitacoinChain/Akitacoin/tree/master/doc/build-windows.md)
-- [OpenBSD Build Notes](https://github.com/AkitacoinChain/Akitacoin/tree/master/doc/build-openbsd.md)
-- [Gitian Building Guide](https://github.com/AkitacoinChain/Akitacoin/tree/master/doc/gitian-building.md)
+- [Dependencies](https://github.com/Crytpic-dev1/Akitacoin/tree/master/doc/dependencies.md)
+- [OS X Build Notes](https://github.com/Crytpic-dev1/Akitacoin/tree/master/doc/build-osx.md)
+- [Unix Build Notes](https://github.com/Crytpic-dev1/Akitacoin/tree/master/doc/build-unix.md)
+- [Windows Build Notes](https://github.com/Crytpic-dev1/Akitacoin/tree/master/doc/build-windows.md)
+- [OpenBSD Build Notes](https://github.com/Crytpic-dev1/Akitacoin/tree/master/doc/build-openbsd.md)
+- [Gitian Building Guide](https://github.com/Crytpic-dev1/Akitacoin/tree/master/doc/gitian-building.md)
 
 Development
 ---------------------
-Akitacoin repo's [root README](https://github.com/AkitacoinChain/Akitacoin/blob/master/README.md) contains relevant information on the development process and automated testing.
+Akitacoin repo's [root README](https://github.com/Crytpic-dev1/Akitacoin/blob/master/README.md) contains relevant information on the development process and automated testing.
 
-- [Developer Notes](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/developer-notes.md)
-- [Release Notes](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/release-notes.md)
-- [Release Process](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/release-process.md)
+- [Developer Notes](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/developer-notes.md)
+- [Release Notes](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/release-notes.md)
+- [Release Process](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/release-process.md)
 - [Source Code Documentation (External Link)](https://dev.visucore.com/akitacoin/doxygen/) -- 2018-05-11 -- Broken link
-- [Translation Process](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/translation_process.md)
-- [Translation Strings Policy](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/translation_strings_policy.md)
-- [Travis CI](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/travis-ci.md)
-- [Unauthenticated REST Interface](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/REST-interface.md)
-- [Shared Libraries](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/shared-libraries.md)
-- [BIPS](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/bips.md)
-- [Dnsseed Policy](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/dnsseed-policy.md)
-- [Benchmarking](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/benchmarking.md)
+- [Translation Process](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/translation_process.md)
+- [Translation Strings Policy](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/translation_strings_policy.md)
+- [Travis CI](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/travis-ci.md)
+- [Unauthenticated REST Interface](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/REST-interface.md)
+- [Shared Libraries](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/shared-libraries.md)
+- [BIPS](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/bips.md)
+- [Dnsseed Policy](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/dnsseed-policy.md)
+- [Benchmarking](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/benchmarking.md)
 
 ### Resources
 - Discuss on the [AkitacoinTalk](https://www.bitcointalk.org/) forums, in the [Development & Technical Discussion board](---).
@@ -140,16 +140,16 @@ Akitacoin repo's [root README](https://github.com/AkitacoinChain/Akitacoin/blob/
 - Visit the project home [Akitacoin.net](https://akitacoin.net)
 
 ### Miscellaneous
-- [Assets Attribution](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/assets-attribution.md)
-- [Files](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/files.md)
-- [Fuzz-testing](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/fuzzing.md)
-- [Reduce Traffic](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/reduce-traffic.md)
-- [Tor Support](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/tor.md)
-- [Init Scripts (systemd/upstart/openrc)](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/init.md)
-- [ZMQ](https://github.com/AkitacoinChain/Akitacoin/blob/master/doc/zmq.md)
+- [Assets Attribution](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/assets-attribution.md)
+- [Files](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/files.md)
+- [Fuzz-testing](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/fuzzing.md)
+- [Reduce Traffic](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/reduce-traffic.md)
+- [Tor Support](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/tor.md)
+- [Init Scripts (systemd/upstart/openrc)](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/init.md)
+- [ZMQ](https://github.com/Crytpic-dev1/Akitacoin/blob/master/doc/zmq.md)
 
 License
 ---------------------
-Distributed under the [MIT software license](https://github.com/AkitacoinChain/Akitacoin/blob/master/COPYING).
+Distributed under the [MIT software license](https://github.com/Crytpic-dev1/Akitacoin/blob/master/COPYING).
 This product includes software developed by the OpenSSL Project for use in the [OpenSSL Toolkit](https://www.openssl.org/). This product includes
 cryptographic software written by Eric Young ([eay@cryptsoft.com](mailto:eay@cryptsoft.com)), and UPnP software written by Thomas Bernard.

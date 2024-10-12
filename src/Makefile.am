@@ -1,5 +1,5 @@
 # Copyright (c) 2013-2016 The Bitcoin Core developers
-# Copyright (c) 2017-2019 The Raven Core developers
+# Copyright (c) 2017-2024 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,7 +27,7 @@ AKITACOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 LIBAKITACOIN_SERVER=libakitacoin_server.a
 LIBAKITACOIN_COMMON=libakitacoin_common.a
 LIBAKITACOIN_CONSENSUS=libakitacoin_consensus.a
-LIBakitacoin_cli=libakitacoin_cli.a
+LIBAKITACOIN_CLI=libakitacoin_cli.a
 LIBAKITACOIN_UTIL=libakitacoin_util.a
 LIBAKITACOIN_CRYPTO=crypto/libakitacoin_crypto.a
 LIBAKITACOINQT=qt/libakitacoinqt.a
@@ -54,7 +54,7 @@ EXTRA_LIBRARIES += \
   $(LIBAKITACOIN_COMMON) \
   $(LIBAKITACOIN_CONSENSUS) \
   $(LIBAKITACOIN_SERVER) \
-  $(LIBakitacoin_cli) \
+  $(LIBAKITACOIN_CLI) \
   $(LIBAKITACOIN_WALLET) \
   $(LIBAKITACOIN_ZMQ)
 
@@ -512,7 +512,7 @@ akitacoin_cli_SOURCES += akitacoin-cli-res.rc
 endif
 
 akitacoin_cli_LDADD = \
-  $(LIBakitacoin_cli) \
+  $(LIBAKITACOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBAKITACOIN_UTIL) \
   $(LIBAKITACOIN_CRYPTO)

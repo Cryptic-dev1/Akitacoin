@@ -1,10 +1,10 @@
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Akitacoin Core developers
+// Copyright (c) 2020-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef AKITACOINCOIN_REWARDS_H
-#define AKITACOINCOIN_REWARDS_H
+#ifndef AKITACOIN_REWARDS_H
+#define AKITACOIN_REWARDS_H
 
 #include "amount.h"
 #include "tinyformat.h"
@@ -168,4 +168,4 @@ void CheckRewardDistributions(CWallet * p_wallet);
 
 
 
-#endif //AKITACOINCOIN_REWARDS_H
+#endif //AKITACOIN_REWARDS_H

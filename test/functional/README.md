@@ -78,7 +78,7 @@ Examples tests are `p2p-accept-block.py`, `p2p-compactblocks.py`.
 ### test-framework modules
 
 #### [test_framework/authproxy.py](test_framework/authproxy.py)
-Taken from the [python-AkitacoinRPC repository](https://github.com/jgarzik/python-AkitacoinRPC).
+Taken from the [python-akitaRPC repository](https://github.com/jgarzik/python-akitarpc).
 
 #### [test_framework/test_framework.py](test_framework/test_framework.py)
 Base class for functional tests.
@@ -90,10 +90,10 @@ Generally useful functions.
 Basic code to support P2P connectivity to a akitacoind.
 
 #### [test_framework/script.py](test_framework/script.py)
-Utilities for manipulating transaction scripts (originally from python-akitacoinlib)
+Utilities for manipulating transaction scripts (originally from python-akitalib)
 
 #### [test_framework/key.py](test_framework/key.py)
-Wrapper around OpenSSL EC_Key (originally from python-akitacoinlib)
+Wrapper around OpenSSL EC_Key (originally from python-akitalib)
 
 #### [test_framework/bignum.py](test_framework/bignum.py)
 Helpers for script.py

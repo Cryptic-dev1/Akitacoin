@@ -1,4 +1,4 @@
-echo 'Please read  https://github.com/AkitacoinChain/Akitacoin/blob/main/doc/build-osx.md '
+echo 'Please read  https://github.com/Cryptic-dev1/Akitacoin/blob/main/doc/build-osx.md '
 echo 'Run this script under macOS  '
 
 AKITACOIN_ROOT=$(pwd)

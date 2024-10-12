@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2014-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Akitacoin Core developers
+# Copyright (c) 2020-2024 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -148,7 +148,7 @@ class WalletTest(AkitacoinTestFramework):
         assert_equal(self.nodes[2].getbalance(), 9994)
         assert_equal(self.nodes[2].getbalance("from1"), 9994-21)
 
-        # Send 10 NEOPX normal
+        # Send 10 AKIC normal
         address = self.nodes[0].getnewaddress("test")
         fee_per_byte = Decimal('0.001') / 1000
         self.nodes[2].settxfee(fee_per_byte * 1000)

@@ -9,7 +9,7 @@ upgrade to this version.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/AkitacoinChain/Akitacoin/issues>
+  <https://github.com/Cryptic-dev1/Akitacoin/issues>
 
 To receive security and update notifications, please subscribe to:
 
@@ -79,7 +79,7 @@ Notable changes
 2.2.2 Change log
 ==============
 
-Changelog available here: <https://github.com/AkitacoinChain/Akitacoin/commits/release_2.2.2>
+Changelog available here: <https://github.com/Cryptic-dev1/Akitacoin/commits/release_2.2.2>
 
 Credits
 ==============

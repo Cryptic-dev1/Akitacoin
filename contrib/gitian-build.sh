@@ -1,5 +1,5 @@
 # Copyright (c) 2016 The Bitcoin Core developers
-# Copyright (c) 2017-2019 The Akitacoin__Core developers
+# Copyright (c) 2017-2024 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +18,7 @@ osx=true
 SIGNER=
 VERSION=
 commit=false
-url=https://github.com/AkitacoinChain/Akitacoin
+url=https://github.com/Cryptic-dev1/Akitacoin
 proc=2
 mem=2000
 lxc=true
@@ -40,7 +40,7 @@ version		Version number, commit, or branch to build. If building a commit or bra
 
 Options:
 -c|--commit	Indicate that the version argument is for a commit or branch
--u|--url	Specify the URL of the repository. Default is https://github.com/AkitacoinChain/Akitacoin
+-u|--url	Specify the URL of the repository. Default is https://github.com/Cryptic-Dev1/Akitacoin
 -v|--verify 	Verify the Gitian build
 -b|--build	Do a Gitian build
 -s|--sign	Make signed binaries for Windows and Mac OSX
@@ -231,8 +231,8 @@ echo ${COMMIT}
 if [[ $setup = true ]]
 then
     sudo apt-get install ruby apache2 git apt-cacher-ng python-vm-builder qemu-kvm qemu-utils
-    git clone https://github.com/akitacoin-core/gitian.sigs.git
-    git clone https://github.com/akitacoin-core/akitacoin-detached-sigs.git
+    git clone https://github.com/Cryptic-dev1/gitian.sigs.git
+    git clone https://github.com/Cryptic-dev1/akitacoin-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
     pushd ./gitian-builder
     if [[ -n "$USE_LXC" ]]

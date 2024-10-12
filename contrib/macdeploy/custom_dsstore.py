@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # Copyright (c) 2013-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Akitacoin Core developers
+# Copyright (c) 2020-2024 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 from __future__ import division,print_function,unicode_literals
@@ -48,7 +48,7 @@ alias.volume.name = package_name_ns
 alias.volume.posix_path = '/Volumes/' + package_name_ns
 alias.volume.disk_image_alias.target.filename = package_name_ns + '.temp.dmg'
 alias.volume.disk_image_alias.target.carbon_path = 'Macintosh HD:Users:\x00akitacoinuser:\x00Documents:\x00akitacoin:\x00akitacoin:\x00' + package_name_ns + '.temp.dmg'
-alias.volume.disk_image_alias.target.posix_path = 'Users/noexauser/Documents/akitacoin/akitacoin/' + package_name_ns + '.temp.dmg'
+alias.volume.disk_image_alias.target.posix_path = 'Users/akitauser/Documents/akitacoin/akitacoin/' + package_name_ns + '.temp.dmg'
 alias.target.carbon_path = package_name_ns + ':.background:\x00background.tiff'
 icvp['backgroundImageAlias'] = biplist.Data(alias.to_bytes())
 ds['.']['icvp'] = icvp

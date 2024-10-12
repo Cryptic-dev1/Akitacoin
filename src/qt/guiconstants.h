@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Akitacoin Core developers
+// Copyright (c) 2020-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -118,7 +118,7 @@ static const int MAX_URI_LENGTH = 255;
 #define SPINNER_FRAMES 36
 
 #define QAPP_ORG_NAME "Akitacoin"
-#define QAPP_ORG_DOMAIN "akitacoin.org"
+#define QAPP_ORG_DOMAIN "akiccrypto.com"
 #define QAPP_APP_NAME_DEFAULT "Akitacoin-Qt"
 #define QAPP_APP_NAME_TESTNET "Akitacoin-Qt-testnet"
 

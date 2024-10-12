@@ -42,11 +42,11 @@ reachable from the Tor network. Add these lines to your /etc/tor/torrc (or equiv
 config file):
 
 	HiddenServiceDir /var/lib/tor/akitacoin-service/
-	HiddenServicePort 7787 127.0.0.1:7787
-	HiddenServicePort 17787 127.0.0.1:17787
+	HiddenServicePort 7787 127.0.0.1:8788
+	HiddenServicePort 17787 127.0.0.1:18767
 
 The directory can be different of course, but (both) port numbers should be equal to
-your akitacoind's P2P listen port (7787 by default).
+your akitacoind's P2P listen port (8788 by default).
 
 	-externalip=X   You can tell akitacoin about its publicly reachable address using
 	                this option, and this can be a .onion address. Given the above
@@ -81,7 +81,7 @@ as well, use `discover` instead:
 
 	./akitacoind ... -discover
 
-and open port 7787 on your firewall (or use -upnp).
+and open port 8788 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:

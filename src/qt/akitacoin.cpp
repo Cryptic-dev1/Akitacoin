@@ -1,6 +1,6 @@
 // Copyright (c) 2011-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Akitacoin Core developers
+// Copyright (c) 2020-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -178,7 +178,7 @@ void DebugMessageHandler(QtMsgType type, const QMessageLogContext& context, cons
 }
 #endif
 
-/** Class encapsulating OLDNAMENEEDKEEP__Core startup and shutdown.
+/** Class encapsulating Akitacoin Core startup and shutdown.
  * Allows running startup and shutdown in a different thread from the UI thread.
  */
 class AkitacoinCore: public QObject
@@ -428,8 +428,8 @@ void AkitacoinApplication::createOptionsModel(bool resetSettings)
 void AkitacoinApplication::createWindow(const NetworkStyle *networkStyle)
 {
     window = new AkitacoinGUI(platformStyle, networkStyle, 0);
-    window->setMinimumSize(200,200);
-    window->setBaseSize(640,640);
+    window->setMinimumSize(1024,700);
+    window->setBaseSize(1024,700);
 
     pollShutdownTimer = new QTimer(window);
     connect(pollShutdownTimer, SIGNAL(timeout()), window, SLOT(detectShutdown()));

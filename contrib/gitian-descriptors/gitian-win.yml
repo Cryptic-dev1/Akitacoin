@@ -22,7 +22,7 @@ packages:
 - "ca-certificates"
 - "python"
 remotes:
-- "url": "https://github.com/AkitacoinChain/Akitacoin.git"
+- "url": "https://github.com/Cryptic-dev1/Akitacoin.git"
   "dir": "akitacoin"
 files: []
 script: |

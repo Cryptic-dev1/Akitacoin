@@ -27,8 +27,8 @@ Build-Depends: debhelper,
  libzmq3-dev
 Standards-Version: 3.9.2
 Homepage: https://akitacoin.net
-Vcs-Git: git://github.com/AkitacoinChain/Akitacoin.git
-Vcs-Browser: https://github.com/AkitacoinChain/Akitacoin
+Vcs-Git: git://github.com/Cryptic-Dev1/Akitacoin.git
+Vcs-Browser: https://github.com/Cryptic-Dev1/Akitacoin
 
 Package: akitacoind
 Architecture: any

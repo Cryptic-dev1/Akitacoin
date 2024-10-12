@@ -1,4 +1,4 @@
-// Copyright (c) 2017-2020 The OLDNAMENEEDKEEP__Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -5531,7 +5531,7 @@ bool ContextualCheckReissueAsset(CAssetsCache* assetCache, const CReissueAsset& 
 
 bool ContextualCheckReissueAsset(CAssetsCache* assetCache, const CReissueAsset& reissue_asset, std::string& strError)
 {
-    // hun non contextual checks
+    // run non contextual checks
     if (!CheckReissueAsset(reissue_asset, strError))
         return false;
 

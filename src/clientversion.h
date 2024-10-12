@@ -1,11 +1,11 @@
 // Copyright (c) 2009-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Akitacoin Core developers
+// Copyright (c) 2020-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef akitacoin_cliENTVERSION_H
-#define akitacoin_cliENTVERSION_H
+#ifndef AKITACOIN_CLIENTVERSION_H
+#define AKITACOIN_CLIENTVERSION_H
 
 #if defined(HAVE_CONFIG_H)
 #include "config/akitacoin-config.h"
@@ -52,4 +52,4 @@ std::string FormatSubVersion(const std::string& name, int nClientVersion, const 
 
 #endif // WINDRES_PREPROC
 
-#endif // akitacoin_cliENTVERSION_H
+#endif // AKITACOIN_CLIENTVERSION_H

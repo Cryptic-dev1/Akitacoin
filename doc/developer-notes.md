@@ -209,7 +209,7 @@ Threads
 
 - ThreadMapPort : Universal plug-and-play startup/shutdown
 
-- ThreadSocketHandler : Sends/Receives data from peers on port 7787.
+- ThreadSocketHandler : Sends/Receives data from peers on port 8788.
 
 - ThreadOpenAddedConnections : Opens network connections to added nodes.
 
@@ -221,7 +221,7 @@ Threads
 
 - ThreadFlushWalletDB : Close the wallet.dat file if it hasn't been used in 500ms.
 
-- ThreadRPCServer : Remote procedure call handler, listens on port 8766 for connections and services them.
+- ThreadRPCServer : Remote procedure call handler, listens on port 9766 for connections and services them.
 
 - AkitacoinMiner : Generates akitacoin's (if wallet is enabled).
 

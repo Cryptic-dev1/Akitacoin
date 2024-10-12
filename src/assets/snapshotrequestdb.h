@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The OLDNAMENEEDKEEP__Core developers
+24// Copyright (c) 2019 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 

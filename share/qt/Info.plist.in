@@ -38,7 +38,7 @@
   <true/>
 
   <key>CFBundleIdentifier</key>
-  <string>org.akitacoinfoundation.Akitacoin-Qt</string>
+  <string>org.akitafoundation.Akitacoin-Qt</string>
 
   <key>CFBundleURLTypes</key>
   <array>
@@ -71,7 +71,7 @@
         <string>application/x-akitacoin-payment-request</string>
         <key>public.filename-extension</key>
         <array>
-          <string>akitacoinpaymentrequest</string>
+          <string>akitapaymentrequest</string>
         </array>
       </dict>
     </dict>

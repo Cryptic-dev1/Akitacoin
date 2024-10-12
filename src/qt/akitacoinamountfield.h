@@ -4,8 +4,8 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef AKITACOIN_QT_AkitacoinAmountField_H
-#define AKITACOIN_QT_AkitacoinAmountField_H
+#ifndef AKITACOIN_QT_AKITACOINAMOUNTFIELD_H
+#define AKITACOIN_QT_AKITACOINAMOUNTFIELD_H
 
 #include "amount.h"
 
@@ -128,4 +128,4 @@ private:
 };
 
 
-#endif // AKITACOIN_QT_AkitacoinAmountField_H
+#endif // AKITACOIN_QT_AKITACOINAMOUNTFIELD_H

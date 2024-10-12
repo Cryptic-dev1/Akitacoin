@@ -768,13 +768,13 @@ void AkitacoinGUI::createToolBars()
         labelCurrentPrice->setStyleSheet(currentPriceStyleSheet.arg(COLOR_LABELS.name()));
         labelCurrentPrice->setFont(currentMarketFont);
 
-        QLabel* labelBtcNeox = new QLabel();
-        labelBtcNeox->setText("BTC / AKIC");
-        labelBtcNeox->setContentsMargins(15,0,0,0);
-        labelBtcNeox->setFixedHeight(75);
-        labelBtcNeox->setAlignment(Qt::AlignVCenter);
-        labelBtcNeox->setStyleSheet(STRING_LABEL_COLOR);
-        labelBtcNeox->setFont(currentMarketFont);
+        QLabel* labelBtcAkic = new QLabel();
+        labelBtcAkic->setText("BTC / AKIC");
+        labelBtcAkic->setContentsMargins(15,0,0,0);
+        labelBtcAkic->setFixedHeight(75);
+        labelBtcAkic->setAlignment(Qt::AlignVCenter);
+        labelBtcAkic->setStyleSheet(STRING_LABEL_COLOR);
+        labelBtcAkic->setFont(currentMarketFont);
 
         labelVersionUpdate->setText("<a href=\"https://github.com/bitcoin/bitcoin/releases\">New Wallet Version Available</a>");
         labelVersionUpdate->setTextFormat(Qt::RichText);
@@ -790,7 +790,7 @@ void AkitacoinGUI::createToolBars()
         priceLayout->setGeometry(headerWidget->rect());
         priceLayout->addWidget(labelCurrentMarket, 0, Qt::AlignVCenter | Qt::AlignLeft);
         priceLayout->addWidget(labelCurrentPrice, 0,  Qt::AlignVCenter | Qt::AlignLeft);
-        priceLayout->addWidget(labelBtcNeox, 0 , Qt::AlignVCenter | Qt::AlignLeft);
+        priceLayout->addWidget(labelBtcAkic, 0 , Qt::AlignVCenter | Qt::AlignLeft);
         priceLayout->addStretch();
         priceLayout->addWidget(labelVersionUpdate, 0 , Qt::AlignVCenter | Qt::AlignRight);
 

@@ -1,6 +1,6 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Akitacoin Core developers
+// Copyright (c) 2020-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -300,14 +300,14 @@ BOOST_FIXTURE_TEST_SUITE(rpc_tests, TestingSetup)
         ar = r.get_array();
         BOOST_CHECK_EQUAL(ar.size(), (uint64_t)0L);
 
-        BOOST_CHECK_NO_THROW(r = CallRPC(std::string("setban 127.0.0.0/24 add 1607731200 true")));
+        BOOST_CHECK_NO_THROW(r = CallRPC(std::string("setban 127.0.0.0/24 add 1907731200 true")));
         BOOST_CHECK_NO_THROW(r = CallRPC(std::string("listbanned")));
         ar = r.get_array();
         o1 = ar[0].get_obj();
         adr = find_value(o1, "address");
         UniValue banned_until = find_value(o1, "banned_until");
         BOOST_CHECK_EQUAL(adr.get_str(), "127.0.0.0/24");
-        BOOST_CHECK_EQUAL(banned_until.get_int64(), 1607731200L); // absolute time check
+        BOOST_CHECK_EQUAL(banned_until.get_int64(), 1907731200L); // absolute time check
 
         BOOST_CHECK_NO_THROW(CallRPC(std::string("clearbanned")));
 

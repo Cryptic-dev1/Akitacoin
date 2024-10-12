@@ -1,6 +1,6 @@
 // Copyright (c) 2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2020 The OLDNAMENEEDKEEP__Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -153,12 +153,14 @@ public:
 	
 	consensus.BIP34LockedIn = 6048; // Locked_in at height 6048
 
+    uint32_t nGenesisTime = 1729036800; //2024-10-16 00:00:00
+
 
         // The best chain should have at least this much work
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000004b53b99b492446"); // Block 21899
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); 
 
         // By default assume that the signatures in ancestors of this block are valid. Block# 
-        consensus.defaultAssumeValid = uint256S("ed17bd41ea38c96d7d264c7e69b5c5a708b61f1d3feec3a5a9ace832042acb7e"); // Block 21899
+        consensus.defaultAssumeValid = uint256S("ed17bd41ea38c96d7d264c7e69b5c5a708b61f1d3feec3a5a9ace832042acb7e"); //Genesis
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
@@ -169,11 +171,9 @@ public:
         pchMessageStart[1] = 0x2E; // K
         pchMessageStart[2] = 0x22; // I
         pchMessageStart[3] = 0x0C; // C
-        nDefaultPort = 9971;
-        nPruneAfterHeight = 100000;
-		
-	uint32_t nGenesisTime = 1729036800; //2024-10-16 00:00:00
+        nDefaultPort = 7787;
 
+        nPruneAfterHeight = 100000;
 
 	genesis = CreateGenesisBlock(nGenesisTime, 982222, 0x1e00ffff, 4, 5000 * COIN);
 	
@@ -191,7 +191,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
         base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
 
-        // AKITACOIN BIP44 cointype in mainnet is '1668'
+        // AKITACOIN BIP44 cointype in mainnet is '166'
         nExtCoinType = 166;
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
@@ -334,12 +334,14 @@ public:
         genesis = CreateGenesisBlock(nGenesisTime, 1697678, 0x1e00ffff, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 	    
+        //Test MerkleRoot & GenesisBlock
+
         assert(consensus.hashGenesisBlock == uint256S("fb2a5ab73e5e964dd62b22651ff2ba7c132f7dbd8885361398e55b3b7bd0d691"));
         assert(genesis.hashMerkleRoot == uint256S("1853f490513e29f34d769c6812e02e51930eb2d57eeb8c198d6f282bd68178bf"));		
 		
         vFixedSeeds.clear();
         vSeeds.clear();
-	vSeeds.emplace_back("testnet.akitacoincoin.net", false);
+	    vSeeds.emplace_back("testnet.akitacoincoin.net", false);
 		
 	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);

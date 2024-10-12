@@ -1,6 +1,6 @@
 // Copyright (c) 2012-2016 The Bitcoin Core developers
 // Copyright (c) 2017-2019 The Raven Core developers
-// Copyright (c) 2020-2021 The Akitacoin Core developers
+// Copyright (c) 2020-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -90,10 +90,10 @@ BOOST_FIXTURE_TEST_SUITE(netbase_tests, BasicTestingSetup)
     {
         BOOST_TEST_MESSAGE("Running NetBase SplitHost Test");
 
-        BOOST_CHECK(TestSplitHost("www.akitacoincoin.net", "www.akitacoincoin.net", -1));
-        BOOST_CHECK(TestSplitHost("[www.akitacoincoin.net]", "www.akitacoincoin.net", -1));
-        BOOST_CHECK(TestSplitHost("www.akitacoincoin.net:80", "www.akitacoincoin.net", 80));
-        BOOST_CHECK(TestSplitHost("[www.akitacoincoin.net]:80", "www.akitacoincoin.net", 80));
+        BOOST_CHECK(TestSplitHost("www.akitacoin.net", "www.akitacoin.net", -1));
+        BOOST_CHECK(TestSplitHost("[www.akitacoin.net]", "www.akitacoin.net", -1));
+        BOOST_CHECK(TestSplitHost("www.akitacoin.net:80", "www.akitacoin.net", 80));
+        BOOST_CHECK(TestSplitHost("[www.akitacoin.net]:80", "www.akitacoin.net", 80));
         BOOST_CHECK(TestSplitHost("127.0.0.1", "127.0.0.1", -1));
         BOOST_CHECK(TestSplitHost("127.0.0.1:7787", "127.0.0.1", 7787));
         BOOST_CHECK(TestSplitHost("[127.0.0.1]", "127.0.0.1", -1));

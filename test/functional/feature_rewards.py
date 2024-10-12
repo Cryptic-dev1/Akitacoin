@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2017 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Akitacoin Core developers
+# Copyright (c) 2020-2024 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -38,7 +38,7 @@ class RewardsTest(AkitacoinTestFramework):
     # - retrieve the current chain height
     # - distribute an AKIC reward amongst the shareholders
     # - verify that each one receives the expected amount of reward AKIC
-    def basic_test_neox(self):
+    def basic_test_akic(self):
         self.log.info("Running basic AKIC reward test!")
         n0, n1, n2 = self.nodes[0], self.nodes[1], self.nodes[2]
 
@@ -643,11 +643,11 @@ class RewardsTest(AkitacoinTestFramework):
 
         self.log.info("Distributing shares")
         n0.transferfromaddress(asset_name="STOCK8", from_address=dist_addr0, qty=300, to_address=shareholder_addr0,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.transferfromaddress(asset_name="STOCK8", from_address=dist_addr0, qty=300, to_address=shareholder_addr1,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.transferfromaddress(asset_name="STOCK8", from_address=dist_addr0, qty=300, to_address=shareholder_addr2,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.generate(150)
         self.sync_all()
 
@@ -746,11 +746,11 @@ class RewardsTest(AkitacoinTestFramework):
 
         self.log.info("Distributing shares")
         n0.transferfromaddress(asset_name="STOCK9", from_address=dist_addr0, qty=300, to_address=shareholder_addr0,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.transferfromaddress(asset_name="STOCK9", from_address=dist_addr0, qty=300, to_address=shareholder_addr1,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.transferfromaddress(asset_name="STOCK9", from_address=dist_addr0, qty=400, to_address=shareholder_addr2,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.generate(150)
         self.sync_all()
 
@@ -849,11 +849,11 @@ class RewardsTest(AkitacoinTestFramework):
 
         self.log.info("Distributing shares")
         n0.transferfromaddress(asset_name="STOCK10", from_address=dist_addr0, qty=300, to_address=shareholder_addr0,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.transferfromaddress(asset_name="STOCK10", from_address=dist_addr0, qty=300, to_address=shareholder_addr1,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.transferfromaddress(asset_name="STOCK10", from_address=dist_addr0, qty=500, to_address=shareholder_addr2,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.generate(150)
         self.sync_all()
 
@@ -954,13 +954,13 @@ class RewardsTest(AkitacoinTestFramework):
 
         self.log.info("Distributing shares")
         n0.transferfromaddress(asset_name="STOCK11", from_address=dist_addr0, qty=9, to_address=shareholder_addr0,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.transferfromaddress(asset_name="STOCK11", from_address=dist_addr0, qty=3, to_address=shareholder_addr1,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.transferfromaddress(asset_name="STOCK11", from_address=dist_addr0, qty=2, to_address=shareholder_addr2,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
         n0.transferfromaddress(asset_name="STOCK11", from_address=dist_addr0, qty=1, to_address=shareholder_addr3,
-                               message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                               message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
 
         n0.generate(150)
         self.sync_all()
@@ -1064,10 +1064,10 @@ class RewardsTest(AkitacoinTestFramework):
         shareholder_addr3 = n2.getnewaddress()
 
         self.log.info("Distributing shares")
-        n0.transferfromaddress(asset_name="STOCK12", from_address=dist_addr0, qty=9, to_address=shareholder_addr0, message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
-        n0.transferfromaddress(asset_name="STOCK12", from_address=dist_addr0, qty=3, to_address=shareholder_addr1, message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
-        n0.transferfromaddress(asset_name="STOCK12", from_address=dist_addr0, qty=2, to_address=shareholder_addr2, message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
-        n0.transferfromaddress(asset_name="STOCK12", from_address=dist_addr0, qty=1, to_address=shareholder_addr3,  message="", expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+        n0.transferfromaddress(asset_name="STOCK12", from_address=dist_addr0, qty=9, to_address=shareholder_addr0, message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
+        n0.transferfromaddress(asset_name="STOCK12", from_address=dist_addr0, qty=3, to_address=shareholder_addr1, message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
+        n0.transferfromaddress(asset_name="STOCK12", from_address=dist_addr0, qty=2, to_address=shareholder_addr2, message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
+        n0.transferfromaddress(asset_name="STOCK12", from_address=dist_addr0, qty=1, to_address=shareholder_addr3,  message="", expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
 
         n0.generate(150)
         self.sync_all()
@@ -1143,7 +1143,7 @@ class RewardsTest(AkitacoinTestFramework):
         assert_equal(n0.listassetbalancesbyaddress(shareholder_addr2)["PAYOUT12"], Decimal(str(1.3)))
         assert_equal(n0.listassetbalancesbyaddress(shareholder_addr3)["PAYOUT12"], Decimal(str(0.6)))
 
-    def test_neox_bulk(self):
+    def test_akic_bulk(self):
         self.log.info("Running basic AKIC reward test!")
         n0, n1, n2, n3 = self.nodes[0], self.nodes[1], self.nodes[2], self.nodes[3]
 
@@ -1186,7 +1186,7 @@ class RewardsTest(AkitacoinTestFramework):
         count = 0
         for address in address_list:
             n0.transferfromaddress(asset_name="BULK1", from_address=dist_addr0, qty=10, to_address=address, message="",
-                                   expire_time=0, neox_change_address="", asset_change_address=dist_addr0)
+                                   expire_time=0, akic_change_address="", asset_change_address=dist_addr0)
             count += 1
             if count > 190:
                 n0.generate(1)
@@ -1250,7 +1250,7 @@ class RewardsTest(AkitacoinTestFramework):
 
     def run_test(self):
         self.activate_assets()
-        self.basic_test_neox()
+        self.basic_test_akic()
         self.basic_test_asset()
         self.payout_without_snapshot()
         self.payout_with_invalid_ownership_asset()

@@ -1,6 +1,6 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2016 The Bitcoin Core developers
-// Copyright (c) 2017-2020 The OLDNAMENEEDKEEP__Core developers
+// Copyright (c) 2017-2024 The Akitacoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -627,7 +627,7 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/Cryptic-dev1/akita>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/Cryptic-dev1/Akitacoin>";
     const std::string URL_WEBSITE = "<https://akitacoin.net>";
 
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2024, COPYRIGHT_YEAR) + " ") + "\n" +

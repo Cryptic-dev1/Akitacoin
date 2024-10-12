@@ -10,12 +10,12 @@ The solution is to speed up adoption is to run akitacoind in compatibility mode 
 
 As an example, normally the rpc call for transferring AKIC is   
 ```sendfrom "fromaccount" "toaddress" amount ( minconf "comment" "comment_to" )```   
-Ordinarily this call to akitacoind (port 8766) will transfer AKIC
+Ordinarily this call to akitacoind (port 9766) will transfer AKIC
 
 Configuring a different port for sending the TRONCO token will allow the same RPC call to transfer TRONCO instead of AKIC.  The advantage is that the only change needed for compatibility with a system that can already handle BTC and AKIC is to use the port configured for TRONCO, or whatever asset you'd like.
 
 ### Configuration
-Every Bitcoin-type, or Akitacoin-type coin uses a different RPC port.  For example, the standard RPC port for Bitcoin is 8332, and the standard RPC port for Akitacoin is 8766.
+Every Bitcoin-type, or Akitacoin-type coin uses a different RPC port.  For example, the standard RPC port for Bitcoin is 8332, and the standard RPC port for Akitacoin is 7766.
 
 An exchange can configure multiple Akitacoin assets by selecting a different port for each asset.  Once configured, akitacoind will emulate a akitacoind daemon with RPC calls that send the specified asset, instead of AKIC.
 

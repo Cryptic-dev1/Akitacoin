@@ -10,7 +10,7 @@ and performance improvements, as well as updated translations.
 
 Please report bugs using the issue tracker at GitHub:
 
-  <https://github.com/AkitacoinChain/Akitacoin/issues>
+  <https://github.com/Cryptic-dev1/Akitacoin/issues>
 
 To receive security and update notifications, please subscribe to:
 

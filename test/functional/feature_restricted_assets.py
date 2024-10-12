@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Copyright (c) 2015-2016 The Bitcoin Core developers
 # Copyright (c) 2017-2019 The Raven Core developers
-# Copyright (c) 2020-2021 The Akitacoin Core developers
+# Copyright (c) 2020-2024 The Akitacoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -296,13 +296,13 @@ class RestrictedAssetsTest(AkitacoinTestFramework):
         assert_raises_rpc_error(-8, "bad-txns-null-verifier-address-failed-verification", n0.transfer, asset_name, 100, address)
 
         # special case: make sure transfer fails if change address(es) are verified even though to address isn't
-        neox_change_address = n0.getnewaddress()
+        akic_change_address = n0.getnewaddress()
         asset_change_address = n0.getnewaddress()
-        n0.addtagtoaddress(tag, neox_change_address)
+        n0.addtagtoaddress(tag, akic_change_address)
         n0.addtagtoaddress(tag, asset_change_address)
         n0.generate(1)
-        assert_raises_rpc_error(-8, "bad-txns-null-verifier-address-failed-verification", n0.transfer, asset_name, 100, address, "", 0, neox_change_address, asset_change_address)
-        n0.removetagfromaddress(tag, neox_change_address)
+        assert_raises_rpc_error(-8, "bad-txns-null-verifier-address-failed-verification", n0.transfer, asset_name, 100, address, "", 0, akic_change_address, asset_change_address)
+        n0.removetagfromaddress(tag, akic_change_address)
         n0.removetagfromaddress(tag, asset_change_address)
         n0.generate(1)
         ##
@@ -332,14 +332,14 @@ class RestrictedAssetsTest(AkitacoinTestFramework):
             else:
                 assert_happening(t['Removed'])
 
-        # special case: make sure transfer fails if the asset change address isn't verified (even if the neox change address is)
-        neox_change_address = n0.getnewaddress()
+        # special case: make sure transfer fails if the asset change address isn't verified (even if the akic change address is)
+        akic_change_address = n0.getnewaddress()
         asset_change_address = n0.getnewaddress()
-        assert_raises_rpc_error(-20, "bad-txns-null-verifier-address-failed-verification", n0.transfer, asset_name, 100, address, "", 0, neox_change_address, asset_change_address)
-        n0.addtagtoaddress(tag, neox_change_address)
+        assert_raises_rpc_error(-20, "bad-txns-null-verifier-address-failed-verification", n0.transfer, asset_name, 100, address, "", 0, akic_change_address, asset_change_address)
+        n0.addtagtoaddress(tag, akic_change_address)
         n0.generate(1)
-        assert_raises_rpc_error(-20, "bad-txns-null-verifier-address-failed-verification", n0.transfer, asset_name, 100, address, "", 0, neox_change_address, asset_change_address)
-        n0.removetagfromaddress(tag, neox_change_address)
+        assert_raises_rpc_error(-20, "bad-txns-null-verifier-address-failed-verification", n0.transfer, asset_name, 100, address, "", 0, akic_change_address, asset_change_address)
+        n0.removetagfromaddress(tag, akic_change_address)
         n0.generate(1)
 
         # do the transfer already!
@@ -396,7 +396,7 @@ class RestrictedAssetsTest(AkitacoinTestFramework):
         verifier = "true"
         address = n0.getnewaddress()
         safe_address = n0.getnewaddress()
-        neox_change_address = n0.getnewaddress()
+        akic_change_address = n0.getnewaddress()
 
         n0.issue(base_asset_name)
         n0.generate(1)
@@ -433,10 +433,10 @@ class RestrictedAssetsTest(AkitacoinTestFramework):
         assert_raises_rpc_error(None, "Invalid Akitacoin address", n0.freezeaddress, asset_name, "garbageaddress")
         assert_raises_rpc_error(None, "Invalid Akitacoin change address", n0.freezeaddress, asset_name, address, "garbagechangeaddress")
 
-        n0.freezeaddress(asset_name, address, neox_change_address)
+        n0.freezeaddress(asset_name, address, akic_change_address)
         n0.generate(1)
 
-        assert_raises_rpc_error(-32600, "freeze-address-when-already-frozen", n0.freezeaddress, asset_name, address, neox_change_address)
+        assert_raises_rpc_error(-32600, "freeze-address-when-already-frozen", n0.freezeaddress, asset_name, address, akic_change_address)
 
         # post-freezing verification
         assert_contains(asset_name, n0.listaddressrestrictions(address))
@@ -455,10 +455,10 @@ class RestrictedAssetsTest(AkitacoinTestFramework):
         assert_raises_rpc_error(None, "Invalid Akitacoin address", n0.unfreezeaddress, asset_name, "garbageaddress")
         assert_raises_rpc_error(None, "Invalid Akitacoin change address", n0.unfreezeaddress, asset_name, address, "garbagechangeaddress")
 
-        n0.unfreezeaddress(asset_name, address, neox_change_address)
+        n0.unfreezeaddress(asset_name, address, akic_change_address)
         n0.generate(1)
 
-        assert_raises_rpc_error(-32600, "unfreeze-address-when-not-frozen", n0.unfreezeaddress, asset_name, address, neox_change_address)
+        assert_raises_rpc_error(-32600, "unfreeze-address-when-not-frozen", n0.unfreezeaddress, asset_name, address, akic_change_address)
 
         # post-unfreezing verification
         assert_does_not_contain(asset_name, n0.listaddressrestrictions(address))
@@ -489,7 +489,7 @@ class RestrictedAssetsTest(AkitacoinTestFramework):
         qty = 10000
         verifier = "true"
         address = n0.getnewaddress()
-        neox_change_address = n0.getnewaddress()
+        akic_change_address = n0.getnewaddress()
 
         n0.issue(base_asset_name)
         n0.generate(1)
@@ -511,10 +511,10 @@ class RestrictedAssetsTest(AkitacoinTestFramework):
 
         assert_raises_rpc_error(None, "Invalid Akitacoin change address", n0.freezerestrictedasset, asset_name, "garbagechangeaddress")
 
-        n0.freezerestrictedasset(asset_name, neox_change_address)  # Can only freeze once!
-        assert_raises_rpc_error(-26, "Freezing transaction already in mempool", n0.freezerestrictedasset, asset_name, neox_change_address)
+        n0.freezerestrictedasset(asset_name, akic_change_address)  # Can only freeze once!
+        assert_raises_rpc_error(-26, "Freezing transaction already in mempool", n0.freezerestrictedasset, asset_name, akic_change_address)
         n0.generate(1)
-        assert_raises_rpc_error(None, "global-freeze-when-already-frozen", n0.freezerestrictedasset, asset_name, neox_change_address)
+        assert_raises_rpc_error(None, "global-freeze-when-already-frozen", n0.freezerestrictedasset, asset_name, akic_change_address)
 
         # post-freeze validation
         assert_contains(asset_name, n0.listglobalrestrictions())
@@ -522,10 +522,10 @@ class RestrictedAssetsTest(AkitacoinTestFramework):
         assert_raises_rpc_error(-8, "restricted asset has been globally frozen", n0.transferfromaddress, asset_name, address, 1000, n1.getnewaddress())
         assert_raises_rpc_error(None, "Invalid Akitacoin change address", n0.unfreezerestrictedasset, asset_name, "garbagechangeaddress")
 
-        n0.unfreezerestrictedasset(asset_name, neox_change_address)  # Can only un-freeze once!
-        assert_raises_rpc_error(-26, "Unfreezing transaction already in mempool", n0.unfreezerestrictedasset, asset_name, neox_change_address)
+        n0.unfreezerestrictedasset(asset_name, akic_change_address)  # Can only un-freeze once!
+        assert_raises_rpc_error(-26, "Unfreezing transaction already in mempool", n0.unfreezerestrictedasset, asset_name, akic_change_address)
         n0.generate(1)
-        assert_raises_rpc_error(None, "global-unfreeze-when-not-frozen", n0.unfreezerestrictedasset, asset_name, neox_change_address)
+        assert_raises_rpc_error(None, "global-unfreeze-when-not-frozen", n0.unfreezerestrictedasset, asset_name, akic_change_address)
 
         # post-unfreeze validation
         assert_does_not_contain(asset_name, n0.listglobalrestrictions())
