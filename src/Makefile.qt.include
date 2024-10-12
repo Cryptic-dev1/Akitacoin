@@ -290,7 +290,7 @@ RES_ICONS = \
   qt/res/icons/asset_manage_selected.png \
   qt/res/icons/asset_transfer.png \
   qt/res/icons/asset_transfer_selected.png \
-  qt/res/icons/akitacoincointext.png \
+  qt/res/icons/akitacointext.png \
   qt/res/icons/akitacoin.ico \
   qt/res/icons/akitacoin_testnet.ico \
   qt/res/icons/akitacoin.png \
