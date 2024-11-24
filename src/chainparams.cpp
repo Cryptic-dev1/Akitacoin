@@ -172,10 +172,10 @@ public:
 
         nPruneAfterHeight = 100000;
 
-    uint32_t nGenesisTime = 1729036800; //2024-10-16 00:00:00
+    uint32_t nGenesisTime = 1733011200; //2024-10-16 00:00:00
     //start here
 
-arith_uint256 test;
+        arith_uint256 test;
         bool fNegative;
         bool fOverflow;
         test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
@@ -185,7 +185,7 @@ arith_uint256 test;
         uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         for (int i=0;i<80000000;i++) {
-            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 4, 5000 * COIN);
+            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e00ffff, 4, 5000 * COIN);
             //genesis.hashPrevBlock = TempHashHolding;
 			// Depending on when the timestamp is on the genesis block. You will need to use GetX16RHash or GetX16RV2Hash. Replace GetHash() with these below
             consensus.hashGenesisBlock = genesis.GetX16RHash();
@@ -334,7 +334,7 @@ public:
         consensus.kawpowLimit 	= uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Estimated starting diff for first 180 kawpow blocks
         consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
         consensus.nPowTargetSpacing = 1 * 60;
-	consensus.fPowAllowMinDifficultyBlocks = true;
+	    consensus.fPowAllowMinDifficultyBlocks = true;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 1613; // Approx 80% of 2016
         consensus.nMinerConfirmationWindow = 2016; // nPowTargetTimespan / nPowTargetSpacing
@@ -382,6 +382,8 @@ public:
         pchMessageStart[3] = 0x43; //T
         nDefaultPort = 18788;
         nPruneAfterHeight = 1000;
+
+        uint32_t nGenesisTime = 1732492800;
 
         // input genesis time maunally
          //start here
@@ -443,7 +445,7 @@ public:
 //end here
 
 
-        genesis = CreateGenesisBlock(nGenesisTime, 1697678, 0x1e00ffff, 4, 5000 * COIN);
+        genesis = CreateGenesisBlock(nGenesisTime, 0, 0x1e00ffff, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 	    
         //Test MerkleRoot & GenesisBlock
