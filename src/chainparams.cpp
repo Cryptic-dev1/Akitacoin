@@ -43,7 +43,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "The Times 06/10/2024 Sue Gray resigns as Keir Stamer's chaif of staff";
+    const char* pszTimestamp = " X - Elon Musk - 24/11/2024 https://x.com/elonmusk/status/1860731348962750677";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -112,8 +112,8 @@ public:
         consensus.nBIP66Enabled = true;
         consensus.nSegwitEnabled = true;
         consensus.nCSVEnabled 	= true;
-        consensus.powLimit 		= uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.kawpowLimit 	= uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Estimated starting diff for first 180 kawpow blocks
+        consensus.powLimit 		= uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.kawpowLimit 	= uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); // Estimated starting diff for first 180 kawpow blocks
         consensus.nPowTargetTimespan = 2016 * 60; // 1.4 days
         consensus.nPowTargetSpacing = 1 * 60;
 	consensus.fPowAllowMinDifficultyBlocks = false;
@@ -151,7 +151,26 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideRuleChangeActivationThreshold = 1411; // Approx 70% of 2016
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideMinerConfirmationWindow = 2016;
 	
-	consensus.BIP34LockedIn = 6048; // Locked_in at height 6048
+	//consensus.BIP34LockedIn = 6048; // Locked_in at height 6048
+
+ // The best chain should have at least this much work
+        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); 
+
+        // By default assume that the signatures in ancestors of this block are valid. Block# 
+        consensus.defaultAssumeValid = uint256S("ed17bd41ea38c96d7d264c7e69b5c5a708b61f1d3feec3a5a9ace832042acb7e"); //Genesis
+
+        /**
+         * The message start string is designed to be unlikely to occur in normal data.
+         * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
+         * a large 32-bit integer with any alignment.
+         */
+        pchMessageStart[0] = 0x17; // A
+        pchMessageStart[1] = 0x2E; // K
+        pchMessageStart[2] = 0x22; // I
+        pchMessageStart[3] = 0x0C; // C
+        nDefaultPort = 7787;
+
+        nPruneAfterHeight = 100000;
 
     uint32_t nGenesisTime = 1729036800; //2024-10-16 00:00:00
     //start here
@@ -211,45 +230,23 @@ arith_uint256 test;
 //end here
 
 
-
-
-
-
-
-        // The best chain should have at least this much work
-        consensus.nMinimumChainWork = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000"); 
-
-        // By default assume that the signatures in ancestors of this block are valid. Block# 
-        consensus.defaultAssumeValid = uint256S("ed17bd41ea38c96d7d264c7e69b5c5a708b61f1d3feec3a5a9ace832042acb7e"); //Genesis
-
-        /**
-         * The message start string is designed to be unlikely to occur in normal data.
-         * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
-         * a large 32-bit integer with any alignment.
-         */
-        pchMessageStart[0] = 0x17; // A
-        pchMessageStart[1] = 0x2E; // K
-        pchMessageStart[2] = 0x22; // I
-        pchMessageStart[3] = 0x0C; // C
-        nDefaultPort = 7787;
-
-        nPruneAfterHeight = 100000;
-
-	genesis = CreateGenesisBlock(nGenesisTime, 982222, 0x1e00ffff, 4, 5000 * COIN);
-	
+	genesis = CreateGenesisBlock(nGenesisTime, 0, 0x1e00ffff, 4, 5000 * COIN);
 	consensus.hashGenesisBlock = genesis.GetX16RHash();	
-	assert(consensus.hashGenesisBlock == uint256S("ed17bd41ea38c96d7d264c7e69b5c5a708b61f1d3feec3a5a9ace832042acb7e"));
-        assert(genesis.hashMerkleRoot == uint256S("1853f490513e29f34d769c6812e02e51930eb2d57eeb8c198d6f282bd68178bf"));
-	
 
+    //Test MerkleRoot and GenesisBlock
+	assert(consensus.hashGenesisBlock == uint256S("ed17bd41ea38c96d7d264c7e69b5c5a708b61f1d3feec3a5a9ace832042acb7e"));
+    assert(genesis.hashMerkleRoot == uint256S("1853f490513e29f34d769c6812e02e51930eb2d57eeb8c198d6f282bd68178bf"));
+	
+        vFixedSeeds.clear();
+        vSeeds.clear();
         vSeeds.emplace_back("", false);
 
         // Address start with A
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,122);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,112);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x88, 0xB2, 0x1E};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x88, 0xAD, 0xE4};
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x41, 0x4B, 0x49, 0x50};
+        base58Prefixes[EXT_SECRET_KEY] = {0x41, 0x4B, 0x49, 0x56};
 
         // AKITACOIN BIP44 cointype in mainnet is '166'
         nExtCoinType = 166;
@@ -263,15 +260,12 @@ arith_uint256 test;
 
 		checkpointData = (CCheckpointData) {
             {
-            	{
-            		{0, genesis.GetHash()}
-            	}
             }
         };
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
-        	nGenesisTime, // * UNIX timestamp of last known number of transactions 2024-10-16 00:00:00
+        	0, // * UNIX timestamp of last known number of transactions 2024-10-16 00:00:00
             0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0       // * estimated number of transactions per second after that timestamp
@@ -318,7 +312,7 @@ arith_uint256 test;
         nMessagingActivationBlock = 1; // Messaging activated block height
         nRestrictedActivationBlock = 1; // Restricted activated block height
 
-        nKAAAWWWPOWActivationTime = nGenesisTime + 1; // 2024-10-16 00:00:00
+        nKAAAWWWPOWActivationTime = nGenesisTime + 1; 
         nKAWPOWActivationTime = nKAAAWWWPOWActivationTime;
     }
 };
@@ -376,7 +370,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_COINBASE_ASSETS].nOverrideMinerConfirmationWindow = 2016;
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x0");
+        consensus.nMinimumChainWork = uint256S("0x00");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00");
@@ -388,12 +382,11 @@ public:
         pchMessageStart[3] = 0x43; //T
         nDefaultPort = 18788;
         nPruneAfterHeight = 1000;
-		
-        uint32_t nGenesisTime = 1728230818;  // Sunday, 22 May 2022 19:26:45
 
+        // input genesis time maunally
          //start here
 
-arith_uint256 test;
+        arith_uint256 test;
         bool fNegative;
         bool fOverflow;
         test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
@@ -421,7 +414,7 @@ arith_uint256 test;
                 genesisNonce = i - 1;
                 break;
             }
-            //std::cout << "	 consensus.hashGenesisBlock.GetHex(): " << consensus.hashGenesisBlock.GetHex() << " Nonce: " << i << "\n";
+            std::cout << "	 consensus.hashGenesisBlock.GetHex(): " << consensus.hashGenesisBlock.GetHex() << " Nonce: " << i << "\n";
         }
         std::cout << "\n";
         std::cout << "\n";
@@ -445,6 +438,8 @@ arith_uint256 test;
         std::cout << "Totals: hash algo " <<  " hits " << totalHits << " total " << totalTime << " avg " << totalTime/totalHits << std::endl;
 
         genesis.hashPrevBlock = TempHashHolding;
+        return;
+
 //end here
 
 
@@ -452,19 +447,24 @@ arith_uint256 test;
         consensus.hashGenesisBlock = genesis.GetX16RHash();
 	    
         //Test MerkleRoot & GenesisBlock
-
+        std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
+		std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;	
         assert(consensus.hashGenesisBlock == uint256S("fb2a5ab73e5e964dd62b22651ff2ba7c132f7dbd8885361398e55b3b7bd0d691"));
         assert(genesis.hashMerkleRoot == uint256S("1853f490513e29f34d769c6812e02e51930eb2d57eeb8c198d6f282bd68178bf"));		
-		
+		std::cout << "consensus.hashGenesisBlock.GetHex() After assert" << consensus.hashGenesisBlock.GetHex() << std::endl;
+		std::cout << "genesis.hashPrevBlock().GetHex() After Assert" << genesis.hashPrevBlock.GetHex() << std::endl;	
+
+
+
         vFixedSeeds.clear();
         vSeeds.clear();
 	    vSeeds.emplace_back("testnet.akitacoin.net", false);
 		
-	base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
+	    base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,114);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x54, 0x4B, 0x49, 0x50};
+        base58Prefixes[EXT_SECRET_KEY] = {0x54, 0x48, 0x49, 0x56};
 
         // Akitacoin BIP44 cointype in testnet
         nExtCoinType = 1;
@@ -478,17 +478,16 @@ arith_uint256 test;
 
         checkpointData = (CCheckpointData) {
             {
-		{0, genesis.GetHash()}
             }
         };
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
             // Stats as of 00000023b66f46d74890287a7b1157dd780c7c5fdda2b561eb96684d2b39d62e window size 43200
-            1728230818, // * UNIX timestamp of last known number of transactions
+            0, // * UNIX timestamp of last known number of transactions
             0,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
-            1        // * estimated number of transactions per second after that timestamp
+            0        // * estimated number of transactions per second after that timestamp
         };
 
         /** AKITACOIN Start **/
@@ -503,8 +502,8 @@ arith_uint256 test;
         nIssueRestrictedAssetBurnAmount = 1500 * COIN;
         nAddNullQualifierTagBurnAmount = .1 * COIN;
 		
-	//10% of 5000 COIN to ASSIGN
-	nCommunityAutonomousAmount = 15;
+	//5% of 5000 COIN to ASSIGN
+	nCommunityAutonomousAmount = 5;
 
         // Burn Addresses
 	strIssueAssetBurnAddress = "";
@@ -632,8 +631,8 @@ public:
 		base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);
         base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,114);
-        base58Prefixes[EXT_PUBLIC_KEY] = {0x04, 0x35, 0x87, 0xCF};
-        base58Prefixes[EXT_SECRET_KEY] = {0x04, 0x35, 0x83, 0x94};
+        base58Prefixes[EXT_PUBLIC_KEY] = {0x52, 0x4B, 0x49, 0x50};
+        base58Prefixes[EXT_SECRET_KEY] = {0x52, 0x4B, 0x49, 0x56};
 
         // Akitacoin BIP44 cointype in regtest
         nExtCoinType = 1;
