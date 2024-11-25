@@ -43,7 +43,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
 
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = " X - Elon Musk - 24/11/2024 https://x.com/elonmusk/status/1860731348962750677";
+    const char* pszTimestamp = "X - Elon Musk - 24/11/2024 https://x.com/elonmusk/status/1860731348962750677";
     const CScript genesisOutputScript = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -174,11 +174,11 @@ public:
 
     uint32_t nGenesisTime = 1733011200; //2024-10-16 00:00:00
     //start here
-
+/*
         arith_uint256 test;
         bool fNegative;
         bool fOverflow;
-        test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
+        test.SetCompact(0x1e00ffff, &fNegative, &fOverflow);
         std::cout << "Test threshold: " << test.GetHex() << "\n\n";
 
         int genesisNonce = 0;
@@ -188,7 +188,7 @@ public:
             genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e00ffff, 4, 5000 * COIN);
             //genesis.hashPrevBlock = TempHashHolding;
 			// Depending on when the timestamp is on the genesis block. You will need to use GetX16RHash or GetX16RV2Hash. Replace GetHash() with these below
-            consensus.hashGenesisBlock = genesis.GetX16RHash();
+            consensus.hashGenesisBlock = genesis.GetX16RV2Hash();
 
             arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
             if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
@@ -203,7 +203,7 @@ public:
                 genesisNonce = i - 1;
                 break;
             }
-            //std::cout << "	 consensus.hashGenesisBlock.GetHex(): " << consensus.hashGenesisBlock.GetHex() << " Nonce: " << i << "\n";
+            std::cout << "	 consensus.hashGenesisBlock.GetHex(): " << consensus.hashGenesisBlock.GetHex() << " Nonce: " << i << "\n";
         }
         std::cout << "\n";
         std::cout << "\n";
@@ -227,15 +227,17 @@ public:
         std::cout << "Totals: hash algo " <<  " hits " << totalHits << " total " << totalTime << " avg " << totalTime/totalHits << std::endl;
 
         genesis.hashPrevBlock = TempHashHolding;
+        return;
 //end here
+*/
 
 
-	genesis = CreateGenesisBlock(nGenesisTime, 0, 0x1e00ffff, 4, 5000 * COIN);
-	consensus.hashGenesisBlock = genesis.GetX16RHash();	
+	genesis = CreateGenesisBlock(nGenesisTime, 15041261, 0x1e00ffff, 4, 5000 * COIN);
+	consensus.hashGenesisBlock = genesis.GetX16RV2Hash();	
 
     //Test MerkleRoot and GenesisBlock
-	assert(consensus.hashGenesisBlock == uint256S("ed17bd41ea38c96d7d264c7e69b5c5a708b61f1d3feec3a5a9ace832042acb7e"));
-    assert(genesis.hashMerkleRoot == uint256S("1853f490513e29f34d769c6812e02e51930eb2d57eeb8c198d6f282bd68178bf"));
+	assert(consensus.hashGenesisBlock == uint256S("0x0000001b2550e6e545f66014155d9dd78855737eeea85e226c429960352bb298"));
+    	assert(genesis.hashMerkleRoot == uint256S("3abe325e8210f1ab969345ce26553666731dbd78b051a56aa6bb1c6d5727130a"));
 	
         vFixedSeeds.clear();
         vSeeds.clear();
@@ -260,12 +262,14 @@ public:
 
 		checkpointData = (CCheckpointData) {
             {
+            {0, uint256S("0x0000001b2550e6e545f66014155d9dd78855737eeea85e226c429960352bb298")}
+            
             }
         };
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
-        	0, // * UNIX timestamp of last known number of transactions 2024-10-16 00:00:00
+        	1733011200, // * UNIX timestamp of last known number of transactions 2024-10-16 00:00:00
             0,    // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0       // * estimated number of transactions per second after that timestamp
@@ -387,21 +391,21 @@ public:
 
         // input genesis time maunally
          //start here
-
+/*
         arith_uint256 test;
         bool fNegative;
         bool fOverflow;
-        test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
+        test.SetCompact(0x1e00ffff, &fNegative, &fOverflow);
         std::cout << "Test threshold: " << test.GetHex() << "\n\n";
 
         int genesisNonce = 0;
         uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
         uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         for (int i=0;i<80000000;i++) {
-            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 4, 5000 * COIN);
+            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e00ffff, 4, 5000 * COIN);
             //genesis.hashPrevBlock = TempHashHolding;
 			// Depending on when the timestamp is on the genesis block. You will need to use GetX16RHash or GetX16RV2Hash. Replace GetHash() with these below
-            consensus.hashGenesisBlock = genesis.GetX16RHash();
+            consensus.hashGenesisBlock = genesis.GetX16RV2Hash();
 
             arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
             if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
@@ -443,24 +447,24 @@ public:
         return;
 
 //end here
+*/
 
-
-        genesis = CreateGenesisBlock(nGenesisTime, 0, 0x1e00ffff, 4, 5000 * COIN);
-        consensus.hashGenesisBlock = genesis.GetX16RHash();
+        genesis = CreateGenesisBlock(nGenesisTime, 3431943, 0x1e00ffff, 4, 5000 * COIN);
+        consensus.hashGenesisBlock = genesis.GetX16RV2Hash();
 	    
         //Test MerkleRoot & GenesisBlock
-        std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
-		std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;	
-        assert(consensus.hashGenesisBlock == uint256S("fb2a5ab73e5e964dd62b22651ff2ba7c132f7dbd8885361398e55b3b7bd0d691"));
-        assert(genesis.hashMerkleRoot == uint256S("1853f490513e29f34d769c6812e02e51930eb2d57eeb8c198d6f282bd68178bf"));		
-		std::cout << "consensus.hashGenesisBlock.GetHex() After assert" << consensus.hashGenesisBlock.GetHex() << std::endl;
-		std::cout << "genesis.hashPrevBlock().GetHex() After Assert" << genesis.hashPrevBlock.GetHex() << std::endl;	
+        //std::cout << "consensus.hashGenesisBlock.GetHex() " << consensus.hashGenesisBlock.GetHex() << std::endl;
+	//	std::cout << "genesis.hashPrevBlock().GetHex() " << genesis.hashPrevBlock.GetHex() << std::endl;	
+        assert(consensus.hashGenesisBlock == uint256S("0x000000cabd6ead433fc2835065e67b95645c69a28fb31eba3ba7900c9d93767c"));
+        assert(genesis.hashMerkleRoot == uint256S("3abe325e8210f1ab969345ce26553666731dbd78b051a56aa6bb1c6d5727130a"));		
+	//	std::cout << "consensus.hashGenesisBlock.GetHex() After assert" << consensus.hashGenesisBlock.GetHex() << std::endl;
+	//	std::cout << "genesis.hashPrevBlock().GetHex() After Assert" << genesis.hashPrevBlock.GetHex() << std::endl;	
 
 
 
         vFixedSeeds.clear();
         vSeeds.clear();
-	    vSeeds.emplace_back("testnet.akitacoin.net", false);
+	    vSeeds.emplace_back("", false);
 		
 	    base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,42);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,124);
@@ -480,13 +484,14 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
+            	{0, uint256S("0x000000cabd6ead433fc2835065e67b95645c69a28fb31eba3ba7900c9d93767c")}
             }
         };
 
         chainTxData = ChainTxData{
             // Update as we know more about the contents of the Akitacoin chain
             // Stats as of 00000023b66f46d74890287a7b1157dd780c7c5fdda2b561eb96684d2b39d62e window size 43200
-            0, // * UNIX timestamp of last known number of transactions
+            1732492800, // * UNIX timestamp of last known number of transactions
             0,     // * total number of transactions between genesis and that timestamp
                         //   (the tx=... number in the SetBestChain debug.log lines)
             0        // * estimated number of transactions per second after that timestamp
@@ -607,7 +612,7 @@ public:
 	    
 
         genesis = CreateGenesisBlock(1524179366, 1, 0x207fffff, 4, 5000 * COIN);
-        consensus.hashGenesisBlock = genesis.GetX16RHash();
+        consensus.hashGenesisBlock = genesis.GetX16RV2Hash();
 
         //assert(consensus.hashGenesisBlock == uint256S("0x0b2c703dc93bb63a36c4e33b85be4855ddbca2ac951a7a0a29b8de0408200a3c "));
         //assert(genesis.hashMerkleRoot == uint256S("0x28ff00a867739a352523808d301f504bc4547699398d70faf2266a8bae5f3516"));
