@@ -303,7 +303,7 @@ public:
         //Global Burn Address
         strGlobalBurnAddress = "AWXw6WVVi6kSG4CXFcE8tVbq6i7NhCCV1A";
         // community Address
-        strCommunityAutonomousAddress = "ATkfVybeSsiYEUJoVTM1dTojUmtDShb1wB";
+        strCommunityAutonomousAddress = "AG6ABjLTiDK7DsQUnqhMVxX9KQCqLCqFFq";
 
         // DGW Activation
         nDGWActivationBlock = 1;
@@ -526,7 +526,7 @@ public:
         strGlobalBurnAddress = "J1FJbTjhXGCVzhGd1QGCJ7Gu7z7NVzKkwK";
 		
 	//CommunityAutonomousAddress
-        strCommunityAutonomousAddress = "JBSTZFTtoxykq2d8g9qbBTFrvbW2XtPgpC";
+        strCommunityAutonomousAddress = "J4KLZh1PUFq4o1yHQ8YmDrB3yGJCJeCYrX";
 
         // DGW Activation
         nDGWActivationBlock = 1;
