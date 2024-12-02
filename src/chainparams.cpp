@@ -241,7 +241,7 @@ public:
 	
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.emplace_back("", false);
+        vSeeds.emplace_back("ns1.akitacoin.org", false);
 
         // Address start with A
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,23);
