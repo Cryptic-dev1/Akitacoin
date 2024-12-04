@@ -407,7 +407,7 @@ public:
 
         // input genesis time maunally
          //start here
-/*
+
         arith_uint256 test;
         bool fNegative;
         bool fOverflow;
@@ -463,7 +463,7 @@ public:
         return;
 
 //end here
-*/
+
 
         genesis = CreateGenesisBlock(nGenesisTime, 3431943, 0x1e00ffff, 4, 5000 * COIN);
         consensus.hashGenesisBlock = genesis.GetX16RV2Hash();
