@@ -405,7 +405,6 @@ public:
 
         uint32_t nGenesisTime = 1732492800;
 
-        // input genesis time maunally
          //start here
 
         arith_uint256 test;
@@ -500,7 +499,7 @@ public:
 
         checkpointData = (CCheckpointData) {
             {
-            	{0, uint256S("0x000000cabd6ead433fc2835065e67b95645c69a28fb31eba3ba7900c9d93767c")}
+            	//{0, uint256S("0x000000cabd6ead433fc2835065e67b95645c69a28fb31eba3ba7900c9d93767c")}
             }
         };
 
